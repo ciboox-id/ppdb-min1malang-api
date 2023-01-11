@@ -42,7 +42,7 @@ class StudentController extends Controller
         try {
             $validation = Validator::make($request->all(), [
                 "nama_lengkap" => 'required',
-                "email" => "required|email",
+                "email" => "required|email|unique",
                 "password" => "required|min:5|max:255",
                 "confirm_password" => "required|min:5|max:255|same:password"
             ]);
