@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\StudentController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,5 +20,6 @@ Route::post('/auth/login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/auth/logout', [AuthController::class, 'logout']);
-    Route::apiResource('students', StudentController::class);
+    // Route::apiResource('students', StudentController::class);
+    Route::post('/students/{student}', [StudentController::class, 'update']);
 });

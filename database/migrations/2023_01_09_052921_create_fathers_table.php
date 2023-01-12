@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('nama_kantor_ayah')->nullable();
             $table->string('penghasilan_ayah')->nullable();
             $table->string('no_telp')->nullable();
-            $table->foreignId('id_user');
+            $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -11,6 +11,7 @@ use App\Models\School;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Exception;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
@@ -105,18 +106,23 @@ class StudentController extends Controller
      */
     public function update(Request $request, User $student)
     {
-        try {
-            $validation = Validator::make($request->all(), [
-                "nama_lengkap" => 'required',
-            ]);
 
-            if ($validation->fails()) {
-                return ApiFormatter::createApi('401', $validation->errors());
+        $validation = $request->validate([
+            "nama_lengkap" => 'required',
+            "foto_akte" => "file|mimes:png,jpg"
+        ]);
+
+        try {
+            if ($request->file('foto_akte')) {
+                Storage::delete($student->foto_akte);
+                $fileName = time() . $request->file('foto_akte')->getClientOriginalName();
+                $path = $request->file('foto_akte')->storeAs('uploads/students', $fileName);
+                $validation['foto_akte'] = $path;
             }
 
-            $result = $student->update($request->all());
+            $result = $student->update($validation);
 
-            return ApiFormatter::createApi('200', 'Berhasil menyimpan data siswa', $result);
+            return ApiFormatter::createApi('200', 'Berhasil menyimpan data siswa', $request);
         } catch (Exception $error) {
             return ApiFormatter::createApi('400', 'Gagal menyimpan data siswa', null);
         }

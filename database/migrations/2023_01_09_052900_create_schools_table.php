@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('npsn')->nullable();
             $table->string('nama_sekolah')->nullable();
             $table->string('asal_sekolah')->nullable();
-            $table->foreignId('id_user');
+            $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

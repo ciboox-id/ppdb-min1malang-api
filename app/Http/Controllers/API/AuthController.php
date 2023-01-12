@@ -10,8 +10,6 @@ use App\Models\Father;
 use App\Models\Mother;
 use App\Models\School;
 use App\Models\User;
-use Exception;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
