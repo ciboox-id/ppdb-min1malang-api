@@ -109,15 +109,23 @@ class StudentController extends Controller
 
         $validation = $request->validate([
             "nama_lengkap" => 'required',
-            "foto_akte" => "file|mimes:png,jpg"
+            "foto_akte" => "file|mimes:png,jpg",
+            "foto_kartu_keluarga" => "file|mimes:png,jpg"
         ]);
 
         try {
             if ($request->file('foto_akte')) {
                 Storage::delete($student->foto_akte);
                 $fileName = time() . $request->file('foto_akte')->getClientOriginalName();
-                $path = $request->file('foto_akte')->storeAs('uploads/students', $fileName);
+                $path = $request->file('foto_akte')->storeAs('uploads/akte', $fileName);
                 $validation['foto_akte'] = $path;
+            }
+
+            if ($request->file('foto_kartu_keluarga')) {
+                Storage::delete($student->foto_kartu_keluarga);
+                $fileName = time() . $request->file('foto_kartu_keluarga')->getClientOriginalName();
+                $path = $request->file('foto_kartu_keluarga')->storeAs('uploads/kartu_keluarga', $fileName);
+                $validation['foto_kartu_keluarga'] = $path;
             }
 
             $result = $student->update($validation);
