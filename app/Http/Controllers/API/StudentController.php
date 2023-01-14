@@ -33,54 +33,6 @@ class StudentController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        try {
-            $validation = Validator::make($request->all(), [
-                "nama_lengkap" => 'required',
-                "email" => "required|email|unique",
-                "password" => "required|min:5|max:255",
-                "confirm_password" => "required|min:5|max:255|same:password"
-            ]);
-
-            if ($validation->fails()) {
-                return ApiFormatter::createApi('401', $validation->errors());
-            }
-
-            $user = new User();
-            $user->nama_lengkap = $request->nama_lengkap;
-            $user->email = $request->email;
-            $user->password = bcrypt($request->password);
-            $user->save();
-
-            $school = new School();
-            $school->id_user = $user->id;
-            $school->save();
-
-            $father = new Father();
-            $father->id_user = $user->id;
-            $father->save();
-
-            $mother = new Mother();
-            $mother->id_user = $user->id;
-            $mother->save();
-
-            $address = new Address();
-            $address->id_user = $user->id;
-            $address->save();
-
-            return ApiFormatter::createApi('200', 'Berhasil daftar', $user);
-        } catch (Exception $error) {
-            return ApiFormatter::createApi('400', 'Gagal mendaftar', null);
-        }
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -106,31 +58,43 @@ class StudentController extends Controller
      */
     public function update(Request $request, User $student)
     {
-
         $validation = $request->validate([
             "nama_lengkap" => 'required',
+            'nisn' => 'nullable',
+            "jenis_kelamin" => 'nullable',
+            "alamat_siswa" => 'nullable',
+            'tempat_lahir' => 'nullable',
+            'tanggal_lahir' => 'nullable',
+            "gol_darah" => 'max:25|nullable',
             "foto_akte" => "file|mimes:png,jpg",
-            "foto_kartu_keluarga" => "file|mimes:png,jpg"
+            "foto_siswa" => "file|mimes:png,jpg",
         ]);
 
         try {
             if ($request->file('foto_akte')) {
-                Storage::delete($student->foto_akte);
+
+                if ($student->foto_akte != null) {
+                    Storage::delete($student->foto_akte);
+                }
+
                 $fileName = time() . $request->file('foto_akte')->getClientOriginalName();
                 $path = $request->file('foto_akte')->storeAs('uploads/akte', $fileName);
                 $validation['foto_akte'] = $path;
             }
 
-            if ($request->file('foto_kartu_keluarga')) {
-                Storage::delete($student->foto_kartu_keluarga);
-                $fileName = time() . $request->file('foto_kartu_keluarga')->getClientOriginalName();
-                $path = $request->file('foto_kartu_keluarga')->storeAs('uploads/kartu_keluarga', $fileName);
-                $validation['foto_kartu_keluarga'] = $path;
-            }
+            if ($request->file('foto_siswa')) {
 
+                if ($student->foto_siswa != null) {
+                    Storage::delete($student->foto_siswa);
+                }
+
+                $fileName = time() . $request->file('foto_siswa')->getClientOriginalName();
+                $path = $request->file('foto_siswa')->storeAs('uploads/foto_siswa', $fileName);
+                $validation['foto_siswa'] = $path;
+            }
             $result = $student->update($validation);
 
-            return ApiFormatter::createApi('200', 'Berhasil menyimpan data siswa', $request);
+            return ApiFormatter::createApi('200', 'Berhasil menyimpan data siswa', $validation);
         } catch (Exception $error) {
             return ApiFormatter::createApi('400', 'Gagal menyimpan data siswa', null);
         }

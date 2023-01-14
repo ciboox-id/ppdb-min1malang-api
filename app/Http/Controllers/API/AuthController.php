@@ -72,7 +72,6 @@ class AuthController extends Controller
         }
 
         $user = User::where('email', $request->email)->first();
-        dd($user);
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             return ApiFormatter::createApi('401', "Username dan password salah");

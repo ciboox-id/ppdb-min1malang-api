@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('tanggal_lahir')->nullable();
             $table->enum('gol_darah', ['A', 'B', 'AB', 'O'])->nullable();
             $table->string('foto_akte')->nullable();
-            $table->string('foto_kartu_keluarga')->nullable();
+            $table->string('foto_siswa')->nullable();
             $table->boolean('status')->default(false);
             $table->rememberToken();
             $table->timestamps();
