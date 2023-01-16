@@ -23,7 +23,7 @@ class FatherController extends Controller
             return ApiFormatter::createApi('200', 'Berhasil mengambil data ayah', $father);
         }
 
-        return ApiFormatter::createApi('404', 'Gagal mengambil data calon ayah', $father);
+        return ApiFormatter::createApi('404', 'Gagal mengambil data ayah', $father);
     }
 
 
@@ -35,13 +35,13 @@ class FatherController extends Controller
      */
     public function show(Father $father)
     {
-        $father = Father::find($father);
+        $fatherData = Father::find($father);
 
-        if (is_null($father)) {
+        if (is_null($fatherData)) {
             return ApiFormatter::createApi('404', 'Data ayah tidak ditemukan', null);
         }
 
-        return ApiFormatter::createApi('200', 'Berhasil mengambil data ayah', $father);
+        return ApiFormatter::createApi('200', 'Berhasil mengambil data ayah', $fatherData);
     }
 
     /**
