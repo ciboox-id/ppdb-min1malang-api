@@ -60,4 +60,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Home::class);
     }
+
+    public function prestasi()
+    {
+        return $this->hasMany(Prestasi::class);
+    }
 }
