@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class DashboardController extends Controller
+class ResultController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,15 +13,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $user = User::all();
-        $incomplete = User::whereNull('foto_siswa')->orWhereNull('foto_akte')->count();
-        $complete = count($user) - $incomplete;
-
-        return view('dashboard', [
-            'users' => $user,
-            'incomplete' => $incomplete,
-            'complete' => $complete,
-            'active' => "dashboard"
+        return view('result', [
+            "active" => "hasil-akhir"
         ]);
     }
 
@@ -56,6 +47,7 @@ class DashboardController extends Controller
      */
     public function show($id)
     {
+        //
     }
 
     /**

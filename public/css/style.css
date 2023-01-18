@@ -1,41 +1,31 @@
-/**
-* Template Name: NiceAdmin - v2.5.0
-* Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
-/*--------------------------------------------------------------
-# General
---------------------------------------------------------------*/
 :root {
     scroll-behavior: smooth;
 }
 
 body {
     font-family: "Open Sans", sans-serif;
-    background: #f6f9ff;
-    color: #444444;
+    background: #F4F4F4;
+    color: #2F2F2F;
 }
 
 a {
-    color: #4154f1;
+    color: #DFF0E9;
     text-decoration: none;
 }
 
 a:hover {
-    color: #717ff5;
+    color: #DFF0E9;
     text-decoration: none;
 }
 
-h1,
+/* h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
     font-family: "Nunito", sans-serif;
-}
+} */
 
 /*--------------------------------------------------------------
 # Main
@@ -60,10 +50,10 @@ h6 {
 }
 
 .pagetitle h1 {
-    font-size: 24px;
+    font-size: 17px;
     margin-bottom: 0;
     font-weight: 600;
-    color: #012970;
+    color: #2F2F2F;
 }
 
 /*--------------------------------------------------------------
@@ -263,27 +253,27 @@ h6 {
 }
 
 .card-title-table {
-    padding: 15px 0;
-    font-size: 18px;
-    font-weight: 500;
-    color: #012970;
-    font-family: "Poppins", sans-serif;
+    padding: 20px 0px 10px 0;
+    font-size: 17px;
+    font-weight: 600;
+    color: #2F2F2F;
+    /* font-family: "Poppins", sans-serif; */
 }
 
 .card-body {
     padding: 0 20px 20px 20px;
 }
 
-.card-img-overlay {
+/* .card-img-overlay {
     background-color: rgba(255, 255, 255, 0.6);
-}
+} */
 
 /* Alerts */
-.alert-heading {
+/* .alert-heading {
     font-weight: 500;
     font-family: "Poppins", sans-serif;
     font-size: 20px;
-}
+} */
 
 /* Close Button */
 .btn-close {
@@ -296,7 +286,7 @@ h6 {
 }
 
 /* Accordion */
-.accordion-item {
+/* .accordion-item {
     border: 1px solid #ebeef4;
 }
 
@@ -325,10 +315,10 @@ h6 {
     padding: 0 0 15px 0;
     color: #3e4f6f;
     font-size: 15px;
-}
+} */
 
 /* Breadcrumbs */
-.breadcrumb {
+/* .breadcrumb {
     font-size: 14px;
     font-family: "Nunito", sans-serif;
     color: #899bbd;
@@ -351,10 +341,10 @@ h6 {
 .breadcrumb .active {
     color: #51678f;
     font-weight: 600;
-}
+} */
 
 /* Bordered Tabs */
-.nav-tabs-bordered {
+/* .nav-tabs-bordered {
     border-bottom: 2px solid #ebeef4;
 }
 
@@ -373,7 +363,7 @@ h6 {
     background-color: #fff;
     color: #4154f1;
     border-bottom: 2px solid #4154f1;
-}
+} */
 
 /*--------------------------------------------------------------
 # Header
@@ -633,7 +623,7 @@ h6 {
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #aab7cf transparent;
-    box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
+    /* box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1); */
     background-color: #fff;
 }
 
@@ -706,9 +696,9 @@ h6 {
     align-items: center;
     font-size: 15px;
     font-weight: 600;
-    color: #4154f1;
+    color: #198754;
     transition: 0.3;
-    background: #f6f9ff;
+    background: #DFF0E9;
     padding: 10px 15px;
     border-radius: 4px;
 }
@@ -716,35 +706,35 @@ h6 {
 .sidebar-nav .nav-link i {
     font-size: 16px;
     margin-right: 10px;
-    color: #4154f1;
+    color: #198754;
 }
 
 .sidebar-nav .nav-link.collapsed {
-    color: #012970;
+    color: #198754;
     background: #fff;
 }
 
 .sidebar-nav .nav-link.collapsed i {
-    color: #899bbd;
+    color: #198754;
 }
 
 .sidebar-nav .nav-link:hover {
-    color: #4154f1;
-    background: #f6f9ff;
+    color: #198754;
+    background: #DFF0E9;
 }
 
 .sidebar-nav .nav-link:hover i {
-    color: #4154f1;
+    color: #198754;
 }
 
-.sidebar-nav .nav-link .bi-chevron-down {
+/* .sidebar-nav .nav-link .bi-chevron-down {
     margin-right: 0;
     transition: transform 0.2s ease-in-out;
-}
+} */
 
-.sidebar-nav .nav-link:not(.collapsed) .bi-chevron-down {
+/* .sidebar-nav .nav-link:not(.collapsed) .bi-chevron-down {
     transform: rotate(180deg);
-}
+} */
 
 .sidebar-nav .nav-content {
     padding: 5px 0 0 0;
@@ -757,7 +747,7 @@ h6 {
     align-items: center;
     font-size: 14px;
     font-weight: 600;
-    color: #012970;
+    color: #198754;
     transition: 0.3;
     padding: 10px 0 10px 40px;
     transition: 0.3s;
@@ -857,20 +847,6 @@ h6 {
     background: #dff0e9;
 }
 
-.status {
-    padding: 8px 16px;
-    border-radius: 20px;
-    color: #0d6440;
-    background: #dff0e9;
-    font-weight: 800;
-    font-size: 12px;
-}
-
-.badge-custom {
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 12px;
-}
 
 /* Activity */
 .dashboard .activity {
@@ -953,23 +929,15 @@ h6 {
 }
 
 /* Recent Sales */
-.dashboard .recent-sales {
-    font-size: 14px;
+.dashboard .table-student {
+    font-size: 15px;
 }
 
-.dashboard .recent-sales .table thead {
-    background: #f6f6fe;
+.dashboard .table-student .dataTable-top {
+    padding: 0 0 15px 0;
 }
 
-.dashboard .recent-sales .table thead th {
-    border: 0;
-}
-
-.dashboard .recent-sales .dataTable-top {
-    padding: 0 0 10px 0;
-}
-
-.dashboard .recent-sales .dataTable-bottom {
+.dashboard .table-student .dataTable-bottom {
     padding: 10px 0 0 0;
 }
 
@@ -1088,7 +1056,7 @@ h6 {
 /*--------------------------------------------------------------
 # F.A.Q Page
 --------------------------------------------------------------*/
-.faq .basic h6 {
+/* .faq .basic h6 {
     font-size: 18px;
     font-weight: 600;
     color: #4154f1;
@@ -1096,12 +1064,12 @@ h6 {
 
 .faq .basic p {
     color: #6980aa;
-}
+} */
 
 /*--------------------------------------------------------------
 # Contact
 --------------------------------------------------------------*/
-.contact .info-box {
+/* .contact .info-box {
     padding: 28px 30px;
 }
 
@@ -1198,7 +1166,7 @@ h6 {
 
 .contact .php-email-form button[type="submit"]:hover {
     background: #5969f3;
-}
+} */
 
 @-webkit-keyframes animate-loading {
     0% {
@@ -1220,10 +1188,10 @@ h6 {
     }
 }
 
-/*--------------------------------------------------------------
+/* --------------------------------------------------------------
 # Error 404
 --------------------------------------------------------------*/
-.error-404 {
+/* .error-404 {
     padding: 30px;
 }
 
@@ -1256,26 +1224,31 @@ h6 {
     .error-404 img {
         max-width: 50%;
     }
+} */
+
+
+/* Custom css */
+.status {
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: #0d6440;
+    background: #dff0e9;
+    font-weight: 800;
+    font-size: 12px;
 }
 
-/*--------------------------------------------------------------
-# Footer
---------------------------------------------------------------*/
-.footer {
-    padding: 20px 0;
-    font-size: 14px;
-    transition: all 0.3s;
-    border-top: 1px solid #cddfff;
+.status-danger {
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: #ec3537;
+    background: #ffeaea;
+    font-weight: 800;
+    font-size: 12px;
 }
 
-.footer .copyright {
-    text-align: center;
-    color: #012970;
-}
-
-.footer .credits {
-    padding-top: 5px;
-    text-align: center;
-    font-size: 13px;
-    color: #012970;
+.badge-custom {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
 }

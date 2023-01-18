@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ResultController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +21,6 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/data-profile', [ProfileController::class, 'index']);
+Route::get('/data-profile/{user:email}', [ProfileController::class, 'show']);
+Route::get('/hasil-akhir', [ResultController::class, 'index']);

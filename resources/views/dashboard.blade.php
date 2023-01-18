@@ -1,16 +1,6 @@
 @extends('layouts.main')
 
 @section('container')
-    <div class="pagetitle">
-        <h1>Dashboard</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
-        </nav>
-    </div><!-- End Page Title -->
-
     <section class="section dashboard">
         <div class="row">
             <!-- Left side columns -->
@@ -60,7 +50,7 @@
                                         <i class="bi bi-file-earmark-text-fill"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>123</h6>
+                                        <h6>{{ $incomplete }}</h6>
                                         <span class="text-muted small pt-2 ps-1">Belum Lengkap</span>
                                     </div>
                                 </div>
@@ -86,7 +76,7 @@
                                         <i class="bi bi-file-earmark-text-fill"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>1244</h6>
+                                        <h6>{{ $complete }}</h6>
                                         <span class="text-muted small pt-2 ps-1">Sudah lengkap</span>
                                     </div>
                                 </div>
@@ -94,9 +84,9 @@
                         </div>
                     </div><!-- End Customers Card -->
 
-                    <!-- Recent Sales -->
+                    {{-- Table siswa --}}
                     <div class="col-12">
-                        <div class="card recent-sales overflow-auto">
+                        <div class="card table-student overflow-auto">
                             <div class="card-body">
                                 <h5 class="card-title-table">Data Pendaftar</h5>
 
@@ -117,17 +107,17 @@
                                             <td>{{ $user->nama_lengkap }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>
-                                                @if (is_null($user->foto_akte))
-                                                    <span class="badge rounded-pill status">Belum Lengkap</span>
+                                                @if (is_null($user->foto_akte) && is_null($user->foto_siswa))
+                                                    <span class="badge rounded-pill status-danger">Belum Lengkap</span>
                                                 @else
                                                     <span class="badge rounded-pill status">Lengkap</span>
                                                 @endif
                                             </td>
                                             <td>
-                                                <span class="badge rounded-pill bg-success badge-custom">
+                                                <a class="badge rounded-pill bg-success badge-custom" href="/data-profile/{{ $user->email }}">
                                                     <i class="bi bi-eye-fill"></i>
                                                     Lihat data
-                                                </span>
+                                                </a>
                                                 <span class="badge rounded-pill bg-info badge-custom">
                                                     <i class="bi bi-pencil"></i>
                                                     Isi Nilai
