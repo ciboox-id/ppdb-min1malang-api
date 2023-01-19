@@ -35,19 +35,19 @@ class AuthController extends Controller
         $user->save();
 
         $school = new School();
-        $school->id_user = $user->id;
+        $school->user_id = $user->id;
         $school->save();
 
         $father = new Father();
-        $father->id_user = $user->id;
+        $father->user_id = $user->id;
         $father->save();
 
         $mother = new Mother();
-        $mother->id_user = $user->id;
+        $mother->user_id = $user->id;
         $mother->save();
 
         $address = new Address();
-        $address->id_user = $user->id;
+        $address->user_id = $user->id;
         $address->save();
 
         $token = $user->createToken('ppdbmin1malang')->plainTextToken;

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('prestasi', 200);
             $table->string('tingkat', 100);
-            $table->foreignId('id_user');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

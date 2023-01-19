@@ -51,10 +51,9 @@ class ProfileController extends Controller
      */
     public function show(User $user)
     {
-        $user = User::find($user);
         return view('detail-profile', [
             'user' => $user,
-            'active' => "profile"
+            'active' => "data-profile"
         ]);
     }
 

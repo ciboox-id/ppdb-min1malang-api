@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('alamat_siswa')->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->string('tanggal_lahir')->nullable();
+            $table->integer('anak_ke')->nullable();
             $table->enum('gol_darah', ['A', 'B', 'AB', 'O'])->nullable();
             $table->string('foto_akte')->nullable();
             $table->string('foto_siswa')->nullable();
