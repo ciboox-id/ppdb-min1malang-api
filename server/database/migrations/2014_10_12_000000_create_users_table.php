@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('foto_akte')->nullable();
             $table->string('foto_siswa')->nullable();
             $table->boolean('status')->default(false);
+            $table->enum('role', ['admin', 'guru', 'siswa'])->default('siswa');
             $table->rememberToken();
             $table->timestamps();
         });

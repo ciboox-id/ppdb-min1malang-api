@@ -84,7 +84,7 @@ class AuthController extends Controller
             'token' => $token
         ];
 
-        return ApiFormatter::createApi('201', 'Berhasil daftar', $response);
+        return ApiFormatter::createApi('200', 'Berhasil Login', $response);
     }
 
     public function logout(Request $request)
