@@ -14,10 +14,14 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::where('role', '!=', 'admin');
+
+        if (request('search')) {
+            $users->where('nama_lengkap', 'like', '%' . request('search') . '%')->orWhere('email', 'like', '%' . request('search') . '%');
+        }
 
         return view('profile', [
-            "users" => $users,
+            "users" => $users->get(),
             "active" => "data-profile"
         ]);
     }

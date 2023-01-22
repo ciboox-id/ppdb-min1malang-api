@@ -4,7 +4,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <a href="/data-profile">Kembali</a>
+                <a href="/data-profile" class="back btn btn-primary"> Kembali</a>
                 <h5 class="card-title">Identitas diri</h5>
 
                 <form class="row g-3">

@@ -26,7 +26,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [DashboardAuthController::class, 'logout']);
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::post('/dashboard/students/{student}', [DashboardController::class, 'destroy']);
+
     Route::get('/data-profile', [ProfileController::class, 'index']);
     Route::get('/data-profile/{user:email}', [ProfileController::class, 'show']);
+
     Route::get('/hasil-akhir', [ResultController::class, 'index']);
 });

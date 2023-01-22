@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Dashboard admin</title>
+    <title>Dashboard PPDB MIN 1 Malang</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/images/logo-icon.png" rel="icon">
+    <link href="/images/logo-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -48,7 +48,6 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                         data-bs-toggle="dropdown">
-                        <img src="{{ asset(auth()->user()->foto_siswa) }}" alt="Profile" class="rounded-circle">
                         <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->nama_lengkap }}</span>
                     </a><!-- End Profile Iamge Icon -->
 
@@ -57,16 +56,6 @@
                             <h6>{{ auth()->user()->nama_lengkap }}</h6>
                         </li>
 
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        {{-- <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                                <i class="bi bi-person"></i>
-                                <span>My Profile</span>
-                            </a>
-                        </li> --}}
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -106,12 +95,12 @@
                 </a>
             </li><!-- End Data pendaftar Page Nav -->
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link {{ $active === 'hasil-akhir' ? '' : 'collapsed' }}" href="/hasil-akhir">
                     <i class="bi bi-bar-chart"></i>
                     <span>Hasil akhir</span>
                 </a>
-            </li><!-- End Result Page Nav -->
+            </li><!-- End Result Page Nav --> --}}
 
         </ul>
 
