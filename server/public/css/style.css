@@ -18,6 +18,11 @@ a:hover {
     text-decoration: none;
 }
 
+button {
+    outline: none;
+    border: none;
+}
+
 /* h1,
 h2,
 h3,
@@ -1228,6 +1233,13 @@ h6 {
 
 
 /* Custom css */
+.btn-primary {
+    background-color: #198754;
+}
+.btn-primary:hover {
+    background-color: #0d6440;
+}
+
 .status {
     padding: 8px 16px;
     border-radius: 20px;
@@ -1247,8 +1259,27 @@ h6 {
 }
 
 .badge-custom {
-    padding: 8px 16px;
+    padding: 8px 14px;
     border-radius: 20px;
     font-size: 12px;
+    width: 120px;
     cursor: pointer;
+}
+
+.logo-images {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.logo-images img {
+    width: 25%;
+    margin: 0 auto;
+}
+
+.back {
+    margin-top: 20px;
+    color: #fff;
+    font-weight: 600;
 }

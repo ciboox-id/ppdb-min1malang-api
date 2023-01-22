@@ -89,6 +89,20 @@
                         <div class="card table-student overflow-auto">
                             <div class="card-body">
                                 <h5 class="card-title-table">Data Pendaftar</h5>
+                                @if (session()->has('successDeleteStudent'))
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        {{ session('successDeleteStudent') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @endif
+                                @if (session()->has('errorStudent'))
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        {{ session('errorStudent') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @endif
 
                                 <table class="table table-borderless datatable">
                                     <thead>
@@ -101,34 +115,49 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($users as $user)
-                                        <tr>
-                                            <th scope="row">{{ $loop->iteration }}</th>
-                                            <td>{{ $user->nama_lengkap }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            <td>
-                                                @if (is_null($user->foto_akte) && is_null($user->foto_siswa))
-                                                    <span class="badge rounded-pill status-danger">Belum Lengkap</span>
-                                                @else
-                                                    <span class="badge rounded-pill status">Lengkap</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <a class="badge rounded-pill bg-success badge-custom" href="/data-profile/{{ $user->email }}">
-                                                    <i class="bi bi-eye-fill"></i>
-                                                    Lihat data
-                                                </a>
-                                                <span class="badge rounded-pill bg-info badge-custom">
+                                        @if (count($users) > 0)
+                                            @foreach ($users as $user)
+                                                <tr>
+                                                    <th scope="row">{{ $loop->iteration }}</th>
+                                                    <td>{{ $user->nama_lengkap }}</td>
+                                                    <td>{{ $user->email }}</td>
+                                                    <td>
+                                                        @if (is_null($user->foto_akte) && is_null($user->foto_siswa))
+                                                            <span class="badge rounded-pill status-danger">Kurang</span>
+                                                        @else
+                                                            <span class="badge rounded-pill status">Lengkap</span>
+                                                        @endif
+                                                    </td>
+                                                    <td class="d-flex">
+                                                        <div class="me-2">
+                                                            <a class="badge rounded-pill bg-success badge-custom"
+                                                                href="/data-profile/{{ $user->email }}">
+                                                                <i class="bi bi-eye-fill"></i>
+                                                                Lihat data
+                                                            </a>
+                                                        </div>
+
+                                                        <div>
+                                                            <form action="/dashboard/students/{{ $user->id }}" method="post">
+                                                                @csrf
+                                                                <button class="badge rounded-pill bg-danger badge-custom">
+                                                                    <i class="bi bi-trash"></i>
+                                                                    Hapus
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        {{-- <span class="badge rounded-pill bg-info badge-custom">
                                                     <i class="bi bi-pencil"></i>
                                                     Isi Nilai
-                                                </span>
-                                                <span class="badge rounded-pill bg-danger badge-custom">
-                                                    <i class="bi bi-trash"></i>
-                                                    Hapus
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        @endforeach
+                                                </span> --}}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            <tr>
+                                                <td>Belum ada data siswa</td>
+                                            </tr>
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>

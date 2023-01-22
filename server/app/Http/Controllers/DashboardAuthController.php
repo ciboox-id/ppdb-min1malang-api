@@ -32,7 +32,7 @@ class DashboardAuthController extends Controller
                 $request->session()->invalidate();
                 $request->session()->regenerateToken();
 
-                return redirect('/');
+                return redirect('/auth/login')->with("adminError", "Email dan password salah");
             }
             return redirect()->intended('/dashboard');
         }

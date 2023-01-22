@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('foto_siswa')->nullable();
             $table->boolean('status')->default(false);
             $table->enum('role', ['admin', 'guru', 'siswa'])->default('siswa');
+            $table->boolean('is_deleted')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

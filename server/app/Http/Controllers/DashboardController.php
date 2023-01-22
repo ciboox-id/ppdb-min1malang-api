@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ApiFormatter;
+use App\Models\Address;
+use App\Models\Father;
+use App\Models\Mother;
+use App\Models\School;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,13 +21,14 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $user = User::all();
+        $userAdmin = User::where('role', 'admin')->get();
+        $user = User::where('role', '!=', 'admin')->get();
         $incomplete = User::whereNull('foto_siswa')->orWhereNull('foto_akte')->count();
-        $complete = count($user) - $incomplete;
+        $complete = User::all()->count() - $incomplete;
 
         return view('dashboard', [
             'users' => $user,
-            'incomplete' => $incomplete,
+            'incomplete' => $incomplete - count($userAdmin),
             'complete' => $complete,
             'active' => "dashboard"
         ]);
@@ -87,8 +94,19 @@ class DashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $student)
     {
-        //
+        try {
+            School::where('user_id', $student->id)->delete();
+            Address::where('user_id', $student->id)->delete();
+            Father::where('user_id', $student->id)->delete();
+            Mother::where('user_id', $student->id)->delete();
+
+            $student->delete();
+
+            redirect('/dashboard')->with('successDeleteStudent', "Berhasil hapus siswa");
+        } catch (Exception $error) {
+            redirect('/dashboard')->with('errorStudent', "Gagal hapus siswa");
+        }
     }
 }
