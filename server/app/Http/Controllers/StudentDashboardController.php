@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Address;
 use App\Models\Father;
 use App\Models\Mother;
+use App\Models\Prestasi;
 use App\Models\School;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class StudentDashboardController extends Controller
 {
@@ -119,12 +121,61 @@ class StudentDashboardController extends Controller
 
     public function dataPrestasi()
     {
-        return view('student.data-prestasi');
+        return view('student.data-prestasi', [
+            'active' => 'data-prestasi'
+        ]);
+    }
+
+    public function updateDataPrestasi(Request $request)
+    {
+        $request->validate([]);
     }
 
     public function dataBerkas()
     {
-        return view('student.data-berkas');
+        $berkas = auth()->user();
+        return view('student.data-berkas', [
+            'active' => 'data-berkas',
+            'berkas' => $berkas
+        ]);
+    }
+
+    public function updateDataBerkas(Request $request)
+    {
+        $validationBerkas = $request->validate([
+            "foto_akte" => "image|file|max:1024|mimes:png,jpg",
+            "foto_siswa" => "image|file|max:1024|mimes:png,jpg",
+        ]);
+
+        try {
+            if ($request->file('foto_akte')) {
+
+                if (auth()->user()->foto_akte != null) {
+                    Storage::delete(auth()->user()->foto_akte);
+                }
+
+                $fileName = time() . $request->file('foto_akte')->getClientOriginalName();
+                $path = $request->file('foto_akte')->storeAs('uploads/akte', $fileName);
+                $validationBerkas['foto_akte'] = $path;
+            }
+
+            if ($request->file('foto_siswa')) {
+
+                if (auth()->user()->foto_siswa != null) {
+                    Storage::delete(auth()->user()->foto_siswa);
+                }
+
+                $fileName = time() . $request->file('foto_siswa')->getClientOriginalName();
+                $path = $request->file('foto_siswa')->storeAs('uploads/foto_siswa', $fileName);
+                $validationBerkas['foto_siswa'] = $path;
+            }
+
+            User::where('id', auth()->user()->id)->update($validationBerkas);
+
+            return redirect()->route('dashboard.data-berkas')->with('success', "Berhasil menyimpan data berkas");
+        } catch (Exception $err) {
+            return back()->with('error', $err->getMessage());
+        }
     }
 
     public function dataAlamat()
