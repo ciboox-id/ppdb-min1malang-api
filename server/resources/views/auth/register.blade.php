@@ -13,8 +13,8 @@
 
                                 <div class="pt-4 pb-2 logo-images">
                                     <img src="/images/logo-icon.png" alt="">
-                                    <h5 class="card-title text-center pb-0 fs-4">Login PPDB Apps</h5>
-                                    <p class="text-center small">Enter your email & password to login PPDB MIN 1 Malang</p>
+                                    <h5 class="card-title text-center pb-0 fs-4">Register PPDB Apps</h5>
+                                    <p class="text-center small">Daftar ke MIN 1 Kota malang</p>
                                 </div>
 
                                 @if (session()->has('success'))
@@ -25,27 +25,22 @@
                                     </div>
                                 @endif
 
-                                @if (session()->has('adminError'))
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        {{ session('adminError') }}
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                            aria-label="Close"></button>
-                                    </div>
-                                @endif
 
-                                @if (session()->has('loginError'))
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        {{ session('loginError') }}
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                            aria-label="Close"></button>
-                                    </div>
-                                @endif
-
-
-                                <form class="row g-3" action="/login" method="post">
+                                <form class="row g-3" action="{{ route('register') }}" method="post">
                                     @csrf
-
-                                    <input type="hidden" name="role" value="admin">
+                                    <div class="col-12">
+                                        <label for="email" class="form-label">Nama Lengkap</label>
+                                        <div class="input-group has-validation">
+                                            <input type="text" name="nama_lengkap"
+                                                class="form-control @error('nama_lengkap') is-invalid @enderror" id="nama_lengkap"
+                                                placeholder="Andre Kurniawan" autofocus value="{{ old('nama_lengkap') }}">
+                                            @error('nama_lengkap')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
 
                                     <div class="col-12">
                                         <label for="email" class="form-label">Email</label>
@@ -75,11 +70,27 @@
                                         @enderror
                                     </div>
 
+                                    <div class="col-12">
+                                        <label for="password_confirmation" class="form-label">Konfirmasi password</label>
+                                        <input type="password" name="password_confirmation"
+                                            class="form-control @error('password_confirmation')
+                                           is-invalid
+                                        @enderror"
+                                            id="password_confirmation" placeholder="********">
+                                        @error('password_confirmation')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
                                     <div class="col-12 mt-3">
                                         <button class="btn btn-primary w-100" type="submit">Login</button>
                                     </div>
+
+                                    <p>Belum punya akun? <a href="/auth/register">register</a></p>
+
                                 </form>
-                                <p class="d-flex justify-content-center mt-2">Belum punya akun? <a href="/auth/register">register</a></p>
 
                             </div>
                         </div>

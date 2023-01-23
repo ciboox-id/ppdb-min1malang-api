@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
     <!-- Template Main CSS File -->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
@@ -81,6 +81,7 @@
 
         <ul class="sidebar-nav" id="sidebar-nav">
 
+            @can('role', 'admin')
             <li class="nav-item">
                 <a class="nav-link {{ $active === 'dashboard' ? '' : 'collapsed' }}" href="/dashboard">
                     <i class="bi bi-grid"></i>
@@ -101,6 +102,56 @@
                     <span>Hasil akhir</span>
                 </a>
             </li><!-- End Result Page Nav --> --}}
+            @endcan
+
+            <li class="nav-item">
+                <a class="nav-link {{ $active === 'dashboard' ? '' : 'collapsed' }}" href="/dashboard">
+                    <i class="bi bi-grid"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ $active === 'data-umum' ? '' : 'collapsed' }}" href="{{ route('dashboard.data-umum')  }}">
+                    <i class="bi bi-person"></i>
+                    <span>Data Umum</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ $active === 'data-berkas' ? '' : 'collapsed' }}" href="{{ route('dashboard.data-berkas') }}">
+                    <i class="bi bi-file-earmark-break"></i>
+                    <span>Data Berkas</span>
+                </a>
+            </li><!-- End Data pendaftar Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link {{ $active === 'data-ortu' ? '' : 'collapsed' }}" href="{{ route('dashboard.data-ortu') }}">
+                    <i class="bi bi-people"></i>
+                    <span>Data Orang Tua</span>
+                </a>
+            </li><!-- End Data pendaftar Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link {{ $active === 'data-sekolah' ? '' : 'collapsed' }}" href="{{ route('dashboard.data-sekolah') }}">
+                    <i class="bi bi-mortarboard"></i>
+                    <span>Data Sekolah</span>
+                </a>
+            </li><!-- End Data pendaftar Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link {{ $active === 'data-alamat' ? '' : 'collapsed' }}" href="{{ route('dashboard.data-alamat') }}">
+                    <i class="bi bi-house"></i>
+                    <span>Data Alamat</span>
+                </a>
+            </li><!-- End Data pendaftar Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link {{ $active === 'data-prestasi' ? '' : 'collapsed' }}" href="{{ route('dashboard.data-prestasi') }}">
+                    <i class="bi bi-123"></i>
+                    <span>Data Prestasi</span>
+                </a>
+            </li><!-- End Data pendaftar Page Nav -->
 
         </ul>
 

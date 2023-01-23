@@ -16,11 +16,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(50)->create();
+        // User::factory(50)->create();
+
+        \App\Models\User::factory()->create([
+            'nama_lengkap' => 'Admin PPDB MIN 1 Malang',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('ppdbmin1malang'),
+            'role' => 'admin'
+        ]);
 
         // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
+        //     'nama_lengkap' => 'Andre Kurniawan',
+        //     'email' => 'andre_kun@gmail.com',
+        //     'password' => bcrypt('rahasia'),
         // ]);
     }
 }

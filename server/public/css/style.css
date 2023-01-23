@@ -9,12 +9,12 @@ body {
 }
 
 a {
-    color: #DFF0E9;
+    color: #198754;
     text-decoration: none;
 }
 
 a:hover {
-    color: #DFF0E9;
+    color: #0d6440;
     text-decoration: none;
 }
 
@@ -51,7 +51,7 @@ h6 {
 # Page Title
 --------------------------------------------------------------*/
 .pagetitle {
-    margin-bottom: 10px;
+    margin: 10px 0;
 }
 
 .pagetitle h1 {
@@ -1233,6 +1233,10 @@ h6 {
 
 
 /* Custom css */
+.bg-main {
+    background-color: #0d6440;
+}
+
 .btn-primary {
     background-color: #198754;
 }
@@ -1282,4 +1286,29 @@ h6 {
     margin-top: 20px;
     color: #fff;
     font-weight: 600;
+}
+
+.no-image {
+    width: 150px;
+    height: 200px;
+    border: #000 dashed;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.dashboard-card {
+    padding: 10px 20px;
+}
+.card-wrapper-alur {
+    border-radius: 20px;
+}
+.card-alur h6 {
+    font-weight: 800;
+    font-size: 18px;
+    color: #F4F4F4;
+}
+.card-alur span {
+    color: #F4F4F4;
 }

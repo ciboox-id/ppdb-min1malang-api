@@ -33,6 +33,7 @@
                                         <th scope="col">Nama</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Status Berkas</th>
+                                        <th scope="col">Status verifikasi</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
@@ -51,19 +52,27 @@
                                                     @endif
                                                 </td>
                                                 <td>
+                                                    @if (!$user->is_verif)
+                                                        <span class="badge rounded-pill status-danger">Belum
+                                                            terverfikasi</span>
+                                                    @else
+                                                        <span class="badge rounded-pill status">Sudah terverfikasi</span>
+                                                    @endif
+                                                </td>
+                                                <td>
                                                     <a class="badge rounded-pill bg-success badge-custom"
                                                         href="/data-profile/{{ $user->email }}">
                                                         <i class="bi bi-eye-fill"></i>
                                                         Lihat data
                                                     </a>
                                                     {{-- <span class="badge rounded-pill bg-info badge-custom">
-                                                    <i class="bi bi-pencil"></i>
-                                                    Isi Nilai
-                                                </span> --}}
-                                                    <span class="badge rounded-pill bg-danger badge-custom">
+                                                        <i class="bi bi-pencil"></i>
+                                                        Verifikasi
+                                                    </span> --}}
+                                                    {{-- <span class="badge rounded-pill bg-danger badge-custom">
                                                         <i class="bi bi-trash"></i>
                                                         Hapus
-                                                    </span>
+                                                    </span> --}}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -82,4 +91,5 @@
         </div><!-- End Left side columns -->
         </div>
     </section>
+
 @endsection

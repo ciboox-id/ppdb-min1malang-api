@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardAuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResultController;
+use App\Http\Controllers\StudentDashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,16 +21,44 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/dashboard');
 
 Route::get('/auth/login', [DashboardAuthController::class, 'index'])->middleware('guest')->name('login');
+Route::get('/auth/register', [DashboardAuthController::class, 'register'])->middleware('guest')->name('register');
 Route::post('/login', [DashboardAuthController::class, 'authenticate']);
+Route::post('/register', [DashboardAuthController::class, 'store'])->name('register');
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [DashboardAuthController::class, 'logout']);
 
-    Route::get('/dashboard', [DashboardController::class, 'index']);
-    Route::post('/dashboard/students/{student}', [DashboardController::class, 'destroy']);
+    Route::prefix('dashboard')->group(function () {
+        Route::get('/', [DashboardController::class, 'index']);
 
-    Route::get('/data-profile', [ProfileController::class, 'index']);
-    Route::get('/data-profile/{user:email}', [ProfileController::class, 'show']);
+        Route::get('/data-umum', [StudentDashboardController::class, 'dataUmum'])->name('dashboard.data-umum');
+        Route::put('/data-umum/update', [StudentDashboardController::class, 'updateDataUmum'])->name('dashboard.data-umum.update');
 
-    Route::get('/hasil-akhir', [ResultController::class, 'index']);
+        Route::get('/data-sekolah', [StudentDashboardController::class, 'dataSekolah'])->name('dashboard.data-sekolah');
+        Route::put('/data-sekolah/update', [StudentDashboardController::class, 'updateDataSekolah'])->name('dashboard.data-sekolah.update');
+
+        Route::get('/data-prestasi', [StudentDashboardController::class, 'dataPrestasi'])->name('dashboard.data-prestasi');
+        Route::put('/data-prestasi/update', [StudentDashboardController::class, 'updateDataPrestasi'])->name('dashboard.data-prestasi.update');
+
+        Route::get('/data-ortu', [StudentDashboardController::class, 'dataOrtu'])->name('dashboard.data-ortu');
+        Route::put('/data-ortu/update', [StudentDashboardController::class, 'updateDataOrtu'])->name('dashboard.data-ortu.update');
+
+        Route::get('/data-berkas', [StudentDashboardController::class, 'dataBerkas'])->name('dashboard.data-berkas');
+        Route::put('/data-berkas/update', [StudentDashboardController::class, 'updateDataBerkas'])->name('dashboard.data-berkas.update');
+
+        Route::get('/data-alamat', [StudentDashboardController::class, 'dataAlamat'])->name('dashboard.data-alamat');
+        Route::put('/data-alamat/update', [StudentDashboardController::class, 'updateDataAlamat'])->name('dashboard.data-alamat.update');
+    });
+
+    Route::middleware(['admin'])->group(function () {
+        Route::post('/dashboard/students/{student}', [DashboardController::class, 'destroy']);
+
+        Route::get('/data-profile', [ProfileController::class, 'index']);
+        Route::get('/data-profile/{user:email}', [ProfileController::class, 'show']);
+
+        Route::get('/hasil-akhir', [ResultController::class, 'index']);
+
+        Route::post('/verifikasi-data/{user}', [ProfileController::class, 'verifikasi']);
+        Route::post('/batal-verifikasi-data/{user}', [ProfileController::class, 'inverifikasi']);
+    });
 });

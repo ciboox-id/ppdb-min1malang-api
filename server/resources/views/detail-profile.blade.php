@@ -2,11 +2,41 @@
 
 @section('container')
     <div class="col-12">
+
+        @if (session()->has('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        @if (session()->has('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
         <div class="card">
             <div class="card-body">
-                <a href="/data-profile" class="back btn btn-primary"> Kembali</a>
-                <h5 class="card-title">Identitas diri</h5>
+                <div class="d-flex">
+                    <a href="/data-profile" class="back btn btn-primary me-3"> Kembali</a>
+                    @if ($user->is_verif)
+                        <form action="/batal-verifikasi-data/{{ $user->id }}" method="post">
+                            @csrf
+                            <button type="submit" class="back btn btn-danger" data-bs-target="#staticBackdrop">
+                                Batal Verifikasi
+                            </button>
+                        </form>
+                    @else
+                        <button type="button" class="back btn btn-info" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop">
+                            Verifikasi data
+                        </button>
+                    @endif
 
+                </div>
+
+                <h5 class="card-title">Identitas diri</h5>
                 <form class="row g-3">
                     <div class="col-6">
                         <label for="inputNanme4" class="form-label">Nama Lengkap</label>
@@ -61,11 +91,27 @@
                 <div class="d-flex">
                     <div class="col-6">
                         <p>Foto Siswa</p>
-                        <img src="{{ asset($user->foto_siswa) }}" alt="foto_siswa">
+                        @if (!empty($user->foto_siswa))
+                            <a href="{{ asset($user->foto_siswa) }}" target="_blank" rel="noopener noreferrer">
+                                <img src="{{ asset($user->foto_siswa) }}" alt="foto_siswa">
+                            </a>
+                        @else
+                            <div class="no-image">
+                                <p>Belum upload foto diri</p>
+                            </div>
+                        @endif
                     </div>
                     <div class="col-6">
                         <p>Foto Kartu Keluarga</p>
-                        <img src="{{ asset($user->foto_akte) }}" alt="foto_akte">
+                        @if (!empty($user->foto_akte))
+                            <a href="{{ asset($user->foto_akte) }}" target="_blank" rel="noopener noreferrer">
+                                <img src="{{ asset($user->foto_akte) }}" alt="foto_siswa">
+                            </a>
+                        @else
+                            <div class="no-image">
+                                <p>Belum upload foto Kartu Keluarga</p>
+                            </div>
+                        @endif
                     </div>
                 </div>
 
@@ -79,7 +125,8 @@
                     </div>
                     <div class="col-6">
                         <label for="inputEmail4" class="form-label">Nama Lengkap Ibu</label>
-                        <input type="text" class="form-control" value="{{ $user->mother->nama_lengkap_ibu }}" disabled>
+                        <input type="text" class="form-control" value="{{ $user->mother->nama_lengkap_ibu }}"
+                            disabled>
                     </div>
                     <div class="col-6">
                         <label for="inputPassword4" class="form-label">NIK Ayah</label>
@@ -167,6 +214,35 @@
 
             </div>
         </div>
+    </div>
 
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Pemetaan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/verifikasi-data/{{ $user->id }}" method="POST" class="row g-3">
+                        @csrf
+                        <div>
+                            <label for="">Tanggal</label>
+                            <input type="date" name="pemetaan_date" id="" class="form-control" required>
+                        </div>
+                        <div>
+                            <label for="">Jam</label>
+                            <input type="time" name="pemetaan_time" id="" class="form-control" required>
+                        </div>
+                        <div class=" d-grid">
+                            <button type="submit" class="btn btn-primary btn-block">Verifikasi</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

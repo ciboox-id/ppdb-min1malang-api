@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('pekerjaan_ayah')->nullable();
             $table->text('nama_kantor_ayah')->nullable();
             $table->string('penghasilan_ayah')->nullable();
-            $table->string('no_telp')->nullable();
+            $table->string('no_telp_ayah')->nullable();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });

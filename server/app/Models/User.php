@@ -65,4 +65,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Prestasi::class);
     }
+
+    public function address()
+    {
+        return $this->hasOne(Address::class);
+    }
 }

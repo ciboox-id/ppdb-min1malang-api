@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -93,5 +94,32 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function verifikasi(Request $request, User $user)
+    {
+        $validation = $request->validate([
+            "pemetaan_date" => 'required',
+            'pemetaan_time' => 'required',
+        ]);
+
+        $user->pemetaan_date = $validation['pemetaan_date'];
+        $user->pemetaan_time = $validation['pemetaan_time'];
+        $user->is_verif = true;
+        $user->save();
+
+
+        return back()->with('success', "Calon siswa telah diverifikasi");
+    }
+
+    public function inverifikasi(Request $request, User $user)
+    {
+        $user->pemetaan_date = null;
+        $user->pemetaan_time = null;
+        $user->is_verif = false;
+        $user->save();
+
+
+        return back()->with('error', "Batal verifikasi");
     }
 }
