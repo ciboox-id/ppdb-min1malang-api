@@ -29,7 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [DashboardAuthController::class, 'logout']);
 
     Route::prefix('dashboard')->group(function () {
-        Route::get('/', [DashboardController::class, 'index']);
+        Route::get('/student', [DashboardController::class, 'indexSiswa'])->name('dashboard.siswa');
 
         Route::get('/data-umum', [StudentDashboardController::class, 'dataUmum'])->name('dashboard.data-umum');
         Route::put('/data-umum/update', [StudentDashboardController::class, 'updateDataUmum'])->name('dashboard.data-umum.update');
@@ -38,7 +38,7 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/data-sekolah/update', [StudentDashboardController::class, 'updateDataSekolah'])->name('dashboard.data-sekolah.update');
 
         Route::get('/data-prestasi', [StudentDashboardController::class, 'dataPrestasi'])->name('dashboard.data-prestasi');
-        Route::put('/data-prestasi/update', [StudentDashboardController::class, 'updateDataPrestasi'])->name('dashboard.data-prestasi.update');
+        Route::post('/data-prestasi/store', [StudentDashboardController::class, 'storeDataPrestasi'])->name('dashboard.data-prestasi.update');
 
         Route::get('/data-ortu', [StudentDashboardController::class, 'dataOrtu'])->name('dashboard.data-ortu');
         Route::put('/data-ortu/update', [StudentDashboardController::class, 'updateDataOrtu'])->name('dashboard.data-ortu.update');
@@ -51,6 +51,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::middleware(['admin'])->group(function () {
+        Route::get('/dashboard/admin', [DashboardController::class, 'index'])->name('dashboard.admin');
         Route::post('/dashboard/students/{student}', [DashboardController::class, 'destroy']);
 
         Route::get('/data-profile', [ProfileController::class, 'index']);

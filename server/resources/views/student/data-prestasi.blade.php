@@ -18,8 +18,9 @@
 
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Data Berkas</h5>
+                <h5 class="card-title">Data Prestasi</h5>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <i class="bi bi-plus-square"></i>
                     Tambah prestasi
                 </button>
             </div>
@@ -38,18 +39,17 @@
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="col-12">
-                                    <label for="inputNanme4" class="form-label">No. Kartu Keluarga</label>
-                                    <input type="text" class="form-control" name="no_kk" value="{{ $address->no_kk }}">
+                                    <label for="inputNanme4" class="form-label">Prestasi</label>
+                                    <input type="text" class="form-control" name="prestasi" placeholder="ex: Juara 1 lomba olimpiade matematika">
                                 </div>
                                 <div class="col-12">
-                                    <label for="inputNanme4" class="form-label">Kelurahan</label>
-                                    <input type="text" class="form-control" name="kelurahan"
-                                        value="{{ $address->kelurahan }}">
+                                    <label for="inputNanme4" class="form-label">Tingkat</label>
+                                    <input type="text" class="form-control" name="tingkat" placeholder="ex: Provinsi">
                                 </div>
                                 <div class="col-12">
-                                    <label for="foto_siswa" class="form-label">Foto Siswa</label>
-                                    <input class="form-control" type="file" id="foto_siswa" accept="image/*"
-                                        name="foto_siswa">
+                                    <label for="foto_siswa" class="form-label">Sertifikat</label>
+                                    <input class="form-control" type="file" id="sertifikat" accept="image/*"
+                                        name="sertifikat">
                                 </div>
                                 <button type="submit" class="btn btn-primary mt-4 py-2 rounded-2">
                                     Tambah Prestasi

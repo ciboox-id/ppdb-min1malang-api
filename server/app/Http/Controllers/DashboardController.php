@@ -6,6 +6,7 @@ use App\Helpers\ApiFormatter;
 use App\Models\Address;
 use App\Models\Father;
 use App\Models\Mother;
+use App\Models\Prestasi;
 use App\Models\School;
 use App\Models\User;
 use Exception;
@@ -104,9 +105,39 @@ class DashboardController extends Controller
 
             $student->delete();
 
-            redirect('/dashboard')->with('successDeleteStudent', "Berhasil hapus siswa");
+            redirect()->route('dashboard.admin')->with('successDeleteStudent', "Berhasil hapus siswa");
         } catch (Exception $error) {
-            redirect('/dashboard')->with('errorStudent', "Gagal hapus siswa");
+            redirect()->route('dashboard.admin')->with('errorStudent', "Gagal hapus siswa");
         }
+    }
+
+    public function indexSiswa()
+    {
+        $user = auth()->user();
+
+        $res = User::where('id', $user->id)->get()->toArray();
+        $biodata = count(array_keys($res[0], null));
+
+        $resfather = Father::where('user_id', $user->id)->get()->toArray();
+        $resmother = Mother::where('user_id', $user->id)->get()->toArray();
+        $fat_mot = count(array_keys($resfather[0], null)) + count(array_keys($resmother[0], null));
+
+        $ressch = School::where('user_id', $user->id)->get()->toArray();
+        $school = count(array_keys($ressch[0], null));
+
+        $prestasi = Prestasi::where('user_id', auth()->user()->id)->get();
+
+        $resad = Address::where('user_id', $user->id)->get()->toArray();
+        $address = count(array_keys($resad[0], null));
+
+        return view('dashboard-siswa', [
+            'active' => 'dashboard',
+            'user' => $user,
+            'biodata' => $biodata,
+            'prestasi' => $prestasi,
+            'fatmot' => $fat_mot,
+            'school' => $school,
+            'address' => $address
+        ]);
     }
 }

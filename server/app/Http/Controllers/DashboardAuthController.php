@@ -34,11 +34,11 @@ class DashboardAuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            // if (auth()->user()->role !== "admin") {
-            //     return redirect()->intended('/student/dashboard');
-            // }
+            if (auth()->user()->role === "admin") {
+                return redirect()->route('dashboard.admin');
+            }
 
-            return redirect()->intended('/dashboard');
+            return redirect()->route('dashboard.siswa');
         }
 
         return back()->with("loginError", "Login Failed");
@@ -90,6 +90,6 @@ class DashboardAuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('login');
     }
 }

@@ -126,9 +126,24 @@ class StudentDashboardController extends Controller
         ]);
     }
 
-    public function updateDataPrestasi(Request $request)
+    public function storeDataPrestasi(Request $request)
     {
-        $request->validate([]);
+        $validationPrestasi = $request->validate([
+            'prestasi' => 'required',
+            'tingkat' => 'required',
+            'sertifikat' => 'image|max:2048|nullable'
+        ]);
+
+        if ($request->file('sertifikat')) {
+            $fileName = time() . $request->file('sertifikat')->getClientOriginalName();
+            $path = $request->file('sertifikat')->storeAs('uploads/sertifikat', $fileName);
+            $validationPrestasi['sertifikat'] = $path;
+        }
+
+        $validationPrestasi['user_id'] = auth()->user()->id;
+
+        Prestasi::create($validationPrestasi);
+        return redirect()->route('dashboard.data-prestasi')->with('success', "Berhasil menyimpan data prestasi");
     }
 
     public function dataBerkas()

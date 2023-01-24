@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('prestasis', function (Blueprint $table) {
             $table->id();
-            $table->string('prestasi', 200);
-            $table->string('tingkat', 100);
+            $table->string('prestasi');
+            $table->string('tingkat');
+            $table->string('sertifikat');
             $table->foreignId('user_id');
             $table->timestamps();
         });
