@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('kecamatan')->nullable();
             $table->string('kota_kab')->nullable();
             $table->string('kode_pos')->nullable();
-            $table->string('telp_rumah')->nullable();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });

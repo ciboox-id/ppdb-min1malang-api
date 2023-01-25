@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/dashboard');
+Route::redirect('/', '/auth/login');
 
 Route::get('/auth/login', [DashboardAuthController::class, 'index'])->middleware('guest')->name('login');
 Route::get('/auth/register', [DashboardAuthController::class, 'register'])->middleware('guest')->name('register');
@@ -27,6 +27,15 @@ Route::post('/register', [DashboardAuthController::class, 'store'])->name('regis
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [DashboardAuthController::class, 'logout']);
+    Route::get('/download-kartu-peserta', [DashboardController::class, 'downloadKartuPeserta'])->name('download.kartu-peserta');
+    Route::get('/download-surat-resmi', [DashboardController::class, 'downloadSuratResmi'])->name('download.surat-resmi');
+
+    // Route::get('/kartu-peserta-view', function () {
+    //     return view('student.kartu-peserta', ['user' => auth()->user()]);
+    // });
+    Route::get('/surat-resmi-view', function () {
+        return view('student.surat-resmi', ['user' => auth()->user()]);
+    });
 
     Route::prefix('dashboard')->group(function () {
         Route::get('/student', [DashboardController::class, 'indexSiswa'])->name('dashboard.siswa');
@@ -39,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/data-prestasi', [StudentDashboardController::class, 'dataPrestasi'])->name('dashboard.data-prestasi');
         Route::post('/data-prestasi/store', [StudentDashboardController::class, 'storeDataPrestasi'])->name('dashboard.data-prestasi.update');
+        Route::delete('/data-prestasi/delete/{id}', [StudentDashboardController::class, 'deleteDataPrestasi'])->name('dashboard.data-prestasi.delete');
 
         Route::get('/data-ortu', [StudentDashboardController::class, 'dataOrtu'])->name('dashboard.data-ortu');
         Route::put('/data-ortu/update', [StudentDashboardController::class, 'updateDataOrtu'])->name('dashboard.data-ortu.update');
@@ -48,6 +58,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/data-alamat', [StudentDashboardController::class, 'dataAlamat'])->name('dashboard.data-alamat');
         Route::put('/data-alamat/update', [StudentDashboardController::class, 'updateDataAlamat'])->name('dashboard.data-alamat.update');
+
     });
 
     Route::middleware(['admin'])->group(function () {

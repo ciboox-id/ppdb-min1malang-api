@@ -25,7 +25,6 @@
                                     </div>
                                 @endif
 
-
                                 <form class="row g-3" action="{{ route('register') }}" method="post">
                                     @csrf
                                     <div class="col-12">
@@ -33,6 +32,7 @@
                                         <div class="input-group has-validation">
                                             <input type="text" name="nama_lengkap"
                                                 class="form-control @error('nama_lengkap') is-invalid @enderror" id="nama_lengkap"
+                                                style="text-transform: uppercase"
                                                 placeholder="Andre Kurniawan" autofocus value="{{ old('nama_lengkap') }}">
                                             @error('nama_lengkap')
                                                 <div class="invalid-feedback">
@@ -85,10 +85,10 @@
                                     </div>
 
                                     <div class="col-12 mt-3">
-                                        <button class="btn btn-primary w-100" type="submit">Login</button>
+                                        <button class="btn btn-primary w-100" type="submit">Register</button>
                                     </div>
 
-                                    <p>Belum punya akun? <a href="/auth/register">register</a></p>
+                                    <p>Sudah punya akun? <a href="{{ route('login') }}">login</a></p>
 
                                 </form>
 

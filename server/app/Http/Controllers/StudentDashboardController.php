@@ -41,6 +41,8 @@ class StudentDashboardController extends Controller
                 'anak_ke' => 'nullable',
             ]);
 
+            $validation['nama_lengkap'] = strtoupper($validation['nama_lengkap']);
+
             User::where('id', auth()->user()->id)->update($validation);
 
             return redirect()->route('dashboard.data-umum')->with('success', "Berhasil menyimpan data umum");
@@ -121,8 +123,11 @@ class StudentDashboardController extends Controller
 
     public function dataPrestasi()
     {
+        $prestasi = Prestasi::where('user_id', auth()->user()->id)->get();
+
         return view('student.data-prestasi', [
-            'active' => 'data-prestasi'
+            'active' => 'data-prestasi',
+            'prestasi' => $prestasi
         ]);
     }
 
@@ -131,7 +136,7 @@ class StudentDashboardController extends Controller
         $validationPrestasi = $request->validate([
             'prestasi' => 'required',
             'tingkat' => 'required',
-            'sertifikat' => 'image|max:2048|nullable'
+            'sertifikat' => 'image|max:2048|required'
         ]);
 
         if ($request->file('sertifikat')) {
@@ -146,6 +151,14 @@ class StudentDashboardController extends Controller
         return redirect()->route('dashboard.data-prestasi')->with('success', "Berhasil menyimpan data prestasi");
     }
 
+    public function deleteDataPrestasi($id)
+    {
+        $prestasi = Prestasi::findOrFail($id);
+        $prestasi->delete();
+
+        return redirect()->route('dashboard.data-prestasi')->with('success', "Berhasil menghapus data prestasi");
+    }
+
     public function dataBerkas()
     {
         $berkas = auth()->user();
@@ -158,8 +171,8 @@ class StudentDashboardController extends Controller
     public function updateDataBerkas(Request $request)
     {
         $validationBerkas = $request->validate([
-            "foto_akte" => "image|file|max:1024|mimes:png,jpg",
-            "foto_siswa" => "image|file|max:1024|mimes:png,jpg",
+            "foto_akte" => "image|file|max:2048|mimes:png,jpg",
+            "foto_siswa" => "image|file|max:2048|mimes:png,jpg",
         ]);
 
         try {

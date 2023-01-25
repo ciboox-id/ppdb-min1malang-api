@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\ApiFormatter;
 use App\Models\Address;
 use App\Models\Father;
 use App\Models\Mother;
@@ -11,7 +10,8 @@ use App\Models\School;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
+use \PDF;
 
 class DashboardController extends Controller
 {
@@ -139,5 +139,23 @@ class DashboardController extends Controller
             'school' => $school,
             'address' => $address
         ]);
+    }
+
+    public function downloadKartuPeserta()
+    {
+
+        $user = User::find(auth()->user()->id);
+        $pdf =  PDF::loadView('student.kartu-peserta', ['user' => $user]);
+
+        return $pdf->download('kartu-peserta.pdf');
+    }
+
+    public function downloadSuratResmi()
+    {
+
+        $user = User::find(auth()->user()->id);
+        $pdf =  PDF::loadView('student.surat-resmi', ['user' => $user]);
+
+        return $pdf->download('surat-resmi.pdf');
     }
 }

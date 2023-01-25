@@ -18,25 +18,42 @@
 
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Data Berkas</h5>
+                <h5 class="card-title mt-4 mb-0">Data Berkas</h5>
+                <p className="text-gray-500 font-medium ">Unggah foto menggunakan seragam asal sekolah,
+                    rapi, wajah tampak jelas dan foto akta kelahiran dengan ketentuan tulisan tampak jelas
+                    dan bisa terbaca dengan baik.<b>Ukuran maksimal file adalah 2 MB</b> </p>
                 <form class="row g-3" action="{{ route('dashboard.data-berkas.update') }}" method="post"
-                    enctype="multipart/form-data">
+                    enctype="multipart/form-data" class="needs-validation" novalidate>
                     @method('put')
                     @csrf
-                    <div class="col-6">
+                    <div class="col-sm-12 col-md-6">
                         <label for="foto_siswa" class="form-label">Foto Siswa</label>
                         <input class="form-control" type="file" id="foto_siswa" onchange="previewImageSiswa()"
-                            accept="image/*" name="foto_siswa">
+                            accept="image/*" name="foto_siswa" class="@error('foto_siswa') is-invalid @enderror">
+
+                        @error('foto_siswa')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+
                         @if ($berkas->foto_siswa)
                             <img src="{{ asset($berkas->foto_siswa) }}" alt="" class="img-fluid col-sm-6 mt-4">
                         @else
-                            <img class="img-preview-akte img-fluid mb-3 col-sm-6 mt-4">
+                            <img class="img-preview-siswa img-fluid mb-3 col-sm-6 mt-4">
                         @endif
                     </div>
-                    <div class="col-6">
+
+                    <div class="col-sm-12 col-md-6">
                         <label for="formFile" class="form-label">Foto Kartu Keluarga</label>
                         <input class="form-control" type="file" id="foto_akte" onchange="previewImageAkte()"
-                            accept="image/*" name="foto_akte">
+                            accept="image/*" name="foto_akte" class="@error('foto_akte') is-invalid @enderror">
+                        @error('foto_akte')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+
                         @if ($berkas->foto_akte)
                             <img src="{{ asset($berkas->foto_akte) }}" alt="" class="img-fluid col-sm-6 mt-4">
                         @else
