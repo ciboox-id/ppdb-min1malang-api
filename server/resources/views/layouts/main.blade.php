@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Dashboard PPDB MIN 1 Malang</title>
-    <meta content="" name="description">
+    <title>PPDB APPS</title>
+    <meta content="PPDB APPS" name="description">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
@@ -35,8 +35,8 @@
 
         <div class="d-flex align-items-center justify-content-between ">
             <a href="index.html" class="logo d-flex align-items-center header-logo">
-                <img src="assets/img/logo.png" alt="">
-                <span class="d-none d-lg-block">PPDB APPS</span>
+                <img src="/images/logo-icon.png" alt="">
+                <span class="d-none d-lg-block"> PPDB APPS</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
@@ -76,7 +76,6 @@
         </nav><!-- End Icons Navigation -->
     </header><!-- End Header -->
 
-    <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
 
         <ul class="sidebar-nav" id="sidebar-nav">
@@ -107,62 +106,60 @@
 
 
             @can('siswa')
+                <li class="nav-item">
+                    <a class="nav-link {{ $active === 'dashboard' ? '' : 'collapsed' }}"
+                        href="{{ route('dashboard.siswa') }}">
+                        <i class="bi bi-grid"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active === 'data-umum' ? '' : 'collapsed' }}"
+                        href="{{ route('dashboard.data-umum') }}">
+                        <i class="bi bi-person"></i>
+                        <span>Data Umum</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link {{ $active === 'dashboard' ? '' : 'collapsed' }}"
-                    href="{{ route('dashboard.siswa') }}">
-                    <i class="bi bi-grid"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ $active === 'data-umum' ? '' : 'collapsed' }}"
-                    href="{{ route('dashboard.data-umum') }}">
-                    <i class="bi bi-person"></i>
-                    <span>Data Umum</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ $active === 'data-berkas' ? '' : 'collapsed' }}"
+                        href="{{ route('dashboard.data-berkas') }}">
+                        <i class="bi bi-file-earmark-break"></i>
+                        <span>Data Berkas</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link {{ $active === 'data-berkas' ? '' : 'collapsed' }}"
-                    href="{{ route('dashboard.data-berkas') }}">
-                    <i class="bi bi-file-earmark-break"></i>
-                    <span>Data Berkas</span>
-                </a>
-            </li><!-- End Data pendaftar Page Nav -->
+                <li class="nav-item">
+                    <a class="nav-link {{ $active === 'data-ortu' ? '' : 'collapsed' }}"
+                        href="{{ route('dashboard.data-ortu') }}">
+                        <i class="bi bi-people"></i>
+                        <span>Data Orang Tua</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link {{ $active === 'data-ortu' ? '' : 'collapsed' }}"
-                    href="{{ route('dashboard.data-ortu') }}">
-                    <i class="bi bi-people"></i>
-                    <span>Data Orang Tua</span>
-                </a>
-            </li><!-- End Data pendaftar Page Nav -->
+                <li class="nav-item">
+                    <a class="nav-link {{ $active === 'data-sekolah' ? '' : 'collapsed' }}"
+                        href="{{ route('dashboard.data-sekolah') }}">
+                        <i class="bi bi-mortarboard"></i>
+                        <span>Data Sekolah</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link {{ $active === 'data-sekolah' ? '' : 'collapsed' }}"
-                    href="{{ route('dashboard.data-sekolah') }}">
-                    <i class="bi bi-mortarboard"></i>
-                    <span>Data Sekolah</span>
-                </a>
-            </li><!-- End Data pendaftar Page Nav -->
+                <li class="nav-item">
+                    <a class="nav-link {{ $active === 'data-alamat' ? '' : 'collapsed' }}"
+                        href="{{ route('dashboard.data-alamat') }}">
+                        <i class="bi bi-house"></i>
+                        <span>Data Alamat</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link {{ $active === 'data-alamat' ? '' : 'collapsed' }}"
-                    href="{{ route('dashboard.data-alamat') }}">
-                    <i class="bi bi-house"></i>
-                    <span>Data Alamat</span>
-                </a>
-            </li><!-- End Data pendaftar Page Nav -->
-
-            <li class="nav-item">
-                <a class="nav-link {{ $active === 'data-prestasi' ? '' : 'collapsed' }}"
-                    href="{{ route('dashboard.data-prestasi') }}">
-                    <i class="bi bi-123"></i>
-                    <span>Data Prestasi</span>
-                </a>
-            </li><!-- End Data pendaftar Page Nav -->
-
+                <li class="nav-item">
+                    <a class="nav-link {{ $active === 'data-prestasi' ? '' : 'collapsed' }}"
+                        href="{{ route('dashboard.data-prestasi') }}">
+                        <i class="bi bi-123"></i>
+                        <span>Upload Sertifikat</span>
+                    </a>
+                </li>
             @endcan
 
         </ul>

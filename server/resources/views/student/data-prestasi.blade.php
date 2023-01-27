@@ -18,19 +18,33 @@
 
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Data Prestasi</h5>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    <i class="bi bi-plus-square"></i>
-                    Tambah prestasi
-                </button>
+
+                @if (auth()->user()->jalur === 'reguler' || auth()->user()->jalur === 'prestasi')
+                    <h5 class="card-title mt-4">Upload Sertifikat Prestasi</h5>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <i class="bi bi-plus-square"></i>
+                        Tambah prestasi
+                    </button>
+                @elseif(auth()->user()->jalur === 'tahfidz')
+                    <h5 class="card-title mt-4">Upload sertifikat tahfidz</h5>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
+                        <i class="bi bi-cloud-upload"></i>
+                        Upload sertifikat
+                    </button>
+                @else
+                    <h5 class="card-title mt-4">Upload surat keterangan dari Kelurahan</h5>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                        <i class="bi bi-cloud-upload"></i>
+                        upload sertifikat
+                    </button>
+                @endif
 
                 <div class=" overflow-auto">
                     <table class="table table-borderless datatable mt-4">
                         <thead>
                             <tr>
                                 <th scope="col">No.</th>
-                                <th scope="col">Prestasi</th>
-                                <th scope="col">Tingkat</th>
+                                <th scope="col">Nama</th>
                                 <th scope="col">Sertifikat</th>
                                 <th scope="col">Aksi</th>
                             </tr>
@@ -68,23 +82,24 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td>Belum ada data siswa</td>
+                                    <td>Belum ada data sertifikat</td>
                                 </tr>
                             @endif
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal1 -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Prestas</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Prestasi</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -97,21 +112,75 @@
                                 placeholder="ex: Juara 1 lomba olimpiade matematika">
                         </div>
                         <div class="col-12">
-                            <label for="inputNanme4" class="form-label">Tingkat</label>
-                            <input type="text" class="form-control" name="tingkat" placeholder="ex: Provinsi">
-                        </div>
-                        <div class="col-12">
                             <label for="foto_siswa" class="form-label">Sertifikat</label>
-                            <input class="form-control" type="file" id="sertifikat" accept="image/*" name="sertifikat">
+                            <input class="form-control" type="file" id="sertifikat" name="sertifikat">
                         </div>
                         <button type="submit" class="btn btn-primary mt-4 py-2 rounded-2">
-                            Tambah Prestasi
+                            Tambah
                         </button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    {{-- modal 2 --}}
+    <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Upload Sertifikat Tahfidz</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="row g-3" action="{{ route('dashboard.data-prestasi.update') }}" method="post"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="col-12">
+                            <label for="inputNanme4" class="form-label">Nama Sertifikat</label>
+                            <input type="text" class="form-control" name="prestasi"
+                                placeholder="ex: Sertifikat tahfidz pondok ...">
+                        </div>
+                        <div class="col-12">
+                            <label for="foto_siswa" class="form-label">Sertifikat</label>
+                            <input class="form-control" type="file" id="sertifikat" name="sertifikat">
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-4 py-2 rounded-2">
+                            Upload
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+    {{-- modal 3 --}}
+    <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Upload Surat Keterangan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="row g-3" action="{{ route('dashboard.data-prestasi.update') }}" method="post"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="col-12">
+                            <label for="inputNanme4" class="form-label">Prestasi</label>
+                            <input type="text" class="form-control" name="prestasi"
+                                placeholder="ex: Surat keterangan">
+                        </div>
+                        <div class="col-12">
+                            <label for="foto_siswa" class="form-label">Sertifikat</label>
+                            <input class="form-control" type="file" id="sertifikat" name="sertifikat">
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-4 py-2 rounded-2">
+                            Upload
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

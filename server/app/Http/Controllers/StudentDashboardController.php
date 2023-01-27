@@ -58,7 +58,8 @@ class StudentDashboardController extends Controller
         return view('student.data-ortu', [
             'active' => 'data-ortu',
             'father' => $user->father,
-            'mother' => $user->mother
+            'mother' => $user->mother,
+            'user' => $user
         ]);
     }
 
@@ -96,11 +97,11 @@ class StudentDashboardController extends Controller
 
     public function dataSekolah()
     {
-        $school = auth()->user()->school;
+        $school = auth()->user();
 
         return view('student.data-sekolah', [
             'active' => 'data-sekolah',
-            'school' => $school
+            'user' => $school
         ]);
     }
 
@@ -133,10 +134,9 @@ class StudentDashboardController extends Controller
 
     public function storeDataPrestasi(Request $request)
     {
-        $validationPrestasi = $request->validate([
-            'prestasi' => 'required',
+        $validationPrestasi = $request->validate(['prestasi' => '',
             'tingkat' => 'required',
-            'sertifikat' => 'image|max:2048|required'
+            'sertifikat' => 'file|max:2048|required'
         ]);
 
         if ($request->file('sertifikat')) {
@@ -170,9 +170,8 @@ class StudentDashboardController extends Controller
 
     public function updateDataBerkas(Request $request)
     {
-        $validationBerkas = $request->validate([
-            "foto_akte" => "image|file|max:2048|mimes:png,jpg",
-            "foto_siswa" => "image|file|max:2048|mimes:png,jpg",
+        $validationBerkas = $request->validate(["foto_akte" => "image|file|max:2048",
+            "foto_siswa" => "image|file|max:2048",
         ]);
 
         try {
@@ -208,11 +207,13 @@ class StudentDashboardController extends Controller
 
     public function dataAlamat()
     {
-        $address = auth()->user()->address;
+        $jarak = ["0 - 500 m", "500 - 1000 m", "1000 - 1500 m", "1500 - 5000 m", "> 5000 m"];
+        $address = auth()->user();
 
         return view('student.data-alamat', [
             'active' => 'data-alamat',
-            'address' => $address
+            'user' => $address,
+            'jarak' => $jarak
         ]);
     }
 
@@ -224,7 +225,8 @@ class StudentDashboardController extends Controller
                 'kecamatan' => 'nullable',
                 'kelurahan' => 'nullable',
                 'kota_kab' => 'nullable',
-                'kode_pos' => 'nullable'
+                'kode_pos' => 'nullable',
+                'jarak_rumah' => 'nullable'
             ]);
 
             Address::where('user_id', auth()->user()->id)->update($validationAddress);

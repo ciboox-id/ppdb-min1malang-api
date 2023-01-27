@@ -28,11 +28,10 @@ return new class extends Migration
             $table->enum('gol_darah', ['A', 'B', 'AB', 'O'])->nullable();
             $table->string('foto_akte')->nullable();
             $table->string('foto_siswa')->nullable();
-            $table->boolean('status')->default(false);
             $table->enum('role', ['admin', 'guru', 'siswa'])->default('siswa');
+            $table->enum('jalur', ['reguler', 'prestasi', 'afirmasi', 'tahfidz'])->nullable();
+            $table->boolean('lolos')->default(false);
             $table->boolean('is_verif')->default(false);
-            $table->date('pemetaan_date')->nullable();
-            $table->time('pemetaan_time')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

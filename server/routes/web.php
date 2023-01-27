@@ -33,12 +33,13 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/kartu-peserta-view', function () {
     //     return view('student.kartu-peserta', ['user' => auth()->user()]);
     // });
-    Route::get('/surat-resmi-view', function () {
-        return view('student.surat-resmi', ['user' => auth()->user()]);
-    });
+    // Route::get('/surat-resmi-view', function () {
+    //     return view('student.surat-resmi', ['user' => auth()->user()]);
+    // });
 
     Route::prefix('dashboard')->group(function () {
         Route::get('/student', [DashboardController::class, 'indexSiswa'])->name('dashboard.siswa');
+        Route::post('/student/jalur', [DashboardController::class, 'jalurSiswa'])->name('dashboard.jalur.update');
 
         Route::get('/data-umum', [StudentDashboardController::class, 'dataUmum'])->name('dashboard.data-umum');
         Route::put('/data-umum/update', [StudentDashboardController::class, 'updateDataUmum'])->name('dashboard.data-umum.update');

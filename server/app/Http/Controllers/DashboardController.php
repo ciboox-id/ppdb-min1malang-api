@@ -141,6 +141,15 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function jalurSiswa(Request $request)
+    {
+        $validation = $request->validate([
+            'jalur' => 'required',
+        ]);
+        $user = User::where('id', auth()->user()->id)->update($validation);
+        return back()->with('success', "Anda telah memilih jalur pendaftaran");
+    }
+
     public function downloadKartuPeserta()
     {
 

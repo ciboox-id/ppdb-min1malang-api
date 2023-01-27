@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Admin PPDB MIN 1 Malang</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+    <title>PPDB APPS</title>
+    <meta content="PPDB APPS MIN 1 Kota Malang" name="description">
+    <meta content="PPDB MIN 1 Kota Malang" name="keywords">
 
     <!-- Favicons -->
     <link href="/images/logo-icon.png" rel="icon">

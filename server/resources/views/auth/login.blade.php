@@ -12,9 +12,9 @@
                             <div class="card-body">
 
                                 <div class="pt-4 pb-2 logo-images">
-                                    <img src="/images/logo-icon.png" alt="">
-                                    <h5 class="card-title text-center pb-0 fs-4">Login PPDB Apps</h5>
-                                    <p class="text-center small">Enter your email & password to login PPDB MIN 1 Malang</p>
+                                    <img src="/images/logo-icon.png" alt="logo_min_1_malang">
+                                    <h5 class="card-title text-center pb-0 fs-4">Masuk PPDB APPS</h5>
+                                    <p class="text-center small">Masukkan email dan password anda</p>
                                 </div>
 
                                 @if (session()->has('success'))
@@ -44,15 +44,12 @@
 
                                 <form class="row g-3" action="/login" method="post">
                                     @csrf
-
-                                    <input type="hidden" name="role" value="admin">
-
                                     <div class="col-12">
                                         <label for="email" class="form-label">Email</label>
                                         <div class="input-group has-validation">
                                             <input type="email" name="email"
                                                 class="form-control @error('email') is-invalid @enderror" id="email"
-                                                placeholder="teguh@gmail.com" autofocus value="{{ old('email') }}">
+                                                placeholder="ex: ciboox.id@gmail.com" autofocus value="{{ old('email') }}">
                                             @error('email')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -79,8 +76,8 @@
                                         <button class="btn btn-primary w-100" type="submit">Login</button>
                                     </div>
                                 </form>
-                                <p class="d-flex justify-content-center mt-2">Belum punya akun? <a href="/auth/register">register</a></p>
-
+                                <p class="d-flex justify-content-center mt-3">Belum punya akun? <a
+                                        href="/auth/register">daftar</a></p>
                             </div>
                         </div>
                     </div>

@@ -13,7 +13,7 @@
 
                                 <div class="pt-4 pb-2 logo-images">
                                     <img src="/images/logo-icon.png" alt="">
-                                    <h5 class="card-title text-center pb-0 fs-4">Register PPDB Apps</h5>
+                                    <h5 class="card-title text-center pb-0 fs-4">Daftar PPDB APPS</h5>
                                     <p class="text-center small">Daftar ke MIN 1 Kota malang</p>
                                 </div>
 
@@ -31,9 +31,9 @@
                                         <label for="email" class="form-label">Nama Lengkap</label>
                                         <div class="input-group has-validation">
                                             <input type="text" name="nama_lengkap"
-                                                class="form-control @error('nama_lengkap') is-invalid @enderror" id="nama_lengkap"
-                                                style="text-transform: uppercase"
-                                                placeholder="Andre Kurniawan" autofocus value="{{ old('nama_lengkap') }}">
+                                                class="form-control @error('nama_lengkap') is-invalid @enderror"
+                                                id="nama_lengkap" style="text-transform: uppercase" placeholder="ex: Ciboox"
+                                                autofocus value="{{ old('nama_lengkap') }}">
                                             @error('nama_lengkap')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -47,7 +47,7 @@
                                         <div class="input-group has-validation">
                                             <input type="email" name="email"
                                                 class="form-control @error('email') is-invalid @enderror" id="email"
-                                                placeholder="teguh@gmail.com" autofocus value="{{ old('email') }}">
+                                                placeholder="ex: ciboox.id@gmail.com" autofocus value="{{ old('email') }}">
                                             @error('email')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -87,11 +87,9 @@
                                     <div class="col-12 mt-3">
                                         <button class="btn btn-primary w-100" type="submit">Register</button>
                                     </div>
-
-                                    <p>Sudah punya akun? <a href="{{ route('login') }}">login</a></p>
-
                                 </form>
 
+                                <p class="d-flex justify-content-center mt-3">Sudah punya akun? <a href="{{ route('login') }}">masuk</a></p>
                             </div>
                         </div>
                     </div>
