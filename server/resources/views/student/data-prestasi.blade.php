@@ -35,7 +35,7 @@
                     <h5 class="card-title mt-4">Upload surat keterangan dari Kelurahan</h5>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
                         <i class="bi bi-cloud-upload"></i>
-                        upload sertifikat
+                        Upload
                     </button>
                 @endif
 
@@ -55,7 +55,6 @@
                                     <tr>
                                         <th scope="row">{{ $loop->iteration }}</th>
                                         <td>{{ $pres->prestasi }}</td>
-                                        <td>{{ $pres->tingkat }}</td>
                                         <td class="d-flex">
                                             <a href="{{ asset($pres->sertifikat) }}" target="_blank"
                                                 rel="noopener noreferrer">
@@ -82,12 +81,11 @@
                                 @endforeach
                             @else
                                 <tr>
-                                    <td>Belum ada data sertifikat</td>
+                                    <td>Belum ada data</td>
                                 </tr>
                             @endif
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
@@ -103,7 +101,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="row g-3" action="{{ route('dashboard.data-prestasi.update') }}" method="post"
+                    <form class="row g-3" action="{{ route('dashboard.data-prestasi.store') }}" method="post"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="col-12">
@@ -133,7 +131,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="row g-3" action="{{ route('dashboard.data-prestasi.update') }}" method="post"
+                    <form class="row g-3" action="{{ route('dashboard.data-prestasi.store') }}" method="post"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="col-12">
@@ -163,7 +161,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="row g-3" action="{{ route('dashboard.data-prestasi.update') }}" method="post"
+                    <form class="row g-3" action="{{ route('dashboard.data-prestasi.store') }}" method="post"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="col-12">

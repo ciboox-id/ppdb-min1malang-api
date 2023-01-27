@@ -8,9 +8,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
                         <div class="card mb-3 p-4">
-
                             <div class="card-body">
-
                                 <div class="pt-4 pb-2 logo-images">
                                     <img src="/images/logo-icon.png" alt="">
                                     <h5 class="card-title text-center pb-0 fs-4">Daftar PPDB APPS</h5>
@@ -89,7 +87,7 @@
                                     </div>
                                 </form>
 
-                                <p class="d-flex justify-content-center mt-3">Sudah punya akun? <a href="{{ route('login') }}">masuk</a></p>
+                                <p class="d-flex justify-content-center mt-3">Sudah punya akun? <a href="{{ route('login') }}">  Masuk</a></p>
                             </div>
                         </div>
                     </div>

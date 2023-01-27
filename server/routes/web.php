@@ -3,8 +3,8 @@
 use App\Http\Controllers\DashboardAuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ResultController;
 use App\Http\Controllers\StudentDashboardController;
+use App\Models\Pemetaan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +22,7 @@ Route::redirect('/', '/auth/login');
 
 Route::get('/auth/login', [DashboardAuthController::class, 'index'])->middleware('guest')->name('login');
 Route::get('/auth/register', [DashboardAuthController::class, 'register'])->middleware('guest')->name('register');
-Route::post('/login', [DashboardAuthController::class, 'authenticate']);
+Route::post('/login', [DashboardAuthController::class, 'authenticate'])->name('register');
 Route::post('/register', [DashboardAuthController::class, 'store'])->name('register');
 
 Route::middleware(['auth'])->group(function () {
@@ -31,11 +31,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/download-surat-resmi', [DashboardController::class, 'downloadSuratResmi'])->name('download.surat-resmi');
 
     // Route::get('/kartu-peserta-view', function () {
-    //     return view('student.kartu-peserta', ['user' => auth()->user()]);
+    //     $pemetaan = Pemetaan::where('user_id', auth()->user()->id);
+    //     return view('student.kartu-peserta', ['user' => auth()->user(), 'pemetaan' => $pemetaan]);
     // });
-    // Route::get('/surat-resmi-view', function () {
-    //     return view('student.surat-resmi', ['user' => auth()->user()]);
-    // });
+    Route::get('/surat-resmi-view', function () {
+        $pemetaan = Pemetaan::where('user_id', auth()->user()->id)->first();
+        return view('student.surat-resmi', ['user' => auth()->user(), 'pemetaan' => $pemetaan]);
+    });
 
     Route::prefix('dashboard')->group(function () {
         Route::get('/student', [DashboardController::class, 'indexSiswa'])->name('dashboard.siswa');
@@ -48,7 +50,7 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/data-sekolah/update', [StudentDashboardController::class, 'updateDataSekolah'])->name('dashboard.data-sekolah.update');
 
         Route::get('/data-prestasi', [StudentDashboardController::class, 'dataPrestasi'])->name('dashboard.data-prestasi');
-        Route::post('/data-prestasi/store', [StudentDashboardController::class, 'storeDataPrestasi'])->name('dashboard.data-prestasi.update');
+        Route::post('/data-prestasi/store', [StudentDashboardController::class, 'storeDataPrestasi'])->name('dashboard.data-prestasi.store');
         Route::delete('/data-prestasi/delete/{id}', [StudentDashboardController::class, 'deleteDataPrestasi'])->name('dashboard.data-prestasi.delete');
 
         Route::get('/data-ortu', [StudentDashboardController::class, 'dataOrtu'])->name('dashboard.data-ortu');
@@ -64,14 +66,19 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['admin'])->group(function () {
         Route::get('/dashboard/admin', [DashboardController::class, 'index'])->name('dashboard.admin');
-        Route::post('/dashboard/students/{student}', [DashboardController::class, 'destroy']);
+        Route::delete('/dashboard/students/{student}', [DashboardController::class, 'destroy'])->name('dashboard.data-siswa.delete');
 
-        Route::get('/data-profile', [ProfileController::class, 'index']);
-        Route::get('/data-profile/{user:email}', [ProfileController::class, 'show']);
+        Route::get('/data-profile', [ProfileController::class, 'index'])->name('dashboard.data-siswa');
+        Route::get('/data-profile/{user:email}', [ProfileController::class, 'show'])->name('dashboard.data-siswa.detail');
 
-        Route::get('/hasil-akhir', [ResultController::class, 'index']);
+        Route::get('/data-guru', [ProfileController::class, 'indexGuru'])->name('dashboard.data-guru');
+        Route::post('/data-guru/store', [ProfileController::class, 'storeGuru'])->name('dashboard.data-guru.store');
 
-        Route::post('/verifikasi-data/{user}', [ProfileController::class, 'verifikasi']);
-        Route::post('/batal-verifikasi-data/{user}', [ProfileController::class, 'inverifikasi']);
+        Route::post('/verifikasi-data/{user}', [ProfileController::class, 'verifikasi'])->name('verifikasi');
+        Route::post('/batal-verifikasi-data/{user}', [ProfileController::class, 'inverifikasi'])->name('inverifikasi');
+        Route::post('/reset-password/{user}', [ProfileController::class, 'resetPassword'])->name('dashboard.password-reset');
+
+
+        Route::get('/dashboard/admin/export', [DashboardController::class, 'export'])->name('dashboard.export');
     });
 });

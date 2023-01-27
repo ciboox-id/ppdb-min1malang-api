@@ -90,18 +90,18 @@
                 </li><!-- End Dashboard Nav -->
 
                 <li class="nav-item">
-                    <a class="nav-link {{ $active === 'data-profile' ? '' : 'collapsed' }}" href="/data-profile">
+                    <a class="nav-link {{ $active === 'data-profile' ? '' : 'collapsed' }}" href="{{ route('dashboard.data-siswa') }}">
                         <i class="bi bi-people"></i>
                         <span>Data Pendaftar</span>
                     </a>
                 </li><!-- End Data pendaftar Page Nav -->
 
-                {{-- <li class="nav-item">
-                    <a class="nav-link {{ $active === 'hasil-akhir' ? '' : 'collapsed' }}" href="/hasil-akhir">
+                <li class="nav-item">
+                    <a class="nav-link {{ $active === 'guru' ? '' : 'collapsed' }}" href="{{ route('dashboard.data-guru') }}">
                         <i class="bi bi-bar-chart"></i>
-                        <span>Hasil akhir</span>
+                        <span>Data Guru</span>
                     </a>
-                </li><!-- End Result Page Nav --> --}}
+                </li><!-- End Result Page Nav -->
             @endcan
 
 

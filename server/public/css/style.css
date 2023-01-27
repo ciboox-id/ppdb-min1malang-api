@@ -14,7 +14,7 @@ a {
 }
 
 a:hover {
-    color: #0d6440;
+    color: #198754;
     text-decoration: none;
 }
 
@@ -1245,6 +1245,10 @@ h6 {
     background-color: #0d6440;
 }
 
+.btn-primary:active{
+    background-color: #0d6440;
+}
+
 .status {
     padding: 8px 16px;
     border-radius: 20px;
@@ -1312,4 +1316,8 @@ h6 {
 }
 .card-alur span {
     color: #F4F4F4;
+}
+
+.foto_siswa {
+    width: 100%;
 }

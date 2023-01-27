@@ -44,6 +44,7 @@
             text-align: start;
             padding: 5px 10px;
         }
+
         .bordering tr th {
             border: solid 1px #000;
             text-align: start;
@@ -73,7 +74,7 @@
             </tr>
             <table width="525">
                 <tr>
-                    <td class="text2">Malang, {{ $user->pemetaan_date }}</td>
+                    <td class="text2">Malang, {{ $pemetaan->pemetaan_date }}</td>
                 </tr>
             </table>
         </table>
@@ -156,7 +157,8 @@
             </tr>
         </table>
         <br>
-        <table width="200" class="table-col" style="border: 1px solid #000; border-collapse: collapse" class="bordering">
+        <table width="200" class="table-col" style="border: 1px solid #000; border-collapse: collapse"
+            class="bordering">
             <tr style="border: 1px solid #000">
                 <th>Uraian</th>
                 <th>Fc. Akte</th>
@@ -174,23 +176,24 @@
                 <td style="font-size: 15px; font-weight: 800">Jadwal Pemetaan</td>
             </tr>
         </table>
-        <table width="200" class="table-col" style="border: 1px solid #000; border-collapse: collapse" class="bordering">
+        <table width="200" class="table-col" style="border: 1px solid #000; border-collapse: collapse"
+            class="bordering">
             <tr>
                 <th>Tanggal Pemetaan</th>
                 <th>Pukul</th>
             </tr>
             <tr>
-                <td>{{ $user->pemetaan_date }}</td>
-                <td>{{ $user->pemetaan_time }}</td>
+                <td>{{ $pemetaan->pemetaan_date }}</td>
+                <td>{{ $pemetaan->pemetaan_time }}</td>
             </tr>
         </table>
 
         <br><br>
         <table>
             <tr>
-                <td width="415"><br><br><br><br></td>
-                <td class="text" align="center">Kepala Sekolah<br><br><br><br><br>Drs. SUYANTO,
-                    M.PD<br>NIP:196701091998031001
+                <td width="380"><br><br><br><br></td>
+                <td class="text" align="center"><br>
+                    <img src="{{ public_path("/images/ttd.jpg") }}" alt="" style="width: 50mm">
                 </td>
             </tr>
         </table>

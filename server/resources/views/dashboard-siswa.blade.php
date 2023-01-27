@@ -109,7 +109,7 @@
                                 @endif
                             @endif
 
-                            @if (is_null($user->pemetaan_date) || is_null($user->pemetaan_time))
+                            @if (is_null($pemetaan))
                                 <div class="alert alert-danger" role="alert">
                                     <i class="bi bi-exclamation-circle"></i>
                                     Tunggu data verifikasi terlebih dahulu

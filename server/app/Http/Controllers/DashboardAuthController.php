@@ -74,12 +74,11 @@ class DashboardAuthController extends Controller
         $mother = new Mother();
         $mother->user_id = $user->id;
         $mother->save();
-
         $address = new Address();
         $address->user_id = $user->id;
         $address->save();
 
-        return redirect("/auth/login")->with('success', "Berhasil daftar, Silahkan login");
+        return redirect()->route('login')->with('success', "Berhasil daftar, Silahkan login");
     }
 
     public function logout(Request $request)

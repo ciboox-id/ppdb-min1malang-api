@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UsersExport;
 use App\Models\Address;
 use App\Models\Father;
 use App\Models\Mother;
+use App\Models\Pemetaan;
 use App\Models\Prestasi;
 use App\Models\School;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
-
+use Maatwebsite\Excel\Facades\Excel;
 use \PDF;
 
 class DashboardController extends Controller
@@ -36,60 +38,6 @@ class DashboardController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -105,15 +53,16 @@ class DashboardController extends Controller
 
             $student->delete();
 
-            redirect()->route('dashboard.admin')->with('successDeleteStudent', "Berhasil hapus siswa");
+            return back()->with('successDeleteStudent', "Berhasil hapus siswa");
         } catch (Exception $error) {
-            redirect()->route('dashboard.admin')->with('errorStudent', "Gagal hapus siswa");
+            return back()->with('errorStudent', "Gagal hapus siswa");
         }
     }
 
     public function indexSiswa()
     {
         $user = auth()->user();
+        $pemetaan = Pemetaan::where('user_id', $user->id);
 
         $res = User::where('id', $user->id)->get()->toArray();
         $biodata = count(array_keys($res[0], null));
@@ -137,7 +86,8 @@ class DashboardController extends Controller
             'prestasi' => $prestasi,
             'fatmot' => $fat_mot,
             'school' => $school,
-            'address' => $address
+            'address' => $address,
+            'pemetaan' => $pemetaan
         ]);
     }
 
@@ -154,7 +104,8 @@ class DashboardController extends Controller
     {
 
         $user = User::find(auth()->user()->id);
-        $pdf =  PDF::loadView('student.kartu-peserta', ['user' => $user]);
+        $pemetaan = Pemetaan::where('user_id', auth()->user()->id)->first();
+        $pdf =  PDF::loadView('student.kartu-peserta', ['user' => $user, 'pemetaan' => $pemetaan]);
 
         return $pdf->download('kartu-peserta.pdf');
     }
@@ -163,8 +114,14 @@ class DashboardController extends Controller
     {
 
         $user = User::find(auth()->user()->id);
-        $pdf =  PDF::loadView('student.surat-resmi', ['user' => $user]);
+        $pemetaan = Pemetaan::where('user_id', auth()->user()->id)->first();
+        $pdf =  PDF::loadView('student.surat-resmi', ['user' => $user, 'pemetaan' => $pemetaan]);
 
         return $pdf->download('surat-resmi.pdf');
+    }
+
+    public function export()
+    {
+        return Excel::download(new UsersExport, 'data_siswa.xlsx');
     }
 }

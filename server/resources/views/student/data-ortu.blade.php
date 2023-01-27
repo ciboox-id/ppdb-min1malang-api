@@ -68,14 +68,28 @@
 
                         <div class="col-sm-12 col-md-6">
                             <label for="inputAddress" class="form-label">Penghasilan Ayah *</label>
-                            <input type="text" class="form-control" id="inputAddress"
-                                value="{{ $father->penghasilan_ayah }}" name="penghasilan_ayah">
+                            <select class="form-select" name="penghasilan_ayah">
+                                @foreach ($salary as $range)
+                                    @if ($range === $user->penghasilan_ayah)
+                                        <option value="{{ $range }}" selected> {{ $range }}</option>
+                                    @else
+                                        <option value="{{ $range }}"> {{ $range }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="col-sm-12 col-md-6">
                             <label for="inputAddress" class="form-label">Penghasilan Ibu *</label>
-                            <input type="text" class="form-control" id="inputAddress"
-                                value="{{ $mother->penghasilan_ibu }}" name="penghasilan_ibu">
+                            <select class="form-select" name="penghasilan_ibu">
+                                @foreach ($salary as $range)
+                                    @if ($range === $user->penghasilan_ibu)
+                                        <option value="{{ $range }}" selected> {{ $range }}</option>
+                                    @else
+                                        <option value="{{ $range }}"> {{ $range }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="col-sm-12 col-md-6">

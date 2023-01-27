@@ -54,12 +54,19 @@ class StudentDashboardController extends Controller
     public function dataOrtu()
     {
         $user = auth()->user();
+        $range = [
+            '< 1.000.000',
+            '1.000.000 - 2.500.000',
+            '2.500.000 - 5.000.000',
+            '> 5.000.000'
+        ];
 
         return view('student.data-ortu', [
             'active' => 'data-ortu',
             'father' => $user->father,
             'mother' => $user->mother,
-            'user' => $user
+            'user' => $user,
+            'salary' => $range
         ]);
     }
 
@@ -135,7 +142,7 @@ class StudentDashboardController extends Controller
     public function storeDataPrestasi(Request $request)
     {
         $validationPrestasi = $request->validate(['prestasi' => '',
-            'tingkat' => 'required',
+            'prestasi' => 'required',
             'sertifikat' => 'file|max:2048|required'
         ]);
 
@@ -153,7 +160,7 @@ class StudentDashboardController extends Controller
 
     public function deleteDataPrestasi($id)
     {
-        $prestasi = Prestasi::findOrFail($id);
+        $prestasi = Prestasi::where('id', $id);
         $prestasi->delete();
 
         return redirect()->route('dashboard.data-prestasi')->with('success', "Berhasil menghapus data prestasi");

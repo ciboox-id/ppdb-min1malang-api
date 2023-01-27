@@ -77,7 +77,7 @@
                                     </div>
                                 </form>
                                 <p class="d-flex justify-content-center mt-3">Belum punya akun? <a
-                                        href="/auth/register">daftar</a></p>
+                                        href="{{ route('register') }}">Daftar</a></p>
                             </div>
                         </div>
                     </div>

@@ -110,6 +110,7 @@
                                             <th scope="col">No.</th>
                                             <th scope="col">Nama</th>
                                             <th scope="col">Email</th>
+                                            <th scope="col">Jalur</th>
                                             <th scope="col">Status Berkas</th>
                                             <th scope="col">Status Verifikasi</th>
                                             <th scope="col">Aksi</th>
@@ -122,6 +123,7 @@
                                                     <th scope="row">{{ $loop->iteration }}</th>
                                                     <td>{{ $user->nama_lengkap }}</td>
                                                     <td>{{ $user->email }}</td>
+                                                    <td style="text-transform: capitalize">{{ $user->jalur }}</td>
                                                     <td>
                                                         @if (is_null($user->foto_akte) && is_null($user->foto_siswa))
                                                             <span class="badge rounded-pill status-danger">Kurang</span>

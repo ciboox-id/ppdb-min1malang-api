@@ -48,14 +48,6 @@
             border-collapse: collapse;
         }
 
-        /* .image {
-            width: 100%;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            align-items: center
-        } */
-
         .grid {
             width: 100%;
             display: flex;
@@ -71,7 +63,6 @@
 </head>
 
 <body>
-
     <div class="wrapper-card">
         <table style="margin-top: .5rem;">
             <tr>
@@ -130,10 +121,10 @@
             </tr>
             <tr>
                 <td width="50%">
-                    <font size="2">{{ $user->pemetaan_date }}</font>
+                    <font size="2">{{ $pemetaan->pemetaan_date }}</font>
                 </td>
                 <td width="50%">
-                    <font size="2">{{ $user->pemetaan_time }}</font>
+                    <font size="2">{{ $pemetaan->pemetaan_time }}</font>
                 </td>
             </tr>
         </table>
