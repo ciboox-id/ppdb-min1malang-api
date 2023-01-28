@@ -18,75 +18,85 @@
 
         <div class="card">
             <div class="card-body">
+                @if (auth()->user()->jalur)
+                    @if (auth()->user()->jalur === 'reguler' || auth()->user()->jalur === 'prestasi')
+                        <h5 class="card-title mt-3">Upload Sertifikat Prestasi</h5>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop">
+                            <i class="bi bi-plus-square"></i>
+                            Tambah prestasi
+                        </button>
+                    @elseif(auth()->user()->jalur === 'tahfidz')
+                        <h5 class="card-title mt-3">Upload sertifikat tahfidz</h5>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop1">
+                            <i class="bi bi-cloud-upload"></i>
+                            Upload sertifikat
+                        </button>
+                    @else
+                        <h5 class="card-title mt-3">Upload surat keterangan dari Kelurahan</h5>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop2">
+                            <i class="bi bi-cloud-upload"></i>
+                            Upload
+                        </button>
+                    @endif
 
-                @if (auth()->user()->jalur === 'reguler' || auth()->user()->jalur === 'prestasi')
-                    <h5 class="card-title mt-3">Upload Sertifikat Prestasi</h5>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                        <i class="bi bi-plus-square"></i>
-                        Tambah prestasi
-                    </button>
-                @elseif(auth()->user()->jalur === 'tahfidz')
-                    <h5 class="card-title mt-3">Upload sertifikat tahfidz</h5>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
-                        <i class="bi bi-cloud-upload"></i>
-                        Upload sertifikat
-                    </button>
-                @else
-                    <h5 class="card-title mt-3">Upload surat keterangan dari Kelurahan</h5>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
-                        <i class="bi bi-cloud-upload"></i>
-                        Upload
-                    </button>
-                @endif
-
-                <div class=" overflow-auto">
-                    <table class="table table-borderless datatable mt-4">
-                        <thead>
-                            <tr>
-                                <th scope="col">No.</th>
-                                <th scope="col">Nama</th>
-                                <th scope="col">Sertifikat</th>
-                                <th scope="col">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (count($prestasi) > 0)
-                                @foreach ($prestasi as $pres)
-                                    <tr>
-                                        <th scope="row">{{ $loop->iteration }}</th>
-                                        <td>{{ $pres->prestasi }}</td>
-                                        <td class="d-flex">
-                                            <a href="{{ asset($pres->sertifikat) }}" target="_blank"
-                                                rel="noopener noreferrer">
-                                                <i class="bi bi-eye-fill"></i>
-                                                Lihat foto
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <form
-                                                    action="{{ route('dashboard.data-prestasi.delete', ['id' => $pres->id]) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="badge rounded-pill bg-danger">
-                                                        <i class="bi bi-trash"></i>
-                                                        Hapus
-                                                    </button>
-                                                </form>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @else
+                    <div class=" overflow-auto">
+                        <table class="table table-borderless datatable mt-4">
+                            <thead>
                                 <tr>
-                                    <td>Belum ada data</td>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Sertifikat</th>
+                                    <th scope="col">Aksi</th>
                                 </tr>
-                            @endif
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                                @if (count($prestasi) > 0)
+                                    @foreach ($prestasi as $pres)
+                                        <tr>
+                                            <th scope="row">{{ $loop->iteration }}</th>
+                                            <td>{{ $pres->prestasi }}</td>
+                                            <td class="d-flex">
+                                                <a href="{{ asset($pres->sertifikat) }}" target="_blank"
+                                                    rel="noopener noreferrer">
+                                                    <i class="bi bi-eye-fill"></i>
+                                                    Lihat foto
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <form
+                                                        action="{{ route('dashboard.data-prestasi.delete', ['id' => $pres->id]) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="badge rounded-pill bg-danger">
+                                                            <i class="bi bi-trash"></i>
+                                                            Hapus
+                                                        </button>
+                                                    </form>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td>Belum ada data</td>
+                                    </tr>
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
+                @else
+                    <div class="alert alert-danger mt-4 mb-0" role="alert">
+                        <i class="bi bi-exclamation-circle"></i>
+                        Silahkan memilih jalur pendaftaran terlebih dahulu! <a href="{{ route('dashboard.siswa') }}">Klik
+                            disini</a>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

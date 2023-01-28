@@ -53,11 +53,11 @@ class DashboardController extends Controller
             Mother::where('user_id', $student->id)->delete();
 
             if ($student->foto_akte != null) {
-                Storage::delete(auth()->user()->foto_akte);
+                Storage::delete($student->foto_akte);
             }
 
             if ($student->foto_siswa != null) {
-                Storage::delete(auth()->user()->foto_siswa);
+                Storage::delete($student->foto_siswa);
             }
 
             $student->delete();
@@ -71,7 +71,7 @@ class DashboardController extends Controller
     public function indexSiswa()
     {
         $user = auth()->user();
-        $pemetaan = Pemetaan::where('user_id', $user->id);
+        $pemetaan = Pemetaan::where('user_id', $user->id)->first();
 
         $res = User::where('id', $user->id)->get()->toArray();
         $biodata = count(array_keys($res[0], null));

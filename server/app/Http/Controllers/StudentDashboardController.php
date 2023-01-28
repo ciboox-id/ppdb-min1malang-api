@@ -33,7 +33,7 @@ class StudentDashboardController extends Controller
             $validation = $request->validate([
                 'nama_lengkap' => 'required',
                 'jenis_kelamin' => 'nullable',
-                'nisn' => 'nullable',
+                'nisn' => 'nullable|numeric',
                 'alamat_siswa' => 'nullable',
                 'tempat_lahir' => 'nullable',
                 'tanggal_lahir' => 'nullable',
@@ -75,20 +75,20 @@ class StudentDashboardController extends Controller
         try {
             $validationAyah = $request->validate([
                 'nama_lengkap_ayah' => 'nullable',
-                'nik_ayah' => 'nullable',
+                'nik_ayah' => 'nullable|numeric',
                 'pekerjaan_ayah' => 'nullable',
                 'nama_kantor_ayah' => 'nullable',
                 'penghasilan_ayah' => 'nullable',
-                'no_telp_ayah' => 'nullable',
+                'no_telp_ayah' => 'nullable|numeric',
             ]);
 
             $validationIbu = $request->validate([
                 'nama_lengkap_ibu' => 'nullable',
-                'nik_ibu' => 'nullable',
+                'nik_ibu' => 'nullable|numeric',
                 'pekerjaan_ibu' => 'nullable',
                 'nama_kantor_ibu' => 'nullable',
                 'penghasilan_ibu' => 'nullable',
-                'no_telp_ibu' => 'nullable',
+                'no_telp_ibu' => 'nullable|numeric',
             ]);
 
             Father::where('user_id', auth()->user()->id)->update($validationAyah);
@@ -120,7 +120,7 @@ class StudentDashboardController extends Controller
             $validationsSchool = $request->validate([
                 'nama_sekolah' => 'nullable',
                 'asal_sekolah' => 'nullable',
-                'npsn' => 'nullable'
+                'npsn' => 'nullable|numeric'
             ]);
 
             School::where('user_id', auth()->user()->id)->update($validationsSchool);
@@ -144,7 +144,6 @@ class StudentDashboardController extends Controller
     public function storeDataPrestasi(Request $request)
     {
         $validationPrestasi = $request->validate([
-            'prestasi' => '',
             'prestasi' => 'required',
             'sertifikat' => 'file|max:2048|required'
         ]);
@@ -239,7 +238,7 @@ class StudentDashboardController extends Controller
                 'kecamatan' => 'nullable',
                 'kelurahan' => 'nullable',
                 'kota_kab' => 'nullable',
-                'kode_pos' => 'nullable',
+                'kode_pos' => 'nullable|numeric',
                 'jarak_rumah' => 'nullable'
             ]);
 
