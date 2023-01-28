@@ -19,7 +19,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="d-flex">
-                    <a href="/data-profile" class="back btn btn-primary me-3"> Kembali</a>
+                    <a href="{{ route('dashboard.data-siswa') }}" class="back btn btn-primary me-3"> Kembali</a>
                     @if ($user->is_verif)
                         <form action="{{ route('inverifikasi', ['user' => $user->id]) }}" method="post">
                             @csrf
@@ -33,9 +33,10 @@
                             Verifikasi data
                         </button>
                     @endif
-                    <form action="{{ route('dashboard.password-reset', ['user' => $user->id]) }}" method="post" class="ms-3">
+                    <form action="{{ route('dashboard.password-reset', ['user' => $user->id]) }}" method="post"
+                        class="ms-3">
                         @csrf
-                        <button type="submit" class="back btn btn-info">
+                        <button type="submit" class="back btn btn-warning">
                             Reset Password
                         </button>
                     </form>
@@ -63,7 +64,7 @@
                     </div>
                     <div class="col-sm-12 col-md-6">
                         <label for="inputAddress" class="form-label">Golongan Darah</label>
-                        <input type="text" class="form-control" id="inputAddress" value="{{ $user->golongan_darah }} "
+                        <input type="text" class="form-control" id="inputAddress" value="{{ $user->gol_darah }} "
                             disabled>
                     </div>
                     <div class="col-sm-12 col-md-6">
@@ -94,31 +95,32 @@
                 </form>
 
                 <h5 class="card-title">Data Berkas</h5>
-                <div class="col-sm-12 col-md-6">
-                    <p>Foto Siswa</p>
-                    @if (!empty($user->foto_siswa))
-                        <a href="{{ asset($user->foto_siswa) }}" target="_blank" rel="noopener noreferrer">
-                            <img src="{{ asset($user->foto_siswa) }}" alt="foto_siswa" class="foto_siswa">
-                        </a>
-                    @else
-                        <div class="no-image">
-                            <p>Belum upload foto diri</p>
-                        </div>
-                    @endif
+                <div class="foto-berkas">
+                    <div class="col-sm-12 col-md-6">
+                        <p>Foto Siswa</p>
+                        @if (!empty($user->foto_siswa))
+                            <a href="{{ asset($user->foto_siswa) }}" target="_blank" rel="noopener noreferrer">
+                                <img src="{{ asset($user->foto_siswa) }}" alt="foto_siswa" class="foto_siswa">
+                            </a>
+                        @else
+                            <div class="no-image">
+                                <p>Belum upload foto diri</p>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <p>Foto Kartu Keluarga</p>
+                        @if (!empty($user->foto_akte))
+                            <a href="{{ asset($user->foto_akte) }}" target="_blank" rel="noopener noreferrer">
+                                <img src="{{ asset($user->foto_akte) }}" alt="foto_siswa" class="foto_siswa">
+                            </a>
+                        @else
+                            <div class="no-image">
+                                <p>Belum upload foto Kartu Keluarga</p>
+                            </div>
+                        @endif
+                    </div>
                 </div>
-                <div class="col-sm-12 col-md-6">
-                    <p>Foto Kartu Keluarga</p>
-                    @if (!empty($user->foto_akte))
-                        <a href="{{ asset($user->foto_akte) }}" target="_blank" rel="noopener noreferrer">
-                            <img src="{{ asset($user->foto_akte) }}" alt="foto_siswa" class="foto_siswa">
-                        </a>
-                    @else
-                        <div class="no-image">
-                            <p>Belum upload foto Kartu Keluarga</p>
-                        </div>
-                    @endif
-                </div>
-
 
                 <h5 class="card-title">Data Orang Tua</h5>
                 <form class="row g-3">

@@ -19,7 +19,7 @@
         <div class="card">
             <div class="card-body">
                 @if ($user->jalur != null)
-                    <h5 class="card-title mt-4 mb-0">Identitas diri</h5>
+                    <h5 class="card-title mt-3 mb-0">Identitas diri</h5>
                     <p className="text-gray-500 font-medium ">
                         Lengkapi data dibawah, Jika terdapat <span className="text-red-600">(*)</span> maka wajib diisi
                     </p>

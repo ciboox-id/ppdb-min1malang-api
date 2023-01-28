@@ -23,7 +23,7 @@
                                     </div>
                                 @endif
 
-                                <form class="row g-3" action="{{ route('register') }}" method="post">
+                                <form class="row g-3" action="{{ route('auth.register') }}" method="post">
                                     @csrf
                                     <div class="col-12">
                                         <label for="email" class="form-label">Nama Lengkap</label>
@@ -83,7 +83,7 @@
                                     </div>
 
                                     <div class="col-12 mt-3">
-                                        <button class="btn btn-primary w-100" type="submit">Register</button>
+                                        <button class="btn btn-primary w-100" type="submit">Daftar</button>
                                     </div>
                                 </form>
 

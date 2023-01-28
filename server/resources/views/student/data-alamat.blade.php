@@ -19,7 +19,7 @@
         <div class="card">
             <div class="card-body">
                 @if ($user->jalur)
-                    <h5 class="card-title mt-4 mb-0">Data Alamat</h5>
+                    <h5 class="card-title mt-3 mb-0">Data Alamat</h5>
                     <p className="text-gray-500 font-medium ">
                         Lengkapi data dibawah, Jika terdapat <span className="text-red-600">(*)</span> maka wajib diisi
                     </p>
@@ -27,34 +27,34 @@
                         @method('PUT')
                         @csrf
                         <div class="col-sm-12 col-md-6">
-                            <label for="inputNanme4" class="form-label">No. Kartu Keluarga</label>
-                            <input type="text" class="form-control" name="no_kk" value="{{ $user->address->no_kk }}">
+                            <label for="no_kk" class="form-label">No. Kartu Keluarga</label>
+                            <input type="text" class="form-control" name="no_kk" value="{{ $user->address->no_kk }}" placeholder="ex: 36382547900755512">
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="inputNanme4" class="form-label">Kelurahan</label>
+                            <label for="kelurahan" class="form-label">Kelurahan</label>
                             <input type="text" class="form-control" name="kelurahan"
-                                value="{{ $user->address->kelurahan }}">
+                                value="{{ $user->address->kelurahan }}" placeholder="ex: Sawojajar">
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="inputEmail4" class="form-label">Kecamatan</label>
+                            <label for="kecamatan" class="form-label">Kecamatan</label>
                             <input type="text" class="form-control" value="{{ $user->address->kecamatan }}"
-                                name="kecamatan">
+                                name="kecamatan" placeholder="ex: Pagak">
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="inputNanme4" class="form-label">Kota / Kabupaten</label>
+                            <label for="kota_kab" class="form-label">Kota / Kabupaten</label>
                             <input type="text" class="form-control" name="kota_kab"
-                                value="{{ $user->address->kota_kab }}">
+                                value="{{ $user->address->kota_kab }}" placeholder="ex: Malang">
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="inputEmail4" class="form-label">Kode Pos</label>
+                            <label for="kode_pos" class="form-label">Kode Pos</label>
                             <input type="text" class="form-control" value="{{ $user->address->kode_pos }}"
-                                name="kode_pos">
+                                name="kode_pos" placeholder="ex: 65139">
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="inputEmail4" class="form-label">Jarak Rumah ke MIN 1 Kota Malang</label>
+                            <label for="jarak_rumah" class="form-label">Jarak Rumah ke MIN 1 Kota Malang</label>
                             <select class="form-select" name="jarak_rumah">
                                 @foreach ($jarak as $jrk)
-                                    @if ($jrk === $user->jarak_rumah)
+                                    @if ($jrk == $user->jarak_rumah)
                                         <option value="{{ $jrk }}" selected> {{ $jrk }}</option>
                                     @else
                                         <option value="{{ $jrk }}"> {{ $jrk }}</option>

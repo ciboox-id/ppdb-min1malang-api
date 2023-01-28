@@ -12,6 +12,7 @@ use App\Models\School;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use \PDF;
 
@@ -25,7 +26,7 @@ class DashboardController extends Controller
     public function index()
     {
         $userAdmin = User::where('role', 'admin')->get();
-        $user = User::where('role', '!=', 'admin')->get();
+        $user = User::where('role', '!=', 'admin')->orderBy('is_verif', 'asc')->orderBy('updated_at', 'desc')->get();
         $incomplete = User::whereNull('foto_siswa')->orWhereNull('foto_akte')->count();
         $complete = User::all()->count() - $incomplete;
 
@@ -51,6 +52,14 @@ class DashboardController extends Controller
             Father::where('user_id', $student->id)->delete();
             Mother::where('user_id', $student->id)->delete();
 
+            if ($student->foto_akte != null) {
+                Storage::delete(auth()->user()->foto_akte);
+            }
+
+            if ($student->foto_siswa != null) {
+                Storage::delete(auth()->user()->foto_siswa);
+            }
+
             $student->delete();
 
             return back()->with('successDeleteStudent', "Berhasil hapus siswa");
@@ -74,7 +83,7 @@ class DashboardController extends Controller
         $ressch = School::where('user_id', $user->id)->get()->toArray();
         $school = count(array_keys($ressch[0], null));
 
-        $prestasi = Prestasi::where('user_id', auth()->user()->id)->get();
+        $prestasi = Prestasi::where('user_id', $user->id)->get();
 
         $resad = Address::where('user_id', $user->id)->get()->toArray();
         $address = count(array_keys($resad[0], null));

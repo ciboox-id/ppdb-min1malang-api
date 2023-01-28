@@ -19,35 +19,44 @@
         <div class="card">
             <div class="card-body">
                 @if ($user->jalur != null)
-                <h5 class="card-title">Data Sekolah</h5>
-                <p className="text-gray-500 font-medium ">
-                    Lengkapi data dibawah, Jika terdapat <span className="text-red-600">(*)</span> maka wajib diisi
-                </p>
-                <form class="row g-3" action="{{ route('dashboard.data-sekolah.update') }}" method="POST">
-                    @method('PUT')
-                    @csrf
-                    <div class="col-sm-12 col-md-6">
-                        <label for="inputNanme4" class="form-label">Nama Sekolah *</label>
-                        <input type="text" class="form-control" name="nama_sekolah" value="{{ $user->school->nama_sekolah }}">
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <label for="inputNanme4" class="form-label">Asal Sekolah *</label>
-                        <input type="text" class="form-control" name="asal_sekolah" value="{{ $user->school->asal_sekolah }}">
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <label for="inputEmail4" class="form-label">NPSN *</label>
-                        <input type="text" class="form-control" value="{{ $user->school->npsn }}" name="npsn">
-                    </div>
+                    <h5 class="card-title mt-3">Data Sekolah</h5>
+                    <p className="text-gray-500 font-medium">
+                        Lengkapi data dibawah, Jika terdapat <span className="text-red-600">(*)</span> maka wajib diisi
+                    </p>
+                    <form class="row g-3" action="{{ route('dashboard.data-sekolah.update') }}" method="POST">
+                        @method('PUT')
+                        @csrf
+                        <div class="col-sm-12 col-md-6">
+                            <label for="nama_sekolah" class="form-label">Nama Sekolah *</label>
+                            <input type="text" class="form-control" name="nama_sekolah"
+                                value="{{ $user->school->nama_sekolah }}" placeholder="ex: TK Tadika Mesra">
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="asal_sekolah" class="form-label">Asal Sekolah *</label>
+                            <select class="form-select" name="asal_sekolah">
+                                @foreach ($asal as $item)
+                                    @if ($item === $user->school->asal_sekolah)
+                                        <option value="{{ $item }}" selected> {{ $item }}</option>
+                                    @else
+                                        <option value="{{ $item }}"> {{ $item }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="npsn" class="form-label">NPSN *</label>
+                            <input type="text" class="form-control" value="{{ $user->school->npsn }}" name="npsn" placeholder="ex: 1237823">
+                        </div>
 
-                    <button type="submit" class="btn btn-primary mt-4 py-2 rounded-2">
-                        Simpan Perubahan
-                    </button>
-                </form>
-
+                        <button type="submit" class="btn btn-primary mt-4 py-2 rounded-2">
+                            Simpan Perubahan
+                        </button>
+                    </form>
                 @else
                     <div class="alert alert-danger mt-4 mb-0" role="alert">
                         <i class="bi bi-exclamation-circle"></i>
-                        Silahkan memilih jalur pendaftaran terlebih dahulu! <a href="{{ route('dashboard.siswa') }}">Klik disini</a>
+                        Silahkan memilih jalur pendaftaran terlebih dahulu! <a href="{{ route('dashboard.siswa') }}">Klik
+                            disini</a>
                     </div>
                 @endif
             </div>

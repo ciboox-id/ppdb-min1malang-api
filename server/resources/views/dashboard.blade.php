@@ -142,8 +142,8 @@
                                                     </td>
                                                     <td class="d-flex">
                                                         <div class="me-2">
-                                                            <a class="badge rounded-pill bg-success badge-custom"
-                                                                href="/data-profile/{{ $user->email }}">
+                                                            <a class="badge rounded-pill bg-success badge-custom btn-aksi"
+                                                                href="{{ route('dashboard.data-siswa.detail', ['user' => $user->email]) }}">
                                                                 <i class="bi bi-eye-fill"></i>
                                                                 Lihat data
                                                             </a>
@@ -153,15 +153,16 @@
                                                             Verifikasi
                                                         </span> --}}
 
-                                                        {{-- <div>
-                                                            <form action="/dashboard/students/{{ $user->id }}" method="post">
+                                                        <div>
+                                                            <form action="{{ route('dashboard.data-siswa.delete', ['student' => $user->id]) }}" method="post">
                                                                 @csrf
-                                                                <button class="badge rounded-pill bg-danger badge-custom">
+                                                                @method('DELETE')
+                                                                <button class="badge rounded-pill bg-danger badge-custom btn-aksi">
                                                                     <i class="bi bi-trash"></i>
                                                                     Hapus
                                                                 </button>
                                                             </form>
-                                                        </div> --}}
+                                                        </div>
 
                                                         {{-- <span class="badge rounded-pill bg-info badge-custom">
                                                             <i class="bi bi-pencil"></i>

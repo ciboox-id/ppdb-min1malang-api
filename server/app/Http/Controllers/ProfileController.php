@@ -23,7 +23,7 @@ class ProfileController extends Controller
         }
 
         return view('profile', [
-            "users" => $users->get(),
+            "users" => $users->orderBy('is_verif', 'asc')->get(),
             "active" => "data-profile"
         ]);
     }

@@ -19,7 +19,7 @@
         <div class="card">
             <div class="card-body">
                 @if ($berkas->jalur != null)
-                    <h5 class="card-title mt-4 mb-0">Data Berkas</h5>
+                    <h5 class="card-title mt-3 mb-0">Data Berkas</h5>
                     <p className="text-gray-500 font-medium ">Unggah foto menggunakan seragam asal sekolah,
                         rapi, wajah tampak jelas dan foto akta kelahiran dengan ketentuan tulisan tampak jelas
                         dan bisa terbaca dengan baik.<b>Ukuran maksimal file adalah 2 MB</b> </p>

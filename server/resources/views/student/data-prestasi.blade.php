@@ -20,19 +20,19 @@
             <div class="card-body">
 
                 @if (auth()->user()->jalur === 'reguler' || auth()->user()->jalur === 'prestasi')
-                    <h5 class="card-title mt-4">Upload Sertifikat Prestasi</h5>
+                    <h5 class="card-title mt-3">Upload Sertifikat Prestasi</h5>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         <i class="bi bi-plus-square"></i>
                         Tambah prestasi
                     </button>
                 @elseif(auth()->user()->jalur === 'tahfidz')
-                    <h5 class="card-title mt-4">Upload sertifikat tahfidz</h5>
+                    <h5 class="card-title mt-3">Upload sertifikat tahfidz</h5>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
                         <i class="bi bi-cloud-upload"></i>
                         Upload sertifikat
                     </button>
                 @else
-                    <h5 class="card-title mt-4">Upload surat keterangan dari Kelurahan</h5>
+                    <h5 class="card-title mt-3">Upload surat keterangan dari Kelurahan</h5>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
                         <i class="bi bi-cloud-upload"></i>
                         Upload

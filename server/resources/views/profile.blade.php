@@ -6,7 +6,7 @@
     </div><!-- End Page Title -->
 
     <div class="row">
-        <div class="col-md-6 mb-3">
+        <div class="mb-3 col-4">
             <form action="/data-profile">
                 <div class="input-group mb-3">
                     <input type="text" name="search" id="search" class="form-control" placeholder="Search..."
@@ -14,7 +14,6 @@
                     <button class="btn btn-primary">Search</button>
                 </div>
             </form>
-
             <a href="{{ route('dashboard.export') }}" class="btn btn-primary">Export to excel</a>
         </div>
     </div>

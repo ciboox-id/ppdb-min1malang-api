@@ -105,10 +105,12 @@ class StudentDashboardController extends Controller
     public function dataSekolah()
     {
         $school = auth()->user();
+        $asal = ['TK', 'BA', 'RA', 'TPA', 'PAUD'];
 
         return view('student.data-sekolah', [
             'active' => 'data-sekolah',
-            'user' => $school
+            'user' => $school,
+            'asal' => $asal
         ]);
     }
 
@@ -141,7 +143,8 @@ class StudentDashboardController extends Controller
 
     public function storeDataPrestasi(Request $request)
     {
-        $validationPrestasi = $request->validate(['prestasi' => '',
+        $validationPrestasi = $request->validate([
+            'prestasi' => '',
             'prestasi' => 'required',
             'sertifikat' => 'file|max:2048|required'
         ]);
@@ -160,7 +163,10 @@ class StudentDashboardController extends Controller
 
     public function deleteDataPrestasi($id)
     {
-        $prestasi = Prestasi::where('id', $id);
+        $prestasi = Prestasi::where('id', $id)->first();
+        if ($prestasi->sertifikat != null) {
+            Storage::delete($prestasi->sertifikat);
+        }
         $prestasi->delete();
 
         return redirect()->route('dashboard.data-prestasi')->with('success', "Berhasil menghapus data prestasi");
@@ -177,7 +183,8 @@ class StudentDashboardController extends Controller
 
     public function updateDataBerkas(Request $request)
     {
-        $validationBerkas = $request->validate(["foto_akte" => "image|file|max:2048",
+        $validationBerkas = $request->validate([
+            "foto_akte" => "image|file|max:2048",
             "foto_siswa" => "image|file|max:2048",
         ]);
 

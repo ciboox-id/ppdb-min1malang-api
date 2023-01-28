@@ -22,8 +22,8 @@ Route::redirect('/', '/auth/login');
 
 Route::get('/auth/login', [DashboardAuthController::class, 'index'])->middleware('guest')->name('login');
 Route::get('/auth/register', [DashboardAuthController::class, 'register'])->middleware('guest')->name('register');
-Route::post('/login', [DashboardAuthController::class, 'authenticate'])->name('register');
-Route::post('/register', [DashboardAuthController::class, 'store'])->name('register');
+Route::post('/login', [DashboardAuthController::class, 'authenticate'])->name('auth.login');
+Route::post('/register', [DashboardAuthController::class, 'store'])->name('auth.register');
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [DashboardAuthController::class, 'logout']);
