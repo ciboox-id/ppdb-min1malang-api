@@ -7,13 +7,23 @@
 
     <div class="row">
         <div class="mb-3 col-4">
-            <form action="/data-profile">
+
+            <form action="{{ route('dashboard.data-siswa') }}">
                 <div class="input-group mb-3">
+
+                    <select class="dropdown btn btn-success" name="jalur">
+                        <option value="" disabled selected>Jalur</option>
+                        <option class="dropdown-item" value="reguler">Reguler</option>
+                        <option class="dropdown-item" value="prestasi">Prestasi</option>
+                        <option class="dropdown-item" value="tahfidz">Tahfidz</option>
+                        <option class="dropdown-item" value="afirmasi">Afirmasi</option>
+                    </select>
                     <input type="text" name="search" id="search" class="form-control" placeholder="Search..."
                         value="{{ request('search') }}">
                     <button class="btn btn-primary">Search</button>
                 </div>
             </form>
+
             <a href="{{ route('dashboard.export') }}" class="btn btn-primary">Export to excel</a>
         </div>
     </div>
@@ -33,6 +43,7 @@
                                         <th scope="col">No.</th>
                                         <th scope="col">Nama</th>
                                         <th scope="col">Email</th>
+                                        <th scope="col">Jalur</th>
                                         <th scope="col">Status Berkas</th>
                                         <th scope="col">Status verifikasi</th>
                                         <th scope="col">Aksi</th>
@@ -45,6 +56,7 @@
                                                 <th scope="row">{{ $loop->iteration }}</th>
                                                 <td>{{ $user->nama_lengkap }}</td>
                                                 <td>{{ $user->email }}</td>
+                                                <td style="text-transform: capitalize">{{ $user->jalur }}</td>
                                                 <td>
                                                     @if (is_null($user->foto_akte) && is_null($user->foto_siswa))
                                                         <span class="badge rounded-pill status-danger">Kurang</span>

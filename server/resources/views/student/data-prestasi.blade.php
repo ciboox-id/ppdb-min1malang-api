@@ -120,6 +120,14 @@
                                 placeholder="ex: Juara 1 lomba olimpiade matematika">
                         </div>
                         <div class="col-12">
+                            <label for="inputNanme4" class="form-label">Tingkat</label>
+                            <select class="form-select" name="tingkat">
+                                @foreach ($tingkat as $tgkt)
+                                    <option value="{{ $tgkt }}" selected> {{ $tgkt }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-12">
                             <label for="foto_siswa" class="form-label">Sertifikat</label>
                             <input class="form-control" type="file" id="sertifikat" name="sertifikat">
                         </div>
@@ -175,12 +183,12 @@
                         enctype="multipart/form-data">
                         @csrf
                         <div class="col-12">
-                            <label for="inputNanme4" class="form-label">Prestasi</label>
+                            <label for="inputNanme4" class="form-label">Jenis surat</label>
                             <input type="text" class="form-control" name="prestasi"
-                                placeholder="ex: Surat keterangan">
+                                placeholder="ex: Surat keterangan dari kelurahan">
                         </div>
                         <div class="col-12">
-                            <label for="foto_siswa" class="form-label">Sertifikat</label>
+                            <label for="foto_siswa" class="form-label">Surat Keterangan</label>
                             <input class="form-control" type="file" id="sertifikat" name="sertifikat">
                         </div>
                         <button type="submit" class="btn btn-primary mt-4 py-2 rounded-2">

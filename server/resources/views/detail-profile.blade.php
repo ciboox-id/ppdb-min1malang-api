@@ -178,47 +178,41 @@
                 <h5 class="card-title">Data Rumah</h5>
                 <form class="row g-3">
                     <div class="col-sm-12 col-md-6">
-                        <label for="inputNanme4" class="form-label">Alamat</label>
-                        <input type="text" class="form-control" id="inputNanme4"
-                            value="{{ $user->father->nama_lengkap_ayah }}" disabled>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <label for="inputEmail4" class="form-label">Kode Pos</label>
-                        <input type="text" class="form-control" value="{{ $user->mother->nama_lengkap_ibu }}"
+                        <label for="inputNanme4" class="form-label">Alamat Siswa</label>
+                        <input type="text" class="form-control" id="inputNanme4" value="{{ $user->alamat_siswa }}"
                             disabled>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <label for="inputPassword4" class="form-label">Nomor KK</label>
-                        <input type="text" class="form-control" value="{{ $user->father->nik_ayah }}" disabled>
+                        <label for="inputEmail4" class="form-label">Kode Pos</label>
+                        <input type="text" class="form-control" value="{{ $user->address->kode_pos }}" disabled>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <label for="inputAddress" class="form-label">Telepon Rumah</label>
-                        <input type="text" class="form-control" id="inputAddress"
-                            value="{{ $user->mother->nik_ibu }}" disabled>
+                        <label for="inputPassword4" class="form-label">Nomor KK</label>
+                        <input type="text" class="form-control" value="{{ $user->address->no_kk }}" disabled>
                     </div>
                     <div class="col-sm-12 col-md-6">
                         <label for="inputAddress" class="form-label">Kelurahan</label>
                         <input type="text" class="form-control" id="inputAddress"
-                            value="{{ $user->father->pekerjaan_ayah }} " disabled>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <label for="inputAddress" class="form-label">Nomor Telepon</label>
-                        <input type="text" class="form-control" id="inputAddress"
-                            value="{{ $user->mother->pekerjaan_ibu }}" disabled>
+                            value="{{ $user->address->kelurahan }} " disabled>
                     </div>
                     <div class="col-sm-12 col-md-6">
                         <label for="inputAddress" class="form-label">Kecamatan</label>
                         <input type="text" class="form-control" id="inputAddress"
-                            value="{{ $user->father->nama_kantor_ayah }}" disabled>
+                            value="{{ $user->address->kecamatan }}" disabled>
                     </div>
                     <div class="col-sm-12 col-md-6">
                         <label for="inputAddress" class="form-label">Kota / Kabupaten</label>
                         <input type="text" class="form-control" id="inputAddress"
-                            value="{{ $user->mother->nama_kantor_ibu }}" disabled>
+                            value="{{ $user->address->kota_kab }}" disabled>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <label for="inputAddress" class="form-label">Jarak rumah</label>
+                        <input type="text" class="form-control" id="inputAddress"
+                            value="{{ $user->address->jarak_rumah }}" disabled>
                     </div>
                 </form>
 
-                <h5 class="card-title">Data Rumah</h5>
+                <h5 class="card-title">Upload Berkas</h5>
                 <div class=" overflow-auto">
                     <table class="table table-borderless datatable mt-4">
                         <thead>
@@ -282,15 +276,27 @@
                         @csrf
                         <div>
                             <label for="">Tanggal</label>
-                            <input type="date" name="pemetaan_date" id="" class="form-control" required>
+                            <select class="form-select" name="pemetaan_date">
+                                @foreach ($date as $dt)
+                                    <option value="{{ $dt }}"> {{ $dt }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div>
                             <label for="">Jam</label>
-                            <input type="time" name="pemetaan_time" id="" class="form-control" required>
+                            <select class="form-select" name="pemetaan_time">
+                                @foreach ($time as $tm)
+                                        <option value="{{ $tm }}"> {{ $tm }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div>
                             <label for="">Nama Verifikator</label>
-                            <input type="text" name="name_validator" id="" class="form-control" required>
+                            <select class="form-select" name="nama_validator">
+                                @foreach ($verifikator as $verif)
+                                        <option value="{{ $verif->nama_lengkap }}"> {{ $verif->nama_lengkap }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class=" d-grid">
                             <button type="submit" class="btn btn-primary btn-block">Verifikasi</button>

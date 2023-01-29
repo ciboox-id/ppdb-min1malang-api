@@ -21,53 +21,67 @@
                 @if ($user->jalur)
                     <h5 class="card-title mt-3 mb-0">Data Orang tua</h5>
                     <p className="text-gray-500 font-medium ">
-                        Lengkapi data dibawah, Jika terdapat <span className="text-red-600">(*)</span> maka wajib diisi
+                        Lengkapi data dibawah, Jika terdapat <span className="text-red-600">(<span class="mandatory">*</span>)</span> maka wajib diisi
                     </p>
                     <form class="row g-3" action="{{ route('dashboard.data-ortu.update') }}" method="POST">
                         @method('PUT')
                         @csrf
                         <div class="col-sm-12 col-md-6">
-                            <label for="nama_lengkap_ayah" class="form-label">Nama Lengkap Ayah *</label>
+                            <label for="nama_lengkap_ayah" class="form-label">Nama Lengkap Ayah <span class="mandatory">*</span></label>
                             <input type="text" class="form-control" name="nama_lengkap_ayah" placeholder="ex: Budi Setyawan"
                                 value="{{ $father->nama_lengkap_ayah }}">
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="nama_lengkap_ibu" class="form-label">Nama Lengkap Ibu *</label>
+                            <label for="nama_lengkap_ibu" class="form-label">Nama Lengkap Ibu <span class="mandatory">*</span></label>
                             <input type="text" class="form-control" value="{{ $mother->nama_lengkap_ibu }}"
                                 name="nama_lengkap_ibu" placeholder="ex: Putri Tjisaka">
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="nik_ayah" class="form-label">NIK Ayah *</label>
+                            <label for="nik_ayah" class="form-label">NIK Ayah <span class="mandatory">*</span></label>
                             <input type="text" class="form-control" name="nik_ayah" value="{{ $father->nik_ayah }}" placeholder="ex: 213521376182367">
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="nik_ibu" class="form-label">NIK Ibu *</label>
+                            <label for="nik_ibu" class="form-label">NIK Ibu <span class="mandatory">*</span></label>
                             <input type="text" class="form-control" value="{{ $mother->nik_ibu }}" name="nik_ibu" placeholder="ex: 123721596236">
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="pekerjaan_ayah" class="form-label">Pekerjaan Ayah *</label>
-                            <input type="text" class="form-control"
-                                value="{{ $father->pekerjaan_ayah }}" name="pekerjaan_ayah" placeholder="ex: Petani">
+                            <label for="pekerjaan_ayah" class="form-label">Pekerjaan Ayah <span class="mandatory">*</span></label>
+                            <select class="form-select" name="pekerjaan_ayah">
+                                @foreach ($job as $item)
+                                    @if ($item === $user->pekerjaan_ayah)
+                                        <option value="{{ $item }}" selected> {{ $item }}</option>
+                                    @else
+                                        <option value="{{ $item }}"> {{ $item }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="pekerjaan_ibu" class="form-label">Pekerjaan Ibu *</label>
-                            <input type="text" class="form-control"
-                                value="{{ $mother->pekerjaan_ibu }}" name="pekerjaan_ibu" placeholder="ex: Ibu rumah tangga">
+                            <label for="pekerjaan_ibu" class="form-label">Pekerjaan Ibu <span class="mandatory">*</span></label>
+                            <select class="form-select" name="pekerjaan_ibu">
+                                @foreach ($job as $item)
+                                    @if ($item === $user->pekerjaan_ibu)
+                                        <option value="{{ $item }}" selected> {{ $item }}</option>
+                                    @else
+                                        <option value="{{ $item }}"> {{ $item }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="col-sm-12 col-md-6">
-                            <label for="nama_kantor_ayah" class="form-label">Nama Kantor Ayah *</label>
+                            <label for="nama_kantor_ayah" class="form-label">Nama Kantor Ayah <span class="mandatory">*</span></label>
                             <input type="text" class="form-control"
                                 value="{{ $father->nama_kantor_ayah }}" name="nama_kantor_ayah" placeholder="ex: Sawah">
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="nama_kantor_ibu" class="form-label">Nama Kantor Ibu *</label>
+                            <label for="nama_kantor_ibu" class="form-label">Nama Kantor Ibu <span class="mandatory">*</span></label>
                             <input type="text" class="form-control"
                                 value="{{ $mother->nama_kantor_ibu }}" name="nama_kantor_ibu" placeholder="ex: Rumah">
                         </div>
 
                         <div class="col-sm-12 col-md-6">
-                            <label for="penghasilan_ayah" class="form-label">Penghasilan Ayah *</label>
+                            <label for="penghasilan_ayah" class="form-label">Penghasilan Ayah <span class="mandatory">*</span></label>
                             <select class="form-select" name="penghasilan_ayah">
                                 @foreach ($salary as $item)
                                     @if ($item == $user->penghasilan_ayah)
@@ -80,7 +94,7 @@
                         </div>
 
                         <div class="col-sm-12 col-md-6">
-                            <label for="penghasilan_ibu" class="form-label">Penghasilan Ibu *</label>
+                            <label for="penghasilan_ibu" class="form-label">Penghasilan Ibu <span class="mandatory">*</span></label>
                             <select class="form-select" name="penghasilan_ibu">
                                 @foreach ($salary as $item)
                                     @if ($item == $user->penghasilan_ibu)
@@ -93,13 +107,13 @@
                         </div>
 
                         <div class="col-sm-12 col-md-6">
-                            <label for="no_telp_ayah" class="form-label">No. Telp Ayah *</label>
+                            <label for="no_telp_ayah" class="form-label">No. Telp Ayah <span class="mandatory">*</span></label>
                             <input type="text" class="form-control"
                                 value="{{ $father->no_telp_ayah }}" name="no_telp_ayah" placeholder="ex: 08213526135">
                         </div>
 
                         <div class="col-sm-12 col-md-6">
-                            <label for="no_telp_ibu" class="form-label">No. Telp Ibu *</label>
+                            <label for="no_telp_ibu" class="form-label">No. Telp Ibu <span class="mandatory">*</span></label>
                             <input type="text" class="form-control"
                                 value="{{ $mother->no_telp_ibu }}" name="no_telp_ibu" placeholder="ex: 08213526135">
                         </div>

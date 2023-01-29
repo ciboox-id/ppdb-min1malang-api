@@ -28,7 +28,7 @@
                         @method('put')
                         @csrf
                         <div class="col-sm-12 col-md-6">
-                            <label for="foto_siswa" class="form-label">Foto Siswa</label>
+                            <label for="foto_siswa" class="form-label">Foto Siswa <span class="mandatory">*</span></label>
                             <input class="form-control" type="file" id="foto_siswa" onchange="previewImageSiswa()"
                                 accept="image/*" name="foto_siswa" class="@error('foto_siswa') is-invalid @enderror">
 
@@ -46,7 +46,7 @@
                         </div>
 
                         <div class="col-sm-12 col-md-6">
-                            <label for="formFile" class="form-label">Foto Kartu Keluarga</label>
+                            <label for="formFile" class="form-label">Foto Kartu Keluarga <span class="mandatory">*</span></label>
                             <input class="form-control" type="file" id="foto_akte" onchange="previewImageAkte()"
                                 accept="image/*" name="foto_akte" class="@error('foto_akte') is-invalid @enderror">
                             @error('foto_akte')

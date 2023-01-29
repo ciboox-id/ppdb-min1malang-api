@@ -1193,3 +1193,7 @@ h6 {
         justify-content: center;
     }
 }
+
+.mandatory {
+    color: red;
+}

@@ -21,18 +21,18 @@
                 @if ($user->jalur != null)
                     <h5 class="card-title mt-3">Data Sekolah</h5>
                     <p className="text-gray-500 font-medium">
-                        Lengkapi data dibawah, Jika terdapat <span className="text-red-600">(*)</span> maka wajib diisi
+                        Lengkapi data dibawah, Jika terdapat (<span class="mandatory">*</span>) maka wajib diisi
                     </p>
                     <form class="row g-3" action="{{ route('dashboard.data-sekolah.update') }}" method="POST">
                         @method('PUT')
                         @csrf
                         <div class="col-sm-12 col-md-6">
-                            <label for="nama_sekolah" class="form-label">Nama Sekolah *</label>
+                            <label for="nama_sekolah" class="form-label">Nama Sekolah <span class="mandatory">*</span></label>
                             <input type="text" class="form-control" name="nama_sekolah"
                                 value="{{ $user->school->nama_sekolah }}" placeholder="ex: TK Tadika Mesra">
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="asal_sekolah" class="form-label">Asal Sekolah *</label>
+                            <label for="asal_sekolah" class="form-label">Asal Sekolah <span class="mandatory">*</span></label>
                             <select class="form-select" name="asal_sekolah">
                                 @foreach ($asal as $item)
                                     @if ($item === $user->school->asal_sekolah)
@@ -44,7 +44,7 @@
                             </select>
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="npsn" class="form-label">NPSN *</label>
+                            <label for="npsn" class="form-label">NPSN <span class="mandatory">*</span></label>
                             <input type="text" class="form-control" value="{{ $user->school->npsn }}" name="npsn" placeholder="ex: 1237823">
                         </div>
 

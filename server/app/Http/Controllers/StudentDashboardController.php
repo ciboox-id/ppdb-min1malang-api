@@ -31,11 +31,11 @@ class StudentDashboardController extends Controller
     {
         try {
             $validation = $request->validate([
-                'nama_lengkap' => 'required',
+                'nama_lengkap' => 'required|alpha',
                 'jenis_kelamin' => 'nullable',
                 'nisn' => 'nullable|numeric',
                 'alamat_siswa' => 'nullable',
-                'tempat_lahir' => 'nullable',
+                'tempat_lahir' => 'nullable|apha_dash',
                 'tanggal_lahir' => 'nullable',
                 'gol_darah' => 'nullable',
                 'anak_ke' => 'nullable',
@@ -60,13 +60,44 @@ class StudentDashboardController extends Controller
             '2.500.000 - 5.000.000',
             '> 5.000.000'
         ];
+        $pekerjaan = [
+            "Belum/ Tidak Bekerja",
+            "Mengurus Rumah Tangga",
+            "Pelajar/ Mahasiswa",
+            "Pensiunan",
+            "Pegawai Negeri Sipil",
+            "Tentara Nasional Indonesia",
+            "Kepolisisan RI",
+            "Perdagangan",
+            "Petani/ Pekebun",
+            "Peternak",
+            "Nelayan/ Perikanan",
+            "Karyawan Swasta",
+            "Karyawan BUMN",
+            "Karyawan Honorer",
+            "Wartawan",
+            "Dosen",
+            "Guru",
+            "Pilot",
+            "Pengacara",
+            "Notaris",
+            "Dokter",
+            "Bidan",
+            "Perawat",
+            "Apoteker",
+            "Psikiater/ Psikolog",
+            "Perangkat Desa",
+            "Wiraswasta",
+            "Anggota DPR-RI/DPRD",
+        ];
 
         return view('student.data-ortu', [
             'active' => 'data-ortu',
             'father' => $user->father,
             'mother' => $user->mother,
             'user' => $user,
-            'salary' => $range
+            'salary' => $range,
+            'job' => $pekerjaan
         ]);
     }
 
@@ -105,7 +136,7 @@ class StudentDashboardController extends Controller
     public function dataSekolah()
     {
         $school = auth()->user();
-        $asal = ['TK', 'BA', 'RA', 'TPA', 'PAUD'];
+        $asal = ['TK', 'BA', 'RA', 'PAUD', 'PAUD Al-Quran'];
 
         return view('student.data-sekolah', [
             'active' => 'data-sekolah',
@@ -134,10 +165,12 @@ class StudentDashboardController extends Controller
     public function dataPrestasi()
     {
         $prestasi = Prestasi::where('user_id', auth()->user()->id)->get();
+        $tingkat = ['kota', 'kabupaten', 'propinsi', 'nasional', 'internasional'];
 
         return view('student.data-prestasi', [
             'active' => 'data-prestasi',
-            'prestasi' => $prestasi
+            'prestasi' => $prestasi,
+            'tingkat' => $tingkat
         ]);
     }
 
@@ -145,6 +178,7 @@ class StudentDashboardController extends Controller
     {
         $validationPrestasi = $request->validate([
             'prestasi' => 'required',
+            'tingkat' => 'nullable',
             'sertifikat' => 'file|max:2048|required'
         ]);
 
@@ -234,10 +268,10 @@ class StudentDashboardController extends Controller
     {
         try {
             $validationAddress = $request->validate([
-                'no_kk' => 'nullable',
-                'kecamatan' => 'nullable',
-                'kelurahan' => 'nullable',
-                'kota_kab' => 'nullable',
+                'no_kk' => 'nullable|numeric',
+                'kecamatan' => 'nullable|alpha_dash',
+                'kelurahan' => 'nullable|alpha_dash',
+                'kota_kab' => 'nullable|alpha_dash',
                 'kode_pos' => 'nullable|numeric',
                 'jarak_rumah' => 'nullable'
             ]);

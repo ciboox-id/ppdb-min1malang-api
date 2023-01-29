@@ -28,9 +28,9 @@
                                 @endif
 
                                 @if (empty($user->foto_siswa) || empty($user->foto_akte))
-                                    <div class="alert alert-warning" role="alert">
+                                    <div class="alert alert-danger" role="alert">
                                         <i class="bi bi-exclamation-circle"></i>
-                                        Data Berkas - Data berkas yang anda masukkan belum lengkap
+                                        Data Berkas - Anda Belum melengkapi data berkas
                                     </div>
                                 @else
                                     <div class="alert alert-success" role="alert">
@@ -78,14 +78,26 @@
                                 @if (count($prestasi) > 0)
                                     <div class="alert alert-success" role="alert">
                                         <i class="bi bi-check-circle"></i>
-                                        Data Prestasi - Data prestasi telah dimasukkan, ayo tambah lagi jika mempunyai
-                                        prestasi lain
+                                        Data Prestasi - Upload lagi jika mempunyai
+                                        sertifikat lain
                                     </div>
                                 @else
-                                    <div class="alert alert-warning" role="alert">
-                                        <i class="bi bi-exclamation-circle"></i>
-                                        Data Prestasi - Data prestasi boleh di isi jika mempunyai prestasi yang bagus
-                                    </div>
+                                    @if ($user->jalur == "prestasi" || $user->jalur == "reguler")
+                                        <div class="alert alert-warning" role="alert">
+                                            <i class="bi bi-exclamation-circle"></i>
+                                            Data Prestasi - Data prestasi boleh di isi jika mempunyai prestasi yang bagus
+                                        </div>
+                                    @elseif($user->jalur == "tahfidz")
+                                        <div class="alert alert-warning" role="alert">
+                                            <i class="bi bi-exclamation-circle"></i>
+                                            Data Prestasi - Data prestasi boleh di isi jika mempunyai prestasi yang bagus
+                                        </div>
+                                    @else
+                                        <div class="alert alert-warning" role="alert">
+                                            <i class="bi bi-exclamation-circle"></i>
+                                            Upload surat keterangan yatim/piatu/yatim piatu dari desa / kelurahan
+                                        </div>
+                                    @endif
                                 @endif
                             </div>
 
@@ -140,7 +152,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Prestas</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Pilih Jalur Pendaftaran</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -156,7 +168,7 @@
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary mt-4 py-2 rounded-2">
-                            Tambah Prestasi
+                            Pilih Jalur
                         </button>
                     </form>
                 </div>

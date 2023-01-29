@@ -21,22 +21,22 @@
                 @if ($user->jalur != null)
                     <h5 class="card-title mt-3 mb-0">Identitas diri</h5>
                     <p className="text-gray-500 font-medium ">
-                        Lengkapi data dibawah, Jika terdapat <span className="text-red-600">(*)</span> maka wajib diisi
+                        Lengkapi data dibawah, Jika terdapat (<span class="mandatory">*</span>) maka wajib diisi
                     </p>
                     <form class="row g-3" action="{{ route('dashboard.data-umum.update') }}" method="POST">
                         @method('PUT')
                         @csrf
                         <div class="col-sm-12 col-md-6">
-                            <label for="nama_lengkap" class="form-label">Nama Lengkap *</label>
+                            <label for="nama_lengkap" class="form-label">Nama Lengkap <span class="mandatory">*</span></label>
                             <input type="text" class="form-control" name="nama_lengkap"
                                 value="{{ $user->nama_lengkap }}" placeholder="ex: ciboox.id" style="text-transform: uppercase">
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="anak_ke" class="form-label">Anak ke *</label>
+                            <label for="anak_ke" class="form-label">Anak ke <span class="mandatory">*</span></label>
                             <input type="number" class="form-control" value="{{ $user->anak_ke }}" name="anak_ke" placeholder="ex: 1">
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="category" class="form-label">Jenis Kelamin *</label>
+                            <label for="category" class="form-label">Jenis Kelamin <span class="mandatory">*</span></label>
                             <select class="form-select" name="jenis_kelamin">
                                 <option value="Laki-laki" @if ($user->jenis_kelamin == 'Laki-laki') selected @endif>Laki-laki
                                 </option>
@@ -45,17 +45,17 @@
                             </select>
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="nisn" class="form-label">NISN *</label>
+                            <label for="nisn" class="form-label">NISN <span class="mandatory">*</span></label>
                             <input type="text" class="form-control" id="inputAddress" value="{{ $user->nisn }}"
                                 name="nisn" placeholder="ex: 2163688232">
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="alamat_siswa" class="form-label">Alamat Siswa *</label>
+                            <label for="alamat_siswa" class="form-label">Alamat Siswa <span class="mandatory">*</span></label>
                             <input type="text" class="form-control" id="alamat_siswa" value="{{ $user->alamat_siswa }}"
                                 name="alamat_siswa" placeholder="ex: Jln Danau Ranau">
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="gol_darah" class="form-label">Golongan Darah *</label>
+                            <label for="gol_darah" class="form-label">Golongan Darah <span class="mandatory">*</span></label>
                             <select class="form-select" name="gol_darah">
                                 @foreach ($gol_darah as $gol)
                                     @if ($gol === $user->gol_darah)
@@ -67,12 +67,12 @@
                             </select>
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="tempat_lahir" class="form-label">Tempat Lahir *</label>
+                            <label for="tempat_lahir" class="form-label">Tempat Lahir <span class="mandatory">*</span></label>
                             <input type="text" class="form-control" id="tempat_lahir" value="{{ $user->tempat_lahir }}"
                                 name="tempat_lahir" placeholder="ex: Malang">
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="tanggal_lahir" class="form-label">Tanggal Lahir *</label>
+                            <label for="tanggal_lahir" class="form-label">Tanggal Lahir <span class="mandatory">*</span></label>
                             <input type="date" class="form-control" id="tanggal_lahir" value="{{ $user->tanggal_lahir }}"
                                 name="tanggal_lahir">
                         </div>

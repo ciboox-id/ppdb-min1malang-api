@@ -18,12 +18,8 @@ class ProfileController extends Controller
     {
         $users = User::where('role', '!=', 'admin');
 
-        if (request('search')) {
-            $users->where('nama_lengkap', 'like', '%' . request('search') . '%')->orWhere('email', 'like', '%' . request('search') . '%');
-        }
-
         return view('profile', [
-            "users" => $users->orderBy('is_verif', 'asc')->get(),
+            "users" => $users->filter(['search', 'jalur'])->orderBy('is_verif', 'asc')->get(),
             "active" => "data-profile"
         ]);
     }
@@ -36,9 +32,15 @@ class ProfileController extends Controller
      */
     public function show(User $user)
     {
+        $date = ['20/01/2023', '21/01/2023', '22/01/2023', '23/01/2023'];
+        $time = ['07.30 - 08.00', '08.00 - 08.30', '09.00 - 09.30', '09.30 - 10.00', '10.30 - 11.00', '11.00 - 11.30'];
+        $verifikator = User::where('role', 'admin')->get();
         return view('detail-profile', [
             'user' => $user,
-            'active' => "data-profile"
+            'active' => "data-profile",
+            'date' => $date,
+            'time' => $time,
+            'verifikator' => $verifikator
         ]);
     }
 
