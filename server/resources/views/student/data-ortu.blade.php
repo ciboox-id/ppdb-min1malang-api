@@ -23,30 +23,30 @@
                     <p className="text-gray-500 font-medium ">
                         Lengkapi data dibawah, Jika terdapat <span className="text-red-600">(<span class="mandatory">*</span>)</span> maka wajib diisi
                     </p>
-                    <form class="row g-3" action="{{ route('dashboard.data-ortu.update') }}" method="POST">
+                    <form class="row g-3" action="{{ route('dashboard.data-ortu.update') }}" method="POST" id="data-ortu-form">
                         @method('PUT')
                         @csrf
                         <div class="col-sm-12 col-md-6">
                             <label for="nama_lengkap_ayah" class="form-label">Nama Lengkap Ayah <span class="mandatory">*</span></label>
                             <input type="text" class="form-control" name="nama_lengkap_ayah" placeholder="ex: Budi Setyawan"
-                                value="{{ $father->nama_lengkap_ayah }}">
+                                value="{{ $father->nama_lengkap_ayah }}" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="nama_lengkap_ibu" class="form-label">Nama Lengkap Ibu <span class="mandatory">*</span></label>
                             <input type="text" class="form-control" value="{{ $mother->nama_lengkap_ibu }}"
-                                name="nama_lengkap_ibu" placeholder="ex: Putri Tjisaka">
+                                name="nama_lengkap_ibu" placeholder="ex: Putri Tjisaka" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="nik_ayah" class="form-label">NIK Ayah <span class="mandatory">*</span></label>
-                            <input type="text" class="form-control" name="nik_ayah" value="{{ $father->nik_ayah }}" placeholder="ex: 213521376182367">
+                            <input type="text" class="form-control" name="nik_ayah" value="{{ $father->nik_ayah }}" placeholder="ex: 213521376182367" minlength="16" maxlength="16" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="nik_ibu" class="form-label">NIK Ibu <span class="mandatory">*</span></label>
-                            <input type="text" class="form-control" value="{{ $mother->nik_ibu }}" name="nik_ibu" placeholder="ex: 123721596236">
+                            <input type="text" class="form-control" value="{{ $mother->nik_ibu }}" name="nik_ibu" placeholder="ex: 123721596236" minlength="16" maxlength="16" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="pekerjaan_ayah" class="form-label">Pekerjaan Ayah <span class="mandatory">*</span></label>
-                            <select class="form-select" name="pekerjaan_ayah">
+                            <select class="form-select" name="pekerjaan_ayah" required>
                                 @foreach ($job as $item)
                                     @if ($item === $user->pekerjaan_ayah)
                                         <option value="{{ $item }}" selected> {{ $item }}</option>
@@ -58,7 +58,7 @@
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="pekerjaan_ibu" class="form-label">Pekerjaan Ibu <span class="mandatory">*</span></label>
-                            <select class="form-select" name="pekerjaan_ibu">
+                            <select class="form-select" name="pekerjaan_ibu" required>
                                 @foreach ($job as $item)
                                     @if ($item === $user->pekerjaan_ibu)
                                         <option value="{{ $item }}" selected> {{ $item }}</option>
@@ -72,17 +72,17 @@
                         <div class="col-sm-12 col-md-6">
                             <label for="nama_kantor_ayah" class="form-label">Nama Kantor Ayah <span class="mandatory">*</span></label>
                             <input type="text" class="form-control"
-                                value="{{ $father->nama_kantor_ayah }}" name="nama_kantor_ayah" placeholder="ex: Sawah">
+                                value="{{ $father->nama_kantor_ayah }}" name="nama_kantor_ayah" placeholder="ex: Sawah" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="nama_kantor_ibu" class="form-label">Nama Kantor Ibu <span class="mandatory">*</span></label>
                             <input type="text" class="form-control"
-                                value="{{ $mother->nama_kantor_ibu }}" name="nama_kantor_ibu" placeholder="ex: Rumah">
+                                value="{{ $mother->nama_kantor_ibu }}" name="nama_kantor_ibu" placeholder="ex: Rumah" required>
                         </div>
 
                         <div class="col-sm-12 col-md-6">
                             <label for="penghasilan_ayah" class="form-label">Penghasilan Ayah <span class="mandatory">*</span></label>
-                            <select class="form-select" name="penghasilan_ayah">
+                            <select class="form-select" name="penghasilan_ayah" required>
                                 @foreach ($salary as $item)
                                     @if ($item == $user->penghasilan_ayah)
                                         <option value="{{ $item }}" selected> {{ $item }}</option>
@@ -109,13 +109,13 @@
                         <div class="col-sm-12 col-md-6">
                             <label for="no_telp_ayah" class="form-label">No. Telp Ayah <span class="mandatory">*</span></label>
                             <input type="text" class="form-control"
-                                value="{{ $father->no_telp_ayah }}" name="no_telp_ayah" placeholder="ex: 08213526135">
+                                value="{{ $father->no_telp_ayah }}" name="no_telp_ayah" placeholder="ex: 08213526135" required>
                         </div>
 
                         <div class="col-sm-12 col-md-6">
                             <label for="no_telp_ibu" class="form-label">No. Telp Ibu <span class="mandatory">*</span></label>
                             <input type="text" class="form-control"
-                                value="{{ $mother->no_telp_ibu }}" name="no_telp_ibu" placeholder="ex: 08213526135">
+                                value="{{ $mother->no_telp_ibu }}" name="no_telp_ibu" placeholder="ex: 08213526135" required>
                         </div>
 
                         <button type="submit" class="btn btn-primary mt-4 py-2 rounded-2">
@@ -132,4 +132,23 @@
             </div>
         </div>
     </div>
+    <script>
+        // Get form and submit button
+        const form = document.getElementById("data-ortu-form");
+
+        // Add event listener to beforeunload event
+        window.addEventListener("beforeunload", function(event) {
+            // Get all form fields
+            const fields = form.querySelectorAll("input");
+
+            // Check if any fields are filled
+            for (let i = 0; i < fields.length; i++) {
+                if (fields[i].value) {
+                    event.preventDefault();
+                    event.returnValue = "Apakah anda yakin ingin keluar tanpa mengirim data?";
+                    return "Apakah anda yakin ingin keluar tanpa mengirim data?";
+                }
+            }
+        });
+    </script>
 @endsection

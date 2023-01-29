@@ -23,21 +23,23 @@
                     <p className="text-gray-500 font-medium ">
                         Lengkapi data dibawah, Jika terdapat (<span class="mandatory">*</span>) maka wajib diisi
                     </p>
-                    <form class="row g-3" action="{{ route('dashboard.data-umum.update') }}" method="POST">
+                    <form class="row g-3" action="{{ route('dashboard.data-umum.update') }}" method="POST" id="data-umum-form">
                         @method('PUT')
                         @csrf
                         <div class="col-sm-12 col-md-6">
-                            <label for="nama_lengkap" class="form-label">Nama Lengkap <span class="mandatory">*</span></label>
-                            <input type="text" class="form-control" name="nama_lengkap"
-                                value="{{ $user->nama_lengkap }}" placeholder="ex: ciboox.id" style="text-transform: uppercase">
+                            <label for="nama_lengkap" class="form-label">Nama Lengkap <span
+                                    class="mandatory">*</span></label>
+                            <input type="text" class="form-control" name="nama_lengkap" value="{{ $user->nama_lengkap }}"
+                                placeholder="ex: ciboox.id" style="text-transform: uppercase" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="anak_ke" class="form-label">Anak ke <span class="mandatory">*</span></label>
-                            <input type="number" class="form-control" value="{{ $user->anak_ke }}" name="anak_ke" placeholder="ex: 1">
+                            <input type="number" class="form-control" value="{{ $user->anak_ke }}" name="anak_ke"
+                                placeholder="ex: 1" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="category" class="form-label">Jenis Kelamin <span class="mandatory">*</span></label>
-                            <select class="form-select" name="jenis_kelamin">
+                            <select class="form-select" name="jenis_kelamin" required>
                                 <option value="Laki-laki" @if ($user->jenis_kelamin == 'Laki-laki') selected @endif>Laki-laki
                                 </option>
                                 <option value="Perempuan" @if ($user->jenis_kelamin == 'Perempuan') selected @endif>Perempuan
@@ -45,18 +47,20 @@
                             </select>
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="nisn" class="form-label">NISN <span class="mandatory">*</span></label>
+                            <label for="nisn" class="form-label">NISN</label>
                             <input type="text" class="form-control" id="inputAddress" value="{{ $user->nisn }}"
                                 name="nisn" placeholder="ex: 2163688232">
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="alamat_siswa" class="form-label">Alamat Siswa <span class="mandatory">*</span></label>
+                            <label for="alamat_siswa" class="form-label">Alamat Siswa <span
+                                    class="mandatory">*</span></label>
                             <input type="text" class="form-control" id="alamat_siswa" value="{{ $user->alamat_siswa }}"
-                                name="alamat_siswa" placeholder="ex: Jln Danau Ranau">
+                                name="alamat_siswa" placeholder="ex: Jln Danau Ranau" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="gol_darah" class="form-label">Golongan Darah <span class="mandatory">*</span></label>
-                            <select class="form-select" name="gol_darah">
+                            <label for="gol_darah" class="form-label">Golongan Darah <span
+                                    class="mandatory">*</span></label>
+                            <select class="form-select" name="gol_darah" required>
                                 @foreach ($gol_darah as $gol)
                                     @if ($gol === $user->gol_darah)
                                         <option value="{{ $gol }}" selected> {{ $gol }}</option>
@@ -67,14 +71,16 @@
                             </select>
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="tempat_lahir" class="form-label">Tempat Lahir <span class="mandatory">*</span></label>
+                            <label for="tempat_lahir" class="form-label">Tempat Lahir <span
+                                    class="mandatory">*</span></label>
                             <input type="text" class="form-control" id="tempat_lahir" value="{{ $user->tempat_lahir }}"
-                                name="tempat_lahir" placeholder="ex: Malang">
+                                name="tempat_lahir" placeholder="ex: Malang" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="tanggal_lahir" class="form-label">Tanggal Lahir <span class="mandatory">*</span></label>
-                            <input type="date" class="form-control" id="tanggal_lahir" value="{{ $user->tanggal_lahir }}"
-                                name="tanggal_lahir">
+                            <label for="tanggal_lahir" class="form-label">Tanggal Lahir <span
+                                    class="mandatory">*</span></label>
+                            <input type="date" class="form-control" id="tanggal_lahir"
+                                value="{{ $user->tanggal_lahir }}" name="tanggal_lahir" required>
                         </div>
 
                         <button type="submit" class="btn btn-primary mt-4 py-2 rounded-2">
@@ -84,10 +90,30 @@
                 @else
                     <div class="alert alert-danger mt-4 mb-0" role="alert">
                         <i class="bi bi-exclamation-circle"></i>
-                        Silahkan memilih jalur pendaftaran terlebih dahulu! <a href="{{ route('dashboard.siswa') }}">Klik disini</a>
+                        Silahkan memilih jalur pendaftaran terlebih dahulu! <a href="{{ route('dashboard.siswa') }}">Klik
+                            disini</a>
                     </div>
                 @endif
             </div>
         </div>
     </div>
+    <script>
+        // Get form and submit button
+        const form = document.getElementById("data-umum-form");
+
+        // Add event listener to beforeunload event
+        window.addEventListener("beforeunload", function(event) {
+            // Get all form fields
+            const fields = form.querySelectorAll("input");
+
+            // Check if any fields are filled
+            for (let i = 0; i < fields.length; i++) {
+                if (fields[i].value) {
+                    event.preventDefault();
+                    event.returnValue = "Apakah anda yakin ingin keluar tanpa mengirim data?";
+                    return "Apakah anda yakin ingin keluar tanpa mengirim data?";
+                }
+            }
+        });
+    </script>
 @endsection

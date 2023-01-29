@@ -31,11 +31,11 @@ class StudentDashboardController extends Controller
     {
         try {
             $validation = $request->validate([
-                'nama_lengkap' => 'required|alpha',
+                'nama_lengkap' => 'required',
                 'jenis_kelamin' => 'nullable',
                 'nisn' => 'nullable|numeric',
                 'alamat_siswa' => 'nullable',
-                'tempat_lahir' => 'nullable|apha_dash',
+                'tempat_lahir' => 'nullable',
                 'tanggal_lahir' => 'nullable',
                 'gol_darah' => 'nullable',
                 'anak_ke' => 'nullable',
@@ -122,6 +122,9 @@ class StudentDashboardController extends Controller
                 'no_telp_ibu' => 'nullable|numeric',
             ]);
 
+            $validationAyah['nama_lengkap_ayah'] = ucfirst($validationAyah['nama_lengkap_ayah']);
+            $validationAyah['nama_lengkap_ibu'] = ucfirst($validationAyah['nama_lengkap_ibu']);
+
             Father::where('user_id', auth()->user()->id)->update($validationAyah);
 
             Mother::where('user_id', auth()->user()->id)->update($validationIbu);
@@ -136,7 +139,7 @@ class StudentDashboardController extends Controller
     public function dataSekolah()
     {
         $school = auth()->user();
-        $asal = ['TK', 'BA', 'RA', 'PAUD', 'PAUD Al-Quran'];
+        $asal = ['TK', 'BA', 'RA', 'PAUD', 'PAUD Al-Quran', 'TA'];
 
         return view('student.data-sekolah', [
             'active' => 'data-sekolah',
@@ -216,9 +219,8 @@ class StudentDashboardController extends Controller
 
     public function updateDataBerkas(Request $request)
     {
-        $validationBerkas = $request->validate([
-            "foto_akte" => "image|file|max:2048",
-            "foto_siswa" => "image|file|max:2048",
+        $validationBerkas = $request->validate(["foto_akte" => "file|max:2048|mimes:pdf",
+            "foto_siswa" => "image|file|max:2048|mimes:jpg,png.jpeg",
         ]);
 
         try {
@@ -269,9 +271,9 @@ class StudentDashboardController extends Controller
         try {
             $validationAddress = $request->validate([
                 'no_kk' => 'nullable|numeric',
-                'kecamatan' => 'nullable|alpha_dash',
-                'kelurahan' => 'nullable|alpha_dash',
-                'kota_kab' => 'nullable|alpha_dash',
+                'kecamatan' => 'nullable',
+                'kelurahan' => 'nullable',
+                'kota_kab' => 'nullable',
                 'kode_pos' => 'nullable|numeric',
                 'jarak_rumah' => 'nullable'
             ]);

@@ -23,32 +23,32 @@
                     <p className="text-gray-500 font-medium ">
                         Lengkapi data dibawah, Jika terdapat (<span class="mandatory">*</span>) maka wajib diisi
                     </p>
-                    <form class="row g-3" action="{{ route('dashboard.data-alamat.update') }}" method="POST">
+                    <form class="row g-3" action="{{ route('dashboard.data-alamat.update') }}" method="POST" id="data-alamat-formG">
                         @method('PUT')
                         @csrf
                         <div class="col-sm-12 col-md-6">
                             <label for="no_kk" class="form-label">No. Kartu Keluarga <span class="mandatory">*</span></label>
-                            <input type="text" class="form-control" name="no_kk" value="{{ $user->address->no_kk }}" placeholder="ex: 36382547900755512">
+                            <input type="text" class="form-control" name="no_kk" value="{{ $user->address->no_kk }}" placeholder="ex: 36382547900755512" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="kelurahan" class="form-label">Kelurahan <span class="mandatory">*</span></label>
                             <input type="text" class="form-control" name="kelurahan"
-                                value="{{ $user->address->kelurahan }}" placeholder="ex: Sawojajar">
+                                value="{{ $user->address->kelurahan }}" placeholder="ex: Sawojajar" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="kecamatan" class="form-label">Kecamatan <span class="mandatory">*</span></label>
                             <input type="text" class="form-control" value="{{ $user->address->kecamatan }}"
-                                name="kecamatan" placeholder="ex: Pagak">
+                                name="kecamatan" placeholder="ex: Pagak" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="kota_kab" class="form-label">Kota / Kabupaten <span class="mandatory">*</span></label>
                             <input type="text" class="form-control" name="kota_kab"
-                                value="{{ $user->address->kota_kab }}" placeholder="ex: Malang">
+                                value="{{ $user->address->kota_kab }}" placeholder="ex: Malang" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="kode_pos" class="form-label">Kode Pos <span class="mandatory">*</span></label>
                             <input type="text" class="form-control" value="{{ $user->address->kode_pos }}"
-                                name="kode_pos" placeholder="ex: 65139">
+                                name="kode_pos" placeholder="ex: 65139" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="jarak_rumah" class="form-label">Jarak Rumah ke MIN 1 Kota Malang <span class="mandatory">*</span></label>
@@ -77,4 +77,24 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Get form and submit button
+        const form = document.getElementById("data-alamat-form");
+
+        // Add event listener to beforeunload event
+        window.addEventListener("beforeunload", function(event) {
+            // Get all form fields
+            const fields = form.querySelectorAll("input");
+
+            // Check if any fields are filled
+            for (let i = 0; i < fields.length; i++) {
+                if (fields[i].value) {
+                    event.preventDefault();
+                    event.returnValue = "Apakah anda yakin ingin keluar tanpa mengirim data?";
+                    return "Apakah anda yakin ingin keluar tanpa mengirim data?";
+                }
+            }
+        });
+    </script>
 @endsection

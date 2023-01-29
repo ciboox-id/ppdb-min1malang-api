@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b207fc2305bbc8b52809fd82e7d7904d",
+    "content-hash": "000bf05e4217ce52970f7b0607d1dd46",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -1289,6 +1289,73 @@
                 }
             ],
             "time": "2022-12-13T00:04:12+00:00"
+        },
+        {
+            "name": "juliomotol/laravel-auth-timeout",
+            "version": "v3.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/juliomotol/laravel-auth-timeout.git",
+                "reference": "3f53a129188b107d2f0b6eeb244146bf989ea1c8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/juliomotol/laravel-auth-timeout/zipball/3f53a129188b107d2f0b6eeb244146bf989ea1c8",
+                "reference": "3f53a129188b107d2f0b6eeb244146bf989ea1c8",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/auth": "^8.0|^9.0",
+                "illuminate/events": "^8.0|^9.0",
+                "illuminate/session": "^8.0|^9.0",
+                "illuminate/support": "^8.0|^9.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "orchestra/testbench": "^6.0|^7.0",
+                "phpunit/phpunit": "^9.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "JulioMotol\\AuthTimeout\\ServiceProvider"
+                    ],
+                    "aliases": {
+                        "AuthTimeout": "JulioMotol\\AuthTimeout\\Facades\\AuthTimeout"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "JulioMotol\\AuthTimeout\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Julio Motol",
+                    "email": "julio.motol89@gmail.com",
+                    "homepage": "https://juliomotol.github.io"
+                }
+            ],
+            "description": "Authentication Timeout for Laravel",
+            "homepage": "https://github.com/juliomotol/larave-auth-timeout",
+            "keywords": [
+                "Authentication",
+                "auth",
+                "laravel",
+                "timeout"
+            ],
+            "support": {
+                "issues": "https://github.com/juliomotol/laravel-auth-timeout/issues",
+                "source": "https://github.com/juliomotol/laravel-auth-timeout/tree/v3.1.1"
+            },
+            "time": "2022-06-03T12:21:35+00:00"
         },
         {
             "name": "laravel/framework",

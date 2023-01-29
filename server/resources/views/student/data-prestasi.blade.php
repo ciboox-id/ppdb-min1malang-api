@@ -19,28 +19,34 @@
         <div class="card">
             <div class="card-body">
                 @if (auth()->user()->jalur)
-                    @if (auth()->user()->jalur === 'reguler' || auth()->user()->jalur === 'prestasi')
-                        <h5 class="card-title mt-3">Upload Sertifikat Prestasi</h5>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop">
-                            <i class="bi bi-plus-square"></i>
-                            Tambah prestasi
-                        </button>
-                    @elseif(auth()->user()->jalur === 'tahfidz')
-                        <h5 class="card-title mt-3">Upload sertifikat tahfidz</h5>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop1">
-                            <i class="bi bi-cloud-upload"></i>
-                            Upload sertifikat
-                        </button>
-                    @else
-                        <h5 class="card-title mt-3">Upload surat keterangan dari Kelurahan</h5>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop2">
-                            <i class="bi bi-cloud-upload"></i>
-                            Upload
-                        </button>
-                    @endif
+                    <h5 class="card-title mt-3">
+                        Upload Sertifikat Prestasi
+                        @if (auth()->user()->jalur == 'reguler' || auth()->user()->jalur == 'prestasi')
+                            <span class="mandatory">*</span>
+                        @endif
+                    </h5>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <i class="bi bi-plus-square"></i>
+                        Tambah prestasi
+                    </button>
+                    <h5 class="card-title mt-3">Upload sertifikat tahfidz
+                        @if (auth()->user()->jalur == 'tahfidz')
+                            <span class="mandatory">*</span>
+                        @endif
+                    </h5>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
+                        <i class="bi bi-cloud-upload"></i>
+                        Upload sertifikat
+                    </button>
+                    <h5 class="card-title mt-3">Upload surat keterangan yatim/piatu/yaitum dari Kelurahan
+                        @if (auth()->user()->jalur == 'afirmasi')
+                            <span class="mandatory">*</span>
+                        @endif
+                    </h5>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                        <i class="bi bi-cloud-upload"></i>
+                        Upload
+                    </button>
 
                     <div class=" overflow-auto">
                         <table class="table table-borderless datatable mt-4">
