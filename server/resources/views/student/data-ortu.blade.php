@@ -38,11 +38,11 @@
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="nik_ayah" class="form-label">NIK Ayah <span class="mandatory">*</span></label>
-                            <input type="text" class="form-control" name="nik_ayah" value="{{ $father->nik_ayah }}" placeholder="ex: 213521376182367" minlength="16" maxlength="16" required>
+                            <input type="text" class="form-control" name="nik_ayah" value="{{ $father->nik_ayah }}" placeholder="ex: 213521376182367" maxlength="16" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="nik_ibu" class="form-label">NIK Ibu <span class="mandatory">*</span></label>
-                            <input type="text" class="form-control" value="{{ $mother->nik_ibu }}" name="nik_ibu" placeholder="ex: 123721596236" minlength="16" maxlength="16" required>
+                            <input type="text" class="form-control" value="{{ $mother->nik_ibu }}" name="nik_ibu" placeholder="ex: 123721596236" maxlength="16" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="pekerjaan_ayah" class="form-label">Pekerjaan Ayah <span class="mandatory">*</span></label>

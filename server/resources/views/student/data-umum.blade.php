@@ -55,7 +55,7 @@
                         <div class="col-sm-12 col-md-6">
                             <label for="nik"class="form-label">NIK</label>
                             <input type="text" class="form-control" id="inputAddress" value="{{ $user->nik }}"
-                                name="nik" placeholder="ex: 2163688232">
+                                name="nik" placeholder="ex: 2163688232" maxlength="16">
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="alamat_siswa" class="form-label">Alamat Siswa <span
