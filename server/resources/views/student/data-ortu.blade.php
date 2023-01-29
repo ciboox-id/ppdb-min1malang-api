@@ -21,7 +21,7 @@
                 @if ($user->jalur)
                     <h5 class="card-title mt-3 mb-0">Data Orang tua</h5>
                     <p className="text-gray-500 font-medium ">
-                        Lengkapi data dibawah, Jika terdapat <span className="text-red-600">(<span class="mandatory">*</span>)</span> maka wajib diisi
+                        Lengkapi data di bawah, Jika terdapat <span className="text-red-600">(<span class="mandatory">*</span>)</span> maka wajib diisi
                     </p>
                     <form class="row g-3" action="{{ route('dashboard.data-ortu.update') }}" method="POST" id="data-ortu-form">
                         @method('PUT')
@@ -133,21 +133,17 @@
         </div>
     </div>
     <script>
-        // Get form and submit button
-        const form = document.getElementById("data-ortu-form");
+        var formSubmitted = false;
 
-        // Add event listener to beforeunload event
-        window.addEventListener("beforeunload", function(event) {
-            // Get all form fields
-            const fields = form.querySelectorAll("input");
+        document.getElementById("data-ortu-form").addEventListener("submit", function() {
+            formSubmitted = true;
+        });
 
-            // Check if any fields are filled
-            for (let i = 0; i < fields.length; i++) {
-                if (fields[i].value) {
-                    event.preventDefault();
-                    event.returnValue = "Apakah anda yakin ingin keluar tanpa mengirim data?";
-                    return "Apakah anda yakin ingin keluar tanpa mengirim data?";
-                }
+        window.addEventListener("beforeunload", function(e) {
+            if (!formSubmitted) {
+                var confirmationMessage = "Apakah benar ingin meninggalkan halama ini? anda belum menyimpan perubahan";
+                e.returnValue = confirmationMessage;
+                return confirmationMessage;
             }
         });
     </script>

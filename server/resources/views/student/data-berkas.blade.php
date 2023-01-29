@@ -21,33 +21,34 @@
                 @if ($berkas->jalur != null)
                     <h5 class="card-title mt-3 mb-0">Data Berkas</h5>
                     <p className="text-gray-500 font-medium ">Unggah foto menggunakan seragam asal sekolah,
-                        rapi, wajah tampak jelas dan foto akta kelahiran dengan ketentuan tulisan tampak jelas
+                        rapi, wajah tampak jelas dan foto akta kelahiran dengan ketentuan : k tulisan tampak jelas
                         dan bisa terbaca dengan baik.<b>Ukuran maksimal file adalah 2 MB</b> </p>
                     <form class="row g-3" action="{{ route('dashboard.data-berkas.update') }}" method="post"
                         enctype="multipart/form-data" id="data-berkas-form">
                         @method('put')
                         @csrf
                         <div class="col-sm-12 col-md-6">
-                            <label for="foto_siswa" class="form-label">Foto Siswa <span class="mandatory">*</span></label>
+                            <label for="foto_siswa" class="form-label">Foto Siswa (.jpg, .png, .jpeg, .jfif) <span class="mandatory">*</span></label>
                             <input class="form-control" type="file" id="foto_siswa" onchange="previewImageSiswa()"
                                 accept="image/*" name="foto_siswa" class="@error('foto_siswa') is-invalid @enderror">
+                            @error('foto_siswa')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+
                             @if ($berkas->foto_siswa)
                                 <img src="{{ asset($berkas->foto_siswa) }}" alt="" class="img-fluid col-sm-6 mt-4">
                             @else
                                 <img class="img-preview-siswa img-fluid mb-3 col-sm-6 mt-4">
                             @endif
                         </div>
-                        @error('foto_siswa')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-
                         <div class="col-sm-12 col-md-6">
-                            <label for="formFile" class="form-label">Foto Kartu Keluarga <span
+                            <label for="formFile" class="form-label">Foto Kartu Keluarga (.pdf) <span
                                     class="mandatory">*</span></label>
                             <input class="form-control" type="file" id="foto_akte" onchange="previewImageAkte()"
-                                accept="image/*" name="foto_akte" class="@error('foto_akte') is-invalid @enderror">
+                                accept="application/pdf,application/vnd.ms-excel" name="foto_akte"
+                                class="@error('foto_akte') is-invalid @enderror">
                             @error('foto_akte')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -56,6 +57,23 @@
 
                             @if ($berkas->foto_akte)
                                 <p class="mt-2 ">Berkas sudah terupload</p>
+                            @endif
+                        </div>
+
+                        <div class="col-sm-12 col-md-6">
+                            <label for="formFile" class="form-label">Surat Keterangan TK (.pdf) <span
+                                    class="mandatory">*</span></label>
+                            <input class="form-control" type="file" id="foto_ket_tk" onchange="previewImageAkte()"
+                                accept="application/pdf,application/vnd.ms-excel" name="foto_ket_tk"
+                                class="@error('foto_ket_tk') is-invalid @enderror">
+                            @error('foto_ket_tk')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+
+                            @if ($berkas->foto_ket_tk)
+                                <p class="mt-2 ">Berkas Surat keterangan TK Sudah terupload</p>
                             @endif
                         </div>
 
@@ -102,23 +120,19 @@
                 imgPreviewAkte.src = oFREvent.target.result;
             }
         }
-        // Get form and submit button
-        const form = document.getElementById("data-berkas-form");
 
-        // Add event listener to beforeunload event
-        window.addEventListener("beforeunload", function(event) {
-            // Get all form fields
-            const fields = form.querySelectorAll("input");
+        var formSubmitted = false;
 
-            // Check if any fields are filled
-            for (let i = 0; i < fields.length; i++) {
-                if (fields[i].value) {
-                    event.preventDefault();
-                    event.returnValue = "Apakah anda yakin ingin keluar tanpa mengirim data?";
-                    return "Apakah anda yakin ingin keluar tanpa mengirim data?";
-                }
-            }
+        document.getElementById("data-berkas-form").addEventListener("submit", function() {
+            formSubmitted = true;
         });
 
+        window.addEventListener("beforeunload", function(e) {
+            if (!formSubmitted) {
+                var confirmationMessage = "Apakah benar ingin meninggalkan halama ini? anda belum menyimpan perubahan";
+                e.returnValue = confirmationMessage;
+                return confirmationMessage;
+            }
+        });
     </script>
 @endsection

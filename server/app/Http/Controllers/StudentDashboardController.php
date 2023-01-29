@@ -34,6 +34,7 @@ class StudentDashboardController extends Controller
                 'nama_lengkap' => 'required',
                 'jenis_kelamin' => 'nullable',
                 'nisn' => 'nullable|numeric',
+                'nik' => 'nullable|numeric',
                 'alamat_siswa' => 'nullable',
                 'tempat_lahir' => 'nullable',
                 'tanggal_lahir' => 'nullable',
@@ -123,7 +124,7 @@ class StudentDashboardController extends Controller
             ]);
 
             $validationAyah['nama_lengkap_ayah'] = ucfirst($validationAyah['nama_lengkap_ayah']);
-            $validationAyah['nama_lengkap_ibu'] = ucfirst($validationAyah['nama_lengkap_ibu']);
+            $validationIbu['nama_lengkap_ibu'] = ucfirst($validationIbu['nama_lengkap_ibu']);
 
             Father::where('user_id', auth()->user()->id)->update($validationAyah);
 
@@ -139,7 +140,7 @@ class StudentDashboardController extends Controller
     public function dataSekolah()
     {
         $school = auth()->user();
-        $asal = ['TK', 'BA', 'RA', 'PAUD', 'PAUD Al-Quran', 'TA'];
+        $asal = ['TK', 'BA', 'RA', 'TA'];
 
         return view('student.data-sekolah', [
             'active' => 'data-sekolah',
@@ -219,7 +220,9 @@ class StudentDashboardController extends Controller
 
     public function updateDataBerkas(Request $request)
     {
-        $validationBerkas = $request->validate(["foto_akte" => "file|max:2048|mimes:pdf",
+        $validationBerkas = $request->validate([
+            "foto_akte" => "file|max:2048|mimes:pdf",
+            "foto_ket_tk" => "file|max:2048|mimes:pdf",
             "foto_siswa" => "image|file|max:2048|mimes:jpg,png.jpeg",
         ]);
 
@@ -244,6 +247,17 @@ class StudentDashboardController extends Controller
                 $fileName = time() . $request->file('foto_siswa')->getClientOriginalName();
                 $path = $request->file('foto_siswa')->storeAs('uploads/foto_siswa', $fileName);
                 $validationBerkas['foto_siswa'] = $path;
+            }
+
+            if ($request->file('foto_ket_tk')) {
+
+                if (auth()->user()->foto_ket_tk != null) {
+                    Storage::delete(auth()->user()->foto_ket_tk);
+                }
+
+                $fileName = time() . $request->file('foto_ket_tk')->getClientOriginalName();
+                $path = $request->file('foto_ket_tk')->storeAs('uploads/foto_ket_tk', $fileName);
+                $validationBerkas['foto_ket_tk'] = $path;
             }
 
             User::where('id', auth()->user()->id)->update($validationBerkas);

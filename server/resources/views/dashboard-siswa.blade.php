@@ -167,7 +167,7 @@
                                 <option value="afirmasi">afirmasi</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-4 py-2 rounded-2">
+                        <button type="submit" class="btn btn-primary mt-4 py-2 rounded-2" onclick="alert('Data yang saya isi adalah data asli dan dapat dipertanggung jawabkan')">
                             Pilih Jalur
                         </button>
                     </form>

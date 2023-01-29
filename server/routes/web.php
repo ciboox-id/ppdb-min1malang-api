@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/auth/login');
+Route::get('/', [DashboardController::class, 'indexSiswa'])->middleware('auth');
 
 Route::get('/auth/login', [DashboardAuthController::class, 'index'])->middleware('guest')->name('login');
 Route::get('/auth/register', [DashboardAuthController::class, 'register'])->middleware('guest')->name('register');
@@ -34,10 +34,10 @@ Route::middleware(['auth'])->group(function () {
     //     $pemetaan = Pemetaan::where('user_id', auth()->user()->id);
     //     return view('student.kartu-peserta', ['user' => auth()->user(), 'pemetaan' => $pemetaan]);
     // });
-    Route::get('/surat-resmi-view', function () {
-        $pemetaan = Pemetaan::where('user_id', auth()->user()->id)->first();
-        return view('student.surat-resmi', ['user' => auth()->user(), 'pemetaan' => $pemetaan]);
-    });
+    // Route::get('/surat-resmi-view', function () {
+    //     $pemetaan = Pemetaan::where('user_id', auth()->user()->id)->first();
+    //     return view('student.surat-resmi', ['user' => auth()->user(), 'pemetaan' => $pemetaan]);
+    // });
 
     Route::prefix('dashboard')->group(function () {
         Route::get('/student', [DashboardController::class, 'indexSiswa'])->name('dashboard.siswa');

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('nisn')->nullable();
+            $table->string('nik')->nullable()->unique();
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan'])->nullable();
             $table->string('alamat_siswa')->nullable();
             $table->string('tempat_lahir')->nullable();
@@ -28,6 +29,7 @@ return new class extends Migration
             $table->enum('gol_darah', ['A', 'B', 'AB', 'O'])->nullable();
             $table->string('foto_akte')->nullable();
             $table->string('foto_siswa')->nullable();
+            $table->string('foto_ket_tk')->nullable();
             $table->enum('role', ['admin', 'siswa'])->default('siswa');
             $table->enum('jalur', ['reguler', 'prestasi', 'afirmasi', 'tahfidz'])->nullable();
             $table->boolean('lolos')->default(false);

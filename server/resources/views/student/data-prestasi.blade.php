@@ -19,6 +19,7 @@
         <div class="card">
             <div class="card-body">
                 @if (auth()->user()->jalur)
+
                     <h5 class="card-title mt-3">
                         Upload Sertifikat Prestasi
                         @if (auth()->user()->jalur == 'reguler' || auth()->user()->jalur == 'prestasi')
@@ -38,7 +39,7 @@
                         <i class="bi bi-cloud-upload"></i>
                         Upload sertifikat
                     </button>
-                    <h5 class="card-title mt-3">Upload surat keterangan yatim/piatu/yaitum dari Kelurahan
+                    <h5 class="card-title mt-3">Upload surat keterangan yatim/piatu/yatim piatu dari Kelurahan
                         @if (auth()->user()->jalur == 'afirmasi')
                             <span class="mandatory">*</span>
                         @endif

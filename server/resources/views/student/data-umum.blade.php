@@ -20,10 +20,11 @@
             <div class="card-body">
                 @if ($user->jalur != null)
                     <h5 class="card-title mt-3 mb-0">Identitas diri</h5>
-                    <p className="text-gray-500 font-medium ">
-                        Lengkapi data dibawah, Jika terdapat (<span class="mandatory">*</span>) maka wajib diisi
+                    <p className="text-gray-500 font-medium">
+                        Lengkapi data di bawah, Jika terdapat (<span class="mandatory">*</span>) maka wajib diisi
                     </p>
-                    <form class="row g-3" action="{{ route('dashboard.data-umum.update') }}" method="POST" id="data-umum-form">
+                    <form class="row g-3" action="{{ route('dashboard.data-umum.update') }}" method="POST"
+                        id="data-umum-form">
                         @method('PUT')
                         @csrf
                         <div class="col-sm-12 col-md-6">
@@ -50,6 +51,11 @@
                             <label for="nisn" class="form-label">NISN</label>
                             <input type="text" class="form-control" id="inputAddress" value="{{ $user->nisn }}"
                                 name="nisn" placeholder="ex: 2163688232">
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="nik"class="form-label">NIK</label>
+                            <input type="text" class="form-control" id="inputAddress" value="{{ $user->nik }}"
+                                name="nik" placeholder="ex: 2163688232">
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="alamat_siswa" class="form-label">Alamat Siswa <span
@@ -83,7 +89,7 @@
                                 value="{{ $user->tanggal_lahir }}" name="tanggal_lahir" required>
                         </div>
 
-                        <button type="submit" class="btn btn-primary mt-4 py-2 rounded-2">
+                        <button type="submit" class="btn btn-primary mt-4 py-2 rounded-2" id="submitBtn">
                             Simpan Perubahan
                         </button>
                     </form>
@@ -98,21 +104,18 @@
         </div>
     </div>
     <script>
-        // Get form and submit button
-        const form = document.getElementById("data-umum-form");
+        var formSubmitted = false;
 
-        // Add event listener to beforeunload event
-        window.addEventListener("beforeunload", function(event) {
-            // Get all form fields
-            const fields = form.querySelectorAll("input");
+        document.getElementById("data-umum-form").addEventListener("submit", function() {
+            formSubmitted = true;
+        });
 
-            // Check if any fields are filled
-            for (let i = 0; i < fields.length; i++) {
-                if (fields[i].value) {
-                    event.preventDefault();
-                    event.returnValue = "Apakah anda yakin ingin keluar tanpa mengirim data?";
-                    return "Apakah anda yakin ingin keluar tanpa mengirim data?";
-                }
+        window.addEventListener("beforeunload", function(e) {
+            if (!formSubmitted) {
+                var confirmationMessage =
+                    "Apakah benar ingin meninggalkan halama ini? anda belum menyimpan perubahan";
+                e.returnValue = confirmationMessage;
+                return confirmationMessage;
             }
         });
     </script>
