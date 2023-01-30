@@ -23,12 +23,15 @@
                     <p className="text-gray-500 font-medium">
                         Lengkapi data di bawah, Jika terdapat (<span class="mandatory">*</span>) maka wajib diisi
                     </p>
-                    <form class="row g-3" action="{{ route('dashboard.data-alamat.update') }}" method="POST" id="data-alamat-formG">
+                    <form class="row g-3" action="{{ route('dashboard.data-alamat.update') }}" method="POST"
+                        id="data-alamat-formG">
                         @method('PUT')
                         @csrf
                         <div class="col-sm-12 col-md-6">
-                            <label for="no_kk" class="form-label">No. Kartu Keluarga <span class="mandatory">*</span></label>
-                            <input type="text" class="form-control" name="no_kk" value="{{ $user->address->no_kk }}" placeholder="ex: 36382547900755512" required>
+                            <label for="no_kk" class="form-label">No. Kartu Keluarga <span
+                                    class="mandatory">*</span></label>
+                            <input type="text" class="form-control" name="no_kk" value="{{ $user->address->no_kk }}"
+                                placeholder="ex: 36382547900755512" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="kelurahan" class="form-label">Kelurahan <span class="mandatory">*</span></label>
@@ -41,7 +44,8 @@
                                 name="kecamatan" placeholder="ex: Pagak" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="kota_kab" class="form-label">Kota / Kabupaten <span class="mandatory">*</span></label>
+                            <label for="kota_kab" class="form-label">Kota / Kabupaten <span
+                                    class="mandatory">*</span></label>
                             <input type="text" class="form-control" name="kota_kab"
                                 value="{{ $user->address->kota_kab }}" placeholder="ex: Malang" required>
                         </div>
@@ -51,14 +55,12 @@
                                 name="kode_pos" placeholder="ex: 65139" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="jarak_rumah" class="form-label">Jarak Rumah ke MIN 1 Kota Malang <span class="mandatory">*</span></label>
+                            <label for="jarak_rumah" class="form-label">Jarak Rumah ke MIN 1 Kota Malang <span
+                                    class="mandatory">*</span></label>
                             <select class="form-select" name="jarak_rumah">
                                 @foreach ($jarak as $jrk)
-                                    @if ($jrk == $user->jarak_rumah)
-                                        <option value="{{ $jrk }}" selected> {{ $jrk }}</option>
-                                    @else
-                                        <option value="{{ $jrk }}"> {{ $jrk }}</option>
-                                    @endif
+                                    <option value="{{ $jrk }}" {{ $jrk === $user->address->jarak_rumah ? 'selected' : '' }}>
+                                        {{ $jrk }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -87,7 +89,8 @@
 
         window.addEventListener("beforeunload", function(e) {
             if (!formSubmitted) {
-                var confirmationMessage = "Apakah benar ingin meninggalkan halama ini? anda belum menyimpan perubahan";
+                var confirmationMessage =
+                    "Apakah benar ingin meninggalkan halama ini? anda belum menyimpan perubahan";
                 e.returnValue = confirmationMessage;
                 return confirmationMessage;
             }
