@@ -224,6 +224,8 @@ class StudentDashboardController extends Controller
             "foto_akte" => "file|max:2048|mimes:pdf",
             "foto_ket_tk" => "file|max:2048|mimes:pdf",
             "foto_siswa" => "image|file|max:2048|mimes:jpg,png.jpeg",
+            "foto_kk" => "file|max:2048|mimes:pdf",
+            "foto_psikolog" => "file|max:2048|mimes:pdf"
         ]);
 
         try {

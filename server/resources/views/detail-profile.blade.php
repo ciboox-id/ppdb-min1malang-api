@@ -115,8 +115,8 @@
                     <div class="col-sm-12 col-md-6">
                         <p>Foto Kartu Keluarga</p>
                         @if (!empty($user->foto_akte))
-                            <a href="{{ asset($user->foto_akte) }}" target="_blank" rel="noopener noreferrer">
-                                <img src="{{ asset($user->foto_akte) }}" alt="foto_akte" class="foto_akte">
+                            <a href="{{ asset($user->foto_kk) }}" target="_blank" rel="noopener noreferrer">
+                                <img src="{{ asset($user->foto_kk) }}" alt="foto_kk" class="foto_kk">
                             </a>
                         @else
                             <div class="no-image">
@@ -133,6 +133,30 @@
                         @else
                             <div class="no-image">
                                 <p>Belum upload foto keterangan TK</p>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <p>Foto Akte kelahiran</p>
+                        @if (!empty($user->foto_akte))
+                            <a href="{{ asset($user->foto_akte) }}" target="_blank" rel="noopener noreferrer">
+                                <img src="{{ asset($user->foto_akte) }}" alt="foto_akte" class="foto_akte">
+                            </a>
+                        @else
+                            <div class="no-image">
+                                <p>Belum upload foto akte kelahiran</p>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <p>Foto Psikolog anak umur < 6 thn</p>
+                        @if (!empty($user->foto_psikolog))
+                            <a href="{{ asset($user->foto_psikolog) }}" target="_blank" rel="noopener noreferrer">
+                                <img src="{{ asset($user->foto_psikolog) }}" alt="foto_psikolog">
+                            </a>
+                        @else
+                            <div class="no-image">
+                                <p>Belum upload foto psikolog umur < 6 thn</p>
                             </div>
                         @endif
                     </div>

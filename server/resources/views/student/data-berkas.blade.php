@@ -43,8 +43,9 @@
                                 <img class="img-preview-siswa img-fluid mb-3 col-sm-6 mt-4">
                             @endif
                         </div>
+
                         <div class="col-sm-12 col-md-6">
-                            <label for="formFile" class="form-label">Foto Kartu Keluarga (.pdf) <span
+                            <label for="formFile" class="form-label">Foto Akte Kelahiran (.pdf) <span
                                     class="mandatory">*</span></label>
                             <input class="form-control" type="file" id="foto_akte" onchange="previewImageAkte()"
                                 accept="application/pdf,application/vnd.ms-excel" name="foto_akte"
@@ -61,9 +62,26 @@
                         </div>
 
                         <div class="col-sm-12 col-md-6">
+                            <label for="formFile" class="form-label">Foto Kartu Keluarga (.pdf) <span
+                                    class="mandatory">*</span></label>
+                            <input class="form-control" type="file" id="foto_kk"
+                                accept="application/pdf,application/vnd.ms-excel" name="foto_kk"
+                                class="@error('foto_kk') is-invalid @enderror">
+                            @error('foto_kk')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+
+                            @if ($berkas->foto_kk)
+                                <p class="mt-2 ">Berkas Kartu keluraga sudah terupload</p>
+                            @endif
+                        </div>
+
+                        <div class="col-sm-12 col-md-6">
                             <label for="formFile" class="form-label">Surat Keterangan TK (.pdf) <span
                                     class="mandatory">*</span></label>
-                            <input class="form-control" type="file" id="foto_ket_tk" onchange="previewImageAkte()"
+                            <input class="form-control" type="file" id="foto_ket_tk"
                                 accept="application/pdf,application/vnd.ms-excel" name="foto_ket_tk"
                                 class="@error('foto_ket_tk') is-invalid @enderror">
                             @error('foto_ket_tk')
@@ -74,6 +92,23 @@
 
                             @if ($berkas->foto_ket_tk)
                                 <p class="mt-2 ">Berkas Surat keterangan TK Sudah terupload</p>
+                            @endif
+                        </div>
+
+                        <div class="col-sm-12 col-md-6">
+                            <label for="formFile" class="form-label">Surat psikolog bahwa umum < 6 thn (.pdf) <span
+                                    class="mandatory">*</span></label>
+                            <input class="form-control" type="file" id="foto_psikolog"
+                                accept="application/pdf,application/vnd.ms-excel" name="foto_psikolog"
+                                class="@error('foto_psikolog') is-invalid @enderror">
+                            @error('foto_psikolog')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+
+                            @if ($berkas->foto_psikolog)
+                                <p class="mt-2 ">Berkas Surat psikolog sudah terupload</p>
                             @endif
                         </div>
 
