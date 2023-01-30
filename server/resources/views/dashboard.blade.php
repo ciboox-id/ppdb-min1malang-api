@@ -158,7 +158,7 @@
                                                             <form action="{{ route('dashboard.data-siswa.delete', ['student' => $user->id]) }}" method="post">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button class="badge rounded-pill bg-danger badge-custom btn-aksi">
+                                                                <button class="badge rounded-pill bg-danger badge-custom btn-aksi" onclick="confirm('Apakah anda ingin menghapus data calon siswa ini?')">
                                                                     <i class="bi bi-trash"></i>
                                                                     Hapus
                                                                 </button>

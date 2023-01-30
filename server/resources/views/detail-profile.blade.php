@@ -63,6 +63,10 @@
                         <input type="text" class="form-control" id="inputAddress" value="{{ $user->nisn }}" disabled>
                     </div>
                     <div class="col-sm-12 col-md-6">
+                        <label for="inputAddress" class="form-label">NIK</label>
+                        <input type="text" class="form-control" id="inputAddress" value="{{ $user->nik }}" disabled>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
                         <label for="inputAddress" class="form-label">Golongan Darah</label>
                         <input type="text" class="form-control" id="inputAddress" value="{{ $user->gol_darah }} "
                             disabled>
@@ -112,11 +116,23 @@
                         <p>Foto Kartu Keluarga</p>
                         @if (!empty($user->foto_akte))
                             <a href="{{ asset($user->foto_akte) }}" target="_blank" rel="noopener noreferrer">
-                                <img src="{{ asset($user->foto_akte) }}" alt="foto_siswa" class="foto_siswa">
+                                <img src="{{ asset($user->foto_akte) }}" alt="foto_akte" class="foto_akte">
                             </a>
                         @else
                             <div class="no-image">
                                 <p>Belum upload foto Kartu Keluarga</p>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <p>Foto Keterangan TK</p>
+                        @if (!empty($user->foto_ket_tk))
+                            <a href="{{ asset($user->foto_ket_tk) }}" target="_blank" rel="noopener noreferrer">
+                                <img src="{{ asset($user->foto_ket_tk) }}" alt="foto_akte" class="foto_akte">
+                            </a>
+                        @else
+                            <div class="no-image">
+                                <p>Belum upload foto keterangan TK</p>
                             </div>
                         @endif
                     </div>
