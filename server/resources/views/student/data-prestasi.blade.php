@@ -79,7 +79,7 @@
                                                         method="post">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button class="badge rounded-pill bg-danger">
+                                                        <button class="badge rounded-pill bg-danger" onclick="confirm('Apakah anda yakin ingin menghapus prestasi ini?')">
                                                             <i class="bi bi-trash"></i>
                                                             Hapus
                                                         </button>
