@@ -1173,6 +1173,7 @@ h6 {
 
 .foto-berkas {
     display: flex;
+    flex-wrap: wrap;
 }
 
 @media only screen and (max-width: 576px) {

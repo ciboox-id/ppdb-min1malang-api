@@ -67,7 +67,7 @@
                             <select class="form-select" name="pekerjaan_ibu" required>
                                 @foreach ($job as $item)
                                     <option value="{{ $item }}"
-                                        {{ $item === $mother->pekerjaan_ayah ? 'selected' : '' }}> {{ $item }}
+                                        {{ $item === $mother->pekerjaan_ibu ? 'selected' : '' }}> {{ $item }}
                                     </option>
                                 @endforeach
                             </select>
@@ -91,11 +91,9 @@
                                     class="mandatory">*</span></label>
                             <select class="form-select" name="penghasilan_ayah" required>
                                 @foreach ($salary as $item)
-                                    @if ($item == $user->penghasilan_ayah)
-                                        <option value="{{ $item }}" selected> {{ $item }}</option>
-                                    @else
-                                        <option value="{{ $item }}"> {{ $item }}</option>
-                                    @endif
+                                    <option value="{{ $item }}"
+                                        {{ $item == $user->penghasilan_ayah ? 'selected' : '' }}> {{ $item }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -105,11 +103,9 @@
                                     class="mandatory">*</span></label>
                             <select class="form-select" name="penghasilan_ibu">
                                 @foreach ($salary as $item)
-                                    @if ($item == $user->penghasilan_ibu)
-                                        <option value="{{ $item }}" selected> {{ $item }}</option>
-                                    @else
-                                        <option value="{{ $item }}"> {{ $item }}</option>
-                                    @endif
+                                    <option value="{{ $item }}"
+                                        {{ $item == $user->penghasilan_ibu ? 'selected' : '' }}> {{ $item }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
