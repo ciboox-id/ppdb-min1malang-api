@@ -213,6 +213,16 @@
                         <input type="text" class="form-control" id="inputAddress"
                             value="{{ $user->mother->penghasilan_ibu }}" disabled>
                     </div>
+                    <div class="col-sm-12 col-md-6">
+                        <label for="inputAddress" class="form-label">No. Telp Ayah</label>
+                        <input type="text" class="form-control" id="inputAddress"
+                            value="{{ $user->father->no_telp_ayah }}" disabled>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <label for="inputAddress" class="form-label">No. Telp Ibu</label>
+                        <input type="text" class="form-control" id="inputAddress"
+                            value="{{ $user->mother->no_telp_ibu }}" disabled>
+                    </div>
                 </form>
 
                 <h5 class="card-title">Data Rumah</h5>

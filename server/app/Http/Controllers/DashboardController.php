@@ -27,11 +27,13 @@ class DashboardController extends Controller
     {
         $userAdmin = User::where('role', 'admin')->get();
         $user = User::where('role', '!=', 'admin')->orderBy('is_verif', 'asc')->orderBy('updated_at', 'desc')->get();
+        $loopingUser = User::where('role', '!=', 'admin')->orderBy('is_verif', 'asc')->orderBy('updated_at', 'desc')->paginate(25);
         $incomplete = User::whereNull('foto_siswa')->orWhereNull('foto_akte')->count();
         $complete = User::all()->count() - $incomplete;
 
         return view('dashboard', [
             'users' => $user,
+            'd_users' => $loopingUser,
             'incomplete' => $incomplete - count($userAdmin),
             'complete' => $complete,
             'active' => "dashboard"

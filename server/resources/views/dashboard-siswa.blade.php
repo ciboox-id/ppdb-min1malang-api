@@ -14,6 +14,15 @@
                         </div>
 
                         @if ($user->jalur != null)
+                            <div class="alert alert-info" role="alert">
+                                <i class="bi bi-exclamation-circle"></i>
+                                Ubah jalur pendaftaran
+                                <button type="button" class="btn btn-warning btn-sm mx-2" data-bs-toggle="modal"
+                                    data-bs-target="#staticBackdrop">
+                                    <i class="bi bi-box-arrow-in-right"></i>
+                                    Ubah jalur
+                                </button>
+                            </div>
                             <div class="mt-2">
                                 @if ($biodata > 7)
                                     <div class="alert alert-warning" role="alert">

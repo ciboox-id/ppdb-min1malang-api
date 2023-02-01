@@ -92,7 +92,7 @@
                             <select class="form-select" name="penghasilan_ayah" required>
                                 @foreach ($salary as $item)
                                     <option value="{{ $item }}"
-                                        {{ $item == $user->penghasilan_ayah ? 'selected' : '' }}> {{ $item }}
+                                        {{ $item === $father->penghasilan_ayah ? 'selected' : '' }}> {{ $item }}
                                     </option>
                                 @endforeach
                             </select>
@@ -104,7 +104,7 @@
                             <select class="form-select" name="penghasilan_ibu">
                                 @foreach ($salary as $item)
                                     <option value="{{ $item }}"
-                                        {{ $item == $user->penghasilan_ibu ? 'selected' : '' }}> {{ $item }}
+                                        {{ $item === $mother->penghasilan_ibu ? 'selected' : '' }}> {{ $item }}
                                     </option>
                                 @endforeach
                             </select>

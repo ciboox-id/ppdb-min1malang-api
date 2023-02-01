@@ -117,8 +117,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if (count($users) > 0)
-                                            @foreach ($users as $user)
+                                        @if (count($d_users) > 0)
+                                            @foreach ($d_users as $user)
                                                 <tr>
                                                     <th scope="row">{{ $loop->iteration }}</th>
                                                     <td>{{ $user->nama_lengkap }}</td>
@@ -155,10 +155,14 @@
                                                         </span> --}}
 
                                                         <div>
-                                                            <form action="{{ route('dashboard.data-siswa.delete', ['student' => $user->id]) }}" method="post">
+                                                            <form
+                                                                action="{{ route('dashboard.data-siswa.delete', ['student' => $user->id]) }}"
+                                                                method="post">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button class="badge rounded-pill bg-danger badge-custom btn-aksi" onclick="confirm('Apakah anda ingin menghapus data calon siswa ini?')">
+                                                                <button
+                                                                    class="badge rounded-pill bg-danger badge-custom btn-aksi"
+                                                                    onclick="confirm('Apakah anda ingin menghapus data calon siswa ini?')">
                                                                     <i class="bi bi-trash"></i>
                                                                     Hapus
                                                                 </button>
@@ -179,6 +183,9 @@
                                         @endif
                                     </tbody>
                                 </table>
+                                <div class="d-flex justify-content-end">
+                                    {{ $d_users->links() }}
+                                </div>
                             </div>
                         </div>
                     </div><!-- End Recent Sales -->

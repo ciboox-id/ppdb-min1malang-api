@@ -19,7 +19,7 @@ class ProfileController extends Controller
         $users = User::where('role', '!=', 'admin');
 
         return view('profile', [
-            "users" => $users->filter(['search', 'jalur'])->orderBy('is_verif', 'asc')->get(),
+            "users" => $users->filter(['search', 'jalur'])->orderBy('is_verif', 'asc')->paginate(25),
             "active" => "data-profile"
         ]);
     }
