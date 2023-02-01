@@ -41,18 +41,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function scopeFilter($query, array $filters)
-    {
-        $query->when($filters['search'] ?? false, function ($query, $search) {
-            return $query->where('nama_lengkap', 'like', '%' . $search . '%')
-                ->orWhere('nisn', 'like', '%' . $search . '5');
-        });
-
-        $query->when($filters['jalur'] ?? false, function ($query, $search) {
-            return $query->where('jalur', $search);
-        });
-    }
-
     public function father()
     {
         return $this->hasOne(Father::class);

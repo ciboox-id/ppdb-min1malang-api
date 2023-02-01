@@ -17,9 +17,12 @@ class ProfileController extends Controller
     public function index()
     {
         $users = User::where('role', '!=', 'admin');
+        if (request('search')) {
+            $users->where('nama_lengkap', 'like', '%' . request('search') . '%');
+        }
 
         return view('profile', [
-            "users" => $users->filter(['search', 'jalur'])->orderBy('is_verif', 'asc')->paginate(25),
+            "users" => $users->orderBy('is_verif', 'asc')->paginate(25),
             "active" => "data-profile"
         ]);
     }
