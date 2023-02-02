@@ -262,6 +262,28 @@ class StudentDashboardController extends Controller
                 $validationBerkas['foto_ket_tk'] = $path;
             }
 
+            if ($request->file('foto_psikolog')) {
+
+                if (auth()->user()->foto_psikolog != null) {
+                    Storage::delete(auth()->user()->foto_psikolog);
+                }
+
+                $fileName = time() . $request->file('foto_psikolog')->getClientOriginalName();
+                $path = $request->file('foto_psikolog')->storeAs('uploads/foto_psikolog', $fileName);
+                $validationBerkas['foto_psikolog'] = $path;
+            }
+
+            if ($request->file('foto_kk')) {
+
+                if (auth()->user()->foto_kk != null) {
+                    Storage::delete(auth()->user()->foto_kk);
+                }
+
+                $fileName = time() . $request->file('foto_kk')->getClientOriginalName();
+                $path = $request->file('foto_kk')->storeAs('uploads/foto_kk', $fileName);
+                $validationBerkas['foto_kk'] = $path;
+            }
+
             User::where('id', auth()->user()->id)->update($validationBerkas);
 
             return redirect()->route('dashboard.data-berkas')->with('success', "Berhasil menyimpan data berkas");
