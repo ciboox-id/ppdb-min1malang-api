@@ -36,7 +36,7 @@
                                     </div>
                                 @endif
 
-                                @if (empty($user->foto_siswa) || empty($user->foto_akte))
+                                @if (empty($user->foto_siswa) || empty($user->foto_akte) || empty($user->foto_kk) || empty($user->foto_ket_tk))
                                     <div class="alert alert-danger" role="alert">
                                         <i class="bi bi-exclamation-circle"></i>
                                         Data Berkas - Anda Belum melengkapi data berkas

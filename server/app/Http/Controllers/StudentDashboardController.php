@@ -155,7 +155,7 @@ class StudentDashboardController extends Controller
             $validationsSchool = $request->validate([
                 'nama_sekolah' => 'nullable',
                 'asal_sekolah' => 'nullable',
-                'npsn' => 'nullable|numeric'
+                'npsn' => 'nullable'
             ]);
 
             School::where('user_id', auth()->user()->id)->update($validationsSchool);

@@ -96,8 +96,7 @@
                         </div>
 
                         <div class="col-sm-12 col-md-6">
-                            <label for="formFile" class="form-label">Surat psikolog bahwa umum < 6 thn (.pdf) <span
-                                    class="mandatory">*</span></label>
+                            <label for="formFile" class="form-label">Surat psikolog bahwa umum < 6 thn (.pdf)</label>
                             <input class="form-control" type="file" id="foto_psikolog"
                                 accept="application/pdf,application/vnd.ms-excel" name="foto_psikolog"
                                 class="@error('foto_psikolog') is-invalid @enderror">

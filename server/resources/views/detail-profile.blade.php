@@ -184,7 +184,7 @@
                             value="{{ $user->mother->nik_ibu }}" disabled>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <label for="inputAddress" class="form-label">Pekerjeaan Ayah</label>
+                        <label for="inputAddress" class="form-label">Pekerjaan Ayah</label>
                         <input type="text" class="form-control" id="inputAddress"
                             value="{{ $user->father->pekerjaan_ayah }} " disabled>
                     </div>
