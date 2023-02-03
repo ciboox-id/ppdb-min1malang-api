@@ -20,6 +20,7 @@
             <div class="card-body">
                 <div class="d-flex">
                     <a href="{{ route('dashboard.data-siswa') }}" class="back btn btn-primary me-3"> Kembali</a>
+
                     @if ($user->is_verif)
                         <form action="{{ route('inverifikasi', ['user' => $user->id]) }}" method="post">
                             @csrf
@@ -33,6 +34,7 @@
                             Verifikasi data
                         </button>
                     @endif
+
                     <form action="{{ route('dashboard.password-reset', ['user' => $user->id]) }}" method="post"
                         class="ms-3">
                         @csrf
@@ -40,7 +42,6 @@
                             Reset Password
                         </button>
                     </form>
-
                 </div>
 
                 <h5 class="card-title">Identitas diri</h5>
@@ -100,7 +101,7 @@
 
                 <h5 class="card-title">Data Berkas</h5>
                 <div class="foto-berkas">
-                    <div class="col-sm-12 col-md-6">
+                    <div class="col-sm-12 col-md-6 mt-2">
                         <p>Foto Siswa</p>
                         @if (!empty($user->foto_siswa))
                             <a href="{{ asset($user->foto_siswa) }}" target="_blank" rel="noopener noreferrer">
@@ -112,53 +113,54 @@
                             </div>
                         @endif
                     </div>
-                    <div class="col-sm-12 col-md-6">
-                        <p>Foto Kartu Keluarga</p>
+                    <div class="col-sm-12 col-md-6 mt-2">
+                        <p>Berkas Kartu Keluarga</p>
                         @if (!empty($user->foto_akte))
                             <a href="{{ asset($user->foto_kk) }}" target="_blank" rel="noopener noreferrer">
-                                <img src="{{ asset($user->foto_kk) }}" alt="foto_kk" class="foto_kk">
+                                <p>Lihat Berkas kartu keluarga</p>
                             </a>
                         @else
                             <div class="no-image">
-                                <p>Belum upload foto Kartu Keluarga</p>
+                                <p>Belum upload Berkas Kartu Keluarga</p>
                             </div>
                         @endif
                     </div>
-                    <div class="col-sm-12 col-md-6">
-                        <p>Foto Keterangan TK</p>
+                    <div class="col-sm-12 col-md-6 mt-2">
+                        <p>Berkas Keterangan TK</p>
                         @if (!empty($user->foto_ket_tk))
                             <a href="{{ asset($user->foto_ket_tk) }}" target="_blank" rel="noopener noreferrer">
-                                <img src="{{ asset($user->foto_ket_tk) }}" alt="foto_akte" class="foto_akte">
+                                <p>Lihat Berkas Keterangan TK</p>
                             </a>
                         @else
                             <div class="no-image">
-                                <p>Belum upload foto keterangan TK</p>
+                                <p>Belum upload Berkas Keterangan TK</p>
                             </div>
                         @endif
                     </div>
-                    <div class="col-sm-12 col-md-6">
-                        <p>Foto Akte kelahiran</p>
+                    <div class="col-sm-12 col-md-6 mt-2">
+                        <p>Berkas Akte kelahiran</p>
                         @if (!empty($user->foto_akte))
                             <a href="{{ asset($user->foto_akte) }}" target="_blank" rel="noopener noreferrer">
-                                <img src="{{ asset($user->foto_akte) }}" alt="foto_akte" class="foto_akte">
+                                <p>Lihat Berkas Akte Kelahiran</p>
                             </a>
                         @else
                             <div class="no-image">
-                                <p>Belum upload foto akte kelahiran</p>
+                                <p>Belum upload Berkas akte kelahiran</p>
                             </div>
                         @endif
                     </div>
-                    <div class="col-sm-12 col-md-6">
-                        <p>Foto Psikolog anak umur < 6 thn</p>
-                        @if (!empty($user->foto_psikolog))
-                            <a href="{{ asset($user->foto_psikolog) }}" target="_blank" rel="noopener noreferrer">
-                                <img src="{{ asset($user->foto_psikolog) }}" alt="foto_psikolog">
-                            </a>
-                        @else
-                            <div class="no-image">
-                                <p>Belum upload foto psikolog umur < 6 thn</p>
-                            </div>
-                        @endif
+                    <div class="col-sm-12 col-md-6 mt-2">
+                        <p>Berkas Psikolog anak umur < 6 thn</p>
+                                @if (!empty($user->foto_psikolog))
+                                    <a href="{{ asset($user->foto_psikolog) }}" target="_blank"
+                                        rel="noopener noreferrer">
+                                        <p>Lihat Berkas Psikolog</p>
+                                    </a>
+                                @else
+                                    <div class="no-image">
+                                        <p>Belum upload Berkas psikolog umur < 6 thn</p>
+                                    </div>
+                                @endif
                     </div>
                 </div>
 
@@ -269,6 +271,7 @@
                             <tr>
                                 <th scope="col">No.</th>
                                 <th scope="col">Nama</th>
+                                <th scope="col">Tingkat</th>
                                 <th scope="col">Sertifikat</th>
                                 <th scope="col">Aksi</th>
                             </tr>
@@ -299,14 +302,12 @@
                                                 </button>
                                             </form>
                                         </div>
-
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
     </div>
@@ -336,15 +337,15 @@
                             <label for="">Jam</label>
                             <select class="form-select" name="pemetaan_time">
                                 @foreach ($time as $tm)
-                                        <option value="{{ $tm }}"> {{ $tm }}</option>
+                                    <option value="{{ $tm }}"> {{ $tm }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div>
                             <label for="">Nama Verifikator</label>
-                            <select class="form-select" name="nama_validator">
+                            <select class="form-select" name="name_validator">
                                 @foreach ($verifikator as $verif)
-                                        <option value="{{ $verif->nama_lengkap }}"> {{ $verif->nama_lengkap }}</option>
+                                    <option value="{{ $verif->nama_lengkap }}"> {{ $verif->nama_lengkap }}</option>
                                 @endforeach
                             </select>
                         </div>

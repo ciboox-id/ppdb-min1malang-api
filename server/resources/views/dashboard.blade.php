@@ -6,7 +6,6 @@
             <!-- Left side columns -->
             <div class="col-lg-12">
                 <div class="row">
-
                     <!-- Card three -->
                     {{-- jumlah pendaftar card --}}
                     <div class="col-xxl-4 col-md-6">
@@ -149,11 +148,6 @@
                                                                 Lihat data
                                                             </a>
                                                         </div>
-                                                        {{-- <span class="badge rounded-pill bg-info badge-custom">
-                                                            <i class="bi bi-pencil"></i>
-                                                            Verifikasi
-                                                        </span> --}}
-
                                                         <div>
                                                             <form
                                                                 action="{{ route('dashboard.data-siswa.delete', ['student' => $user->id]) }}"
@@ -168,11 +162,6 @@
                                                                 </button>
                                                             </form>
                                                         </div>
-
-                                                        {{-- <span class="badge rounded-pill bg-info badge-custom">
-                                                            <i class="bi bi-pencil"></i>
-                                                            Isi Nilai
-                                                        </span> --}}
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -189,7 +178,6 @@
                             </div>
                         </div>
                     </div><!-- End Recent Sales -->
-
                 </div>
             </div><!-- End Left side columns -->
         </div>

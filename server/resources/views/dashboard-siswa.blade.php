@@ -91,12 +91,12 @@
                                         sertifikat lain
                                     </div>
                                 @else
-                                    @if ($user->jalur == "prestasi" || $user->jalur == "reguler")
+                                    @if ($user->jalur == 'prestasi' || $user->jalur == 'reguler')
                                         <div class="alert alert-warning" role="alert">
                                             <i class="bi bi-exclamation-circle"></i>
                                             Data Prestasi - Data prestasi boleh di isi jika mempunyai prestasi yang bagus
                                         </div>
-                                    @elseif($user->jalur == "tahfidz")
+                                    @elseif($user->jalur == 'tahfidz')
                                         <div class="alert alert-warning" role="alert">
                                             <i class="bi bi-exclamation-circle"></i>
                                             Data Prestasi - Data prestasi boleh di isi jika mempunyai prestasi yang bagus
@@ -111,33 +111,32 @@
                             </div>
 
                             <div class="pagetitle">
-                                <h1>Cetak Kartu peserta dan Verifikasi berkas</h1>
+                                <h1>Cetak Kartu peserta dan Hasil verifikasi berkas</h1>
                             </div><!-- End Page Title -->
-                            @if ($biodata > 7 || $school > 0 || $address > 0 || $fatmot > 0)
-                                <div class="alert alert-danger" role="alert">
-                                    <i class="bi bi-exclamation-circle"></i>
-                                    Lengkapi data diatas terlebih dahulu sebelum cetak kartu peserta
-                                </div>
-                            @else
-                                @if ($user->is_verif)
+                            @if ($user->is_verif)
+                                @if (\Carbon\Carbon::now()->lt(\Carbon\Carbon::create(2023, 2, 11, 0, 0, 0)))
+                                    <div class="alert alert-success" role="alert">
+                                        <i class="bi bi-check-circle"></i>
+                                        Data Telah di verifikasi
+                                    </div>
+                                @else
                                     <a href="{{ route('download.kartu-peserta') }}" target="_blank"
                                         rel="noopener noreferrer">Download kartu Peserta</a>
+                                    <a href="{{ route('download.surat-resmi') }}" target="_blank"
+                                        rel="noopener noreferrer">Download surat hasil verifikasi</a>
+                                @endif
+                            @else
+                                @if ($biodata > 7 || $school > 0 || $address > 0 || $fatmot > 0)
+                                    <div class="alert alert-danger" role="alert">
+                                        <i class="bi bi-exclamation-circle"></i>
+                                        Lengkapi data diatas terlebih dahulu sebelum cetak kartu peserta
+                                    </div>
                                 @else
                                     <div class="alert alert-danger" role="alert">
                                         <i class="bi bi-exclamation-circle"></i>
                                         Tunggu data verifikasi terlebih dahulu
                                     </div>
                                 @endif
-                            @endif
-
-                            @if (empty($pemetaan))
-                                <div class="alert alert-danger" role="alert">
-                                    <i class="bi bi-exclamation-circle"></i>
-                                    Tunggu data verifikasi terlebih dahulu
-                                </div>
-                            @else
-                                <a href="{{ route('download.surat-resmi') }}" target="_blank"
-                                    rel="noopener noreferrer">Download surat resmi</a>
                             @endif
                         @else
                             <div class="alert alert-danger" role="alert">
@@ -176,7 +175,8 @@
                                 <option value="afirmasi">afirmasi</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-4 py-2 rounded-2" onclick="alert('Data yang saya isi adalah data asli dan dapat dipertanggung jawabkan')">
+                        <button type="submit" class="btn btn-primary mt-4 py-2 rounded-2"
+                            onclick="alert('Data yang saya isi adalah data asli dan dapat dipertanggung jawabkan')">
                             Pilih Jalur
                         </button>
                     </form>

@@ -38,6 +38,7 @@ class ProfileController extends Controller
         $date = ['20/01/2023', '21/01/2023', '22/01/2023', '23/01/2023'];
         $time = ['07.30 - 08.00', '08.00 - 08.30', '09.00 - 09.30', '09.30 - 10.00', '10.30 - 11.00', '11.00 - 11.30'];
         $verifikator = User::where('role', 'admin')->get();
+
         return view('detail-profile', [
             'user' => $user,
             'active' => "data-profile",

@@ -65,19 +65,11 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a class="badge rounded-pill bg-success badge-custom"
+                                                    <a class="badge rounded-pill bg-success badge-custom btn-aksi"
                                                         href="/data-profile/{{ $user->email }}">
                                                         <i class="bi bi-eye-fill"></i>
                                                         Lihat data
                                                     </a>
-                                                    {{-- <span class="badge rounded-pill bg-info badge-custom">
-                                                        <i class="bi bi-pencil"></i>
-                                                        Verifikasi
-                                                    </span> --}}
-                                                    {{-- <span class="badge rounded-pill bg-danger badge-custom">
-                                                        <i class="bi bi-trash"></i>
-                                                        Hapus
-                                                    </span> --}}
                                                 </td>
                                             </tr>
                                         @endforeach

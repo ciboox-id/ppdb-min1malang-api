@@ -78,7 +78,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/batal-verifikasi-data/{user}', [ProfileController::class, 'inverifikasi'])->name('inverifikasi');
         Route::post('/reset-password/{user}', [ProfileController::class, 'resetPassword'])->name('dashboard.password-reset');
 
-
         Route::get('/dashboard/admin/export', [DashboardController::class, 'export'])->name('dashboard.export');
     });
 });
