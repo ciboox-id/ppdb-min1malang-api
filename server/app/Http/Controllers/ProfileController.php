@@ -51,11 +51,12 @@ class ProfileController extends Controller
 
     public function indexVerifikasi()
     {
+        $date = "2023-02-07";
         $userVerifikasi = User::where('foto_siswa', '!=', null)
             ->where('foto_akte', '!=', null)
             ->where('foto_kk', '!=', null)
             ->where('foto_ket_tk', '!=', null)
-            ->where('role', '!=', 'admin')->paginate(25);
+            ->where('role', '!=', 'admin')->where('updated_at', '<=', $date)->paginate(62);
 
         return view('data-verifikasi', [
             'active' => 'verifikasi',
@@ -116,7 +117,6 @@ class ProfileController extends Controller
         $pemetaan->name_validator = $validation['name_validator'];
         $pemetaan->pesan = $validation['pesan'];
         $pemetaan->lolos = $validation['lolos'];
-        $pemetaan->user_id = $user->id;
         $pemetaan->save();
 
         $user->is_verif = true;

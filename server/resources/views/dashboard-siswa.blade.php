@@ -120,6 +120,7 @@
                                         Data Telah di verifikasi
                                     </div>
                                 @else
+                                   
                                     <a href="{{ route('download.kartu-peserta') }}" target="_blank"
                                         rel="noopener noreferrer">Download kartu Peserta</a>
                                     <a href="{{ route('download.surat-resmi') }}" target="_blank"
