@@ -1,21 +1,19 @@
 @extends('layouts.main')
 
 @section('container')
+    @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    @if (session()->has('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <div class="col-12 d-flex">
-
-        @if (session()->has('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
-        @if (session()->has('error'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ session('error') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
-
         <div class="card col-8 me-3 overflow-auto">
             <div class="card-body verif-data">
                 <div class="d-flex col-12">
@@ -129,16 +127,16 @@
                     </div>
                     <div class="col-sm-12 col-md-6 mt-2">
                         <p>Berkas Psikolog anak umur < 6 thn</p>
-                        @if (!empty($user->foto_psikolog))
-                            <a href="{{ asset($user->foto_psikolog) }}" target="_blank"
-                                rel="noopener noreferrer">
-                                <p>Lihat Berkas Psikolog</p>
-                            </a>
-                        @else
-                            <div class="no-image">
-                                <p>Belum upload Berkas psikolog umur < 6 thn</p>
-                            </div>
-                        @endif
+                                @if (!empty($user->foto_psikolog))
+                                    <a href="{{ asset($user->foto_psikolog) }}" target="_blank"
+                                        rel="noopener noreferrer">
+                                        <p>Lihat Berkas Psikolog</p>
+                                    </a>
+                                @else
+                                    <div class="no-image">
+                                        <p>Belum upload Berkas psikolog umur < 6 thn</p>
+                                    </div>
+                                @endif
                     </div>
                 </div>
 
@@ -242,7 +240,7 @@
                     </div>
 
                     <div class=" overflow-auto">
-                        <h5 class="card-title mt-2">Data Rumah</h5>
+                        <h5 class="card-title mt-2">Data Berkas Prestasi</h5>
                         <table class="table table-bordered datatable mt-4">
                             <thead>
                                 <tr>
@@ -267,7 +265,7 @@
                                         </td>
                                         <td>
                                             @if ($pres->is_valid)
-                                               <p>Valid</p>
+                                                <p>Valid</p>
                                             @endif
                                         </td>
                                         <td>
@@ -306,121 +304,138 @@
                 <form action="{{ route('verifikasi', ['user' => $user->id]) }}" method="post">
                     @csrf
 
-                    <h5>Upload Berkas</h3>
-                        <div class="verif-container">
-                            <div>
-                                <p>Foto Akte</p>
-                                @if ($user->foto_akte != null)
-                                    <a href="{{ $user->foto_akte }}" target="_blank" rel="noopener noreferrer">Ada</a>
-                                @else
-                                    <p>Tidak Ada</p>
-                                @endif
-                            </div>
-
-                            <div>
-                                <p>Foto Kartu Keluarga</p>
-                                @if ($user->foto_kk != null)
-                                    <a href="{{ $user->foto_kk }}" target="_blank" rel="noopener noreferrer">Ada</a>
-                                @else
-                                    <p>Tidak Ada</p>
-                                @endif
-                            </div>
-
-                            <div>
-                                <p>Foto Surat Keterangan TK</p>
-                                @if ($user->foto_ket_tk != null)
-                                    <a href="{{ $user->foto_ket_tk }}" target="_blank" rel="noopener noreferrer">Ada</a>
-                                @else
-                                    <p>Tidak Ada</p>
-                                @endif
-                            </div>
-
-                            <div>
-                                <p>Foto Siswa</p>
-                                @if ($user->foto_siswa != null)
-                                    <a href="{{ $user->foto_siswa }}" target="_blank" rel="noopener noreferrer">Ada</a>
-                                @else
-                                    <p>Tidak Ada</p>
-                                @endif
-                            </div>
-
-                            <div>
-                                <p>Piagam Juara</p>
-                                <div class="form-check">
-                                    <input type="radio" id="piagam_juara" name="piagam_juara" value="yes"
-                                        class="form-check-input">
-                                    <label for="piagam_juara">Ada</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" id="piagam_juara_no" name="piagam_juara" value="no"
-                                        class="form-check-input">
-                                    <label for="piagam_juara_no">Tidak Ada</label>
-                                </div>
-                            </div>
-
-                            <div>
-                                <p>Sertifikat Tahfidz</p>
-                                <div class="form-check">
-                                    <input type="radio" id="sertifikat_tahfidz" name="sertifikat_tahfidz"
-                                        value="yes" class="form-check-input">
-                                    <label for="sertifikat_tahfidz">Ada</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" id="sertifikat_tahfidz_no" name="sertifikat_tahfidz"
-                                        value="no" class="form-check-input">
-                                    <label for="sertifikat_tahfidz_no">Tidak Ada</label>
-                                </div>
-                            </div>
-
-                            <div>
-                                <p>Surat Keterangan Yatim</p>
-                                <div class="form-check">
-                                    <input type="radio" id="surat_ket_yatim" name="surat_ket_yatim" value="yes"
-                                        class="form-check-input">
-                                    <label for="surat_ket_yatim">Ada</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="radio" id="surat_ket_yatim_no" name="surat_ket_yatim" value="no"
-                                        class="form-check-input">
-                                    <label for="surat_ket_yatim_no">Tidak Ada</label>
-                                </div>
-                            </div>
-
-                            <div>
-                                <p>NISN</p>
-                                @if ($user->nisn != null)
-                                    <span>Ada</span>
-                                @else
-                                    <span>Tidak Ada</span>
-                                @endif
-                            </div>
-
-                            <div>
-                                <p>Surat Psikolog</p>
-                                @if ($user->foto_psikolog != null)
-                                    <a href="{{ $user->foto_psikolog }}" target="_blank"
-                                        rel="noopener noreferrer">Ada</a>
-                                @else
-                                    <span>Tidak Ada</span>
-                                @endif
-                            </div>
+                    <h5>Upload Berkas</h5>
+                    <div class="verif-container">
+                        <div>
+                            <p>Foto Akte</p>
+                            @if ($user->foto_akte != null)
+                                <a href="{{ asset($user->foto_akte) }}" target="_blank"
+                                    rel="noopener noreferrer">Ada</a>
+                            @else
+                                <span>Tidak Ada</span>
+                            @endif
                         </div>
 
-
-                        <h5 class="mt-4">Verifikator</h5>
-                        <div class="verif-container">
-                            <div>
-                                <p>Nama verifikator</p>
-                                <span>{{ auth()->user()->nama_lengkap }}</span>
-                            </div>
+                        <div>
+                            <p>Foto Kartu Keluarga</p>
+                            @if ($user->foto_kk != null)
+                                <a href="{{ asset($user->foto_kk) }}" target="_blank" rel="noopener noreferrer">Ada</a>
+                            @else
+                                <span>Tidak Ada</span>
+                            @endif
                         </div>
 
+                        <div>
+                            <p>Foto Surat Keterangan TK</p>
+                            @if ($user->foto_ket_tk != null)
+                                <a href="{{ asset($user->foto_ket_tk) }}" target="_blank"
+                                    rel="noopener noreferrer">Ada</a>
+                            @else
+                                <span>Tidak Ada</span>
+                            @endif
+                        </div>
+
+                        <div>
+                            <p>Foto Siswa</p>
+                            @if ($user->foto_siswa != null)
+                                <a href="{{ asset($user->foto_siswa) }}" target="_blank"
+                                    rel="noopener noreferrer">Ada</a>
+                            @else
+                                <span>Tidak Ada</span>
+                            @endif
+                        </div>
+
+                        <div>
+                            <p>Piagam Juara</p>
+                            @if (!empty($prestasi))
+                                <a href="{{ asset($prestasi->sertifikat) }}" target="_blank"
+                                    rel="noopener noreferrer">Ada</a>
+                            @else
+                                <span>Tidak Ada</span>
+                            @endif
+                        </div>
+
+                        <div>
+                            <p>Sertifikat Tahfidz</p>
+                            @if (!empty($tahfidz))
+                                <a href="{{ asset($tahfidz->sertifikat) }}" target="_blank"
+                                    rel="noopener noreferrer">Ada</a>
+                            @else
+                                <span>Tidak Ada</span>
+                            @endif
+                        </div>
+
+                        <div>
+                            <p>Surat Keterangan Yatim</p>
+                            @if (!empty($afirmasi))
+                                <a href="{{ asset($afirmasi->sertifikat) }}" target="_blank"
+                                    rel="noopener noreferrer">Ada</a>
+                            @else
+                                <span>Tidak Ada</span>
+                            @endif
+                        </div>
+
+                        <div>
+                            <p>NISN</p>
+                            @if ($user->nisn != null)
+                                <span>Ada</span>
+                            @else
+                                <span>Tidak Ada</span>
+                            @endif
+                        </div>
+
+                        <div>
+                            <p>Surat Psikolog</p>
+                            @if ($user->foto_psikolog != null)
+                                <a href="{{ $user->foto_psikolog }}" target="_blank" rel="noopener noreferrer">Ada</a>
+                            @else
+                                <span>Tidak Ada</span>
+                            @endif
+                        </div>
+                    </div>
+
+
+                    <h5 class="mt-4">Verifikator</h5>
+                    <div class="verif-container">
+                        <div>
+                            <p>Nama verifikator</p>
+                            <span>{{ auth()->user()->nama_lengkap }}</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="">Tanggal</label>
+                        <select class="form-select mt-2" name="pemetaan_date">
+                            @foreach ($date as $dt)
+                                <option value="{{ $dt }}"> {{ $dt }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div>
+                        <label for="">Jam</label>
+                        <select class="form-select mt-2" name="pemetaan_time">
+                            @foreach ($time as $tm)
+                                <option value="{{ $tm }}"> {{ $tm }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="">Lolos Verifikasi</label>
+                        <select class="form-select mt-2" name="lolos">
+                            <option value="lolos">Lolos</option>
+                            <option value="tidak_lolos">Tidak Lolos</option>
+                        </select>
+                    </div>
+
+                    <div>
                         <h5 class="mt-4">Catatan :</h5>
                         <div class="verif-container">
                             <textarea name="pesan" id="" cols="100" rows="10" class="form-control"></textarea>
                         </div>
+                    </div>
 
-                        <button type="submit" class="btn btn-primary btn-aksi mt-4" disabled>Verifikasi</button>
+                    <button type="submit" class="btn btn-primary btn-aksi mt-4">Verifikasi</button>
                 </form>
             </div>
         </div>

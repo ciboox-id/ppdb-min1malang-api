@@ -83,35 +83,47 @@ class ProfileController extends Controller
         $date = ['20/01/2023', '21/01/2023', '22/01/2023', '23/01/2023'];
         $time = ['07.30 - 08.00', '08.10 - 08.40', '08.50 - 09.20', '09.35 - 10.05', '10.15 - 10.45', '10.55 - 11.25'];
 
+        $tahfidz = Prestasi::where('user_id', $user->id)->where('jenis_sertifikat', 'tahfidz')->first();
+        $afirmasi = Prestasi::where('user_id', $user->id)->where('jenis_sertifikat', 'afirmasi')->first();
+        $prestasi = Prestasi::where('user_id', $user->id)->where('jenis_sertifikat', 'prestasi')->first();
+
         return view('verifikasi', [
             'user' => $user,
             'active' => "verifikasi",
             'date' => $date,
             'time' => $time,
+            'tahfidz' => $tahfidz,
+            'afirmasi' => $afirmasi,
+            'prestasi' => $prestasi
         ]);
     }
 
     public function verifikasi(Request $request, User $user)
     {
-        dd($request->all());
-        // $validation = $request->validate([
-        //     "pemetaan_date" => 'required',
-        //     'pemetaan_time' => 'required',
-        //     'name_validator' => 'required',
-        // ]);
+        $validation = $request->validate([
+            "pemetaan_date" => 'nullable',
+            'pemetaan_time' => 'nullable',
+            'name_validator' => 'nullable',
+            'pesan' => 'nullable',
+            'lolos' => 'nullable'
+        ]);
 
-        // $pemetaan = new Pemetaan();
-        // $pemetaan->pemetaan_date = $validation['pemetaan_date'];
-        // $pemetaan->pemetaan_time = $validation['pemetaan_time'];
-        // $pemetaan->name_validator = $validation['name_validator'];
-        // $pemetaan->user_id = $user->id;
-        // $pemetaan->save();
+        $validation['name_validator'] = auth()->user()->nama_lengkap;
 
-        // $user->is_verif = true;
-        // $user->save();
+        $pemetaan = new Pemetaan();
+        $pemetaan->pemetaan_date = $validation['pemetaan_date'];
+        $pemetaan->pemetaan_time = $validation['pemetaan_time'];
+        $pemetaan->name_validator = $validation['name_validator'];
+        $pemetaan->pesan = $validation['pesan'];
+        $pemetaan->lolos = $validation['lolos'];
+        $pemetaan->user_id = $user->id;
+        $pemetaan->save();
+
+        $user->is_verif = true;
+        $user->save();
 
 
-        // return back()->with('success', "Calon siswa telah diverifikasi");
+        return back()->with('success', "Calon siswa telah diverifikasi");
     }
 
     public function inverifikasi(User $user)

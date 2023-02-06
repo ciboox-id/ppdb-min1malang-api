@@ -76,7 +76,7 @@
                                     </div>
 
                                     <div class="col-12 mt-3">
-                                        <button class="btn btn-primary w-100" type="submit" disabled>Masuk</button>
+                                        <button class="btn btn-primary w-100" type="submit">Masuk</button>
                                     </div>
                                 </form>
                                 <p class="d-flex justify-content-center mt-3">Belum punya akun? <a
