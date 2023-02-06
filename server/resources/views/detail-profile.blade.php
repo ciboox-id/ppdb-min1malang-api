@@ -310,7 +310,7 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <form
+                                            {{-- <form
                                                 action="{{ route('dashboard.data-prestasi.delete', ['id' => $pres->id]) }}"
                                                 method="post">
                                                 @csrf
@@ -319,7 +319,7 @@
                                                     <i class="bi bi-trash"></i>
                                                     Hapus
                                                 </button>
-                                            </form>
+                                            </form> --}}
                                         </div>
                                     </td>
                                 </tr>

@@ -43,7 +43,7 @@
                                     <td>{{ $gr->email }}</td>
                                     <td>
                                         <div>
-                                            <form
+                                            {{-- <form
                                                 action="{{ route('dashboard.data-siswa.delete', ['student' => $gr->id]) }}"
                                                 method="post">
                                                 @csrf
@@ -52,7 +52,7 @@
                                                     <i class="bi bi-trash"></i>
                                                     Hapus
                                                 </button>
-                                            </form>
+                                            </form> --}}
                                         </div>
                                     </td>
                                 </tr>
