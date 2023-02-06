@@ -120,17 +120,29 @@
                                         Data Telah di verifikasi
                                     </div>
                                 @else
-                                   
-                                    <a href="{{ route('download.kartu-peserta') }}" target="_blank"
-                                        rel="noopener noreferrer">Download kartu Peserta</a>
-                                    <a href="{{ route('download.surat-resmi') }}" target="_blank"
-                                        rel="noopener noreferrer">Download surat hasil verifikasi</a>
+                                    @if ($pemetaan->lolos == 'lolos')
+                                        <div class="alert alert-success" role="alert">
+                                            <i class="bi bi-check-circle"></i>
+                                            Anda dinyatakan Lolos Verifikasi Berkas
+                                        </div>
+                                        <a href="{{ route('download.kartu-peserta') }}" target="_blank"
+                                            rel="noopener noreferrer">Download kartu Peserta</a>
+                                        <a href="{{ route('download.surat-resmi') }}" target="_blank"
+                                            rel="noopener noreferrer">Download surat hasil verifikasi</a>
+                                    @else
+                                        <div class="alert alert-danger" role="alert">
+                                            <i class="bi bi-check-circle"></i>
+                                            <p>Anda dinyatakan Tidak Lolos Verifikasi Berkas</p>
+                                        </div>
+
+                                    @endif
                                 @endif
                             @else
                                 @if ($biodata > 7 || $school > 0 || $address > 0 || $fatmot > 0)
                                     <div class="alert alert-danger" role="alert">
                                         <i class="bi bi-exclamation-circle"></i>
-                                        Lengkapi data diatas terlebih dahulu sebelum cetak kartu peserta dan surat hasil verifikasi
+                                        Lengkapi data diatas terlebih dahulu sebelum cetak kartu peserta dan surat hasil
+                                        verifikasi
                                     </div>
                                 @else
                                     <div class="alert alert-danger" role="alert">
