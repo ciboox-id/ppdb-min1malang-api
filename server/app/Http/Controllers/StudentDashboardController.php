@@ -198,6 +198,22 @@ class StudentDashboardController extends Controller
         return redirect()->route('dashboard.data-prestasi')->with('success', "Berhasil menyimpan data prestasi");
     }
 
+    public function updateDataPrestasi(Request $request, Prestasi $prestasi)
+    {
+        $validation = $request->validate([
+            'tingkat' => 'required',
+            'posisi_prestasi' => 'required',
+            'jenis_sertifikat' => 'required',
+        ]);
+
+        $validation['is_valid'] = true;
+        $validation['name_verifikator'] = auth()->user()->nama_lengkap;
+
+        Prestasi::where('id', $prestasi->id)->update($validation);
+
+        return redirect()->back()->with('success', "Berhasil mengupdate data prestasi");
+    }
+
     public function deleteDataPrestasi($id)
     {
         $prestasi = Prestasi::where('id', $id)->first();

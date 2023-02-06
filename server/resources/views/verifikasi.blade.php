@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
-    <div class="col-12">
+    <div class="col-12 d-flex">
 
         @if (session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -16,34 +16,10 @@
             </div>
         @endif
 
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex">
+        <div class="card col-8 me-3 overflow-auto">
+            <div class="card-body verif-data">
+                <div class="d-flex col-12">
                     <a href="{{ route('dashboard.admin') }}" class="back btn btn-primary me-3">Kembali</a>
-
-                    @if ($user->is_verif)
-                        <form action="{{ route('inverifikasi', ['user' => $user->id]) }}" method="post">
-                            @csrf
-                            <button type="submit" class="back btn btn-danger" data-bs-target="#staticBackdrop">
-                                Batal Verifikasi
-                            </button>
-                        </form>
-                    @else
-                        {{-- <button type="button" class="back btn btn-info" data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop">
-                            Verifikasi data
-                        </button> --}}
-                        <a href="{{ route('dashboard.verifikasi', ['user' => $user->email]) }}"
-                            class="back btn btn-info">Verifikasi</a>
-                    @endif
-
-                    <form action="{{ route('dashboard.password-reset', ['user' => $user->id]) }}" method="post"
-                        class="ms-3">
-                        @csrf
-                        <button type="submit" class="back btn btn-warning">
-                            Reset Password
-                        </button>
-                    </form>
                 </div>
 
                 <h5 class="card-title mt-2">Identitas diri</h5>
@@ -153,16 +129,16 @@
                     </div>
                     <div class="col-sm-12 col-md-6 mt-2">
                         <p>Berkas Psikolog anak umur < 6 thn</p>
-                                @if (!empty($user->foto_psikolog))
-                                    <a href="{{ asset($user->foto_psikolog) }}" target="_blank"
-                                        rel="noopener noreferrer">
-                                        <p>Lihat Berkas Psikolog</p>
-                                    </a>
-                                @else
-                                    <div class="no-image">
-                                        <p>Belum upload Berkas psikolog umur < 6 thn</p>
-                                    </div>
-                                @endif
+                        @if (!empty($user->foto_psikolog))
+                            <a href="{{ asset($user->foto_psikolog) }}" target="_blank"
+                                rel="noopener noreferrer">
+                                <p>Lihat Berkas Psikolog</p>
+                            </a>
+                        @else
+                            <div class="no-image">
+                                <p>Belum upload Berkas psikolog umur < 6 thn</p>
+                            </div>
+                        @endif
                     </div>
                 </div>
 
@@ -264,43 +240,37 @@
                         <input type="text" class="form-control" id="inputAddress"
                             value="{{ $user->address->jarak_rumah }}" disabled>
                     </div>
-                </form>
 
-                <h5 class="card-title">Upload Berkas</h5>
-                <div class=" overflow-auto">
-                    <table class="table table-borderless datatable mt-4">
-                        <thead>
-                            <tr>
-                                <th scope="col">No.</th>
-                                <th scope="col">Nama</th>
-                                <th scope="col">Tingkat</th>
-                                <th scope="col">Valid</th>
-                                <th scope="col">Verifikator</th>
-                                <th scope="col">Sertifikat</th>
-                                <th scope="col">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($user->prestasi as $pres)
+                    <div class=" overflow-auto">
+                        <h5 class="card-title mt-2">Data Rumah</h5>
+                        <table class="table table-bordered datatable mt-4">
+                            <thead>
                                 <tr>
-                                    <th scope="row">{{ $loop->iteration }}</th>
-                                    <td>{{ $pres->prestasi }}</td>
-                                    <td>{{ $pres->tingkat }}</td>
-                                    <td>
-                                        @if ($pres->is_valid)
-                                            <p>Valid</p>
-                                        @endif
-                                    </td>
-                                    <td>{{ $pres->name_validator }}</td>
-                                    <td class="d-flex">
-                                        <a href="{{ asset($pres->sertifikat) }}" target="_blank"
-                                            rel="noopener noreferrer">
-                                            <i class="bi bi-eye-fill"></i>
-                                            Lihat foto
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <div>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Sertifikat</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($user->prestasi as $pres)
+                                    <tr>
+                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <td>{{ $pres->prestasi }}</td>
+                                        <td class="d-flex">
+                                            <a href="{{ asset($pres->sertifikat) }}" target="_blank"
+                                                rel="noopener noreferrer">
+                                                <i class="bi bi-eye-fill"></i>
+                                                Lihat foto
+                                            </a>
+                                        </td>
+                                        <td>
+                                            @if ($pres->is_valid)
+                                               <p>Valid</p>
+                                            @endif
+                                        </td>
+                                        <td>
                                             <div>
                                                 <a href="{{ route('dashboard.verifikasi.sertifikat', ['prestasi' => $pres->id]) }}"
                                                     target="_blank" rel="noopener noreferrer"
@@ -308,72 +278,151 @@
                                                     Verifikasi
                                                 </a>
                                             </div>
-                                        </div>
-                                        <div>
-                                            <form
-                                                action="{{ route('dashboard.data-prestasi.delete', ['id' => $pres->id]) }}"
-                                                method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="badge rounded-pill bg-danger">
-                                                    <i class="bi bi-trash"></i>
-                                                    Hapus
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                                            <div>
+                                                <form
+                                                    action="{{ route('dashboard.data-prestasi.delete', ['id' => $pres->id]) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="badge rounded-pill bg-danger">
+                                                        <i class="bi bi-trash"></i>
+                                                        Hapus
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card col-4 ">
+            <div class="card-body verif-act">
+                <p class="card-title mt-3">Verifikasi Calon Siswa</p>
+                <form action="{{ route('verifikasi', ['user' => $user->id]) }}" method="post">
+                    @csrf
+
+                    <h5>Upload Berkas</h3>
+                        <div class="verif-container">
+                            <div>
+                                <p>Foto Akte</p>
+                                @if ($user->foto_akte != null)
+                                    <a href="{{ $user->foto_akte }}" target="_blank" rel="noopener noreferrer">Ada</a>
+                                @else
+                                    <p>Tidak Ada</p>
+                                @endif
+                            </div>
+
+                            <div>
+                                <p>Foto Kartu Keluarga</p>
+                                @if ($user->foto_kk != null)
+                                    <a href="{{ $user->foto_kk }}" target="_blank" rel="noopener noreferrer">Ada</a>
+                                @else
+                                    <p>Tidak Ada</p>
+                                @endif
+                            </div>
+
+                            <div>
+                                <p>Foto Surat Keterangan TK</p>
+                                @if ($user->foto_ket_tk != null)
+                                    <a href="{{ $user->foto_ket_tk }}" target="_blank" rel="noopener noreferrer">Ada</a>
+                                @else
+                                    <p>Tidak Ada</p>
+                                @endif
+                            </div>
+
+                            <div>
+                                <p>Foto Siswa</p>
+                                @if ($user->foto_siswa != null)
+                                    <a href="{{ $user->foto_siswa }}" target="_blank" rel="noopener noreferrer">Ada</a>
+                                @else
+                                    <p>Tidak Ada</p>
+                                @endif
+                            </div>
+
+                            <div>
+                                <p>Piagam Juara</p>
+                                <div class="form-check">
+                                    <input type="radio" id="piagam_juara" name="piagam_juara" value="yes"
+                                        class="form-check-input">
+                                    <label for="piagam_juara">Ada</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" id="piagam_juara_no" name="piagam_juara" value="no"
+                                        class="form-check-input">
+                                    <label for="piagam_juara_no">Tidak Ada</label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <p>Sertifikat Tahfidz</p>
+                                <div class="form-check">
+                                    <input type="radio" id="sertifikat_tahfidz" name="sertifikat_tahfidz"
+                                        value="yes" class="form-check-input">
+                                    <label for="sertifikat_tahfidz">Ada</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" id="sertifikat_tahfidz_no" name="sertifikat_tahfidz"
+                                        value="no" class="form-check-input">
+                                    <label for="sertifikat_tahfidz_no">Tidak Ada</label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <p>Surat Keterangan Yatim</p>
+                                <div class="form-check">
+                                    <input type="radio" id="surat_ket_yatim" name="surat_ket_yatim" value="yes"
+                                        class="form-check-input">
+                                    <label for="surat_ket_yatim">Ada</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" id="surat_ket_yatim_no" name="surat_ket_yatim" value="no"
+                                        class="form-check-input">
+                                    <label for="surat_ket_yatim_no">Tidak Ada</label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <p>NISN</p>
+                                @if ($user->nisn != null)
+                                    <span>Ada</span>
+                                @else
+                                    <span>Tidak Ada</span>
+                                @endif
+                            </div>
+
+                            <div>
+                                <p>Surat Psikolog</p>
+                                @if ($user->foto_psikolog != null)
+                                    <a href="{{ $user->foto_psikolog }}" target="_blank"
+                                        rel="noopener noreferrer">Ada</a>
+                                @else
+                                    <span>Tidak Ada</span>
+                                @endif
+                            </div>
+                        </div>
+
+
+                        <h5 class="mt-4">Verifikator</h5>
+                        <div class="verif-container">
+                            <div>
+                                <p>Nama verifikator</p>
+                                <span>{{ auth()->user()->nama_lengkap }}</span>
+                            </div>
+                        </div>
+
+                        <h5 class="mt-4">Catatan :</h5>
+                        <div class="verif-container">
+                            <textarea name="pesan" id="" cols="100" rows="10" class="form-control"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-aksi mt-4" disabled>Verifikasi</button>
+                </form>
             </div>
         </div>
     </div>
-
-
-    <!-- Modal -->
-    {{-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Pemetaan</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('verifikasi', ['user' => $user->id]) }}" method="POST" class="row g-3">
-                        @csrf
-                        <div>
-                            <label for="">Tanggal</label>
-                            <select class="form-select" name="pemetaan_date">
-                                @foreach ($date as $dt)
-                                    <option value="{{ $dt }}"> {{ $dt }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div>
-                            <label for="">Jam</label>
-                            <select class="form-select" name="pemetaan_time">
-                                @foreach ($time as $tm)
-                                    <option value="{{ $tm }}"> {{ $tm }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div>
-                            <label for="">Nama Verifikator</label>
-                            <select class="form-select" name="name_validator">
-                                @foreach ($verifikator as $verif)
-                                    <option value="{{ $verif->nama_lengkap }}"> {{ $verif->nama_lengkap }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class=" d-grid">
-                            <button type="submit" class="btn btn-primary btn-block">Verifikasi</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 @endsection

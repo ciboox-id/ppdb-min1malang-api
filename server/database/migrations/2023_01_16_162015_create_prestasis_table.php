@@ -17,6 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('prestasi');
             $table->string('sertifikat');
+            $table->string('tingkat')->nullable();
+            $table->string('posisi_prestasi')->nullable();
+            $table->boolean('is_valid')->default(false);
+            $table->string('name_verifikator')->nullable();
+            $table->string('jenis_sertifikat')->nullable();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });

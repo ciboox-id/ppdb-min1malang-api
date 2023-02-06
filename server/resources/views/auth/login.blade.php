@@ -42,6 +42,9 @@
                                 @endif
 
 
+                                <div class="alert alert-danger" role="alert">
+                                    Pendaftaran Telah di tutup
+                                </div>
                                 <form class="row g-3" action="{{ route('auth.login') }}" method="post">
                                     @csrf
                                     <div class="col-12">
@@ -73,7 +76,7 @@
                                     </div>
 
                                     <div class="col-12 mt-3">
-                                        <button class="btn btn-primary w-100" type="submit">Masuk</button>
+                                        <button class="btn btn-primary w-100" type="submit" disabled>Masuk</button>
                                     </div>
                                 </form>
                                 <p class="d-flex justify-content-center mt-3">Belum punya akun? <a

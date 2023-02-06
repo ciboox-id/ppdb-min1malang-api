@@ -129,7 +129,7 @@
                                 @if ($biodata > 7 || $school > 0 || $address > 0 || $fatmot > 0)
                                     <div class="alert alert-danger" role="alert">
                                         <i class="bi bi-exclamation-circle"></i>
-                                        Lengkapi data diatas terlebih dahulu sebelum cetak kartu peserta
+                                        Lengkapi data diatas terlebih dahulu sebelum cetak kartu peserta dan surat hasil verifikasi
                                     </div>
                                 @else
                                     <div class="alert alert-danger" role="alert">

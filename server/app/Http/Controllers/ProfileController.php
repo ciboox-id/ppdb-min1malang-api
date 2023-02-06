@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pemetaan;
+use App\Models\Prestasi;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -17,6 +17,7 @@ class ProfileController extends Controller
     public function index()
     {
         $users = User::where('role', '!=', 'admin');
+
         if (request('search')) {
             $users->where('nama_lengkap', 'like', '%' . request('search') . '%');
         }
@@ -48,26 +49,69 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function indexVerifikasi()
+    {
+        $userVerifikasi = User::where('foto_siswa', '!=', null)
+            ->where('foto_akte', '!=', null)
+            ->where('foto_kk', '!=', null)
+            ->where('foto_ket_tk', '!=', null)
+            ->where('role', '!=', 'admin')->paginate(25);
+
+        return view('data-verifikasi', [
+            'active' => 'verifikasi',
+            'users' => $userVerifikasi
+        ]);
+    }
+
+    public function verifSertifikat(Prestasi $prestasi)
+    {
+        $posisi_prestasi = ['1', '2', '3', 'H1', 'H2', 'H3', 'F'];
+        $tingkat = ['kota', 'kabupaten', 'propinsi', 'nasional', 'internasional'];
+        $jenis_sertifikat = ['prestasi', 'tahfidz', 'afirmasi'];
+
+        return view('sertifikat-check', [
+            'active' => 'sertifikat',
+            'tingkat' => $tingkat,
+            'posisi_prestasi' => $posisi_prestasi,
+            'prestasi' => $prestasi,
+            'jenis_sertifikat' => $jenis_sertifikat
+        ]);
+    }
+
+    public function showVerifikasi(User $user)
+    {
+        $date = ['20/01/2023', '21/01/2023', '22/01/2023', '23/01/2023'];
+        $time = ['07.30 - 08.00', '08.10 - 08.40', '08.50 - 09.20', '09.35 - 10.05', '10.15 - 10.45', '10.55 - 11.25'];
+
+        return view('verifikasi', [
+            'user' => $user,
+            'active' => "verifikasi",
+            'date' => $date,
+            'time' => $time,
+        ]);
+    }
+
     public function verifikasi(Request $request, User $user)
     {
-        $validation = $request->validate([
-            "pemetaan_date" => 'required',
-            'pemetaan_time' => 'required',
-            'name_validator' => 'required',
-        ]);
+        dd($request->all());
+        // $validation = $request->validate([
+        //     "pemetaan_date" => 'required',
+        //     'pemetaan_time' => 'required',
+        //     'name_validator' => 'required',
+        // ]);
 
-        $pemetaan = new Pemetaan();
-        $pemetaan->pemetaan_date = $validation['pemetaan_date'];
-        $pemetaan->pemetaan_time = $validation['pemetaan_time'];
-        $pemetaan->name_validator = $validation['name_validator'];
-        $pemetaan->user_id = $user->id;
-        $pemetaan->save();
+        // $pemetaan = new Pemetaan();
+        // $pemetaan->pemetaan_date = $validation['pemetaan_date'];
+        // $pemetaan->pemetaan_time = $validation['pemetaan_time'];
+        // $pemetaan->name_validator = $validation['name_validator'];
+        // $pemetaan->user_id = $user->id;
+        // $pemetaan->save();
 
-        $user->is_verif = true;
-        $user->save();
+        // $user->is_verif = true;
+        // $user->save();
 
 
-        return back()->with('success', "Calon siswa telah diverifikasi");
+        // return back()->with('success', "Calon siswa telah diverifikasi");
     }
 
     public function inverifikasi(User $user)

@@ -26,10 +26,12 @@
                             <span class="mandatory">*</span>
                         @endif
                     </h5>
+
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         <i class="bi bi-plus-square"></i>
                         Tambah prestasi
                     </button>
+
                     <h5 class="card-title mt-3">Upload sertifikat tahfidz
                         @if (auth()->user()->jalur == 'tahfidz')
                             <span class="mandatory">*</span>
@@ -39,6 +41,7 @@
                         <i class="bi bi-cloud-upload"></i>
                         Upload sertifikat
                     </button>
+
                     <h5 class="card-title mt-3">Upload surat keterangan yatim/piatu/yatim piatu dari Kelurahan
                         @if (auth()->user()->jalur == 'afirmasi')
                             <span class="mandatory">*</span>

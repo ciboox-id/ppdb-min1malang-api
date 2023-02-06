@@ -52,6 +52,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/data-prestasi', [StudentDashboardController::class, 'dataPrestasi'])->name('dashboard.data-prestasi');
         Route::post('/data-prestasi/store', [StudentDashboardController::class, 'storeDataPrestasi'])->name('dashboard.data-prestasi.store');
         Route::delete('/data-prestasi/delete/{id}', [StudentDashboardController::class, 'deleteDataPrestasi'])->name('dashboard.data-prestasi.delete');
+        Route::post('/data-prestasi/{prestasi}/update', [StudentDashboardController::class, 'updateDataPrestasi'])->name('dashboard.data-prestasi.update');
 
         Route::get('/data-ortu', [StudentDashboardController::class, 'dataOrtu'])->name('dashboard.data-ortu');
         Route::put('/data-ortu/update', [StudentDashboardController::class, 'updateDataOrtu'])->name('dashboard.data-ortu.update');
@@ -74,7 +75,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/data-guru', [ProfileController::class, 'indexGuru'])->name('dashboard.data-guru');
         Route::post('/data-guru/store', [ProfileController::class, 'storeGuru'])->name('dashboard.data-guru.store');
 
-        Route::post('/verifikasi-data/{user}', [ProfileController::class, 'verifikasi'])->name('verifikasi');
+        Route::get('/data-verifikasi', [ProfileController::class, 'indexVerifikasi'])->name('dashboard.verifikasi');
+        Route::get('/data-verifikasi/{user:email}', [ProfileController::class, 'showVerifikasi'])->name('dashboard.verifikasi.detail');
+        Route::get('/data-verifikasi/{prestasi}/sertifikat', [ProfileController::class, 'verifSertifikat'])->name('dashboard.verifikasi.sertifikat');
+        Route::post('/verifikasi-siswa/{user}/post', [ProfileController::class, 'verifikasi'])->name('verifikasi');
         Route::post('/batal-verifikasi-data/{user}', [ProfileController::class, 'inverifikasi'])->name('inverifikasi');
         Route::post('/reset-password/{user}', [ProfileController::class, 'resetPassword'])->name('dashboard.password-reset');
 

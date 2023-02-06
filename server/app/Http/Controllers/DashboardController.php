@@ -72,27 +72,27 @@ class DashboardController extends Controller
 
     public function indexSiswa()
     {
-        $user = auth()->user();
-        $pemetaan = Pemetaan::where('user_id', $user->id)->first();
+        $userAuth = auth()->user();
+        $pemetaan = Pemetaan::where('user_id', $userAuth->id)->first();
 
-        $res = User::where('id', $user->id)->get()->toArray();
+        $res = User::where('id', $userAuth->id)->get()->toArray();
         $biodata = count(array_keys($res[0], null));
 
-        $resfather = Father::where('user_id', $user->id)->get()->toArray();
-        $resmother = Mother::where('user_id', $user->id)->get()->toArray();
+        $resfather = Father::where('user_id', $userAuth->id)->get()->toArray();
+        $resmother = Mother::where('user_id', $userAuth->id)->get()->toArray();
         $fat_mot = count(array_keys($resfather[0], null)) + count(array_keys($resmother[0], null));
 
-        $ressch = School::where('user_id', $user->id)->get()->toArray();
+        $ressch = School::where('user_id', $userAuth->id)->get()->toArray();
         $school = count(array_keys($ressch[0], null));
 
-        $prestasi = Prestasi::where('user_id', $user->id)->get();
+        $prestasi = Prestasi::where('user_id', $userAuth->id)->get();
 
-        $resad = Address::where('user_id', $user->id)->get()->toArray();
+        $resad = Address::where('user_id', $userAuth->id)->get()->toArray();
         $address = count(array_keys($resad[0], null));
 
         return view('dashboard-siswa', [
             'active' => 'dashboard',
-            'user' => $user,
+            'user' => $userAuth,
             'biodata' => $biodata,
             'prestasi' => $prestasi,
             'fatmot' => $fat_mot,
