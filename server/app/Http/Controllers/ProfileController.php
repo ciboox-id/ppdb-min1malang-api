@@ -117,6 +117,7 @@ class ProfileController extends Controller
         $pemetaan->name_validator = $validation['name_validator'];
         $pemetaan->pesan = $validation['pesan'];
         $pemetaan->lolos = $validation['lolos'];
+        $pemetaan->user_id = $user->id;
         $pemetaan->save();
 
         $user->is_verif = true;

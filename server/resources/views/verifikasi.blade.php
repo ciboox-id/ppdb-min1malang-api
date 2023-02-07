@@ -276,7 +276,7 @@
                                                     Verifikasi
                                                 </a>
                                             </div>
-                                            <div>
+                                            {{-- <div>
                                                 <form
                                                     action="{{ route('dashboard.data-prestasi.delete', ['id' => $pres->id]) }}"
                                                     method="post">
@@ -286,7 +286,7 @@
                                                         <i class="bi bi-trash"></i>
                                                         Hapus
                                                     </button>
-                                                </form>
+                                                </form> --}}
                                             </div>
                                         </td>
                                     </tr>
