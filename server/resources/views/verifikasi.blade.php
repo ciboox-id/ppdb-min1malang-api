@@ -18,6 +18,9 @@
             <div class="card-body verif-data">
                 <div class="d-flex col-12">
                     <a href="{{ route('dashboard.admin') }}" class="back btn btn-primary me-3">Kembali</a>
+
+                    <a href="{{ route('dashboard.data-siswa.edit', ['user' => $user->email]) }}"
+                        class="back btn btn-secondary">Edit Profile</a>
                 </div>
 
                 <h5 class="card-title mt-2">Identitas diri</h5>

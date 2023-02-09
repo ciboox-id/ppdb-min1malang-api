@@ -154,7 +154,7 @@ class ProfileController extends Controller
             ->where('foto_akte', '!=', null)
             ->where('foto_kk', '!=', null)
             ->where('foto_ket_tk', '!=', null)
-            ->where('role', '!=', 'admin')->where('updated_at', '<=', $date)->paginate(62);
+            ->where('role', '!=', 'admin')->paginate(62);
 
         return view('data-verifikasi', [
             'active' => 'verifikasi',
