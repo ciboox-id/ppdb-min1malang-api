@@ -71,6 +71,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/data-profile', [ProfileController::class, 'index'])->name('dashboard.data-siswa');
         Route::get('/data-profile/{user:email}', [ProfileController::class, 'show'])->name('dashboard.data-siswa.detail');
+        Route::get('/data-profile/{user:email}/edit', [ProfileController::class, 'edit'])->name('dashboard.data-siswa.edit');
+        Route::put('/data-profile/update/{user}', [ProfileController::class, 'update'])->name('dashboard.data-siswa.update');
 
         Route::get('/data-guru', [ProfileController::class, 'indexGuru'])->name('dashboard.data-guru');
         Route::post('/data-guru/store', [ProfileController::class, 'storeGuru'])->name('dashboard.data-guru.store');

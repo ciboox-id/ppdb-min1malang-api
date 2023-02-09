@@ -134,7 +134,6 @@
                                             <i class="bi bi-check-circle"></i>
                                             <p>Anda dinyatakan Tidak Lolos Verifikasi Berkas</p>
                                         </div>
-
                                     @endif
                                 @endif
                             @else

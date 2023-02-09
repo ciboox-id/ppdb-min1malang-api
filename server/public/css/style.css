@@ -1058,6 +1058,10 @@ h6 {
     font-weight: 600;
 }
 
+.back:hover {
+    color: white;
+}
+
 .no-image {
     width: 150px;
     height: 200px;

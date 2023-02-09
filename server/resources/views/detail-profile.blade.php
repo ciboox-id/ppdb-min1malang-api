@@ -29,10 +29,6 @@
                             </button>
                         </form>
                     @else
-                        {{-- <button type="button" class="back btn btn-info" data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop">
-                            Verifikasi data
-                        </button> --}}
                         <a href="{{ route('dashboard.verifikasi', ['user' => $user->email]) }}"
                             class="back btn btn-info">Verifikasi</a>
                     @endif
@@ -40,10 +36,12 @@
                     <form action="{{ route('dashboard.password-reset', ['user' => $user->id]) }}" method="post"
                         class="ms-3">
                         @csrf
-                        <button type="submit" class="back btn btn-warning">
+                        <button type="submit" class="back btn btn-warning me-3">
                             Reset Password
                         </button>
                     </form>
+                    <a href="{{ route('dashboard.data-siswa.edit', ['user' => $user->email]) }}"
+                        class="back btn btn-secondary">Edit Profile</a>
                 </div>
 
                 <h5 class="card-title mt-2">Identitas diri</h5>

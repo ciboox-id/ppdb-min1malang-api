@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
+use App\Models\Father;
+use App\Models\Mother;
 use App\Models\Pemetaan;
 use App\Models\Prestasi;
+use App\Models\School;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -26,6 +30,100 @@ class ProfileController extends Controller
             "users" => $users->orderBy('is_verif', 'asc')->paginate(25),
             "active" => "data-profile"
         ]);
+    }
+
+    public function edit(User $user)
+    {
+        $gol_darah = ["A", "B", "AB", "O",];
+        $range = [
+            '< 1.000.000',
+            '1.000.000 - 2.500.000',
+            '2.500.000 - 5.000.000',
+            '> 5.000.000'
+        ];
+        $pekerjaan = [
+            "Belum/ Tidak Bekerja",
+            "Mengurus Rumah Tangga",
+            "Pelajar/ Mahasiswa",
+            "Pensiunan",
+            "Pegawai Negeri Sipil",
+            "Tentara Nasional Indonesia",
+            "Kepolisisan RI",
+            "Perdagangan",
+            "Petani/ Pekebun",
+            "Peternak",
+            "Nelayan/ Perikanan",
+            "Karyawan Swasta",
+            "Karyawan BUMN",
+            "Karyawan Honorer",
+            "Wartawan",
+            "Dosen",
+            "Guru",
+            "Pilot",
+            "Pengacara",
+            "Notaris",
+            "Dokter",
+            "Bidan",
+            "Perawat",
+            "Apoteker",
+            "Psikiater/ Psikolog",
+            "Perangkat Desa",
+            "Wiraswasta",
+            "Anggota DPR-RI/DPRD",
+        ];
+
+        return view('detail-profile-edit', [
+            'active' => 'data-profile',
+            'user' => $user,
+            'father' => $user->father,
+            'mother' => $user->mother,
+            'gol_darah' => $gol_darah,
+            'salary' => $range,
+            'job' => $pekerjaan
+        ]);
+    }
+
+    public function update(User $user, Request $request)
+    {
+        $validation = $request->validate([
+            'nama_lengkap' => 'nullable',
+            'jenis_kelamin' => 'nullable',
+            'nisn' => 'nullable',
+            'nik' => 'nullable',
+            'alamat_siswa' => 'nullable',
+            'tempat_lahir' => 'nullable',
+            'tanggal_lahir' => 'nullable',
+            'gol_darah' => 'nullable',
+            'anak_ke' => 'nullable',
+        ]);
+        $validationAyah = $request->validate([
+            'nama_lengkap_ayah' => 'nullable',
+            'nik_ayah' => 'nullable|numeric',
+            'pekerjaan_ayah' => 'nullable',
+            'nama_kantor_ayah' => 'nullable',
+            'penghasilan_ayah' => 'nullable',
+            'no_telp_ayah' => 'nullable|numeric',
+        ]);
+
+        $validationIbu = $request->validate([
+            'nama_lengkap_ibu' => 'nullable',
+            'nik_ibu' => 'nullable|numeric',
+            'pekerjaan_ibu' => 'nullable',
+            'nama_kantor_ibu' => 'nullable',
+            'penghasilan_ibu' => 'nullable',
+            'no_telp_ibu' => 'nullable|numeric',
+        ]);
+
+
+        $validation['nama_lengkap'] = strtoupper($validation['nama_lengkap']);
+        $validationAyah['nama_lengkap_ayah'] = ucfirst($validationAyah['nama_lengkap_ayah']);
+        $validationIbu['nama_lengkap_ibu'] = ucfirst($validationIbu['nama_lengkap_ibu']);
+
+        User::where('id', $user->id)->update($validation);
+        Father::where('user_id', $user->id)->update($validationAyah);
+        Mother::where('user_id', $user->id)->update($validationIbu);
+
+        return back()->with('success', "Calon siswa telah diupdate");
     }
 
     /**
@@ -77,6 +175,8 @@ class ProfileController extends Controller
             'prestasi' => $prestasi,
             'jenis_sertifikat' => $jenis_sertifikat
         ]);
+
+        return back()->with('success', "Calon siswa telah diverifikasi");
     }
 
     public function showVerifikasi(User $user)
