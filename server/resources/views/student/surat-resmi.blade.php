@@ -74,14 +74,14 @@
             </tr>
             <table width="525">
                 <tr>
-                    <td class="text2">Malang, {{ $pemetaan->pemetaan_date }}</td>
+                    <td class="text2">Malang, 11/02/2023</td>
                 </tr>
             </table>
         </table>
         <table>
             <tr class="text2">
                 <td>Nomer</td>
-                <td width="572">: B-255/mi.13.25.1/2/PP.00.55/03/2021</td>
+                <td width="572">: B-83/mi.13.25.1/2/PP.00.55/02/2023</td>
             </tr>
             <tr>
                 <td>Perihal</td>
@@ -157,15 +157,19 @@
             </tr>
         </table>
         <br>
-        <table width="200" class="table-col" style="border: 1px solid #000; border-collapse: collapse"
+        <table width="500" class="table-col" style="border: 1px solid #000; border-collapse: collapse"
             class="bordering">
             <tr style="border: 1px solid #000">
                 <th>Uraian</th>
                 <th>Fc. Akte</th>
                 <th>Foto</th>
+                <th>Fc. KK</th>
+                <th>Surat Keterangan TK</th>
             </tr>
             <tr style="border: 1px solid #000">
                 <td>Berkas</td>
+                <td>Ada</td>
+                <td>Ada</td>
                 <td>Ada</td>
                 <td>Ada</td>
             </tr>
@@ -183,8 +187,8 @@
                 <th>Pukul</th>
             </tr>
             <tr>
-                <td>{{ $pemetaan->pemetaan_date }}</td>
-                <td>{{ $pemetaan->pemetaan_time }}</td>
+                <td>{{ $date }}</td>
+                <td>{{ $time }}</td>
             </tr>
         </table>
 
@@ -193,7 +197,7 @@
             <tr>
                 <td width="380"><br><br><br><br></td>
                 <td class="text" align="center"><br>
-                    <img src="{{ public_path("/images/ttd.jpg") }}" alt="" style="width: 50mm">
+                    <img src="{{ public_path('/images/ttd.jpg') }}" alt="" style="width: 50mm">
                 </td>
             </tr>
         </table>

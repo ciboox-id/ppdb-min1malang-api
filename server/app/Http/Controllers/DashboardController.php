@@ -115,8 +115,135 @@ class DashboardController extends Controller
     {
 
         $user = User::find(auth()->user()->id);
-        $pemetaan = Pemetaan::where('user_id', auth()->user()->id)->first();
-        $pdf =  PDF::loadView('student.kartu-peserta', ['user' => $user, 'pemetaan' => $pemetaan]);
+        $pemetaan = Pemetaan::where('user_id', auth()->user()->id)->orderBy('id', 'desc')->first();
+
+        $date = "";
+        $time = "";
+
+        switch ($pemetaan->id) {
+            case $pemetaan->id <= 32:
+                $date = "20/02/2023";
+                $time = "07.30-08.00";
+                break;
+            case $pemetaan->id > 32 && $pemetaan->id <= 64:
+                $date = "20/02/2023";
+                $time = "08.10-08.40";
+                break;
+            case $pemetaan->id > 64 && $pemetaan->id <= 96:
+                $date = "20/02/2023";
+                $time = "08.50-09.20";
+                break;
+            case $pemetaan->id > 96 && $pemetaan->id <= 128:
+                $date = "20/02/2023";
+                $time = "09.35-10.05";
+                break;
+            case $pemetaan->id > 128 && $pemetaan->id <= 160:
+                $date = "20/02/2023";
+                $time = "10.15-10.45";
+                break;
+            case $pemetaan->id > 160 && $pemetaan->id <= 192:
+                $date = "20/02/2023";
+                $time = "10.55-11.25";
+                break;
+            case $pemetaan->id > 192 && $pemetaan->id <= 224:
+                $date = "21/02/2023";
+                $time = "07.30-08.00";
+                break;
+            case $pemetaan->id > 224 && $pemetaan->id <= 256:
+                $date = "21/02/2023";
+                $time = "08.10-08.40";
+                break;
+            case $pemetaan->id > 256 && $pemetaan->id <= 288:
+                $date = "21/02/2023";
+                $time = "08.50-09.20";
+                break;
+            case $pemetaan->id > 288 && $pemetaan->id <= 320:
+                $date = "21/02/2023";
+                $time = "09.35-10.05";
+                break;
+            case $pemetaan->id > 320 && $pemetaan->id <= 352:
+                $date = "21/02/2023";
+                $time = "10.15-10.45";
+                break;
+            case $pemetaan->id > 352 && $pemetaan->id <= 384:
+                $date = "21/02/2023";
+                $time = "10.55-11.25";
+                break;
+            case $pemetaan->id > 384 && $pemetaan->id <= 416:
+                $date = "22/02/2023";
+                $time = "07.30-08.00";
+                break;
+            case $pemetaan->id > 416 && $pemetaan->id <= 448:
+                $date = "22/02/2023";
+                $time = "08.10-08.40";
+                break;
+            case $pemetaan->id > 448 && $pemetaan->id <= 480:
+                $date = "22/02/2023";
+                $time = "08.50-09.20";
+                break;
+            case $pemetaan->id > 480 && $pemetaan->id <= 512:
+                $date = "22/02/2023";
+                $time = "09.35-10.05";
+                break;
+            case $pemetaan->id > 512 && $pemetaan->id <= 544:
+                $date = "22/02/2023";
+                $time = "10.15-10.45";
+                break;
+            case $pemetaan->id > 545 && $pemetaan->id <= 576:
+                $date = "22/02/2023";
+                $time = "10.55-11.25";
+                break;
+            case $pemetaan->id > 576 && $pemetaan->id <= 608:
+                $date = "23/02/2023";
+                $time = "07.30-08.00";
+                break;
+            case $pemetaan->id > 608 && $pemetaan->id <= 640:
+                $date = "23/02/2023";
+                $time = "08.10-08.40";
+                break;
+            case $pemetaan->id > 640 && $pemetaan->id <= 672:
+                $date = "23/02/2023";
+                $time = "08.50-09.20";
+                break;
+            case $pemetaan->id > 672 && $pemetaan->id <= 704:
+                $date = "23/02/2023";
+                $time = "09.35-10.05";
+                break;
+            case $pemetaan->id > 704 && $pemetaan->id <= 736:
+                $date = "23/02/2023";
+                $time = "10.15-10.45";
+                break;
+            case $pemetaan->id > 736 && $pemetaan->id <= 768:
+                $date = "23/02/2023";
+                $time = "10.55-11.25";
+                break;
+            case $pemetaan->id > 768 && $pemetaan->id <= 800:
+                $date = "24/02/2023";
+                $time = "07.30-08.00";
+                break;
+            case $pemetaan->id > 800 && $pemetaan->id <= 832:
+                $date = "24/02/2023";
+                $time = "08.10-08.40";
+                break;
+            case $pemetaan->id > 832 && $pemetaan->id <= 864:
+                $date = "24/02/2023";
+                $time = "08.50-09.20";
+                break;
+            case $pemetaan->id > 864 && $pemetaan->id <= 896:
+                $date = "24/02/2023";
+                $time = "09.35-10.05";
+                break;
+            case $pemetaan->id > 896 && $pemetaan->id <= 928:
+                $date = "24/02/2023";
+                $time = "10.15-10.45";
+                break;
+            case $pemetaan->id > 928 && $pemetaan->id <= 960:
+                $date = "24/02/2023";
+                $time = "10.55-11.25";
+                break;
+        }
+
+        $pdf =  PDF::loadView('student.kartu-peserta', ['user' => $user, 'pemetaan' => $pemetaan, 'date' => $date, 'time' => $time]);
 
         return $pdf->download('kartu-peserta.pdf');
     }
@@ -125,11 +252,413 @@ class DashboardController extends Controller
     {
 
         $user = User::find(auth()->user()->id);
-        $pemetaan = Pemetaan::where('user_id', auth()->user()->id)->first();
-        $pdf =  PDF::loadView('student.surat-resmi', ['user' => $user, 'pemetaan' => $pemetaan]);
+        $pemetaan = Pemetaan::where('user_id', auth()->user()->id)->orderBy('id', 'desc')->first();
 
-        return $pdf->download('surat-resmi.pdf');
+        $date = "";
+        $time = "";
+
+        switch ($pemetaan->id) {
+            case $pemetaan->id <= 32:
+                $date = "20/02/2023";
+                $time = "07.30-08.00";
+                break;
+            case $pemetaan->id > 32 && $pemetaan->id <= 64:
+                $date = "20/02/2023";
+                $time = "08.10-08.40";
+                break;
+            case $pemetaan->id > 64 && $pemetaan->id <= 96:
+                $date = "20/02/2023";
+                $time = "08.50-09.20";
+                break;
+            case $pemetaan->id > 96 && $pemetaan->id <= 128:
+                $date = "20/02/2023";
+                $time = "09.35-10.05";
+                break;
+            case $pemetaan->id > 128 && $pemetaan->id <= 160:
+                $date = "20/02/2023";
+                $time = "10.15-10.45";
+                break;
+            case $pemetaan->id > 160 && $pemetaan->id <= 192:
+                $date = "20/02/2023";
+                $time = "10.55-11.25";
+                break;
+            case $pemetaan->id > 192 && $pemetaan->id <= 224:
+                $date = "21/02/2023";
+                $time = "07.30-08.00";
+                break;
+            case $pemetaan->id > 224 && $pemetaan->id <= 256:
+                $date = "21/02/2023";
+                $time = "08.10-08.40";
+                break;
+            case $pemetaan->id > 256 && $pemetaan->id <= 288:
+                $date = "21/02/2023";
+                $time = "08.50-09.20";
+                break;
+            case $pemetaan->id > 288 && $pemetaan->id <= 320:
+                $date = "21/02/2023";
+                $time = "09.35-10.05";
+                break;
+            case $pemetaan->id > 320 && $pemetaan->id <= 352:
+                $date = "21/02/2023";
+                $time = "10.15-10.45";
+                break;
+            case $pemetaan->id > 352 && $pemetaan->id <= 384:
+                $date = "21/02/2023";
+                $time = "10.55-11.25";
+                break;
+            case $pemetaan->id > 384 && $pemetaan->id <= 416:
+                $date = "22/02/2023";
+                $time = "07.30-08.00";
+                break;
+            case $pemetaan->id > 416 && $pemetaan->id <= 448:
+                $date = "22/02/2023";
+                $time = "08.10-08.40";
+                break;
+            case $pemetaan->id > 448 && $pemetaan->id <= 480:
+                $date = "22/02/2023";
+                $time = "08.50-09.20";
+                break;
+            case $pemetaan->id > 480 && $pemetaan->id <= 512:
+                $date = "22/02/2023";
+                $time = "09.35-10.05";
+                break;
+            case $pemetaan->id > 512 && $pemetaan->id <= 544:
+                $date = "22/02/2023";
+                $time = "10.15-10.45";
+                break;
+            case $pemetaan->id > 545 && $pemetaan->id <= 576:
+                $date = "22/02/2023";
+                $time = "10.55-11.25";
+                break;
+            case $pemetaan->id > 576 && $pemetaan->id <= 608:
+                $date = "23/02/2023";
+                $time = "07.30-08.00";
+                break;
+            case $pemetaan->id > 608 && $pemetaan->id <= 640:
+                $date = "23/02/2023";
+                $time = "08.10-08.40";
+                break;
+            case $pemetaan->id > 640 && $pemetaan->id <= 672:
+                $date = "23/02/2023";
+                $time = "08.50-09.20";
+                break;
+            case $pemetaan->id > 672 && $pemetaan->id <= 704:
+                $date = "23/02/2023";
+                $time = "09.35-10.05";
+                break;
+            case $pemetaan->id > 704 && $pemetaan->id <= 736:
+                $date = "23/02/2023";
+                $time = "10.15-10.45";
+                break;
+            case $pemetaan->id > 736 && $pemetaan->id <= 768:
+                $date = "23/02/2023";
+                $time = "10.55-11.25";
+                break;
+            case $pemetaan->id > 768 && $pemetaan->id <= 800:
+                $date = "24/02/2023";
+                $time = "07.30-08.00";
+                break;
+            case $pemetaan->id > 800 && $pemetaan->id <= 832:
+                $date = "24/02/2023";
+                $time = "08.10-08.40";
+                break;
+            case $pemetaan->id > 832 && $pemetaan->id <= 864:
+                $date = "24/02/2023";
+                $time = "08.50-09.20";
+                break;
+            case $pemetaan->id > 864 && $pemetaan->id <= 896:
+                $date = "24/02/2023";
+                $time = "09.35-10.05";
+                break;
+            case $pemetaan->id > 896 && $pemetaan->id <= 928:
+                $date = "24/02/2023";
+                $time = "10.15-10.45";
+                break;
+            case $pemetaan->id > 928 && $pemetaan->id <= 960:
+                $date = "24/02/2023";
+                $time = "10.55-11.25";
+                break;
+        }
+
+        $pdf =  PDF::loadView('student.surat-resmi', ['user' => $user, 'pemetaan' => $pemetaan, 'date' => $date, 'time' => $time]);
+
+        return $pdf->download('surat-hasil-verifikasi.pdf');
     }
+
+    public function downloadKartuPesertaFromAdmin(User $user)
+    {
+
+        $user = User::where('id', $user->id)->first();
+        $pemetaan = Pemetaan::where('user_id', $user->id)->orderBy('id', 'desc')->first();
+
+        $date = "";
+        $time = "";
+
+        switch ($pemetaan->id) {
+            case $pemetaan->id <= 32:
+                $date = "20/02/2023";
+                $time = "07.30-08.00";
+                break;
+            case $pemetaan->id > 32 && $pemetaan->id <= 64:
+                $date = "20/02/2023";
+                $time = "08.10-08.40";
+                break;
+            case $pemetaan->id > 64 && $pemetaan->id <= 96:
+                $date = "20/02/2023";
+                $time = "08.50-09.20";
+                break;
+            case $pemetaan->id > 96 && $pemetaan->id <= 128:
+                $date = "20/02/2023";
+                $time = "09.35-10.05";
+                break;
+            case $pemetaan->id > 128 && $pemetaan->id <= 160:
+                $date = "20/02/2023";
+                $time = "10.15-10.45";
+                break;
+            case $pemetaan->id > 160 && $pemetaan->id <= 192:
+                $date = "20/02/2023";
+                $time = "10.55-11.25";
+                break;
+            case $pemetaan->id > 192 && $pemetaan->id <= 224:
+                $date = "21/02/2023";
+                $time = "07.30-08.00";
+                break;
+            case $pemetaan->id > 224 && $pemetaan->id <= 256:
+                $date = "21/02/2023";
+                $time = "08.10-08.40";
+                break;
+            case $pemetaan->id > 256 && $pemetaan->id <= 288:
+                $date = "21/02/2023";
+                $time = "08.50-09.20";
+                break;
+            case $pemetaan->id > 288 && $pemetaan->id <= 320:
+                $date = "21/02/2023";
+                $time = "09.35-10.05";
+                break;
+            case $pemetaan->id > 320 && $pemetaan->id <= 352:
+                $date = "21/02/2023";
+                $time = "10.15-10.45";
+                break;
+            case $pemetaan->id > 352 && $pemetaan->id <= 384:
+                $date = "21/02/2023";
+                $time = "10.55-11.25";
+                break;
+            case $pemetaan->id > 384 && $pemetaan->id <= 416:
+                $date = "22/02/2023";
+                $time = "07.30-08.00";
+                break;
+            case $pemetaan->id > 416 && $pemetaan->id <= 448:
+                $date = "22/02/2023";
+                $time = "08.10-08.40";
+                break;
+            case $pemetaan->id > 448 && $pemetaan->id <= 480:
+                $date = "22/02/2023";
+                $time = "08.50-09.20";
+                break;
+            case $pemetaan->id > 480 && $pemetaan->id <= 512:
+                $date = "22/02/2023";
+                $time = "09.35-10.05";
+                break;
+            case $pemetaan->id > 512 && $pemetaan->id <= 544:
+                $date = "22/02/2023";
+                $time = "10.15-10.45";
+                break;
+            case $pemetaan->id > 545 && $pemetaan->id <= 576:
+                $date = "22/02/2023";
+                $time = "10.55-11.25";
+                break;
+            case $pemetaan->id > 576 && $pemetaan->id <= 608:
+                $date = "23/02/2023";
+                $time = "07.30-08.00";
+                break;
+            case $pemetaan->id > 608 && $pemetaan->id <= 640:
+                $date = "23/02/2023";
+                $time = "08.10-08.40";
+                break;
+            case $pemetaan->id > 640 && $pemetaan->id <= 672:
+                $date = "23/02/2023";
+                $time = "08.50-09.20";
+                break;
+            case $pemetaan->id > 672 && $pemetaan->id <= 704:
+                $date = "23/02/2023";
+                $time = "09.35-10.05";
+                break;
+            case $pemetaan->id > 704 && $pemetaan->id <= 736:
+                $date = "23/02/2023";
+                $time = "10.15-10.45";
+                break;
+            case $pemetaan->id > 736 && $pemetaan->id <= 768:
+                $date = "23/02/2023";
+                $time = "10.55-11.25";
+                break;
+            case $pemetaan->id > 768 && $pemetaan->id <= 800:
+                $date = "24/02/2023";
+                $time = "07.30-08.00";
+                break;
+            case $pemetaan->id > 800 && $pemetaan->id <= 832:
+                $date = "24/02/2023";
+                $time = "08.10-08.40";
+                break;
+            case $pemetaan->id > 832 && $pemetaan->id <= 864:
+                $date = "24/02/2023";
+                $time = "08.50-09.20";
+                break;
+            case $pemetaan->id > 864 && $pemetaan->id <= 896:
+                $date = "24/02/2023";
+                $time = "09.35-10.05";
+                break;
+            case $pemetaan->id > 896 && $pemetaan->id <= 928:
+                $date = "24/02/2023";
+                $time = "10.15-10.45";
+                break;
+            case $pemetaan->id > 928 && $pemetaan->id <= 960:
+                $date = "24/02/2023";
+                $time = "10.55-11.25";
+                break;
+        }
+
+        $pdf =  PDF::loadView('student.kartu-peserta', ['user' => $user, 'pemetaan' => $pemetaan, 'date' => $date, 'time' => $time]);
+
+        return $pdf->download('kartu-peserta.pdf');
+    }
+
+    public function downloadSuratResmiFromAdmin(User $user)
+    {
+
+        $user = User::where('id', $user->id)->first();
+        $pemetaan = Pemetaan::where('user_id', $user->id)->orderBy('id', 'desc')->first();
+
+        $date = "";
+        $time = "";
+
+        switch ($pemetaan->id) {
+            case $pemetaan->id <= 32:
+                $date = "20/02/2023";
+                $time = "07.30-08.00";
+                break;
+            case $pemetaan->id > 32 && $pemetaan->id <= 64:
+                $date = "20/02/2023";
+                $time = "08.10-08.40";
+                break;
+            case $pemetaan->id > 64 && $pemetaan->id <= 96:
+                $date = "20/02/2023";
+                $time = "08.50-09.20";
+                break;
+            case $pemetaan->id > 96 && $pemetaan->id <= 128:
+                $date = "20/02/2023";
+                $time = "09.35-10.05";
+                break;
+            case $pemetaan->id > 128 && $pemetaan->id <= 160:
+                $date = "20/02/2023";
+                $time = "10.15-10.45";
+                break;
+            case $pemetaan->id > 160 && $pemetaan->id <= 192:
+                $date = "20/02/2023";
+                $time = "10.55-11.25";
+                break;
+            case $pemetaan->id > 192 && $pemetaan->id <= 224:
+                $date = "21/02/2023";
+                $time = "07.30-08.00";
+                break;
+            case $pemetaan->id > 224 && $pemetaan->id <= 256:
+                $date = "21/02/2023";
+                $time = "08.10-08.40";
+                break;
+            case $pemetaan->id > 256 && $pemetaan->id <= 288:
+                $date = "21/02/2023";
+                $time = "08.50-09.20";
+                break;
+            case $pemetaan->id > 288 && $pemetaan->id <= 320:
+                $date = "21/02/2023";
+                $time = "09.35-10.05";
+                break;
+            case $pemetaan->id > 320 && $pemetaan->id <= 352:
+                $date = "21/02/2023";
+                $time = "10.15-10.45";
+                break;
+            case $pemetaan->id > 352 && $pemetaan->id <= 384:
+                $date = "21/02/2023";
+                $time = "10.55-11.25";
+                break;
+            case $pemetaan->id > 384 && $pemetaan->id <= 416:
+                $date = "22/02/2023";
+                $time = "07.30-08.00";
+                break;
+            case $pemetaan->id > 416 && $pemetaan->id <= 448:
+                $date = "22/02/2023";
+                $time = "08.10-08.40";
+                break;
+            case $pemetaan->id > 448 && $pemetaan->id <= 480:
+                $date = "22/02/2023";
+                $time = "08.50-09.20";
+                break;
+            case $pemetaan->id > 480 && $pemetaan->id <= 512:
+                $date = "22/02/2023";
+                $time = "09.35-10.05";
+                break;
+            case $pemetaan->id > 512 && $pemetaan->id <= 544:
+                $date = "22/02/2023";
+                $time = "10.15-10.45";
+                break;
+            case $pemetaan->id > 545 && $pemetaan->id <= 576:
+                $date = "22/02/2023";
+                $time = "10.55-11.25";
+                break;
+            case $pemetaan->id > 576 && $pemetaan->id <= 608:
+                $date = "23/02/2023";
+                $time = "07.30-08.00";
+                break;
+            case $pemetaan->id > 608 && $pemetaan->id <= 640:
+                $date = "23/02/2023";
+                $time = "08.10-08.40";
+                break;
+            case $pemetaan->id > 640 && $pemetaan->id <= 672:
+                $date = "23/02/2023";
+                $time = "08.50-09.20";
+                break;
+            case $pemetaan->id > 672 && $pemetaan->id <= 704:
+                $date = "23/02/2023";
+                $time = "09.35-10.05";
+                break;
+            case $pemetaan->id > 704 && $pemetaan->id <= 736:
+                $date = "23/02/2023";
+                $time = "10.15-10.45";
+                break;
+            case $pemetaan->id > 736 && $pemetaan->id <= 768:
+                $date = "23/02/2023";
+                $time = "10.55-11.25";
+                break;
+            case $pemetaan->id > 768 && $pemetaan->id <= 800:
+                $date = "24/02/2023";
+                $time = "07.30-08.00";
+                break;
+            case $pemetaan->id > 800 && $pemetaan->id <= 832:
+                $date = "24/02/2023";
+                $time = "08.10-08.40";
+                break;
+            case $pemetaan->id > 832 && $pemetaan->id <= 864:
+                $date = "24/02/2023";
+                $time = "08.50-09.20";
+                break;
+            case $pemetaan->id > 864 && $pemetaan->id <= 896:
+                $date = "24/02/2023";
+                $time = "09.35-10.05";
+                break;
+            case $pemetaan->id > 896 && $pemetaan->id <= 928:
+                $date = "24/02/2023";
+                $time = "10.15-10.45";
+                break;
+            case $pemetaan->id > 928 && $pemetaan->id <= 960:
+                $date = "24/02/2023";
+                $time = "10.55-11.25";
+                break;
+        }
+
+        $pdf =  PDF::loadView('student.surat-resmi', ['user' => $user, 'pemetaan' => $pemetaan, 'date' => $date, 'time' => $time]);
+
+        return $pdf->download('surat-hasil-verifikasi.pdf');
+    }
+
 
     public function export()
     {

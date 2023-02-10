@@ -137,13 +137,15 @@ class ProfileController extends Controller
         $date = ['20/01/2023', '21/01/2023', '22/01/2023', '23/01/2023'];
         $time = ['07.30 - 08.00', '08.00 - 08.30', '09.00 - 09.30', '09.30 - 10.00', '10.30 - 11.00', '11.00 - 11.30'];
         $verifikator = User::where('role', 'admin')->get();
+        $pemetaan = Pemetaan::where('user_id', $user->id)->orderBy('id', 'desc')->first();
 
         return view('detail-profile', [
             'user' => $user,
             'active' => "data-profile",
             'date' => $date,
             'time' => $time,
-            'verifikator' => $verifikator
+            'verifikator' => $verifikator,
+            'pemetaan' => $pemetaan
         ]);
     }
 
@@ -211,14 +213,20 @@ class ProfileController extends Controller
 
         $validation['name_validator'] = auth()->user()->nama_lengkap;
 
-        $pemetaan = new Pemetaan();
-        $pemetaan->pemetaan_date = $validation['pemetaan_date'];
-        $pemetaan->pemetaan_time = $validation['pemetaan_time'];
-        $pemetaan->name_validator = $validation['name_validator'];
-        $pemetaan->pesan = $validation['pesan'];
-        $pemetaan->lolos = $validation['lolos'];
-        $pemetaan->user_id = $user->id;
-        $pemetaan->save();
+        $pemetaan = Pemetaan::where('user_id', $user->id)->first();
+
+        if (empty($pemetaan)) {
+            $pemetaan = new Pemetaan();
+            $pemetaan->pemetaan_date = $validation['pemetaan_date'];
+            $pemetaan->pemetaan_time = $validation['pemetaan_time'];
+            $pemetaan->name_validator = $validation['name_validator'];
+            $pemetaan->pesan = $validation['pesan'];
+            $pemetaan->lolos = $validation['lolos'];
+            $pemetaan->user_id = $user->id;
+            $pemetaan->save();
+        } else {
+            $pemetaan->update($validation);
+        }
 
         $user->is_verif = true;
         $user->save();

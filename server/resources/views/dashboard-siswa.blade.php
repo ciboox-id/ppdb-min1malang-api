@@ -17,7 +17,7 @@
                             <div class="alert alert-info" role="alert">
                                 <i class="bi bi-exclamation-circle"></i>
                                 Ubah jalur pendaftaran
-                                <button type="button" class="btn btn-warning btn-sm mx-2" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-warning btn-sm mx-2 disabled" data-bs-toggle="modal"
                                     data-bs-target="#staticBackdrop">
                                     <i class="bi bi-box-arrow-in-right"></i>
                                     Ubah jalur
@@ -114,7 +114,7 @@
                                 <h1>Cetak Kartu peserta dan Hasil verifikasi berkas</h1>
                             </div><!-- End Page Title -->
                             @if ($user->is_verif)
-                                @if (\Carbon\Carbon::now()->lt(\Carbon\Carbon::create(2023, 2, 11, 0, 0, 0)))
+                                @if (\Carbon\Carbon::now()->lt(\Carbon\Carbon::create(2023, 2, 20, 0, 0, 0)))
                                     <div class="alert alert-success" role="alert">
                                         <i class="bi bi-check-circle"></i>
                                         Data Telah di verifikasi

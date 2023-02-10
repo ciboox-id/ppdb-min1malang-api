@@ -18,13 +18,13 @@
         }
 
         .logo-icon {
-            width: 50px
+            width: 90px;
         }
 
         .wrapper-card {
             padding: 16px;
-            width: 9.5cm;
-            height: 12.4cm;
+            width: 18cm;
+            height: 21cm;
             border: 2px solid black;
         }
 
@@ -85,14 +85,14 @@
         <table>
             <tr>
                 <td style="text-align: center;">
-                    <font size="2">No. Pemetaan : {{ $user->id }}</font>
+                    <font size="2">No. Pemetaan : {{ $pemetaan->id }}</font>
                 </td>
             </tr>
         </table>
         <table>
             <tr>
                 <td style="text-align: center;">
-                    <img style="width: 27.9mm;height: 38.1mm;" src="{{ public_path($user->foto_siswa) }}" class="foto_siswa">
+                    <img style="width: 48.8mm;height: 68.2mm;" src="{{ public_path($user->foto_siswa) }}" class="foto_siswa">
                 </td>
             </tr>
         </table>
@@ -112,19 +112,19 @@
         </table>
         <table class="table-border" cellpadding="2px">
             <tr>
-                <th style=" text-align: start;">
+                <th >
                     <font size="2">Hari/tgl</font>
                 </th>
-                <th style="text-align: start;">
+                <th >
                     <font size="2">Pukul</font>
                 </th>
             </tr>
             <tr>
-                <td width="50%">
-                    <font size="2">{{ $pemetaan->pemetaan_date }}</font>
+                <td style=" text-align: center;">
+                    <font size="2">{{ $date }}</font>
                 </td>
-                <td width="50%">
-                    <font size="2">{{ $pemetaan->pemetaan_time }}</font>
+                <td style=" text-align: center;">
+                    <font size="2">{{ $time}}</font>
                 </td>
             </tr>
         </table>

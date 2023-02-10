@@ -29,15 +29,17 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout', [DashboardAuthController::class, 'logout']);
     Route::get('/download-kartu-peserta', [DashboardController::class, 'downloadKartuPeserta'])->name('download.kartu-peserta');
     Route::get('/download-surat-resmi', [DashboardController::class, 'downloadSuratResmi'])->name('download.surat-resmi');
+    Route::get('/download-kartu-peserta/{user}', [DashboardController::class, 'downloadKartuPesertaFromAdmin'])->name('download.kartu-peserta.admin');
+    Route::get('/download-surat-resmi/{user}', [DashboardController::class, 'downloadSuratResmiFromAdmin'])->name('download.surat-resmi.admin');
 
-    // Route::get('/kartu-peserta-view', function () {
-    //     $pemetaan = Pemetaan::where('user_id', auth()->user()->id);
-    //     return view('student.kartu-peserta', ['user' => auth()->user(), 'pemetaan' => $pemetaan]);
-    // });
-    // Route::get('/surat-resmi-view', function () {
-    //     $pemetaan = Pemetaan::where('user_id', auth()->user()->id)->first();
-    //     return view('student.surat-resmi', ['user' => auth()->user(), 'pemetaan' => $pemetaan]);
-    // });
+    Route::get('/kartu-peserta-view', function () {
+        $pemetaan = Pemetaan::where('user_id', auth()->user()->id)->first();
+        return view('student.kartu-peserta', ['user' => auth()->user(), 'pemetaan' => $pemetaan, 'date' => null, 'time' => null]);
+    });
+    Route::get('/surat-resmi-view', function () {
+        $pemetaan = Pemetaan::where('user_id', auth()->user()->id)->first();
+        return view('student.surat-resmi', ['user' => auth()->user(), 'pemetaan' => $pemetaan]);
+    });
 
     Route::prefix('dashboard')->group(function () {
         Route::get('/student', [DashboardController::class, 'indexSiswa'])->name('dashboard.siswa');
