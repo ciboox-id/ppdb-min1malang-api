@@ -15,6 +15,13 @@
     @endif
     <div class="col-12 d-flex">
         <div class="card col-8 me-3 overflow-auto">
+            <div class="card-body verif-data">
+                <div class="d-flex col-12">
+                    <a href="{{ route('dashboard.admin') }}" class="back btn btn-primary me-3">Kembali</a>
+
+                    <a href="{{ route('dashboard.data-siswa.edit', ['user' => $user->email]) }}"
+                        class="back btn btn-secondary">Edit Profile</a>
+                </div>
                 @if (!empty($pemetaan))
                     <div class="mt-3 d-block">
                         <h5 class="card-title mt-2">Download Kartu Peserta & Lolos berkas</h5>
@@ -30,13 +37,6 @@
                     </div>
                 @endif
 
-            <div class="card-body verif-data">
-                <div class="d-flex col-12">
-                    <a href="{{ route('dashboard.admin') }}" class="back btn btn-primary me-3">Kembali</a>
-
-                    <a href="{{ route('dashboard.data-siswa.edit', ['user' => $user->email]) }}"
-                        class="back btn btn-secondary">Edit Profile</a>
-                </div>
 
                 <h5 class="card-title mt-2">Identitas diri</h5>
                 <form class="row g-3">

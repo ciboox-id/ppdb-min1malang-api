@@ -84,8 +84,8 @@
         <div class="line"></div>
         <table>
             <tr>
-                <td style="text-align: center;">
-                    <font size="2">No. Pemetaan : {{ $pemetaan->id }}</font>
+                <td style="text-align: center; font-size: 40px;">
+                    <font size="4">No. Pemetaan : {{ $pemetaan->id }}</font>
                 </td>
             </tr>
         </table>
