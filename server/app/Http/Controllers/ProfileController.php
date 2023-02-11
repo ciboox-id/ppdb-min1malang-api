@@ -149,9 +149,7 @@ class ProfileController extends Controller
     public function indexVerifikasi()
     {
         $userVerifikasi = User::where('foto_siswa', '!=', null)
-            ->where('foto_akte', '!=', null)
-            ->where('foto_kk', '!=', null)
-            ->where('foto_ket_tk', '!=', null)
+            ->orWhere('foto_akte', '!=', null)
             ->where('role', '!=', 'admin');
 
         if (request('search')) {
@@ -191,7 +189,7 @@ class ProfileController extends Controller
         $prestasi = Prestasi::where('user_id', $user->id)->where('jenis_sertifikat', 'prestasi')->first();
 
         $pemetaan = Pemetaan::where('user_id', $user->id)->orderBy('id', 'desc')->first();
-        
+
         return view('verifikasi', [
             'user' => $user,
             'active' => "verifikasi",
