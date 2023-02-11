@@ -92,7 +92,7 @@
         <table>
             <tr>
                 <td style="text-align: center;">
-                    <img style="width: 48.8mm;height: 68.2mm;" src="{{ public_path($user->foto_siswa) }}" class="foto_siswa">
+                    <img style="width: 74mm;height: 105mm;" src="{{ public_path($user->foto_siswa) }}" class="foto_siswa">
                 </td>
             </tr>
         </table>
