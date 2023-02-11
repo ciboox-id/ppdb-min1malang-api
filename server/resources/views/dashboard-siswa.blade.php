@@ -114,13 +114,13 @@
                                 <h1>Cetak Kartu peserta dan Hasil verifikasi berkas</h1>
                             </div><!-- End Page Title -->
                             @if ($user->is_verif)
-                                @if (\Carbon\Carbon::now()->lt(\Carbon\Carbon::create(2023, 2, 20, 0, 0, 0)))
+                                @if (\Carbon\Carbon::now()->lt(\Carbon\Carbon::create(2023, 2, 11, 0, 0, 0)))
                                     <div class="alert alert-success" role="alert">
                                         <i class="bi bi-check-circle"></i>
                                         Data Telah di verifikasi
                                     </div>
                                 @else
-                                    @if ($pemetaan->lolos == 'lolos')
+                                    @if ($pemetaan->lolos == "lolos")
                                         <div class="alert alert-success" role="alert">
                                             <i class="bi bi-check-circle"></i>
                                             Anda dinyatakan Lolos Verifikasi Berkas
@@ -131,8 +131,9 @@
                                             rel="noopener noreferrer">Download surat hasil verifikasi</a>
                                     @else
                                         <div class="alert alert-danger" role="alert">
-                                            <i class="bi bi-check-circle"></i>
-                                            <p>Anda dinyatakan Tidak Lolos Verifikasi Berkas</p>
+                                            <i class="bi bi-exclamation-circle"></i>
+                                            Anda dinyatakan Tidak Lolos Verifikasi Berkas<br/>
+                                            Karena : {{ $pemetaan->pesan }}
                                         </div>
                                     @endif
                                 @endif
