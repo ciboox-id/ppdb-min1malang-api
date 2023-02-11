@@ -137,7 +137,6 @@ class ProfileController extends Controller
         $date = ['20/01/2023', '21/01/2023', '22/01/2023', '23/01/2023'];
         $time = ['07.30 - 08.00', '08.00 - 08.30', '09.00 - 09.30', '09.30 - 10.00', '10.30 - 11.00', '11.00 - 11.30'];
         $verifikator = User::where('role', 'admin')->get();
-        $pemetaan = Pemetaan::where('user_id', $user->id)->orderBy('id', 'desc')->first();
 
         return view('detail-profile', [
             'user' => $user,
@@ -145,7 +144,6 @@ class ProfileController extends Controller
             'date' => $date,
             'time' => $time,
             'verifikator' => $verifikator,
-            'pemetaan' => $pemetaan
         ]);
     }
 
@@ -190,6 +188,7 @@ class ProfileController extends Controller
         $afirmasi = Prestasi::where('user_id', $user->id)->where('jenis_sertifikat', 'afirmasi')->first();
         $prestasi = Prestasi::where('user_id', $user->id)->where('jenis_sertifikat', 'prestasi')->first();
 
+        $pemetaan = Pemetaan::where('user_id', auth()->user()->id)->orderBy('id', 'desc')->first();
         return view('verifikasi', [
             'user' => $user,
             'active' => "verifikasi",
@@ -197,7 +196,8 @@ class ProfileController extends Controller
             'time' => $time,
             'tahfidz' => $tahfidz,
             'afirmasi' => $afirmasi,
-            'prestasi' => $prestasi
+            'prestasi' => $prestasi,
+            'pemetaan' => $pemetaan
         ]);
     }
 
