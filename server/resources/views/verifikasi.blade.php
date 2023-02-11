@@ -15,6 +15,21 @@
     @endif
     <div class="col-12 d-flex">
         <div class="card col-8 me-3 overflow-auto">
+                @if ($pemetaan->lolos == 'lolos')
+                    <div class="mt-3 d-block">
+                        <h5 class="card-title mt-2">Download Kartu Peserta & Lolos berkas</h5>
+                        <a href="{{ route('download.kartu-peserta.admin', ['user' => $user->id]) }}" target="_blank"
+                            class="d-block" rel="noopener noreferrer">Download kartu Peserta</a>
+                        <a href="{{ route('download.surat-resmi.admin', ['user' => $user->id]) }}" target="_blank"
+                            rel="noopener noreferrer">Download surat hasil verifikasi</a>
+                    </div>
+                @else
+                    <div class="alert alert-danger" role="alert">
+                        <i class="bi bi-check-circle"></i>
+                        <p>Anda dinyatakan Tidak Lolos Verifikasi Berkas</p>
+                    </div>
+                @endif
+
             <div class="card-body verif-data">
                 <div class="d-flex col-12">
                     <a href="{{ route('dashboard.admin') }}" class="back btn btn-primary me-3">Kembali</a>
