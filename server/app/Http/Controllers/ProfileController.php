@@ -18,8 +18,9 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $perPage = $request->input('per_page', 25);
         $users = User::where('role', '!=', 'admin');
 
         if (request('search')) {
@@ -27,7 +28,7 @@ class ProfileController extends Controller
         }
 
         return view('profile', [
-            "users" => $users->orderBy('is_verif', 'asc')->paginate(25),
+            "users" => $users->orderBy('is_verif', 'asc')->paginate($perPage),
             "active" => "data-profile"
         ]);
     }
@@ -146,11 +147,14 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function indexVerifikasi()
+    public function indexVerifikasi(Request $request)
     {
-        $userVerifikasi = User::where('foto_siswa', '!=', null)
-            ->orWhere('foto_akte', '!=', null)
-            ->where('role', '!=', 'admin');
+        $perPage = $request->input('per_page', 62);
+
+        $userVerifikasi = User::where(function ($query) {
+            $query->where('foto_siswa', '!=', null)
+                ->orWhere('foto_akte', '!=', null);
+        })->where('role', '!=', 'admin');
 
         if (request('search')) {
             $userVerifikasi->where('nama_lengkap', 'like', '%' . request('search') . '%');
@@ -158,7 +162,7 @@ class ProfileController extends Controller
 
         return view('data-verifikasi', [
             'active' => 'verifikasi',
-            'users' => $userVerifikasi->paginate(62)
+            'users' => $userVerifikasi->paginate($perPage)
         ]);
     }
 

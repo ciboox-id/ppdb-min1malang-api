@@ -23,11 +23,13 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $perPage = $request->input('per_page', 25);
+
         $userAdmin = User::where('role', 'admin')->get();
         $user = User::where('role', '!=', 'admin')->orderBy('is_verif', 'asc')->orderBy('updated_at', 'desc')->get();
-        $loopingUser = User::where('role', '!=', 'admin')->orderBy('is_verif', 'asc')->orderBy('updated_at', 'desc')->paginate(25);
+        $loopingUser = User::where('role', '!=', 'admin')->orderBy('is_verif', 'asc')->orderBy('updated_at', 'desc')->paginate($perPage);
         $incomplete = User::whereNull('foto_siswa')->orWhereNull('foto_akte')->orWhereNull('foto_ket_tk')->orWhereNull('foto_kk')->count();
         $complete = User::all()->count() - $incomplete;
 

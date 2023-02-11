@@ -29,6 +29,23 @@
                         <div class="card-body">
                             <h5 class="card-title-table">Data Pendaftar</h5>
 
+                            <form action="{{ route('dashboard.data-siswa') }}" method="get">
+                                <div class="form-group col-2 my-2 d-flex align-items-center">
+                                    <label for="per_page" class="me-2">Tampilkan</label>
+                                    <select class="form-control" name="per_page" id="per_page"
+                                        onchange="this.form.submit()">
+                                        <option value="50" {{ request('per_page') == 50 ? 'selected' : '' }}>50
+                                        </option>
+                                        <option value="100" {{ request('per_page') == 100 ? 'selected' : '' }}>100
+                                        </option>
+                                        <option value="250" {{ request('per_page') == 250 ? 'selected' : '' }}>250
+                                        </option>
+                                        <option value="500" {{ request('per_page') == 500 ? 'selected' : '' }}>500
+                                        </option>
+                                    </select>
+                                </div>
+                            </form>
+
                             <table class="table table-borderless datatable">
                                 <thead>
                                     <tr>
@@ -81,7 +98,7 @@
                                 </tbody>
                             </table>
                             <div class="d-flex justify-content-end">
-                                {{ $users->links() }}
+                                {{ $d_users->appends(['per_page' => request('per_page')])->links() }}
                             </div>
                         </div>
                     </div>

@@ -103,6 +103,23 @@
                                     </div>
                                 @endif
 
+                                <form action="{{ route('dashboard.admin') }}" method="get">
+                                    <div class="form-group col-2 my-2 d-flex align-items-center">
+                                        <label for="per_page" class="me-2">Tampilkan</label>
+                                        <select class="form-control" name="per_page" id="per_page"
+                                            onchange="this.form.submit()">
+                                            <option value="50" {{ request('per_page') == 50 ? 'selected' : '' }}>50
+                                            </option>
+                                            <option value="100" {{ request('per_page') == 100 ? 'selected' : '' }}>100
+                                            </option>
+                                            <option value="250" {{ request('per_page') == 250 ? 'selected' : '' }}>250
+                                            </option>
+                                            <option value="500" {{ request('per_page') == 500 ? 'selected' : '' }}>500
+                                            </option>
+                                        </select>
+                                    </div>
+                                </form>
+
                                 <table class="table table-borderless datatable">
                                     <thead>
                                         <tr>
@@ -117,9 +134,9 @@
                                     </thead>
                                     <tbody>
                                         @if (count($d_users) > 0)
-                                            @foreach ($d_users as $user)
+                                            @foreach ($d_users as $key => $user)
                                                 <tr>
-                                                    <th scope="row">{{ $loop->iteration }}</th>
+                                                    <th scope="row">{{ $d_users->firstItem() + $key }}</th>
                                                     <td>{{ $user->nama_lengkap }}</td>
 
                                                     <td>{{ $user->email }}</td>
@@ -173,7 +190,7 @@
                                     </tbody>
                                 </table>
                                 <div class="d-flex justify-content-end">
-                                    {{ $d_users->links() }}
+                                    {{ $d_users->appends(['per_page' => request('per_page')])->links() }}
                                 </div>
                             </div>
                         </div>
