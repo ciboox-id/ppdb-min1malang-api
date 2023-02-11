@@ -18,13 +18,13 @@
         }
 
         .logo-icon {
-            width: 90px;
+            width: 60px;
         }
 
         .wrapper-card {
             padding: 16px;
-            width: 18cm;
-            height: 21cm;
+            width: 74mm;
+            height: 105mm;
             border: 2px solid black;
         }
 
@@ -55,7 +55,7 @@
         }
 
         .foto_siswa {
-            width: 40px;
+            width: 20px;
             margin: 0 auto;
         }
     </style>
@@ -67,16 +67,16 @@
         <table style="margin-top: .5rem;">
             <tr>
                 <td style="text-align: center;">
-                    <img src="{{ public_path('/images/logo-icon.png') }}" alt="" class="logo-icon">
+                    <img src="{{ asset('/images/logo-icon.png') }}" alt="" class="logo-icon">
 
                     <p>
-                        <font style="font-weight: 600;" size="3">Kartu Peserta Pemetaan</font><br>
+                        <font style="font-weight: 600;" size="2">Kartu Peserta Pemetaan</font><br>
                     </p>
                     <p>
-                        <font style="font-weight: 600;" size="4">PPDB MIN 1 KOTA MALANG</font><br>
+                        <font style="font-weight: 600;" size="3">PPDB MIN 1 KOTA MALANG</font><br>
                     </p>
                     <p>
-                        <font size="2">Tahun Ajaran 2023/2024</font>
+                        <font size="1">Tahun Ajaran 2023/2024</font>
                     </p>
                 </td>
             </tr>
@@ -84,22 +84,22 @@
         <div class="line"></div>
         <table>
             <tr>
-                <td style="text-align: center; font-size: 40px;">
-                    <font size="4">No. Pemetaan : {{ $pemetaan->id }}</font>
+                <td style="text-align: center; font-weight:600">
+                    <font size="2">No. Pemetaan : {{ $pemetaan->id }}</font>
                 </td>
             </tr>
         </table>
         <table>
             <tr>
                 <td style="text-align: center;">
-                    <img style="width: 74mm;height: 105mm;" src="{{ public_path($user->foto_siswa) }}" class="foto_siswa">
+                    <img style="width: 19mm;height: 25mm;" src="{{ public_path($user->foto_siswa) }}" class="foto_siswa">
                 </td>
             </tr>
         </table>
-        <table style="margin-top: 16px;">
+        <table style="margin-top: 8px;">
             <tr>
                 <td style="text-align: center; font-weight: 600;">
-                    <font size="4">{{ $user->nama_lengkap }}</font>
+                    <font size="2">{{ $user->nama_lengkap }}</font>
                 </td>
             </tr>
         </table><br>
