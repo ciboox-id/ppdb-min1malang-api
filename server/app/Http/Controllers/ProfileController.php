@@ -114,7 +114,6 @@ class ProfileController extends Controller
             'no_telp_ibu' => 'nullable|numeric',
         ]);
 
-
         $validation['nama_lengkap'] = strtoupper($validation['nama_lengkap']);
         $validationAyah['nama_lengkap_ayah'] = ucfirst($validationAyah['nama_lengkap_ayah']);
         $validationIbu['nama_lengkap_ibu'] = ucfirst($validationIbu['nama_lengkap_ibu']);
@@ -149,16 +148,19 @@ class ProfileController extends Controller
 
     public function indexVerifikasi()
     {
-        $date = "2023-02-07";
         $userVerifikasi = User::where('foto_siswa', '!=', null)
             ->where('foto_akte', '!=', null)
             ->where('foto_kk', '!=', null)
             ->where('foto_ket_tk', '!=', null)
-            ->where('role', '!=', 'admin')->paginate(62);
+            ->where('role', '!=', 'admin');
+
+        if (request('search')) {
+            $userVerifikasi->where('nama_lengkap', 'like', '%' . request('search') . '%');
+        }
 
         return view('data-verifikasi', [
             'active' => 'verifikasi',
-            'users' => $userVerifikasi
+            'users' => $userVerifikasi->paginate(62)
         ]);
     }
 
@@ -189,6 +191,7 @@ class ProfileController extends Controller
         $prestasi = Prestasi::where('user_id', $user->id)->where('jenis_sertifikat', 'prestasi')->first();
 
         $pemetaan = Pemetaan::where('user_id', $user->id)->orderBy('id', 'desc')->first();
+        
         return view('verifikasi', [
             'user' => $user,
             'active' => "verifikasi",

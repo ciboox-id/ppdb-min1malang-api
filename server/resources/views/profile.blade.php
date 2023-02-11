@@ -50,7 +50,7 @@
                                                 <td>{{ $user->email }}</td>
                                                 <td style="text-transform: capitalize">{{ $user->jalur }}</td>
                                                 <td>
-                                                    @if (is_null($user->foto_akte) && is_null($user->foto_siswa))
+                                                    @if (empty($user->foto_akte) && empty($user->foto_siswa) && empty($user->foto_ket_tk) && empty($user->foto_kk))
                                                         <span class="badge rounded-pill status-danger">Kurang</span>
                                                     @else
                                                         <span class="badge rounded-pill status">Lengkap</span>
