@@ -15,7 +15,7 @@
     @endif
     <div class="col-12 d-flex">
         <div class="card col-8 me-3 overflow-auto">
-                @if ($pemetaan->lolos == 'lolos')
+                @if (!empty($pemetaan))
                     <div class="mt-3 d-block">
                         <h5 class="card-title mt-2">Download Kartu Peserta & Lolos berkas</h5>
                         <a href="{{ route('download.kartu-peserta.admin', ['user' => $user->id]) }}" target="_blank"

@@ -115,7 +115,7 @@
         <table width="530" style="padding: 5px 30px;">
             <tr>
                 <td style="width: 100px">No. Pemetaan</td>
-                <td>: {{ $user->id }}</td>
+                <td>: {{ $pemetaan->id }}</td>
             </tr>
             <tr>
                 <td style="width: 100px">Nama Lengkap</td>

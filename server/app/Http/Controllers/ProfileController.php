@@ -188,7 +188,7 @@ class ProfileController extends Controller
         $afirmasi = Prestasi::where('user_id', $user->id)->where('jenis_sertifikat', 'afirmasi')->first();
         $prestasi = Prestasi::where('user_id', $user->id)->where('jenis_sertifikat', 'prestasi')->first();
 
-        $pemetaan = Pemetaan::where('user_id', auth()->user()->id)->orderBy('id', 'desc')->first();
+        $pemetaan = Pemetaan::where('user_id', $user->id)->orderBy('id', 'desc')->first();
         return view('verifikasi', [
             'user' => $user,
             'active' => "verifikasi",
