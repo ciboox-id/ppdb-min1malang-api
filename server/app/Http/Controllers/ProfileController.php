@@ -29,7 +29,6 @@ class ProfileController extends Controller
 
         return view('profile', [
             "users" => $users->orderBy('is_verif', 'asc')->paginate($perPage),
-            "active" => "data-profile"
         ]);
     }
 
@@ -74,7 +73,6 @@ class ProfileController extends Controller
         ];
 
         return view('detail-profile-edit', [
-            'active' => 'data-profile',
             'user' => $user,
             'father' => $user->father,
             'mother' => $user->mother,
@@ -140,7 +138,6 @@ class ProfileController extends Controller
 
         return view('detail-profile', [
             'user' => $user,
-            'active' => "data-profile",
             'date' => $date,
             'time' => $time,
             'verifikator' => $verifikator,
@@ -161,7 +158,6 @@ class ProfileController extends Controller
         }
 
         return view('data-verifikasi', [
-            'active' => 'verifikasi',
             'users' => $userVerifikasi->paginate($perPage)
         ]);
     }
@@ -173,7 +169,6 @@ class ProfileController extends Controller
         $jenis_sertifikat = ['prestasi', 'tahfidz', 'afirmasi'];
 
         return view('sertifikat-check', [
-            'active' => 'sertifikat',
             'tingkat' => $tingkat,
             'posisi_prestasi' => $posisi_prestasi,
             'prestasi' => $prestasi,
@@ -196,7 +191,6 @@ class ProfileController extends Controller
 
         return view('verifikasi', [
             'user' => $user,
-            'active' => "verifikasi",
             'date' => $date,
             'time' => $time,
             'tahfidz' => $tahfidz,
@@ -263,7 +257,6 @@ class ProfileController extends Controller
     {
         $user = User::where('role', 'admin')->get();
         return view('profile-guru', [
-            'active' => 'guru',
             'guru' => $user
         ]);
     }

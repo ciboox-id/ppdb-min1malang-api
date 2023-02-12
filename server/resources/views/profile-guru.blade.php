@@ -82,7 +82,7 @@
                             <div class="input-group has-validation">
                                 <input type="text" name="nama_lengkap"
                                     class="form-control @error('nama_lengkap') is-invalid @enderror" id="nama_lengkap"
-                                    style="text-transform: uppercase" placeholder="ex: Ciboox" autofocus
+                                    style="text-transform: uppercase" placeholder="e.g. Ciboox" autofocus
                                     value="{{ old('nama_lengkap') }}">
                                 @error('nama_lengkap')
                                     <div class="invalid-feedback">
@@ -97,7 +97,7 @@
                             <div class="input-group has-validation">
                                 <input type="email" name="email"
                                     class="form-control @error('email') is-invalid @enderror" id="email"
-                                    placeholder="ex: ciboox.id@gmail.com" autofocus value="{{ old('email') }}">
+                                    placeholder="e.g. ciboox.id@gmail.com" autofocus value="{{ old('email') }}">
                                 @error('email')
                                     <div class="invalid-feedback">
                                         {{ $message }}

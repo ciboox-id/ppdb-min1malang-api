@@ -31,7 +31,7 @@
                             <label for="nama_sekolah" class="form-label">Nama Sekolah <span
                                     class="mandatory">*</span></label>
                             <input type="text" class="form-control" name="nama_sekolah"
-                                value="{{ $user->school->nama_sekolah }}" placeholder="ex: Tadika Mesra" required>
+                                value="{{ $user->school->nama_sekolah }}" placeholder="e.g. Tadika Mesra" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="asal_sekolah" class="form-label">Asal Sekolah <span
@@ -47,7 +47,7 @@
                         <div class="col-sm-12 col-md-6">
                             <label for="npsn" class="form-label">NPSN <span class="mandatory">*</span></label>
                             <input type="text" class="form-control" value="{{ $user->school->npsn }}" name="npsn"
-                                placeholder="ex: 1237823" required>
+                                placeholder="e.g. 1237823" required>
                         </div>
 
                         <button type="submit" class="btn btn-primary mt-4 py-2 rounded-2">

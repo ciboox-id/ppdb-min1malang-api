@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardAuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PemetaanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentDashboardController;
 use App\Models\Pemetaan;
@@ -65,16 +66,20 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/data-alamat', [StudentDashboardController::class, 'dataAlamat'])->name('dashboard.data-alamat');
         Route::put('/data-alamat/update', [StudentDashboardController::class, 'updateDataAlamat'])->name('dashboard.data-alamat.update');
 
+
+        Route::middleware(['admin'])->group(function () {
+            Route::get('/export-to-excel', [DashboardController::class, 'export'])->name('dashboard.export.excel');
+        });
     });
 
     Route::middleware(['admin'])->group(function () {
         Route::get('/dashboard/admin', [DashboardController::class, 'index'])->name('dashboard.admin');
         Route::delete('/dashboard/students/{student}', [DashboardController::class, 'destroy'])->name('dashboard.data-siswa.delete');
 
-        Route::get('/data-profile', [ProfileController::class, 'index'])->name('dashboard.data-siswa');
-        Route::get('/data-profile/{user:email}', [ProfileController::class, 'show'])->name('dashboard.data-siswa.detail');
-        Route::get('/data-profile/{user:email}/edit', [ProfileController::class, 'edit'])->name('dashboard.data-siswa.edit');
-        Route::put('/data-profile/update/{user}', [ProfileController::class, 'update'])->name('dashboard.data-siswa.update');
+        Route::get('/data-siswa', [ProfileController::class, 'index'])->name('dashboard.data-siswa');
+        Route::get('/data-siswa/{user:email}', [ProfileController::class, 'show'])->name('dashboard.data-siswa.detail');
+        Route::get('/data-siswa/{user:email}/edit', [ProfileController::class, 'edit'])->name('dashboard.data-siswa.edit');
+        Route::put('/data-siswa/update/{user}', [ProfileController::class, 'update'])->name('dashboard.data-siswa.update');
 
         Route::get('/data-guru', [ProfileController::class, 'indexGuru'])->name('dashboard.data-guru');
         Route::post('/data-guru/store', [ProfileController::class, 'storeGuru'])->name('dashboard.data-guru.store');
@@ -82,10 +87,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/data-verifikasi', [ProfileController::class, 'indexVerifikasi'])->name('dashboard.verifikasi');
         Route::get('/data-verifikasi/{user:email}', [ProfileController::class, 'showVerifikasi'])->name('dashboard.verifikasi.detail');
         Route::get('/data-verifikasi/{prestasi}/sertifikat', [ProfileController::class, 'verifSertifikat'])->name('dashboard.verifikasi.sertifikat');
-        Route::post('/verifikasi-siswa/{user}/post', [ProfileController::class, 'verifikasi'])->name('verifikasi');
-        Route::post('/batal-verifikasi-data/{user}', [ProfileController::class, 'inverifikasi'])->name('inverifikasi');
+        Route::post('/data-verifikasi/{user}/verifikasi', [ProfileController::class, 'verifikasi'])->name('verifikasi');
+        Route::post('/data-verifikasi/{user}/cancel-verifikasi', [ProfileController::class, 'inverifikasi'])->name('inverifikasi');
+
         Route::post('/reset-password/{user}', [ProfileController::class, 'resetPassword'])->name('dashboard.password-reset');
 
-        Route::get('/dashboard/admin/export', [DashboardController::class, 'export'])->name('dashboard.export');
+        Route::get('/data-pemetaan', [PemetaanController::class, 'index'])->name('dashboard.pemetaan');
     });
 });

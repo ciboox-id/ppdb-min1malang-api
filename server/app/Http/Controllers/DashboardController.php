@@ -38,7 +38,6 @@ class DashboardController extends Controller
             'd_users' => $loopingUser,
             'incomplete' => $incomplete - count($userAdmin),
             'complete' => $complete,
-            'active' => "dashboard"
         ]);
     }
 
@@ -93,7 +92,6 @@ class DashboardController extends Controller
         $address = count(array_keys($resad[0], null));
 
         return view('dashboard-siswa', [
-            'active' => 'dashboard',
             'user' => $userAuth,
             'biodata' => $biodata,
             'prestasi' => $prestasi,

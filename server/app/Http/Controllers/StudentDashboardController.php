@@ -21,7 +21,6 @@ class StudentDashboardController extends Controller
         $user = auth()->user();
 
         return view('student.data-umum', [
-            'active' => 'data-umum',
             'user' => $user,
             'gol_darah' => $gol_darah
         ]);
@@ -93,7 +92,6 @@ class StudentDashboardController extends Controller
         ];
 
         return view('student.data-ortu', [
-            'active' => 'data-ortu',
             'father' => $user->father,
             'mother' => $user->mother,
             'user' => $user,
@@ -143,7 +141,6 @@ class StudentDashboardController extends Controller
         $asal = ['TK', 'BA', 'RA', 'TA'];
 
         return view('student.data-sekolah', [
-            'active' => 'data-sekolah',
             'user' => $school,
             'asal' => $asal
         ]);
@@ -172,7 +169,6 @@ class StudentDashboardController extends Controller
         $tingkat = ['kota', 'kabupaten', 'propinsi', 'nasional', 'internasional'];
 
         return view('student.data-prestasi', [
-            'active' => 'data-prestasi',
             'prestasi' => $prestasi,
             'tingkat' => $tingkat
         ]);
@@ -229,7 +225,6 @@ class StudentDashboardController extends Controller
     {
         $berkas = auth()->user();
         return view('student.data-berkas', [
-            'active' => 'data-berkas',
             'berkas' => $berkas
         ]);
     }
@@ -314,7 +309,6 @@ class StudentDashboardController extends Controller
         $address = auth()->user();
 
         return view('student.data-alamat', [
-            'active' => 'data-alamat',
             'user' => $address,
             'jarak' => $jarak
         ]);

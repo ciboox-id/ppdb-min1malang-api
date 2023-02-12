@@ -127,7 +127,7 @@
                         <div class="col-12">
                             <label for="inputNanme4" class="form-label">Prestasi</label>
                             <input type="text" class="form-control" name="prestasi"
-                                placeholder="ex: Juara 1 lomba olimpiade matematika">
+                                placeholder="e.g. Juara 1 lomba olimpiade matematika">
                         </div>
                         <div class="col-12">
                             <label for="inputNanme4" class="form-label">Tingkat</label>
@@ -165,7 +165,7 @@
                         <div class="col-12">
                             <label for="inputNanme4" class="form-label">Nama Sertifikat</label>
                             <input type="text" class="form-control" name="prestasi"
-                                placeholder="ex: Sertifikat tahfidz pondok ...">
+                                placeholder="e.g. Sertifikat tahfidz pondok ...">
                         </div>
                         <div class="col-12">
                             <label for="foto_siswa" class="form-label">Sertifikat</label>
@@ -195,7 +195,7 @@
                         <div class="col-12">
                             <label for="inputNanme4" class="form-label">Jenis surat</label>
                             <input type="text" class="form-control" name="prestasi"
-                                placeholder="ex: Surat keterangan dari kelurahan">
+                                placeholder="e.g. Surat keterangan dari kelurahan">
                         </div>
                         <div class="col-12">
                             <label for="foto_siswa" class="form-label">Surat Keterangan</label>

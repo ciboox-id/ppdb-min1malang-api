@@ -70,11 +70,11 @@
 
                             </form>
                         </li>
-                    </ul><!-- End Profile Dropdown Items -->
-                </li><!-- End Profile Nav -->
+                    </ul>
+                </li>
             </ul>
-        </nav><!-- End Icons Navigation -->
-    </header><!-- End Header -->
+        </nav>
+    </header>
 
     <aside id="sidebar" class="sidebar">
 
@@ -82,49 +82,57 @@
 
             @can('admin')
                 <li class="nav-item">
-                    <a class="nav-link {{ $active === 'dashboard' ? '' : 'collapsed' }}"
+                    <a class="nav-link {{ Request::is('dashboard/*') ? '' : 'collapsed' }}"
                         href="{{ route('dashboard.admin') }}">
                         <i class="bi bi-grid"></i>
                         <span>Dashboard</span>
                     </a>
-                </li><!-- End Dashboard Nav -->
+                </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ $active === 'data-profile' ? '' : 'collapsed' }}"
+                    <a class="nav-link {{ Request::is('data-siswa/*', 'data-siswa') ? '' : 'collapsed' }}"
                         href="{{ route('dashboard.data-siswa') }}">
                         <i class="bi bi-people"></i>
                         <span>Data Pendaftar</span>
                     </a>
-                </li><!-- End Data pendaftar Page Nav -->
+                </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ $active === 'guru' ? '' : 'collapsed' }}"
+                    <a class="nav-link {{ Request::is('data-guru/*', 'data-guru') ? '' : 'collapsed' }}"
                         href="{{ route('dashboard.data-guru') }}">
-                        <i class="bi bi-bar-chart"></i>
+                        <i class="bi bi-person"></i>
                         <span>Data Guru</span>
                     </a>
-                </li><!-- End Result Page Nav -->
+                </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ $active === 'verifikasi' ? '' : 'collapsed' }}"
+                    <a class="nav-link {{ Request::is('verifikasi/*', 'verifikasi') ? '' : 'collapsed' }}"
                         href="{{ route('dashboard.verifikasi') }}">
                         <i class="bi bi-check-circle"></i>
                         <span>Verifikasi</span>
                     </a>
-                </li><!-- End Result Page Nav -->
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('pemetaan/*', 'pemetaan') ? '' : 'collapsed' }}"
+                        href="{{ route('dashboard.pemetaan') }}">
+                        <i class="bi bi-bar-chart"></i>
+                        <span>Data Pemetaan</span>
+                    </a>
+                </li>
             @endcan
 
 
             @can('siswa')
                 <li class="nav-item">
-                    <a class="nav-link {{ $active === 'dashboard' ? '' : 'collapsed' }}"
+                    <a class="nav-link {{ Request::is('dashboard/student') ? '' : 'collapsed' }}"
                         href="{{ route('dashboard.siswa') }}">
                         <i class="bi bi-grid"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $active === 'data-umum' ? '' : 'collapsed' }}"
+                    <a class="nav-link {{ Request::is('data-umum') ? '' : 'collapsed' }}"
                         href="{{ route('dashboard.data-umum') }}">
                         <i class="bi bi-person"></i>
                         <span>Data Umum</span>
@@ -132,7 +140,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ $active === 'data-berkas' ? '' : 'collapsed' }}"
+                    <a class="nav-link {{ Request::is('data-berkas') ? '' : 'collapsed' }}"
                         href="{{ route('dashboard.data-berkas') }}">
                         <i class="bi bi-file-earmark-break"></i>
                         <span>Data Berkas</span>
@@ -140,7 +148,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ $active === 'data-ortu' ? '' : 'collapsed' }}"
+                    <a class="nav-link {{ Request::is('data-ortu') ? '' : 'collapsed' }}"
                         href="{{ route('dashboard.data-ortu') }}">
                         <i class="bi bi-people"></i>
                         <span>Data Orang Tua</span>
@@ -148,7 +156,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ $active === 'data-sekolah' ? '' : 'collapsed' }}"
+                    <a class="nav-link {{ Request::is('data-sekolah') ? '' : 'collapsed' }}"
                         href="{{ route('dashboard.data-sekolah') }}">
                         <i class="bi bi-mortarboard"></i>
                         <span>Data Sekolah</span>
@@ -156,7 +164,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ $active === 'data-alamat' ? '' : 'collapsed' }}"
+                    <a class="nav-link {{ Request::is('data-alamat') ? '' : 'collapsed' }}"
                         href="{{ route('dashboard.data-alamat') }}">
                         <i class="bi bi-house"></i>
                         <span>Data Alamat</span>
@@ -164,7 +172,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ $active === 'data-prestasi' ? '' : 'collapsed' }}"
+                    <a class="nav-link {{ Request::is('data-prestasi') ? '' : 'collapsed' }}"
                         href="{{ route('dashboard.data-prestasi') }}">
                         <i class="bi bi-123"></i>
                         <span>Upload Sertifikat</span>

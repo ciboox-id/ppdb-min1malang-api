@@ -1,33 +1,13 @@
 @extends('layouts.main')
 
 @section('container')
-    <div class="pagetitle">
-        <h1>Lihat berdasarkan</h1>
-    </div><!-- End Page Title -->
-
-    <div class="row">
-        <div class="mb-3 col-4">
-
-            <form action="{{ route('dashboard.data-siswa') }}">
-                <div class="input-group mb-3">
-                    <input type="text" name="search" id="search" class="form-control" placeholder="Search..."
-                        value="{{ request('search') }}">
-                    <button class="btn btn-primary">Search</button>
-                </div>
-            </form>
-
-            <a href="{{ route('dashboard.export.excel') }}" class="btn btn-primary">Export to excel</a>
-        </div>
-    </div>
-
     <section class="section dashboard">
         <div class="row">
-            <!-- Left side columns -->
             <div class="col-lg-12">
                 <div class="col-12">
                     <div class="card recent-sales overflow-auto">
                         <div class="card-body">
-                            <h5 class="card-title-table">Data Pendaftar</h5>
+                            <h5 class="card-title-table">Daftar Pemetaan</h5>
 
                             <form action="{{ route('dashboard.data-siswa') }}" method="get">
                                 <div class="form-group col-2 my-2 d-flex align-items-center">
@@ -53,37 +33,31 @@
                                         <th scope="col">Nama</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Jalur</th>
-                                        <th scope="col">Status Berkas</th>
                                         <th scope="col">Status verifikasi</th>
+                                        <th scope="col">No. Pemetaan</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (count($users) > 0)
-                                        @foreach ($users as $user)
+                                    @if (count($pemetaans) > 0)
+                                        @foreach ($pemetaans as $key => $pemetaan)
                                             <tr>
                                                 <th scope="row">{{ $loop->iteration }}</th>
-                                                <td>{{ $user->nama_lengkap }}</td>
-                                                <td>{{ $user->email }}</td>
-                                                <td style="text-transform: capitalize">{{ $user->jalur }}</td>
+                                                <td>{{ $pemetaan->user->nama_lengkap }}</td>
+                                                <td>{{ $pemetaan->user->email }}</td>
+                                                <td style="text-transform: capitalize">{{ $pemetaan->user->jalur }}</td>
                                                 <td>
-                                                    @if (empty($user->foto_akte) && empty($user->foto_siswa) && empty($user->foto_ket_tk) && empty($user->foto_kk))
-                                                        <span class="badge rounded-pill status-danger">Kurang</span>
-                                                    @else
-                                                        <span class="badge rounded-pill status">Lengkap</span>
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if (!$user->is_verif)
+                                                    @if (!$pemetaan->user->is_verif)
                                                         <span class="badge rounded-pill status-danger">Belum
                                                             terverfikasi</span>
                                                     @else
                                                         <span class="badge rounded-pill status">Sudah terverfikasi</span>
                                                     @endif
                                                 </td>
+                                                <td>{{ $pemetaan->id }}</td>
                                                 <td>
                                                     <a class="badge rounded-pill bg-success badge-custom btn-aksi"
-                                                        href="{{ route('dashboard.data-siswa.detail', ['user' => $user->email]) }}">
+                                                        href="{{ route('dashboard.data-siswa.detail', ['user' => $pemetaan->user->email]) }}">
                                                         <i class="bi bi-eye-fill"></i>
                                                         Lihat data
                                                     </a>
@@ -97,15 +71,11 @@
                                     @endif
                                 </tbody>
                             </table>
-                            <div class="d-flex justify-content-end">
-                                {{ $users->appends(['per_page' => request('per_page')])->links() }}
-                            </div>
                         </div>
+
                     </div>
-                </div><!-- End Recent Sales -->
-
+                </div>
             </div>
-        </div><!-- End Left side columns -->
+        </div>
     </section>
-
 @endsection

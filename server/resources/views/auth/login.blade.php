@@ -52,7 +52,7 @@
                                         <div class="input-group has-validation">
                                             <input type="email" name="email"
                                                 class="form-control @error('email') is-invalid @enderror" id="email"
-                                                placeholder="ex: ciboox.id@gmail.com" autofocus value="{{ old('email') }}">
+                                                placeholder="e.g. ciboox.id@gmail.com" autofocus value="{{ old('email') }}">
                                             @error('email')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}

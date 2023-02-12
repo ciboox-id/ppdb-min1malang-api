@@ -25,7 +25,7 @@
                     <div class="col-12">
                         <label for="inputNanme4" class="form-label">Prestasi</label>
                         <input type="text" class="form-control" name="prestasi"
-                            placeholder="ex: Juara 1 lomba olimpiade matematika" value="{{ $prestasi->prestasi }}" disabled>
+                            placeholder="e.g. Juara 1 lomba olimpiade matematika" value="{{ $prestasi->prestasi }}" disabled>
                     </div>
 
                     <div class="col-12">

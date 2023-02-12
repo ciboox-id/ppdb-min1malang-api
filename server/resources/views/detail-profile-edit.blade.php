@@ -27,12 +27,12 @@
                             <label for="nama_lengkap" class="form-label">Nama Lengkap <span
                                     class="mandatory">*</span></label>
                             <input type="text" class="form-control" name="nama_lengkap" value="{{ $user->nama_lengkap }}"
-                                placeholder="ex: ciboox.id" style="text-transform: uppercase" >
+                                placeholder="e.g.  ciboox.id" style="text-transform: uppercase" >
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="anak_ke" class="form-label">Anak ke <span class="mandatory">*</span></label>
                             <input type="number" class="form-control" value="{{ $user->anak_ke }}" name="anak_ke"
-                                placeholder="ex: 1" >
+                                placeholder="e.g.  1" >
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="category" class="form-label">Jenis Kelamin <span class="mandatory">*</span></label>
@@ -46,18 +46,18 @@
                         <div class="col-sm-12 col-md-6">
                             <label for="nisn" class="form-label">NISN</label>
                             <input type="text" class="form-control" id="inputAddress" value="{{ $user->nisn }}"
-                                name="nisn" placeholder="ex: 2163688232">
+                                name="nisn" placeholder="e.g.  2163688232">
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="nik"class="form-label">NIK</label>
                             <input type="text" class="form-control" id="inputAddress" value="{{ $user->nik }}"
-                                name="nik" placeholder="ex: 2163688232" maxlength="16">
+                                name="nik" placeholder="e.g.  2163688232" maxlength="16">
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="alamat_siswa" class="form-label">Alamat Siswa <span
                                     class="mandatory">*</span></label>
                             <input type="text" class="form-control" id="alamat_siswa" value="{{ $user->alamat_siswa }}"
-                                name="alamat_siswa" placeholder="ex: Jln Danau Ranau" >
+                                name="alamat_siswa" placeholder="e.g.  Jln Danau Ranau" >
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="gol_darah" class="form-label">Golongan Darah <span
@@ -76,7 +76,7 @@
                             <label for="tempat_lahir" class="form-label">Tempat Lahir <span
                                     class="mandatory">*</span></label>
                             <input type="text" class="form-control" id="tempat_lahir" value="{{ $user->tempat_lahir }}"
-                                name="tempat_lahir" placeholder="ex: Malang" >
+                                name="tempat_lahir" placeholder="e.g.  Malang" >
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="tanggal_lahir" class="form-label">Tanggal Lahir <span
@@ -92,23 +92,23 @@
                             <label for="nama_lengkap_ayah" class="form-label">Nama Lengkap Ayah <span
                                     class="mandatory">*</span></label>
                             <input type="text" class="form-control" name="nama_lengkap_ayah"
-                                placeholder="ex: Budi Setyawan" value="{{ $father->nama_lengkap_ayah }}" >
+                                placeholder="e.g.  Budi Setyawan" value="{{ $father->nama_lengkap_ayah }}" >
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="nama_lengkap_ibu" class="form-label">Nama Lengkap Ibu <span
                                     class="mandatory">*</span></label>
                             <input type="text" class="form-control" value="{{ $mother->nama_lengkap_ibu }}"
-                                name="nama_lengkap_ibu" placeholder="ex: Putri Tjisaka" >
+                                name="nama_lengkap_ibu" placeholder="e.g.  Putri Tjisaka" >
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="nik_ayah" class="form-label">NIK Ayah <span class="mandatory">*</span></label>
                             <input type="text" class="form-control" name="nik_ayah" value="{{ $father->nik_ayah }}"
-                                placeholder="ex: 213521376182367" maxlength="16" >
+                                placeholder="e.g.  213521376182367" maxlength="16" >
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="nik_ibu" class="form-label">NIK Ibu <span class="mandatory">*</span></label>
                             <input type="text" class="form-control" value="{{ $mother->nik_ibu }}" name="nik_ibu"
-                                placeholder="ex: 123721596236" maxlength="16" >
+                                placeholder="e.g.  123721596236" maxlength="16" >
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="pekerjaan_ayah" class="form-label">Pekerjaan Ayah <span
@@ -137,13 +137,13 @@
                             <label for="nama_kantor_ayah" class="form-label">Nama Kantor Ayah <span
                                     class="mandatory">*</span></label>
                             <input type="text" class="form-control" value="{{ $father->nama_kantor_ayah }}"
-                                name="nama_kantor_ayah" placeholder="ex: Sawah" >
+                                name="nama_kantor_ayah" placeholder="e.g.  Sawah" >
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="nama_kantor_ibu" class="form-label">Nama Kantor Ibu <span
                                     class="mandatory">*</span></label>
                             <input type="text" class="form-control" value="{{ $mother->nama_kantor_ibu }}"
-                                name="nama_kantor_ibu" placeholder="ex: Rumah" >
+                                name="nama_kantor_ibu" placeholder="e.g.  Rumah" >
                         </div>
 
                         <div class="col-sm-12 col-md-6">
@@ -174,14 +174,14 @@
                             <label for="no_telp_ayah" class="form-label">No. Telp Ayah <span
                                     class="mandatory">*</span></label>
                             <input type="text" class="form-control" value="{{ $father->no_telp_ayah }}"
-                                name="no_telp_ayah" placeholder="ex: 08213526135" >
+                                name="no_telp_ayah" placeholder="e.g.  08213526135" >
                         </div>
 
                         <div class="col-sm-12 col-md-6">
                             <label for="no_telp_ibu" class="form-label">No. Telp Ibu <span
                                     class="mandatory">*</span></label>
                             <input type="text" class="form-control" value="{{ $mother->no_telp_ibu }}"
-                                name="no_telp_ibu" placeholder="ex: 08213526135" >
+                                name="no_telp_ibu" placeholder="e.g.  08213526135" >
                         </div>
                     </div>
 
