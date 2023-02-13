@@ -41,28 +41,31 @@
                                 <tbody>
                                     @if (!empty($users))
                                         @foreach ($users as $key => $user)
-                                            <tr>
-                                                <th scope="row">{{ $loop->iteration }}</th>
-                                                <td>{{ $user->nama_lengkap }}</td>
-                                                <td>{{ $user->email }}</td>
-                                                <td style="text-transform: capitalize">{{ $user->jalur }}</td>
-                                                <td>
-                                                    @if (!$user->is_verif)
-                                                        <span class="badge rounded-pill status-danger">Belum
-                                                            terverfikasi</span>
-                                                    @else
-                                                        <span class="badge rounded-pill status">Sudah terverfikasi</span>
-                                                    @endif
-                                                </td>
-                                                <td>{{ $user->latestPemetaan->id }}</td>
-                                                <td>
-                                                    <a class="badge rounded-pill bg-success badge-custom btn-aksi"
-                                                        href="{{ route('dashboard.data-siswa.detail', ['user' => $user->email]) }}">
-                                                        <i class="bi bi-eye-fill"></i>
-                                                        Lihat data
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                            @if ($user->pemetaan)
+                                                <tr>
+                                                    <th scope="row">{{ $loop->iteration }}</th>
+                                                    <td>{{ $user->nama_lengkap }}</td>
+                                                    <td>{{ $user->email }}</td>
+                                                    <td style="text-transform: capitalize">{{ $user->jalur }}</td>
+                                                    <td>
+                                                        @if (!$user->is_verif)
+                                                            <span class="badge rounded-pill status-danger">Belum
+                                                                terverfikasi</span>
+                                                        @else
+                                                            <span class="badge rounded-pill status">Sudah
+                                                                terverfikasi</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>{{ str_pad($user->latestPemetaan->id, 4, '0', STR_PAD_LEFT) }}</td>
+                                                    <td>
+                                                        <a class="badge rounded-pill bg-success badge-custom btn-aksi"
+                                                            href="{{ route('dashboard.data-siswa.detail', ['user' => $user->email]) }}">
+                                                            <i class="bi bi-eye-fill"></i>
+                                                            Lihat data
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endif
                                         @endforeach
                                     @else
                                         <tr>
