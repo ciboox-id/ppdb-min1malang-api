@@ -31,9 +31,9 @@
                             rel="noopener noreferrer">Download surat hasil verifikasi</a>
                     </div>
                 @else
-                    <div class="alert alert-danger" role="alert">
+                    <div class="alert alert-danger mt-3" role="alert">
                         <i class="bi bi-check-circle"></i>
-                        <p>Anda dinyatakan Tidak Lolos Verifikasi Berkas</p>
+                        Anda dinyatakan Tidak Lolos Verifikasi Berkas
                     </div>
                 @endif
 

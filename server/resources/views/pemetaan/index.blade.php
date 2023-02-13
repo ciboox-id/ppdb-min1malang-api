@@ -41,7 +41,7 @@
                                 <tbody>
                                     @if (!empty($users))
                                         @foreach ($users as $key => $user)
-                                            @if ($user->pemetaan)
+                                            @if ($user->latestPemetaan && $user->latestPemetaan->lolos == "lolos")
                                                 <tr>
                                                     <th scope="row">{{ $loop->iteration }}</th>
                                                     <td>{{ $user->nama_lengkap }}</td>
@@ -56,7 +56,7 @@
                                                                 terverfikasi</span>
                                                         @endif
                                                     </td>
-                                                    <td>{{ str_pad($user->latestPemetaan->id, 4, '0', STR_PAD_LEFT) }}</td>
+                                                    <td>{{ str_pad($user->latestPemetaan->id, 3, '0', STR_PAD_LEFT) }}</td>
                                                     <td>
                                                         <a class="badge rounded-pill bg-success badge-custom btn-aksi"
                                                             href="{{ route('dashboard.data-siswa.detail', ['user' => $user->email]) }}">

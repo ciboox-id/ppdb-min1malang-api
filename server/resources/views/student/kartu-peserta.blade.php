@@ -85,7 +85,7 @@
         <table>
             <tr>
                 <td style="text-align: center; font-weight:600">
-                    <font size="2">No. Pemetaan : {{ str_pad($pemetaan->id, 4, '0', STR_PAD_LEFT) }}</font>
+                    <font size="2">No. Pemetaan : {{ str_pad($pemetaan->id, 3, '0', STR_PAD_LEFT) }}</font>
                 </td>
             </tr>
         </table>

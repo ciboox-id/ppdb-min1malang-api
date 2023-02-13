@@ -132,7 +132,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('data-umum') ? '' : 'collapsed' }}"
+                    <a class="nav-link {{ Request::is('dashboard/data-umum') ? '' : 'collapsed' }}"
                         href="{{ route('dashboard.data-umum') }}">
                         <i class="bi bi-person"></i>
                         <span>Data Umum</span>
@@ -140,7 +140,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('data-berkas') ? '' : 'collapsed' }}"
+                    <a class="nav-link {{ Request::is('dashboard/data-berkas') ? '' : 'collapsed' }}"
                         href="{{ route('dashboard.data-berkas') }}">
                         <i class="bi bi-file-earmark-break"></i>
                         <span>Data Berkas</span>
@@ -148,7 +148,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('data-ortu') ? '' : 'collapsed' }}"
+                    <a class="nav-link {{ Request::is('dashboard/data-ortu') ? '' : 'collapsed' }}"
                         href="{{ route('dashboard.data-ortu') }}">
                         <i class="bi bi-people"></i>
                         <span>Data Orang Tua</span>
@@ -156,7 +156,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('data-sekolah') ? '' : 'collapsed' }}"
+                    <a class="nav-link {{ Request::is('dashboard/data-sekolah') ? '' : 'collapsed' }}"
                         href="{{ route('dashboard.data-sekolah') }}">
                         <i class="bi bi-mortarboard"></i>
                         <span>Data Sekolah</span>
@@ -164,7 +164,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('data-alamat') ? '' : 'collapsed' }}"
+                    <a class="nav-link {{ Request::is('dashboard/data-alamat') ? '' : 'collapsed' }}"
                         href="{{ route('dashboard.data-alamat') }}">
                         <i class="bi bi-house"></i>
                         <span>Data Alamat</span>
@@ -172,7 +172,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('data-prestasi') ? '' : 'collapsed' }}"
+                    <a class="nav-link {{ Request::is('dashboard/data-prestasi') ? '' : 'collapsed' }}"
                         href="{{ route('dashboard.data-prestasi') }}">
                         <i class="bi bi-123"></i>
                         <span>Upload Sertifikat</span>

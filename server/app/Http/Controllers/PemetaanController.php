@@ -18,7 +18,9 @@ class PemetaanController extends Controller
         $users = User::where('role', '!=', 'admin')->with('latestPemetaan')->get();
 
         return view('pemetaan.index', [
-            'users' => $users
+            'users' => $users->sortByDesc(function ($user) {
+                return $user->latestPemetaan->id;
+            })
         ]);
     }
 
