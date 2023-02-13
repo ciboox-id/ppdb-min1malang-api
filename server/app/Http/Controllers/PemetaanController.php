@@ -15,10 +15,10 @@ class PemetaanController extends Controller
      */
     public function index()
     {
-        $pemetaans = Pemetaan::with('user')->get();
+        $users = User::where('role', '!=', 'admin')->with('latestPemetaan')->get();
 
         return view('pemetaan.index', [
-            'pemetaans' => $pemetaans
+            'users' => $users
         ]);
     }
 

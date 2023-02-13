@@ -39,25 +39,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (count($pemetaans) > 0)
-                                        @foreach ($pemetaans as $key => $pemetaan)
+                                    @if (!empty($users))
+                                        @foreach ($users as $key => $user)
                                             <tr>
                                                 <th scope="row">{{ $loop->iteration }}</th>
-                                                <td>{{ $pemetaan->user->nama_lengkap }}</td>
-                                                <td>{{ $pemetaan->user->email }}</td>
-                                                <td style="text-transform: capitalize">{{ $pemetaan->user->jalur }}</td>
+                                                <td>{{ $user->nama_lengkap }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td style="text-transform: capitalize">{{ $user->jalur }}</td>
                                                 <td>
-                                                    @if (!$pemetaan->user->is_verif)
+                                                    @if (!$user->is_verif)
                                                         <span class="badge rounded-pill status-danger">Belum
                                                             terverfikasi</span>
                                                     @else
                                                         <span class="badge rounded-pill status">Sudah terverfikasi</span>
                                                     @endif
                                                 </td>
-                                                <td>{{ $pemetaan->id }}</td>
+                                                <td>{{ $user->latestPemetaan->id }}</td>
                                                 <td>
                                                     <a class="badge rounded-pill bg-success badge-custom btn-aksi"
-                                                        href="{{ route('dashboard.data-siswa.detail', ['user' => $pemetaan->user->email]) }}">
+                                                        href="{{ route('dashboard.data-siswa.detail', ['user' => $user->email]) }}">
                                                         <i class="bi bi-eye-fill"></i>
                                                         Lihat data
                                                     </a>

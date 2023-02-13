@@ -106,7 +106,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('verifikasi/*', 'verifikasi') ? '' : 'collapsed' }}"
+                    <a class="nav-link {{ Request::is('data-verifikasi/*', 'data-verifikasi') ? '' : 'collapsed' }}"
                         href="{{ route('dashboard.verifikasi') }}">
                         <i class="bi bi-check-circle"></i>
                         <span>Verifikasi</span>
@@ -114,7 +114,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('pemetaan/*', 'pemetaan') ? '' : 'collapsed' }}"
+                    <a class="nav-link {{ Request::is('data-pemetaan/*', 'data-pemetaan') ? '' : 'collapsed' }}"
                         href="{{ route('dashboard.pemetaan') }}">
                         <i class="bi bi-bar-chart"></i>
                         <span>Data Pemetaan</span>

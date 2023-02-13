@@ -75,4 +75,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Pemetaan::class);
     }
+
+    public function latestPemetaan()
+    {
+        return $this->hasOne(Pemetaan::class)->latest()->orderBy('id', 'asc');
+    }
 }
