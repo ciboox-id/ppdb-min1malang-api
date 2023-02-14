@@ -8,6 +8,7 @@
                     <div class="card recent-sales overflow-auto">
                         <div class="card-body">
                             <h5 class="card-title-table">Daftar Pemetaan</h5>
+                            <a href="{{ route('dashboard.export.excel.verifikasi') }}" class="btn btn-primary">Export to excel</a>
 
                             <form action="{{ route('dashboard.data-siswa') }}" method="get">
                                 <div class="form-group col-2 my-2 d-flex align-items-center">
@@ -26,7 +27,7 @@
                                 </div>
                             </form>
 
-                            <table class="table table-borderless datatable">
+                            <table class="table table-bordered datatable">
                                 <thead>
                                     <tr>
                                         <th scope="col">No.</th>
@@ -59,9 +60,9 @@
                                                     <td>{{ str_pad($user->latestPemetaan->id, 3, '0', STR_PAD_LEFT) }}</td>
                                                     <td>
                                                         <a class="badge rounded-pill bg-success badge-custom btn-aksi"
-                                                            href="{{ route('dashboard.data-siswa.detail', ['user' => $user->email]) }}">
+                                                            href="{{ route('dashboard.pemetaan.detail', ['user' => $user->email]) }}">
                                                             <i class="bi bi-eye-fill"></i>
-                                                            Lihat data
+                                                            Pemetaan
                                                         </a>
                                                     </td>
                                                 </tr>

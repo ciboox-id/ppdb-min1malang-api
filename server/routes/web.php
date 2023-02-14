@@ -69,6 +69,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::middleware(['admin'])->group(function () {
             Route::get('/export-to-excel', [DashboardController::class, 'export'])->name('dashboard.export.excel');
+            Route::get('/export-verifikasi-to-excel', [DashboardController::class, 'exportDataVerifikasi'])->name('dashboard.export.excel.verifikasi');
         });
     });
 
@@ -93,5 +94,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/reset-password/{user}', [ProfileController::class, 'resetPassword'])->name('dashboard.password-reset');
 
         Route::get('/data-pemetaan', [PemetaanController::class, 'index'])->name('dashboard.pemetaan');
+        Route::get('/data-pemetaan/{user:email}', [PemetaanController::class, 'show'])->name('dashboard.pemetaan.detail');
+        Route::post('/data-pemetaan/{user:email}', [PemetaanController::class, 'create'])->name('dashboard.pemetaan.create');
     });
 });
