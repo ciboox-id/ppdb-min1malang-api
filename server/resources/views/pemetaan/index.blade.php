@@ -44,7 +44,7 @@
                                         @foreach ($users as $key => $user)
                                             @if ($user->latestPemetaan && $user->latestPemetaan->lolos == "lolos")
                                                 <tr>
-                                                    <th scope="row">{{ $loop->iteration }}</th>
+                                                    <th scope="row">{{ $key }}</th>
                                                     <td>{{ $user->nama_lengkap }}</td>
                                                     <td>{{ $user->email }}</td>
                                                     <td style="text-transform: capitalize">{{ $user->jalur }}</td>

@@ -16,11 +16,11 @@ class PemetaanController extends Controller
      */
     public function index()
     {
-        $users = User::where('role', '!=', 'admin')->with('latestPemetaan')->get();
+        $users = User::where('role', '!=', 'admin')->where('is_verif', true)->with('latestPemetaan')->get();
 
         return view('pemetaan.index', [
             'users' => $users->sortBy(function ($user) {
-                return $user->latestPemetaan->id;
+                return $user->latestPemetaan->id ?? null;
             })
         ]);
     }

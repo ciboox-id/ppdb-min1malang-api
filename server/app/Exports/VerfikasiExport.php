@@ -13,15 +13,15 @@ class VerfikasiExport implements FromCollection, WithHeadings
      */
     public function collection()
     {
-        $users = User::where('role', '!=', 'admin')->with('latestPemetaan')->get()->sortBy(function ($user) {
-            return $user->latestPemetaan->id;
+        $users = User::where('role', '!=', 'admin')->where('is_verif', true)->with('latestPemetaan')->get()->sortBy(function ($user) {
+            return $user->latestPemetaan->id ?? null;
         });
         $data = [];
         $i = 0;
 
         foreach ($users as $user) {
             $i++;
-            $pemetaan = $user->latestPemetaan->id;
+            $pemetaan = $user->latestPemetaan->id ?? null;
             $data[] = [
                 'id' => $i,
                 'nama_lengkap' => $user->nama_lengkap,
