@@ -89,21 +89,34 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('data-siswa/*', 'data-siswa') ? '' : 'collapsed' }}"
-                        href="{{ route('dashboard.data-siswa') }}">
-                        <i class="bi bi-people"></i>
-                        <span>Data Pendaftar</span>
-                    </a>
-                </li>
+                @can('superadmin')
+                    <li class="nav-heading">Admin</li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('data-siswa/*', 'data-siswa') ? '' : 'collapsed' }}"
+                            href="{{ route('dashboard.data-siswa') }}">
+                            <i class="bi bi-people"></i>
+                            <span>Data Pendaftar</span>
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('data-guru/*', 'data-guru') ? '' : 'collapsed' }}"
-                        href="{{ route('dashboard.data-guru') }}">
-                        <i class="bi bi-person"></i>
-                        <span>Data Guru</span>
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('data-guru/*', 'data-guru') ? '' : 'collapsed' }}"
+                            href="{{ route('dashboard.data-guru') }}">
+                            <i class="bi bi-diagram-3"></i>
+                            <span>Data Panitia</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('hasil-pemetaan') ? '' : 'collapsed' }}"
+                            href="{{ route('dashboard.hasil-pemetaan') }}">
+                            <i class="bi bi-clipboard-data"></i>
+                            <span>Hasil Pemetaan</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-heading">Non-Admin</li>
+                @endcan
 
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('data-verifikasi/*', 'data-verifikasi') ? '' : 'collapsed' }}"
@@ -117,11 +130,10 @@
                     <a class="nav-link {{ Request::is('data-pemetaan/*', 'data-pemetaan') ? '' : 'collapsed' }}"
                         href="{{ route('dashboard.pemetaan') }}">
                         <i class="bi bi-bar-chart"></i>
-                        <span>Data Pemetaan</span>
+                        <span>Pemetaan</span>
                     </a>
                 </li>
             @endcan
-
 
             @can('siswa')
                 <li class="nav-item">

@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardAuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PemetaanController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\StudentDashboardController;
 use App\Models\Pemetaan;
 use Illuminate\Support\Facades\Route;
@@ -81,20 +82,34 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/data-siswa/{user:email}', [ProfileController::class, 'show'])->name('dashboard.data-siswa.detail');
         Route::get('/data-siswa/{user:email}/edit', [ProfileController::class, 'edit'])->name('dashboard.data-siswa.edit');
         Route::put('/data-siswa/update/{user}', [ProfileController::class, 'update'])->name('dashboard.data-siswa.update');
+        Route::post('/reset-password/{user}', [ProfileController::class, 'resetPassword'])->name('dashboard.password-reset');
 
         Route::get('/data-guru', [ProfileController::class, 'indexGuru'])->name('dashboard.data-guru');
         Route::post('/data-guru/store', [ProfileController::class, 'storeGuru'])->name('dashboard.data-guru.store');
 
-        Route::get('/data-verifikasi', [ProfileController::class, 'indexVerifikasi'])->name('dashboard.verifikasi');
-        Route::get('/data-verifikasi/{user:email}', [ProfileController::class, 'showVerifikasi'])->name('dashboard.verifikasi.detail');
-        Route::get('/data-verifikasi/{prestasi}/sertifikat', [ProfileController::class, 'verifSertifikat'])->name('dashboard.verifikasi.sertifikat');
-        Route::post('/data-verifikasi/{user}/verifikasi', [ProfileController::class, 'verifikasi'])->name('verifikasi');
-        Route::post('/data-verifikasi/{user}/cancel-verifikasi', [ProfileController::class, 'inverifikasi'])->name('inverifikasi');
 
-        Route::post('/reset-password/{user}', [ProfileController::class, 'resetPassword'])->name('dashboard.password-reset');
+        Route::prefix('data-verifikasi')->group(function () {
+            Route::get('/', [PemetaanController::class, 'index'])->name('dashboard.verifikasi');
+            Route::get('/{user:email}', [PemetaanController::class, 'show'])->name('dashboard.verifikasi.detail');
+            Route::get('/{prestasi}/sertifikat', [PemetaanController::class, 'verifSertifikat'])->name('dashboard.verifikasi.sertifikat');
+            Route::post('/{user}/verifikasi', [PemetaanController::class, 'verifikasi'])->name('verifikasi');
+            Route::post('/{user}/cancel-verifikasi', [PemetaanController::class, 'inverifikasi'])->name('inverifikasi');
+        });
 
-        Route::get('/data-pemetaan', [PemetaanController::class, 'index'])->name('dashboard.pemetaan');
-        Route::get('/data-pemetaan/{user:email}', [PemetaanController::class, 'show'])->name('dashboard.pemetaan.detail');
-        Route::post('/data-pemetaan/{user:email}', [PemetaanController::class, 'create'])->name('dashboard.pemetaan.create');
+        Route::prefix('data-pemetaan')->group(function () {
+            Route::get('/', [ScoreController::class, 'index'])->name('dashboard.pemetaan');
+            Route::get('/{user:email}', [ScoreController::class, 'umum'])->name('dashboard.pemetaan.detail');
+
+            Route::get('/umum/{user:email}', [ScoreController::class, 'umum'])->name('dashboard.pemetaan.umum');
+            Route::post('/umum/{user:email}/post', [ScoreController::class, 'postUmum'])->name('dashboard.pemetaan.umum.post');
+
+            Route::get('/agama/{user:email}', [ScoreController::class, 'agama'])->name('dashboard.pemetaan.agama');
+            Route::post('/agama/{user:email}/post', [ScoreController::class, 'postAgama'])->name('dashboard.pemetaan.agama.post');
+
+            Route::get('/uji-tahfidz/{user:email}', [ScoreController::class, 'tahfidz'])->name('dashboard.pemetaan.tahfidz');
+            Route::post('/uji-tahfidz/{user:email}/post', [ScoreController::class, 'postTahfidz'])->name('dashboard.pemetaan.tahfidz.post');
+        });
+
+        Route::get('/hasil-pemetaan', [PemetaanController::class, 'result'])->name('dashboard.hasil-pemetaan');
     });
 });

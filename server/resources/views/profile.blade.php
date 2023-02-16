@@ -6,17 +6,22 @@
     </div><!-- End Page Title -->
 
     <div class="row">
-        <div class="mb-3 col-4">
-
-            <form action="{{ route('dashboard.data-siswa') }}">
-                <div class="input-group mb-3">
+        <div class="col-6">
+            <form action="{{ route('dashboard.data-siswa') }}" class="gap-4">
+                <div class="input-group mb-3 col-5">
                     <input type="text" name="search" id="search" class="form-control" placeholder="Search..."
                         value="{{ request('search') }}">
-                    <button class="btn btn-primary">Search</button>
+                    <button class="btn btn-primary">
+                        <i class="bi bi-search"></i>
+                    </button>
                 </div>
+
+                <a href="{{ route('dashboard.export.excel') }}" class="btn btn-primary mb-3">
+                    <i class="bi bi-cloud-download"></i>
+                    Export excel
+                </a>
             </form>
 
-            <a href="{{ route('dashboard.export.excel') }}" class="btn btn-primary">Export to excel</a>
         </div>
     </div>
 
@@ -31,8 +36,8 @@
 
                             <form action="{{ route('dashboard.data-siswa') }}" method="get">
                                 <div class="form-group col-2 my-2 d-flex align-items-center">
-                                    <label for="per_page" class="me-2">Tampilkan</label>
-                                    <select class="form-control" name="per_page" id="per_page"
+                                    <label for="per_page" class="me-1">Tampilkan</label>
+                                    <select class="form-select" name="per_page" id="per_page"
                                         onchange="this.form.submit()">
                                         <option value="50" {{ request('per_page') == 50 ? 'selected' : '' }}>50
                                         </option>
@@ -43,6 +48,7 @@
                                         <option value="500" {{ request('per_page') == 500 ? 'selected' : '' }}>500
                                         </option>
                                     </select>
+                                    <label for="per_page" class="ms-1"> Data</label>
                                 </div>
                             </form>
 

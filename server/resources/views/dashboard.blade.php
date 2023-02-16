@@ -6,7 +6,6 @@
             <!-- Left side columns -->
             <div class="col-lg-12">
                 <div class="row">
-                    <!-- Card three -->
                     {{-- jumlah pendaftar card --}}
                     <div class="col-xxl-4 col-md-6">
                         <div class="card info-card register-card">
@@ -103,10 +102,11 @@
                                     </div>
                                 @endif
 
+
                                 <form action="{{ route('dashboard.admin') }}" method="get">
                                     <div class="form-group col-2 my-2 d-flex align-items-center">
-                                        <label for="per_page" class="me-2">Tampilkan</label>
-                                        <select class="form-control" name="per_page" id="per_page"
+                                        <label for="per_page" class="me-1">Tampilkan</label>
+                                        <select class="form-select" name="per_page" id="per_page"
                                             onchange="this.form.submit()">
                                             <option value="50" {{ request('per_page') == 50 ? 'selected' : '' }}>50
                                             </option>
@@ -117,6 +117,7 @@
                                             <option value="500" {{ request('per_page') == 500 ? 'selected' : '' }}>500
                                             </option>
                                         </select>
+                                        <label for="per_page" class="ms-1"> Data</label>
                                     </div>
                                 </form>
 

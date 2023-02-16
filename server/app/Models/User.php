@@ -80,4 +80,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Pemetaan::class)->latest('id');
     }
+
+    public function score()
+    {
+        return $this->hasOne(Score::class);
+    }
 }

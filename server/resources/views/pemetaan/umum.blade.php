@@ -1,19 +1,65 @@
-@extends('layouts.main')
+@extends('layouts.pemetaan')
 
 @section('container')
     <section class="section dashboard">
         <div class="row">
             <div class="col-lg-12">
                 <div class="col-12">
-                    <div class="card recent-sales overflow-auto">
-                        <div class="card-body">
-                            <h5 class="card-title-table">Pemetaan</h5>
 
-                            <form action="{{ route('dashboard.pemetaan.create', ['user' => $user]) }}" method="post">
-                                @csrf
-                                <div class="mb-3">
-                                    <button type="submit" class="btn btn-primary">Nilai Pemetaan</button>
+                    @if (session()->has('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                    @if (session()->has('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ session('error') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+
+                    <div class="card overflow-auto">
+                        <div class="card-body">
+                            <h5 class="card-title-table">Identitas diri</h5>
+
+                            <div class="row">
+                                <div class="col-2">
+                                    <img src="{{ asset($user->foto_siswa) }}" class="img-thumbnail" alt="{{ $user->nama_lengkap }}">
+                                    {{-- <img src="{{ asset('/images/profile-img.jpg') }}" class="img-thumbnail"
+                                        alt="{{ $user->nama_lengkap }}"> --}}
                                 </div>
+                                <div class="col-5">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">Nama Lengkap : {{ $user->nama_lengkap }}</li>
+                                        <li class="list-group-item">Asal Sekolah : {{ $user->school->asal_sekolah }}</li>
+                                        <li class="list-group-item">Nama Sekolah : {{ $user->school->nama_sekolah }}</li>
+                                        <li class="list-group-item">Tempat Lahir : {{ $user->tempat_lahir }}</li>
+                                        <li class="list-group-item">Tanggal Lahir: {{ $user->tanggal_lahir }}</li>
+                                        <li class="list-group-item">Nama Ayah    : {{ $user->father->nama_lengkap_ayah }}</li>
+                                    </ul>
+                                </div>
+                                <div class="col-5">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">Nama Ibu     : {{ $user->mother->nama_lengkap_ibu }}</li>
+                                        <li class="list-group-item">No HP Ayah   : {{ $user->father->no_telp_ayah }}</li>
+                                        <li class="list-group-item">Alamat Rumah   : {{ $user->alamat_siswa }}</li>
+                                        <li class="list-group-item">Kelurahan   : {{ $user->address->kelurahan }}</li>
+                                        <li class="list-group-item">Kecamatan   : {{ $user->address->kecamatan }}</li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card overflow-auto">
+                        <div class="card-body">
+                            <h5 class="card-title-table">Wawancara Umum</h5>
+
+                            <form action="{{ route('dashboard.pemetaan.umum.post', ['user' => $user->email]) }}"
+                                method="post">
+                                @csrf
 
                                 <div class="d-flex flex-wrap gap-3">
 
@@ -68,7 +114,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @for ($i = 1; $i <= 5; $i++)
+                                                @for ($i = 1; $i <= 10; $i++)
                                                     <tr>
                                                         <td>
                                                             {{ $i }}
@@ -105,7 +151,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @for ($i = 1; $i <= 12; $i++)
+                                                @for ($i = 1; $i <= 15; $i++)
                                                     <tr>
                                                         <td>
                                                             {{ $i }}
@@ -142,7 +188,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @for ($i = 1; $i <= 12; $i++)
+                                                @for ($i = 1; $i <= 15; $i++)
                                                     <tr>
                                                         <td>
                                                             {{ $i }}
@@ -182,7 +228,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @for ($i = 1; $i <= 8; $i++)
+                                                @for ($i = 1; $i <= 5; $i++)
                                                     <tr>
                                                         <td>
                                                             {{ $i }}
@@ -231,7 +277,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @for ($i = 1; $i <= 8; $i++)
+                                                @for ($i = 1; $i <= 5; $i++)
                                                     <tr>
                                                         <td>
                                                             {{ $i }}
@@ -256,6 +302,10 @@
 
                                 </div>
 
+                                <div class="d-grid mt-3">
+                                    <button type="submit" class="btn  btn-block btn-primary">Nilai Wawancara
+                                        Umum</button>
+                                </div>
                             </form>
                         </div>
                     </div>

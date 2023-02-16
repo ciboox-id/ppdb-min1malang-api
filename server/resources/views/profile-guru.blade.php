@@ -18,21 +18,16 @@
 
         <div class="card">
             <div class="card-body">
-
-                <h5 class="card-title mt-4">Tambah Guru Verifikasi</h5>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    <i class="bi bi-cloud-upload"></i>
-                    Tambah Guru
-                </button>
+                <h5 class="card-title-table">Tambah Guru Verifikasi</h5>
 
                 <div class=" overflow-auto">
-                    <table class="table table-borderless datatable mt-4">
-                        <thead>
+                    <table class="table table-bordered datatable">
+                        <thead class="table-success">
                             <tr>
                                 <th scope="col">No.</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">Email</th>
-                                {{-- <th scope="col">Aksi</th> --}}
+                                <th scope="col">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,7 +38,7 @@
                                     <td>{{ $gr->email }}</td>
                                     <td>
                                         <div>
-                                            {{-- <form
+                                            <form
                                                 action="{{ route('dashboard.data-siswa.delete', ['student' => $gr->id]) }}"
                                                 method="post">
                                                 @csrf
@@ -52,13 +47,18 @@
                                                     <i class="bi bi-trash"></i>
                                                     Hapus
                                                 </button>
-                                            </form> --}}
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <i class="bi bi-cloud-upload"></i>
+                        Tambah Guru
+                    </button>
                 </div>
             </div>
         </div>
