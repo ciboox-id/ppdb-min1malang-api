@@ -116,7 +116,7 @@
                     </li>
                 @endcan
 
-                @can('verifikator')
+                @can('verifikator', 'superadmin')
                     <li class="nav-heading">Verifikasi</li>
 
                     <li class="nav-item">
@@ -128,7 +128,7 @@
                     </li>
                 @endcan
 
-                @can('pemetaan', 'verifikator')
+                @can('pemetaan', 'verifikator', 'superadmin')
                     <li class="nav-heading">Pemetaan</li>
 
                     <li class="nav-item">

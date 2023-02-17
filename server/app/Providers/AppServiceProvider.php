@@ -64,7 +64,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('superadmin', function (User $user) {
-            return $user->nama_lengkap == "Admin PPDB MIN 1 Malang";
+            return $user->email == "admin@gmail.com";
         });
     }
 }
