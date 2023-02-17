@@ -81,7 +81,7 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             @canany(['admin', 'superadmin'])
-                @can('umum')
+                @canany(['umum', 'superadmin'])
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('data-pemetaan/umum/*') ? '' : 'collapsed' }}"
                             href="{{ route('dashboard.pemetaan.umum', ['user' => $user->email]) }}">
@@ -89,9 +89,9 @@
                             <span>Wawancara Umum</span>
                         </a>
                     </li>
-                @endcan
+                @endcanany
 
-                @can('agama')
+                @canany(['agama', 'superadmin'])
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('data-pemetaan/agama/*') ? '' : 'collapsed' }}"
                             href="{{ route('dashboard.pemetaan.agama', ['user' => $user->email]) }}">
@@ -99,9 +99,9 @@
                             <span>Wawancara Agama</span>
                         </a>
                     </li>
-                @endcan
+                @endcanany
 
-                @can('tahfidz')
+                @canany(['tahfidz', 'superadmin'])
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('data-pemetaan/uji-tahfidz/*') ? '' : 'collapsed' }}"
                             href="{{ route('dashboard.pemetaan.tahfidz', ['user' => $user->email]) }}">
@@ -109,7 +109,7 @@
                             <span>Uji Tahfidz</span>
                         </a>
                     </li>
-                @endcan
+                @endcanany
             @endcanany
 
         </ul>

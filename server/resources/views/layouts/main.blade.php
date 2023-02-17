@@ -114,7 +114,7 @@
                     </li>
                 @endcan
 
-                @can('verifikator')
+                @canany(['verifikator', 'superadmin'])
                     <li class="nav-heading">Verifikasi</li>
 
                     <li class="nav-item">
@@ -124,7 +124,7 @@
                             <span>Verifikasi</span>
                         </a>
                     </li>
-                @endcan
+                @endcanany
 
                 @canany(['superadmin', 'umum', 'agama', 'tahfidz'])
                     <li class="nav-heading">Pemetaan</li>
