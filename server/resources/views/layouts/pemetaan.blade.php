@@ -81,29 +81,35 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             @can('admin')
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('data-pemetaan/umum/*') ? '' : 'collapsed' }}"
-                        href="{{ route('dashboard.pemetaan.umum', ['user' => $user->email]) }}">
-                        <i class="bi bi-person"></i>
-                        <span>Wawancara Umum</span>
-                    </a>
-                </li>
+                @can('umum')
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('data-pemetaan/umum/*') ? '' : 'collapsed' }}"
+                            href="{{ route('dashboard.pemetaan.umum', ['user' => $user->email]) }}">
+                            <i class="bi bi-person"></i>
+                            <span>Wawancara Umum</span>
+                        </a>
+                    </li>
+                @endcan
 
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('data-pemetaan/agama/*') ? '' : 'collapsed' }}"
-                        href="{{ route('dashboard.pemetaan.agama', ['user' => $user->email]) }}">
-                        <i class="bi bi-grid"></i>
-                        <span>Wawancara Agama</span>
-                    </a>
-                </li>
+                @can('agama')
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('data-pemetaan/agama/*') ? '' : 'collapsed' }}"
+                            href="{{ route('dashboard.pemetaan.agama', ['user' => $user->email]) }}">
+                            <i class="bi bi-grid"></i>
+                            <span>Wawancara Agama</span>
+                        </a>
+                    </li>
+                @endcan
 
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('data-pemetaan/uji-tahfidz/*') ? '' : 'collapsed' }}"
-                        href="{{ route('dashboard.pemetaan.tahfidz', ['user' => $user->email]) }}">
-                        <i class="bi bi-check-circle"></i>
-                        <span>Uji Tahfidz</span>
-                    </a>
-                </li>
+                @can('tahfidz')
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('data-pemetaan/uji-tahfidz/*') ? '' : 'collapsed' }}"
+                            href="{{ route('dashboard.pemetaan.tahfidz', ['user' => $user->email]) }}">
+                            <i class="bi bi-check-circle"></i>
+                            <span>Uji Tahfidz</span>
+                        </a>
+                    </li>
+                @endcan
             @endcan
 
         </ul>

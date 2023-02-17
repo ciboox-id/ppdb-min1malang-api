@@ -597,7 +597,7 @@ class DashboardController extends Controller
                 $date = "22/02/2023";
                 $time = "09.35-10.05";
                 break;
-            case $pemetaan->id > 512 && $pemetaan->id <= 544:
+            case $pemetaan->id > 512 && $pemetaan->id <= 545:
                 $date = "22/02/2023";
                 $time = "10.15-10.45";
                 break;

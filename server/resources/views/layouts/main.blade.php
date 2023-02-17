@@ -114,25 +114,31 @@
                             <span>Hasil Pemetaan</span>
                         </a>
                     </li>
-
-                    <li class="nav-heading">Non-Admin</li>
                 @endcan
 
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('data-verifikasi/*', 'data-verifikasi') ? '' : 'collapsed' }}"
-                        href="{{ route('dashboard.verifikasi') }}">
-                        <i class="bi bi-check-circle"></i>
-                        <span>Verifikasi</span>
-                    </a>
-                </li>
+                @can('verifikator')
+                    <li class="nav-heading">Verifikasi</li>
 
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('data-pemetaan/*', 'data-pemetaan') ? '' : 'collapsed' }}"
-                        href="{{ route('dashboard.pemetaan') }}">
-                        <i class="bi bi-bar-chart"></i>
-                        <span>Pemetaan</span>
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('data-verifikasi/*', 'data-verifikasi') ? '' : 'collapsed' }}"
+                            href="{{ route('dashboard.verifikasi') }}">
+                            <i class="bi bi-check-circle"></i>
+                            <span>Verifikasi</span>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('pemetaan', 'verifikator')
+                    <li class="nav-heading">Pemetaan</li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('data-pemetaan/*', 'data-pemetaan') ? '' : 'collapsed' }}"
+                            href="{{ route('dashboard.pemetaan') }}">
+                            <i class="bi bi-bar-chart"></i>
+                            <span>Pemetaan</span>
+                        </a>
+                    </li>
+                @endcan
             @endcan
 
             @can('siswa')

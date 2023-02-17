@@ -42,7 +42,26 @@ class AppServiceProvider extends ServiceProvider
             return in_array($user->nama_lengkap, $verifikator_names);
         });
 
-        
+        Gate::define('pemetaan', function(User $user) {
+            $verifikator_names = ['Admin PPDB MIN 1 Malang', 'HELPDESK' ,'VINA', 'ADI', 'QONITA', 'NAKHEL', 'YAQIN', 'ELOK', 'YULI', 'OKTA', 'AZAM', 'RIZAL'];
+
+            return in_array($user->nama_lengkap, $verifikator_names);
+        });
+
+        Gate::define('umum', function(User $user){
+            $verifikator_names = ['Admin PPDB MIN 1 Malang', 'HELPDESK' ,'VINA', 'ADI', 'QONITA', 'NAKHEL', 'YAQIN', 'ELOK', 'YULI', 'OKTA', 'AZAM', 'RIZAL'];
+            return in_array($user->nama_lengkap, $verifikator_names);
+        });
+
+        Gate::define('agama', function(User $user){
+            $verifikator_names = ['Admin PPDB MIN 1 Malang', 'HELPDESK' ,'VINA', 'ADI', 'QONITA', 'NAKHEL', 'YAQIN', 'ELOK', 'YULI', 'OKTA', 'AZAM', 'RIZAL'];
+            return in_array($user->nama_lengkap, $verifikator_names);
+        });
+
+        Gate::define('tahfidz', function(User $user){
+            $verifikator_names = ['Admin PPDB MIN 1 Malang', 'HELPDESK' ,'VINA', 'ADI', 'QONITA', 'NAKHEL', 'YAQIN', 'ELOK', 'YULI', 'OKTA', 'AZAM', 'RIZAL'];
+            return in_array($user->nama_lengkap, $verifikator_names);
+        });
 
         Gate::define('superadmin', function (User $user) {
             return $user->nama_lengkap == "Admin PPDB MIN 1 Malang";
