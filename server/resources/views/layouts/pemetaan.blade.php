@@ -80,7 +80,7 @@
 
         <ul class="sidebar-nav" id="sidebar-nav">
 
-            @can('admin')
+            @canany(['admin', 'superadmin'])
                 @can('umum')
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('data-pemetaan/umum/*') ? '' : 'collapsed' }}"
@@ -110,7 +110,7 @@
                         </a>
                     </li>
                 @endcan
-            @endcan
+            @endcanany
 
         </ul>
 

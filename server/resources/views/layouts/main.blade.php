@@ -77,10 +77,8 @@
     </header>
 
     <aside id="sidebar" class="sidebar">
-
         <ul class="sidebar-nav" id="sidebar-nav">
-
-            @can('admin')
+            @canany(['admin', 'superadmin'])
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('dashboard/*') ? '' : 'collapsed' }}"
                         href="{{ route('dashboard.admin') }}">
@@ -116,7 +114,7 @@
                     </li>
                 @endcan
 
-                @can('verifikator', 'superadmin')
+                @can('verifikator')
                     <li class="nav-heading">Verifikasi</li>
 
                     <li class="nav-item">
@@ -128,7 +126,7 @@
                     </li>
                 @endcan
 
-                @can('pemetaan', 'verifikator', 'superadmin')
+                @canany(['superadmin', 'umum', 'agama', 'tahfidz'])
                     <li class="nav-heading">Pemetaan</li>
 
                     <li class="nav-item">
@@ -138,8 +136,8 @@
                             <span>Pemetaan</span>
                         </a>
                     </li>
-                @endcan
-            @endcan
+                @endcanany
+            @endcanany
 
             @can('siswa')
                 <li class="nav-item">
