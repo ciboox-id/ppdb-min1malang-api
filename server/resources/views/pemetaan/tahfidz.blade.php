@@ -47,7 +47,6 @@
                                         <li class="list-group-item">Alamat Rumah : {{ $user->alamat_siswa }}</li>
                                         <li class="list-group-item">Kelurahan : {{ $user->address->kelurahan }}</li>
                                         <li class="list-group-item">Kecamatan : {{ $user->address->kecamatan }}</li>
-
                                     </ul>
                                 </div>
                             </div>
@@ -58,7 +57,7 @@
                         <div class="card-body">
                             <h5 class="card-title-table">Uji Tahfidz</h5>
 
-                            <form action="{{ route('dashboard.pemetaan.tahfidz.post', ['user' => $user->email]) }}"
+                            <form id="formTahfidz" action="{{ route('dashboard.pemetaan.tahfidz.post', ['user' => $user->email]) }}"
                                 method="post">
                                 @csrf
 
@@ -122,7 +121,7 @@
                                                     <td>{{ $surah['name'] }}</td>
                                                     @foreach ($surah['scores'] as $score)
                                                         <td>
-                                                            <input type="radio" name="juz30_{{ $index }}"
+                                                            <input type="radio" name="juz30_{{ $index }}" class="form-check-input"
                                                                 value="{{ $score }}">
                                                             {{ $score }}
                                                         </td>
@@ -154,7 +153,7 @@
                                                     <td>{{ $surah['name'] }}</td>
                                                     @foreach ($surah['scores'] as $score)
                                                         <td>
-                                                            <input type="radio" name="juz29_{{ $index }}"
+                                                            <input type="radio" name="juz29_{{ $index }}" class="form-check-input"
                                                                 value="{{ $score }}">
                                                             {{ $score }}
                                                         </td>
@@ -186,7 +185,7 @@
                                                     <td>{{ $surah['name'] }}</td>
                                                     @foreach ($surah['scores'] as $score)
                                                         <td>
-                                                            <input type="radio" name="juz28_{{ $index }}"
+                                                            <input type="radio" name="juz28_{{ $index }}" class="form-check-input"
                                                                 value="{{ $score }}">
                                                             {{ $score }}
                                                         </td>
@@ -217,7 +216,7 @@
                                                     @foreach ($page['scores'] as $score)
                                                         <td>
                                                             <label>
-                                                                <input type="radio" name="lembar_{{ $key + 1 }}"
+                                                                <input type="radio" name="lembar_{{ $key + 1 }}" class="form-check-input"
                                                                     value="{{ $score }}">
                                                                 {{ $score }}
                                                             </label>
@@ -230,7 +229,9 @@
                                 </div>
 
 
-                                <button type="submit" class="btn btn-primary mt-3">Nilai</button>
+                                <div class="d-grid mt-3">
+                                    <button type="submit" class="btn  btn-block btn-primary">Nilai Uji Tahfidz</button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -238,4 +239,32 @@
             </div>
         </div>
     </section>
+    <script>
+        var form = document.getElementById('formTahfidz');
+
+        // Save form data to local storage when a change is made
+        form.addEventListener('change', function() {
+            localStorage.setItem('formTahfidz', JSON.stringify(Array.from(new FormData(form))));
+        });
+
+        // Clear form data from local storage when the form is submitted
+        form.addEventListener('submit', function() {
+            localStorage.removeItem('formTahfidz');
+        });
+
+        window.addEventListener('load', function() {
+        var formData = localStorage.getItem('formTahfidz');
+        if (formData) {
+            formData = JSON.parse(formData);
+            formData.forEach(function(field) {
+                var input = form.elements[field[0]];
+                if (input.type === 'checkbox' || input.type === 'radio') {
+                    input.checked = (field[1] === input.value);
+                } else {
+                    input.value = field[1];
+                }
+            });
+        }
+    });
+    </script>
 @endsection

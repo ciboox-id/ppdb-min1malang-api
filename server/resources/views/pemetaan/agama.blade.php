@@ -19,16 +19,15 @@
                         </div>
                     @endif
 
-                    <div class="card recent-sales overflow-auto">
+                    <div class="card overflow-auto">
                         <div class="card-body">
-                            <h5 class="card-title-table">Wawancara Agama</h5>
-
+                            <h5 class="card-title-table">Identitas diri</h5>
 
                             <div class="row">
                                 <div class="col-2">
                                     <img src="{{ asset($user->foto_siswa) }}" class="img-thumbnail" alt="{{ $user->nama_lengkap }}">
-                                    {{-- <img src="{{ asset('/images/profile-img.jpg') }}" class="img-thumbnail" --}}
-                                        {{-- alt="{{ $user->nama_lengkap }}"> --}}
+                                    {{-- <img src="{{ asset('/images/profile-img.jpg') }}" class="img-thumbnail"
+                                        alt="{{ $user->nama_lengkap }}"> --}}
                                 </div>
                                 <div class="col-5">
                                     <ul class="list-group">
@@ -51,13 +50,16 @@
                                     </ul>
                                 </div>
                             </div>
+                        </div>
+                    </div>
 
-                            <form action="{{ route('dashboard.pemetaan.agama.post', ['user' => $user->email]) }}"
+                    <div class="card recent-sales overflow-auto">
+                        <div class="card-body">
+                            <h5 class="card-title-table">Wawancara Agama</h5>
+
+                            <form id="formAgama" action="{{ route('dashboard.pemetaan.agama.post', ['user' => $user->email]) }}"
                                 method="post">
                                 @csrf
-                                <div class="mb-3">
-                                    <button type="submit" class="btn btn-primary">Nilai Pemetaan</button>
-                                </div>
 
                                 <div class="d-flex flex-wrap gap-3">
 
@@ -84,27 +86,27 @@
                                                             {{ $i }}
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="doa{{ $i }}"
+                                                            <input type="radio" name="doa{{ $i }}" class="form-check-input"
                                                                 value="10"> 10<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="doa{{ $i }}"
+                                                            <input type="radio" name="doa{{ $i }}" class="form-check-input"
                                                                 value="8"> 8<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="doa{{ $i }}"
+                                                            <input type="radio" name="doa{{ $i }}" class="form-check-input"
                                                                 value="5"> 5<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="doa{{ $i }}"
+                                                            <input type="radio" name="doa{{ $i }}" class="form-check-input"
                                                                 value="3"> 3<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="doa{{ $i }}"
+                                                            <input type="radio" name="doa{{ $i }}" class="form-check-input"
                                                                 value="1"> 1<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="doa{{ $i }}"
+                                                            <input type="radio" name="doa{{ $i }}" class="form-check-input"
                                                                 value="0"> 0<br>
                                                         </td>
                                                     </tr>
@@ -115,27 +117,27 @@
                                                             {{ $i }}
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="doa{{ $i }}"
+                                                            <input type="radio" name="doa{{ $i }}" class="form-check-input"
                                                                 value="15"> 15<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="doa{{ $i }}"
+                                                            <input type="radio" name="doa{{ $i }}" class="form-check-input"
                                                                 value="10"> 10<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="doa{{ $i }}"
+                                                            <input type="radio" name="doa{{ $i }}" class="form-check-input"
                                                                 value="7"> 7<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="doa{{ $i }}"
+                                                            <input type="radio" name="doa{{ $i }}" class="form-check-input"
                                                                 value="5"> 5<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="doa{{ $i }}"
+                                                            <input type="radio" name="doa{{ $i }}" class="form-check-input"
                                                                 value="2"> 2<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="doa{{ $i }}"
+                                                            <input type="radio" name="doa{{ $i }}" class="form-check-input"
                                                                 value="0"> 0<br>
                                                         </td>
                                                     </tr>
@@ -167,27 +169,27 @@
                                                             {{ $i }}
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="surat{{ $i }}"
+                                                            <input type="radio" name="surat{{ $i }}" class="form-check-input"
                                                                 value="10"> 10<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="surat{{ $i }}"
+                                                            <input type="radio" name="surat{{ $i }}" class="form-check-input"
                                                                 value="8"> 8<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="surat{{ $i }}"
+                                                            <input type="radio" name="surat{{ $i }}" class="form-check-input"
                                                                 value="5"> 5<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="surat{{ $i }}"
+                                                            <input type="radio" name="surat{{ $i }}" class="form-check-input"
                                                                 value="3"> 3<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="surat{{ $i }}"
+                                                            <input type="radio" name="surat{{ $i }}" class="form-check-input"
                                                                 value="1"> 1<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="surat{{ $i }}"
+                                                            <input type="radio" name="surat{{ $i }}" class="form-check-input"
                                                                 value="0"> 0<br>
                                                         </td>
                                                     </tr>
@@ -198,27 +200,27 @@
                                                             {{ $i }}
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="surat{{ $i }}"
+                                                            <input type="radio" name="surat{{ $i }}" class="form-check-input"
                                                                 value="15"> 15<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="surat{{ $i }}"
+                                                            <input type="radio" name="surat{{ $i }}" class="form-check-input"
                                                                 value="10"> 10<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="surat{{ $i }}"
+                                                            <input type="radio" name="surat{{ $i }}" class="form-check-input"
                                                                 value="7"> 7<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="surat{{ $i }}"
+                                                            <input type="radio" name="surat{{ $i }}" class="form-check-input"
                                                                 value="5"> 5<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="surat{{ $i }}"
+                                                            <input type="radio" name="surat{{ $i }}" class="form-check-input"
                                                                 value="2"> 2<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="surat{{ $i }}"
+                                                            <input type="radio" name="surat{{ $i }}" class="form-check-input"
                                                                 value="0"> 0<br>
                                                         </td>
                                                     </tr>
@@ -253,7 +255,7 @@
                                                         <td>{{ $i + 1 }}</td>
                                                         @for ($j = 0; $j < count($values[$i]); $j++)
                                                             <td>
-                                                                <input type="radio" name="solat{{ $i+1 }}[]"
+                                                                <input type="radio" name="solat{{ $i + 1 }}[]" class="form-check-input"
                                                                     value="{{ $values[$i][$j] }}">
                                                                 {{ $values[$i][$j] }}
                                                             </td>
@@ -269,7 +271,7 @@
                                             <thead>
                                                 <tr>
                                                     <th rowspan="2">No.</th>
-                                                    <th colspan="6">I. Nilai Mengaji</th>
+                                                    <th colspan="6">J. Nilai Mengaji</th>
                                                 </tr>
                                                 <tr>
                                                     <th scope="col">Benar</th>
@@ -288,27 +290,27 @@
                                                         </td>
                                                         <td>
                                                             <input type="radio" name="mengaji{{ $i }}"
-                                                                value="15"> 15<br>
+                                                                class="form-check-input" value="15"> 15<br>
                                                         </td>
                                                         <td>
                                                             <input type="radio" name="mengaji{{ $i }}"
-                                                                value="12"> 12<br>
+                                                                class="form-check-input" value="12"> 12<br>
                                                         </td>
                                                         <td>
                                                             <input type="radio" name="mengaji{{ $i }}"
-                                                                value="9"> 9<br>
+                                                                class="form-check-input" value="9"> 9<br>
                                                         </td>
                                                         <td>
                                                             <input type="radio" name="mengaji{{ $i }}"
-                                                                value="7"> 7<br>
+                                                                class="form-check-input" value="7"> 7<br>
                                                         </td>
                                                         <td>
                                                             <input type="radio" name="mengaji{{ $i }}"
-                                                                value="5"> 5<br>
+                                                                class="form-check-input" value="5"> 5<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="solat{{ $i }}"
-                                                                value="0"> 0<br>
+                                                            <input type="radio" name="mengaji{{ $i }}"
+                                                                class="form-check-input" value="0"> 0<br>
                                                         </td>
                                                     </tr>
                                                 @endfor
@@ -319,27 +321,27 @@
                                                         </td>
                                                         <td>
                                                             <input type="radio" name="mengaji{{ $i }}"
-                                                                value="10"> 10<br>
+                                                                class="form-check-input" value="10"> 10<br>
                                                         </td>
                                                         <td>
                                                             <input type="radio" name="mengaji{{ $i }}"
-                                                                value="8"> 8<br>
+                                                                class="form-check-input" value="8"> 8<br>
                                                         </td>
                                                         <td>
                                                             <input type="radio" name="mengaji{{ $i }}"
-                                                                value="6"> 6<br>
+                                                                class="form-check-input" value="6"> 6<br>
                                                         </td>
                                                         <td>
                                                             <input type="radio" name="mengaji{{ $i }}"
-                                                                value="5"> 5<br>
+                                                                class="form-check-input" value="5"> 5<br>
                                                         </td>
                                                         <td>
                                                             <input type="radio" name="mengaji{{ $i }}"
-                                                                value="3"> 3<br>
+                                                                class="form-check-input" value="3"> 3<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="solat{{ $i }}"
-                                                                value="0"> 0<br>
+                                                            <input type="radio" name="mengaji{{ $i }}"
+                                                                class="form-check-input" value="0"> 0<br>
                                                         </td>
                                                     </tr>
                                                 @endfor
@@ -350,27 +352,27 @@
                                                         </td>
                                                         <td>
                                                             <input type="radio" name="mengaji{{ $i }}"
-                                                                value="10"> 10<br>
+                                                                class="form-check-input" value="10"> 10<br>
                                                         </td>
                                                         <td>
                                                             <input type="radio" name="mengaji{{ $i }}"
-                                                                value="8"> 8<br>
+                                                                class="form-check-input" value="8"> 8<br>
                                                         </td>
                                                         <td>
                                                             <input type="radio" name="mengaji{{ $i }}"
-                                                                value="6"> 6<br>
+                                                                class="form-check-input" value="6"> 6<br>
                                                         </td>
                                                         <td>
                                                             <input type="radio" name="mengaji{{ $i }}"
-                                                                value="5"> 5<br>
+                                                                class="form-check-input" value="5"> 5<br>
                                                         </td>
                                                         <td>
                                                             <input type="radio" name="mengaji{{ $i }}"
-                                                                value="3"> 3<br>
+                                                                class="form-check-input" value="3"> 3<br>
                                                         </td>
                                                         <td>
                                                             <input type="radio" name="solat{{ $i }}"
-                                                                value="0"> 0<br>
+                                                                class="form-check-input" value="0"> 0<br>
                                                         </td>
                                                     </tr>
                                                 @endfor
@@ -383,7 +385,7 @@
                                             <thead>
                                                 <tr>
                                                     <th rowspan="2">No.</th>
-                                                    <th colspan="6">I. Nilai Mengaji Lanjutan</th>
+                                                    <th colspan="6">K. Nilai Mengaji Lanjutan</th>
                                                 </tr>
                                                 <tr>
                                                     <th scope="col">Benar</th>
@@ -395,96 +397,46 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @for ($i = 11; $i <= 15; $i++)
-                                                    <tr>
-                                                        <td>
-                                                            {{ $i }}
-                                                        </td>
-                                                        <td>
-                                                            <input type="radio" name="mengaji_lanjut{{ $i }}"
-                                                                value="10"> 10<br>
-                                                        </td>
-                                                        <td>
-                                                            <input type="radio" name="mengaji_lanjut{{ $i }}"
-                                                                value="8"> 8<br>
-                                                        </td>
-                                                        <td>
-                                                            <input type="radio" name="mengaji_lanjut{{ $i }}"
-                                                                value="6"> 6<br>
-                                                        </td>
-                                                        <td>
-                                                            <input type="radio" name="mengaji_lanjut{{ $i }}"
-                                                                value="5"> 5<br>
-                                                        </td>
-                                                        <td>
-                                                            <input type="radio" name="mengaji_lanjut{{ $i }}"
-                                                                value="3"> 3<br>
-                                                        </td>
-                                                        <td>
-                                                            <input type="radio" name="mengaji_lanjut{{ $i }}"
-                                                                value="0"> 0<br>
-                                                        </td>
-                                                    </tr>
-                                                @endfor
-                                                @for ($i = 16; $i <= 20; $i++)
-                                                    <tr>
-                                                        <td>
-                                                            {{ $i }}
-                                                        </td>
-                                                        <td>
-                                                            <input type="radio" name="mengaji_lanjut{{ $i }}"
-                                                                value="7"> 7<br>
-                                                        </td>
-                                                        <td>
-                                                            <input type="radio" name="mengaji_lanjut{{ $i }}"
-                                                                value="5"> 5<br>
-                                                        </td>
-                                                        <td>
-                                                            <input type="radio" name="mengaji_lanjut{{ $i }}"
-                                                                value="4"> 4<br>
-                                                        </td>
-                                                        <td>
-                                                            <input type="radio" name="mengaji_lanjut{{ $i }}"
-                                                                value="3"> 3<br>
-                                                        </td>
-                                                        <td>
-                                                            <input type="radio" name="mengaji_lanjut{{ $i }}"
-                                                                value="2"> 2<br>
-                                                        </td>
-                                                        <td>
-                                                            <input type="radio" name="mengaji_lanjut{{ $i }}"
-                                                                value="0"> 0<br>
-                                                        </td>
-                                                    </tr>
-                                                @endfor
                                                 @for ($i = 21; $i <= 28; $i++)
                                                     <tr>
                                                         <td>
                                                             {{ $i }}
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="mengaji_lanjut{{ $i }}"
-                                                                value="5"> 5<br>
+                                                            <input type="radio"
+                                                                name="mengaji_lanjut{{ $i }}" value="5"
+                                                                class="form-check-input">
+                                                            5<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="mengaji_lanjut{{ $i }}"
-                                                                value="4"> 4<br>
+                                                            <input type="radio"
+                                                                name="mengaji_lanjut{{ $i }}" value="4"
+                                                                class="form-check-input">
+                                                            4<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="mengaji_lanjut{{ $i }}"
-                                                                value="3"> 3<br>
+                                                            <input type="radio"
+                                                                name="mengaji_lanjut{{ $i }}" value="3"
+                                                                class="form-check-input">
+                                                            3<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="mengaji_lanjut{{ $i }}"
-                                                                value="2"> 2<br>
+                                                            <input type="radio"
+                                                                name="mengaji_lanjut{{ $i }}" value="2"
+                                                                class="form-check-input">
+                                                            2<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="mengaji_lanjut{{ $i }}"
-                                                                value="1"> 1<br>
+                                                            <input type="radio"
+                                                                name="mengaji_lanjut{{ $i }}" value="1"
+                                                                class="form-check-input">
+                                                            1<br>
                                                         </td>
                                                         <td>
-                                                            <input type="radio" name="mengaji_lanjut{{ $i }}"
-                                                                value="0"> 0<br>
+                                                            <input type="radio"
+                                                                name="mengaji_lanjut{{ $i }}" value="0"
+                                                                class="form-check-input">
+                                                            0<br>
                                                         </td>
                                                     </tr>
                                                 @endfor
@@ -505,4 +457,32 @@
             </div>
         </div>
     </section>
+    <script>
+        var form = document.getElementById('formAgama');
+
+        // Save form data to local storage when a change is made
+        form.addEventListener('change', function() {
+            localStorage.setItem('formAgama', JSON.stringify(Array.from(new FormData(form))));
+        });
+
+        // Clear form data from local storage when the form is submitted
+        form.addEventListener('submit', function() {
+            localStorage.removeItem('formAgama');
+        });
+
+        window.addEventListener('load', function() {
+        var formData = localStorage.getItem('formAgama');
+        if (formData) {
+            formData = JSON.parse(formData);
+            formData.forEach(function(field) {
+                var input = form.elements[field[0]];
+                if (input.type === 'checkbox' || input.type === 'radio') {
+                    input.checked = (field[1] === input.value);
+                } else {
+                    input.value = field[1];
+                }
+            });
+        }
+    });
+    </script>
 @endsection
