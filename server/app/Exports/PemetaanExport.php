@@ -22,6 +22,9 @@ class PemetaanExport implements FromCollection, WithHeadings
 
         foreach ($users as $user) {
             $i++;
+            if(!$user->score) {
+                continue;
+            }
             $pemetaan = $user->latestPemetaan->id ?? null;
             $data[] = [
                 'id' => $i,
