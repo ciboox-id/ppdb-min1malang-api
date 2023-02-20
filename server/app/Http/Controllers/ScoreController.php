@@ -97,7 +97,7 @@ class ScoreController extends Controller
         }
 
         $score = Score::where('user_id', $user->id)->first();
-        $data_score = ["mandiri" => $scoreKemandirian, "umum" => $scoreUmum];
+        $data_score = ["mandiri" => $scoreKemandirian, "umum" => $scoreUmum, "name_validator_umum" => auth()->user()->nama_lengkap];
 
         if (empty($score)) {
             $score = new Score();
@@ -127,7 +127,6 @@ class ScoreController extends Controller
         $scorePrestasi = 0;
 
         $score = Score::where('user_id', $user->id)->first();
-        $data_score = ["agama" => $scoreAgama, "prestasi" => $scorePrestasi];
 
         // scoring for agama
         for ($i = 0; $i <= 28; $i++) {
@@ -164,7 +163,7 @@ class ScoreController extends Controller
         }
 
         $score = Score::where('user_id', $user->id)->first();
-        $data_score = ['agama' => $scoreAgama, 'prestasi' => $scorePrestasi];
+        $data_score = ['agama' => $scoreAgama, 'prestasi' => $scorePrestasi, "name_validator_agama" => auth()->user()->nama_lengkap];
 
         if (empty($score)) {
             $score = new Score();
