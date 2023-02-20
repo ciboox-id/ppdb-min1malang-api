@@ -24,6 +24,7 @@
                                         <th scope="col">Uji Tahfidz</th>
                                         <th scope="col">Validator Tahfidz</th>
                                         <th scope="col">Prestasi</th>
+                                        <th scope="col">Timestamps</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,6 +44,7 @@
                                                     <td>{{ $user->score->uji_tahfidz ?? "" }}</td>
                                                     <td>{{ $user->score->name_validator_tahfidz ?? "" }}</td>
                                                     <td>{{ $user->score->prestasi ?? "" }}</td>
+                                                    <td>{{ $user->score->updated_at ?? "" }}</td>
                                                 </tr>
                                             @endif
                                         @endforeach
