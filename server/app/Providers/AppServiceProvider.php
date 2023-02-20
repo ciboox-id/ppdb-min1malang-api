@@ -49,7 +49,7 @@ class AppServiceProvider extends ServiceProvider
                 "fadli@tahfidz.com",
                 "fahmi_abdul@tahfidz.com",
                 "hasanuddin@agama.com",
-                "Khoirul@agama.com",
+                "khoirul@agama.com",
                 "imam@agama.com",
                 "cici@agama.com",
                 "shafraji@agama.com",
