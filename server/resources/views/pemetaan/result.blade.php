@@ -8,10 +8,14 @@
                     <div class="card recent-sales overflow-auto">
                         <div class="card-body">
                             <h5 class="card-title-table">Data Hasil Pemetaan</h5>
+                            <a href="{{ route('dashboard.export.excel.pemetaan') }}" class="btn btn-primary mb-3">
+                                <i class="bi bi-cloud-download"></i>
+                                Export excel
+                            </a>
 
                             <table class="table table-bordered datatable">
-                                <thead>
-                                    <tr>
+                                <thead class="sticky-top table-success">
+                                    <tr class="">
                                         <th scope="col">No.</th>
                                         <th scope="col">Nama</th>
                                         <th scope="col">Email</th>
@@ -36,15 +40,15 @@
                                                     <td>{{ $user->nama_lengkap }}</td>
                                                     <td>{{ $user->email }}</td>
                                                     <td style="text-transform: capitalize">{{ $user->jalur }}</td>
-                                                    <td>{{ $user->score->mandiri ?? "" }}</td>
-                                                    <td>{{ $user->score->umum ?? "" }}</td>
-                                                    <td>{{ $user->score->name_validator_umum ?? "" }}</td>
-                                                    <td>{{ $user->score->agama ?? "" }}</td>
-                                                    <td>{{ $user->score->name_validator_agama ?? "" }}</td>
-                                                    <td>{{ $user->score->uji_tahfidz ?? "" }}</td>
-                                                    <td>{{ $user->score->name_validator_tahfidz ?? "" }}</td>
-                                                    <td>{{ $user->score->prestasi ?? "" }}</td>
-                                                    <td>{{ $user->score->updated_at ?? "" }}</td>
+                                                    <td>{{ $user->score->mandiri ?? '' }}</td>
+                                                    <td>{{ $user->score->umum ?? '' }}</td>
+                                                    <td>{{ $user->score->name_validator_umum ?? '' }}</td>
+                                                    <td>{{ $user->score->agama ?? '' }}</td>
+                                                    <td>{{ $user->score->name_validator_agama ?? '' }}</td>
+                                                    <td>{{ $user->score->uji_tahfidz ?? '' }}</td>
+                                                    <td>{{ $user->score->name_validator_tahfidz ?? '' }}</td>
+                                                    <td>{{ $user->score->prestasi ?? '' }}</td>
+                                                    <td>{{ $user->score->updated_at ?? '' }}</td>
                                                 </tr>
                                             @endif
                                         @endforeach

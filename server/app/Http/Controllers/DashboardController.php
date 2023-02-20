@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PemetaanExport;
 use App\Exports\UsersExport;
 use App\Exports\VerfikasiExport;
 use App\Models\Address;
@@ -669,5 +670,10 @@ class DashboardController extends Controller
     public function exportDataVerifikasi()
     {
         return Excel::download(new VerfikasiExport, 'data_hasil_verifikasi.xlsx');
+    }
+
+    public function exportDataPemetaan()
+    {
+        return Excel::download(new PemetaanExport, 'data_hasil_pemetaan.xlsx');
     }
 }

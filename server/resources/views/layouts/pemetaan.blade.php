@@ -80,8 +80,8 @@
 
         <ul class="sidebar-nav" id="sidebar-nav">
 
-            @canany(['admin', 'superadmin'])
-                @canany(['umum', 'superadmin'])
+            @canany(['admin', 'superadmin', 'helpdesk'])
+                @canany(['umum', 'superadmin', 'helpdesk'])
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('data-pemetaan/umum/*') ? '' : 'collapsed' }}"
                             href="{{ route('dashboard.pemetaan.umum', ['user' => $user->email]) }}">
@@ -91,7 +91,7 @@
                     </li>
                 @endcanany
 
-                @canany(['agama', 'superadmin'])
+                @canany(['agama', 'superadmin', 'helpdesk'])
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('data-pemetaan/agama/*') ? '' : 'collapsed' }}"
                             href="{{ route('dashboard.pemetaan.agama', ['user' => $user->email]) }}">
@@ -101,7 +101,7 @@
                     </li>
                 @endcanany
 
-                @canany(['tahfidz', 'superadmin'])
+                @canany(['tahfidz', 'superadmin', 'helpdesk'])
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('data-pemetaan/uji-tahfidz/*') ? '' : 'collapsed' }}"
                             href="{{ route('dashboard.pemetaan.tahfidz', ['user' => $user->email]) }}">

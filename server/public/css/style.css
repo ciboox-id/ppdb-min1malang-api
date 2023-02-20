@@ -1143,3 +1143,8 @@ h6 {
     font-weight: 800;
     margin: 0;
 }
+
+.table thead th {
+  position: sticky;
+  top: 0;
+}

@@ -78,7 +78,7 @@
 
     <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
-            @canany(['admin', 'superadmin'])
+            @canany(['admin', 'superadmin', 'helpdesk'])
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('dashboard/*') ? '' : 'collapsed' }}"
                         href="{{ route('dashboard.admin') }}">
@@ -87,7 +87,7 @@
                     </a>
                 </li>
 
-                @can('superadmin')
+                @canany(['superadmin', 'helpdesk'])
                     <li class="nav-heading">Admin</li>
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('data-siswa/*', 'data-siswa') ? '' : 'collapsed' }}"
@@ -105,16 +105,18 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('hasil-pemetaan') ? '' : 'collapsed' }}"
-                            href="{{ route('dashboard.hasil-pemetaan') }}">
-                            <i class="bi bi-clipboard-data"></i>
-                            <span>Hasil Pemetaan</span>
-                        </a>
-                    </li>
-                @endcan
+                    @can('superadmin')
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('hasil-pemetaan') ? '' : 'collapsed' }}"
+                                href="{{ route('dashboard.hasil-pemetaan') }}">
+                                <i class="bi bi-clipboard-data"></i>
+                                <span>Hasil Pemetaan</span>
+                            </a>
+                        </li>
+                    @endcan
+                @endcanany
 
-                @canany(['verifikator', 'superadmin'])
+                @canany(['verifikator', 'superadmin', 'helpdesk'])
                     <li class="nav-heading">Verifikasi</li>
 
                     <li class="nav-item">
@@ -126,7 +128,7 @@
                     </li>
                 @endcanany
 
-                @canany(['superadmin', 'umum', 'agama', 'tahfidz'])
+                @canany(['superadmin', 'umum', 'agama', 'tahfidz', 'helpdesk'])
                     <li class="nav-heading">Pemetaan</li>
 
                     <li class="nav-item">

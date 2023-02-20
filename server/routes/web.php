@@ -71,6 +71,7 @@ Route::middleware(['auth'])->group(function () {
         Route::middleware(['admin'])->group(function () {
             Route::get('/export-to-excel', [DashboardController::class, 'export'])->name('dashboard.export.excel');
             Route::get('/export-verifikasi-to-excel', [DashboardController::class, 'exportDataVerifikasi'])->name('dashboard.export.excel.verifikasi');
+            Route::get('/export-pemetaan-to-excel', [DashboardController::class, 'exportDataPemetaan'])->name('dashboard.export.excel.pemetaan');
         });
     });
 

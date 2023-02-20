@@ -82,7 +82,7 @@ class AppServiceProvider extends ServiceProvider
                 "ika@umum.com"
             ];
 
-            return in_array($user->email, $pemetaan_names);
+            return strpos($user->email, 'umum') !== false || strpos($user->email, 'agama') !== false || strpos($user->email, 'tahfidz') !== false;
         });
 
         Gate::define('umum', function (User $user) {
@@ -104,7 +104,7 @@ class AppServiceProvider extends ServiceProvider
                 "siti@umum.com",
                 "ika@umum.com"
             ];
-            return in_array($user->email, $umum_names);
+            return strpos($user->email, 'umum') !== false;
         });
 
         Gate::define('agama', function (User $user) {
@@ -127,7 +127,7 @@ class AppServiceProvider extends ServiceProvider
                 "nafisatul@agama.com",
             ];
 
-            return in_array($user->email, $agama_names);
+            return strpos($user->email, 'agama') !== false;
         });
 
         Gate::define('tahfidz', function (User $user) {
@@ -138,7 +138,11 @@ class AppServiceProvider extends ServiceProvider
                 "fahmi_abdul@tahfidz.com",
             ];
 
-            return in_array($user->email, $tahfidz_names);
+            return strpos($user->email, 'tahfidz') !== false;
+        });
+
+        Gate::define('helpdesk', function (User $user) {
+            return strpos($user->email, 'helpdesk') !== false;
         });
 
         Gate::define('superadmin', function (User $user) {
