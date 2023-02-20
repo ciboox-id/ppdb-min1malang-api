@@ -18,8 +18,11 @@
                                         <th scope="col">Jalur</th>
                                         <th scope="col">Kemandirian</th>
                                         <th scope="col">Umum</th>
+                                        <th scope="col">Validator Umum</th>
                                         <th scope="col">Agama</th>
+                                        <th scope="col">Validator Agama</th>
                                         <th scope="col">Uji Tahfidz</th>
+                                        <th scope="col">Validator Tahfidz</th>
                                         <th scope="col">Prestasi</th>
                                     </tr>
                                 </thead>
@@ -34,8 +37,11 @@
                                                     <td style="text-transform: capitalize">{{ $user->jalur }}</td>
                                                     <td>{{ $user->score->mandiri ?? "" }}</td>
                                                     <td>{{ $user->score->umum ?? "" }}</td>
+                                                    <td>{{ $user->score->name_validator_umum ?? "" }}</td>
                                                     <td>{{ $user->score->agama ?? "" }}</td>
+                                                    <td>{{ $user->score->name_validator_agama ?? "" }}</td>
                                                     <td>{{ $user->score->uji_tahfidz ?? "" }}</td>
+                                                    <td>{{ $user->score->name_validator_tahfidz ?? "" }}</td>
                                                     <td>{{ $user->score->prestasi ?? "" }}</td>
                                                 </tr>
                                             @endif

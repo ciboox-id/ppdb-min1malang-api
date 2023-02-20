@@ -110,7 +110,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('agama', function (User $user) {
             $agama_names = [
                 "hasanuddin@agama.com",
-                "Khoirul@agama.com",
+                "khoirul@agama.com",
                 "imam@agama.com",
                 "cici@agama.com",
                 "shafraji@agama.com",
