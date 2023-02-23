@@ -40,6 +40,8 @@ class PemetaanExport implements FromCollection, WithHeadings
                 'nama validator agama' => $user->score->name_validator_agama,
                 'tahfidz' => $user->score->uji_tahfidz,
                 'nama validator tahfidz' => $user->score->name_validator_tahfidz,
+                'prestasi' => $user->score->prestasi,
+                'waktu' => $user->score->updated_at
             ];
         }
 
@@ -48,6 +50,6 @@ class PemetaanExport implements FromCollection, WithHeadings
 
     public function headings(): array
     {
-        return ['id', 'nama_lengkap', 'email', 'jalur', 'jenis_kelamin', 'no_pemetaan', 'kemandirian', 'umum', 'nama validator umum', 'agama', 'nama validator agama', 'tahfidz', 'nama validator tahfidz'];
+        return ['id', 'nama_lengkap', 'email', 'jalur', 'jenis_kelamin', 'no_pemetaan', 'kemandirian', 'umum', 'nama validator umum', 'agama', 'nama validator agama', 'tahfidz', 'nama validator tahfidz', 'prestasi', 'waktu'];
     }
 }
