@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardAuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PemetaanController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ResultController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\StudentDashboardController;
 use App\Models\Pemetaan;
@@ -41,6 +42,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/surat-resmi-view', function () {
         $pemetaan = Pemetaan::where('user_id', auth()->user()->id)->first();
         return view('student.surat-resmi', ['user' => auth()->user(), 'pemetaan' => $pemetaan]);
+    });
+
+    Route::get('/hasil-score-pemetaan', function () {
+        $pemetaan = Pemetaan::where('user_id', auth()->user()->id)->first();
+        return view('result.index', ['user' => auth()->user(), 'pemetaan' => $pemetaan, 'date' => null, 'time' => null]);
+    });
+
+    Route::get('/daftar-ulang', function () {
+        return view('result.daftar-ulang', ['user' => auth()->user()]);
     });
 
     Route::prefix('dashboard')->group(function () {
@@ -112,5 +122,6 @@ Route::middleware(['auth'])->group(function () {
         });
 
         Route::get('/hasil-pemetaan', [PemetaanController::class, 'result'])->name('dashboard.hasil-pemetaan');
+        Route::post('/import/result-pemetaan', [DashboardController::class, 'importResultUser'])->name('import.result-user.excel');
     });
 });

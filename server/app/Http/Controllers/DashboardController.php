@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\PemetaanExport;
 use App\Exports\UsersExport;
 use App\Exports\VerfikasiExport;
+use App\Imports\ResultUserImport;
 use App\Models\Address;
 use App\Models\Father;
 use App\Models\Mother;
@@ -14,6 +15,7 @@ use App\Models\School;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use \PDF;
@@ -675,5 +677,20 @@ class DashboardController extends Controller
     public function exportDataPemetaan()
     {
         return Excel::download(new PemetaanExport, 'data_hasil_pemetaan.xlsx');
+    }
+
+    public function importResultUser(Request $request)
+    {
+        $file = $request->file('excel_file');
+        $path = $file->store('temp');
+
+        try {
+            Excel::import(new ResultUserImport, $path);
+        } catch (\Throwable $e) {
+            Log::error($e);
+            return redirect()->back()->with('error', 'Import failed: ' . $e->getMessage());
+        }
+
+        return back()->with('success', 'Berhasil update nilai pemetaan siswa');
     }
 }

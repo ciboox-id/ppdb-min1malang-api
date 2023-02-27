@@ -44,6 +44,11 @@
                                 name="kecamatan" placeholder="e.g. Pagak" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
+                            <label for="provinsi" class="form-label">Provinsi <span class="mandatory">*</span></label>
+                            <input type="text" class="form-control" value="{{ $user->address->provinsi }}"
+                                name="provinsi" placeholder="e.g. Jawa Timur" required>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
                             <label for="kota_kab" class="form-label">Kota / Kabupaten <span
                                     class="mandatory">*</span></label>
                             <input type="text" class="form-control" name="kota_kab"
@@ -53,6 +58,16 @@
                             <label for="kode_pos" class="form-label">Kode Pos <span class="mandatory">*</span></label>
                             <input type="text" class="form-control" value="{{ $user->address->kode_pos }}"
                                 name="kode_pos" placeholder="e.g. 65139" required>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="rt" class="form-label">RT <span class="mandatory">*</span></label>
+                            <input type="text" class="form-control" value="{{ $user->address->rt }}"
+                                name="rt" placeholder="e.g. 09" required>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="rw" class="form-label">RW <span class="mandatory">*</span></label>
+                            <input type="text" class="form-control" value="{{ $user->address->rw }}"
+                                name="rw" placeholder="e.g. 01" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="jarak_rumah" class="form-label">Jarak Rumah ke MIN 1 Kota Malang <span

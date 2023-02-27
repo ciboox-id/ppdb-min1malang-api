@@ -28,6 +28,14 @@
                         id="data-ortu-form">
                         @method('PUT')
                         @csrf
+
+                        <h6 class="card-subtitle mt-3 mb-0"><mark>Data Ayah</mark></h6>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="gelar_depan_ayah" class="form-label">Gelar Depan <span
+                                    class="mandatory">*</span></label>
+                            <input type="text" class="form-control" name="gelar_depan_ayah"
+                                placeholder="e.g. Drs" value="{{ $father->gelar_depan }}" required>
+                        </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="nama_lengkap_ayah" class="form-label">Nama Lengkap Ayah <span
                                     class="mandatory">*</span></label>
@@ -35,20 +43,15 @@
                                 placeholder="e.g. Budi Setyawan" value="{{ $father->nama_lengkap_ayah }}" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="nama_lengkap_ibu" class="form-label">Nama Lengkap Ibu <span
+                            <label for="gelar_belakang_ayah" class="form-label">Gelar belakang <span
                                     class="mandatory">*</span></label>
-                            <input type="text" class="form-control" value="{{ $mother->nama_lengkap_ibu }}"
-                                name="nama_lengkap_ibu" placeholder="e.g. Putri Tjisaka" required>
+                            <input type="text" class="form-control" name="gelar_belakang_ayah"
+                                placeholder="e.g. S,Pd" value="{{ $father->gelar_belakang }}" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="nik_ayah" class="form-label">NIK Ayah <span class="mandatory">*</span></label>
                             <input type="text" class="form-control" name="nik_ayah" value="{{ $father->nik_ayah }}"
                                 placeholder="e.g. 213521376182367" maxlength="16" required>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <label for="nik_ibu" class="form-label">NIK Ibu <span class="mandatory">*</span></label>
-                            <input type="text" class="form-control" value="{{ $mother->nik_ibu }}" name="nik_ibu"
-                                placeholder="e.g. 123721596236" maxlength="16" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="pekerjaan_ayah" class="form-label">Pekerjaan Ayah <span
@@ -62,30 +65,11 @@
                             </select>
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="pekerjaan_ibu" class="form-label">Pekerjaan Ibu <span
-                                    class="mandatory">*</span></label>
-                            <select class="form-select" name="pekerjaan_ibu" required>
-                                @foreach ($job as $item)
-                                    <option value="{{ $item }}"
-                                        {{ $item === $mother->pekerjaan_ibu ? 'selected' : '' }}> {{ $item }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="col-sm-12 col-md-6">
                             <label for="nama_kantor_ayah" class="form-label">Nama Kantor Ayah <span
                                     class="mandatory">*</span></label>
                             <input type="text" class="form-control" value="{{ $father->nama_kantor_ayah }}"
                                 name="nama_kantor_ayah" placeholder="e.g. Sawah" required>
                         </div>
-                        <div class="col-sm-12 col-md-6">
-                            <label for="nama_kantor_ibu" class="form-label">Nama Kantor Ibu <span
-                                    class="mandatory">*</span></label>
-                            <input type="text" class="form-control" value="{{ $mother->nama_kantor_ibu }}"
-                                name="nama_kantor_ibu" placeholder="e.g. Rumah" required>
-                        </div>
-
                         <div class="col-sm-12 col-md-6">
                             <label for="penghasilan_ayah" class="form-label">Penghasilan Ayah <span
                                     class="mandatory">*</span></label>
@@ -97,7 +81,55 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="no_telp_ayah" class="form-label">No. Telp Ayah <span
+                                    class="mandatory">*</span></label>
+                            <input type="text" class="form-control" value="{{ $father->no_telp_ayah }}"
+                                name="no_telp_ayah" placeholder="e.g. 08213526135" required>
+                        </div>
 
+
+                        <h6 class="card-subtitle mt-3 mb-0"><mark>Data Ibu</mark></h6>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="gelar_depan_ibu" class="form-label">Gelar Depan <span
+                                    class="mandatory">*</span></label>
+                            <input type="text" class="form-control" name="gelar_depan_ibu"
+                                placeholder="e.g. Drs" value="{{ $mother->gelar_depan }}" required>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="nama_lengkap_ibu" class="form-label">Nama Lengkap Ibu <span
+                                    class="mandatory">*</span></label>
+                            <input type="text" class="form-control" name="nama_lengkap_ibu"
+                                placeholder="e.g. Fellicia Tjisaka" value="{{ $mother->nama_lengkap_ibu }}" required>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="gelar_belakang_ibu" class="form-label">Gelar belakang <span
+                                    class="mandatory">*</span></label>
+                            <input type="text" class="form-control" name="gelar_belakang_ibu"
+                                placeholder="e.g. S,Pd" value="{{ $mother->gelar_belakang }}" required>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="nik_ibu" class="form-label">NIK Ibu <span class="mandatory">*</span></label>
+                            <input type="text" class="form-control" value="{{ $mother->nik_ibu }}" name="nik_ibu"
+                                placeholder="e.g. 123721596236" maxlength="16" required>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="pekerjaan_ibu" class="form-label">Pekerjaan Ibu <span
+                                    class="mandatory">*</span></label>
+                            <select class="form-select" name="pekerjaan_ibu" required>
+                                @foreach ($job as $item)
+                                    <option value="{{ $item }}"
+                                        {{ $item === $mother->pekerjaan_ibu ? 'selected' : '' }}> {{ $item }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="nama_kantor_ibu" class="form-label">Nama Kantor Ibu <span
+                                    class="mandatory">*</span></label>
+                            <input type="text" class="form-control" value="{{ $mother->nama_kantor_ibu }}"
+                                name="nama_kantor_ibu" placeholder="e.g. Rumah" required>
+                        </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="penghasilan_ibu" class="form-label">Penghasilan Ibu <span
                                     class="mandatory">*</span></label>
@@ -109,14 +141,6 @@
                                 @endforeach
                             </select>
                         </div>
-
-                        <div class="col-sm-12 col-md-6">
-                            <label for="no_telp_ayah" class="form-label">No. Telp Ayah <span
-                                    class="mandatory">*</span></label>
-                            <input type="text" class="form-control" value="{{ $father->no_telp_ayah }}"
-                                name="no_telp_ayah" placeholder="e.g. 08213526135" required>
-                        </div>
-
                         <div class="col-sm-12 col-md-6">
                             <label for="no_telp_ibu" class="form-label">No. Telp Ibu <span
                                     class="mandatory">*</span></label>

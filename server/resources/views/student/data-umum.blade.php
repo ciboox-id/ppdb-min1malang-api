@@ -34,6 +34,17 @@
                                 placeholder="e.g. ciboox.id" style="text-transform: uppercase" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
+                            <label for="nama_panggilan" class="form-label">Nama Panggilan <span
+                                    class="mandatory">*</span></label>
+                            <input type="text" class="form-control" name="nama_panggilan" value="{{ $user->nama_panggilan }}"
+                                placeholder="e.g. ciboox.id" style="text-transform: uppercase" required>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="jumlah_saudara" class="form-label">Jumlah Saudara Kandung <span class="mandatory">*</span></label>
+                            <input type="number" class="form-control" value="{{ $user->jumlah_saudara }}" name="jumlah_saudara"
+                                placeholder="e.g. 1" required>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
                             <label for="anak_ke" class="form-label">Anak ke <span class="mandatory">*</span></label>
                             <input type="number" class="form-control" value="{{ $user->anak_ke }}" name="anak_ke"
                                 placeholder="e.g. 1" required>
@@ -87,6 +98,18 @@
                                     class="mandatory">*</span></label>
                             <input type="date" class="form-control" id="tanggal_lahir"
                                 value="{{ $user->tanggal_lahir }}" name="tanggal_lahir" required>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6">
+                            <label for="hobi" class="form-label">Hobi <span class="mandatory">*</span></label>
+                            <input type="text" class="form-control" value="{{ $user->hobi }}" name="hobi"
+                                placeholder="e.g. Membaca" required>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6">
+                            <label for="cita" class="form-label">Cita <span class="mandatory">*</span></label>
+                            <input type="text" class="form-control" value="{{ $user->cita }}" name="cita"
+                                placeholder="e.g. Dokter" required>
                         </div>
 
                         <button type="submit" class="btn btn-primary mt-4 py-2 rounded-2" id="submitBtn">

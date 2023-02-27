@@ -5,6 +5,20 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="col-12">
+
+                    @if (session()->has('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+                    @if (session()->has('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{ session('error') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+
                     <div class="card recent-sales overflow-auto">
                         <div class="card-body">
                             <h5 class="card-title-table">Data Hasil Pemetaan</h5>
@@ -12,6 +26,21 @@
                                 <i class="bi bi-cloud-download"></i>
                                 Export excel
                             </a>
+
+                            <form action="{{ route('import.result-user.excel') }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group col-6">
+                                    <label for="excel_file">Upload :</label>
+                                    <input type="file" name="excel_file" id="excel_file"
+                                        class="form-control form-control-sm">
+                                </div>
+                                <button type="submit" class="btn btn-primary my-2">
+                                    <i class="bi bi-box"></i>
+                                    Import
+                                </button>
+                            </form>
+
 
                             <table class="table table-bordered datatable">
                                 <thead class="sticky-top table-success">
