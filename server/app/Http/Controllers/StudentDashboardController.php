@@ -31,6 +31,8 @@ class StudentDashboardController extends Controller
         try {
             $validation = $request->validate([
                 'nama_lengkap' => 'required',
+                'nama_panggilan' => 'nullable',
+                'jumlah_saudara' => 'nullable',
                 'jenis_kelamin' => 'nullable',
                 'nisn' => 'nullable|numeric',
                 'nik' => 'nullable|numeric',
@@ -39,6 +41,8 @@ class StudentDashboardController extends Controller
                 'tanggal_lahir' => 'nullable',
                 'gol_darah' => 'nullable',
                 'anak_ke' => 'nullable',
+                'hobi' => 'nullable',
+                'cita' => 'nullable',
             ]);
 
             $validation['nama_lengkap'] = strtoupper($validation['nama_lengkap']);
@@ -90,18 +94,23 @@ class StudentDashboardController extends Controller
             "Wiraswasta",
             "Anggota DPR-RI/DPRD",
         ];
+        $pendidikan = [
+            'SD', 'SMP', 'SMA', 'D1', 'D2', 'D3', 'D4', 'S1', 'S2', 'S3'
+        ];
 
         return view('student.data-ortu', [
             'father' => $user->father,
             'mother' => $user->mother,
             'user' => $user,
             'salary' => $range,
-            'job' => $pekerjaan
+            'job' => $pekerjaan,
+            'pendidikan' => $pendidikan
         ]);
     }
 
     public function updateDataOrtu(Request $request)
     {
+        dd($request->all());
         try {
             $validationAyah = $request->validate([
                 'nama_lengkap_ayah' => 'nullable',
@@ -112,6 +121,13 @@ class StudentDashboardController extends Controller
                 'no_telp_ayah' => 'nullable|numeric',
             ]);
 
+            $validationAyah['gelar_depan'] = $request->gelar_depan_ayah;
+            $validationAyah['gelar_belakang'] = $request->gelar_belakang_ayah;
+            $validationAyah['status'] = $request->status_ayah;
+            $validationAyah['tempat_lahir'] = $request->tempat_lahir_ayah;
+            $validationAyah['tanggal_lahir'] = $request->tanggal_lahir_ayah;
+            $validationAyah['pend_terakhir'] = $request->pend_terakhir_ayah;
+
             $validationIbu = $request->validate([
                 'nama_lengkap_ibu' => 'nullable',
                 'nik_ibu' => 'nullable|numeric',
@@ -120,6 +136,13 @@ class StudentDashboardController extends Controller
                 'penghasilan_ibu' => 'nullable',
                 'no_telp_ibu' => 'nullable|numeric',
             ]);
+
+            $validationIbu['gelar_depan'] = $request->gelar_depan_ibu;
+            $validationIbu['gelar_belakang'] = $request->gelar_belakang_ibu;
+            $validationIbu['status'] = $request->status_ibu;
+            $validationIbu['tempat_lahir'] = $request->tempat_lahir_ibu;
+            $validationIbu['tanggal_lahir'] = $request->tanggal_lahir_ibu;
+            $validationIbu['pend_terakhir'] = $request->pend_terakhir_ibu;
 
             $validationAyah['nama_lengkap_ayah'] = ucfirst($validationAyah['nama_lengkap_ayah']);
             $validationIbu['nama_lengkap_ibu'] = ucfirst($validationIbu['nama_lengkap_ibu']);
@@ -323,7 +346,10 @@ class StudentDashboardController extends Controller
                 'kelurahan' => 'nullable',
                 'kota_kab' => 'nullable',
                 'kode_pos' => 'nullable|numeric',
-                'jarak_rumah' => 'nullable'
+                'jarak_rumah' => 'nullable',
+                'rt' => 'nullable',
+                'rw' => 'nullable',
+                'provinsi' => 'nullable',
             ]);
 
             Address::where('user_id', auth()->user()->id)->update($validationAddress);

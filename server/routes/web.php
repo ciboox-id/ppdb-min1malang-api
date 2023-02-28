@@ -77,6 +77,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/data-alamat', [StudentDashboardController::class, 'dataAlamat'])->name('dashboard.data-alamat');
         Route::put('/data-alamat/update', [StudentDashboardController::class, 'updateDataAlamat'])->name('dashboard.data-alamat.update');
 
+        Route::get('/pengumuman', [ResultController::class, 'pengumuman'])->name('dashboard.pengumuman');
+        Route::get('/export-hasil-pemetaan', [ResultController::class, 'downloadHasilPemetaan'])->name('download.export.hasil-pemetaan');
 
         Route::middleware(['admin'])->group(function () {
             Route::get('/export-to-excel', [DashboardController::class, 'export'])->name('dashboard.export.excel');
@@ -120,6 +122,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/uji-tahfidz/{user:email}', [ScoreController::class, 'tahfidz'])->name('dashboard.pemetaan.tahfidz');
             Route::post('/uji-tahfidz/{user:email}/post', [ScoreController::class, 'postTahfidz'])->name('dashboard.pemetaan.tahfidz.post');
         });
+
 
         Route::get('/hasil-pemetaan', [PemetaanController::class, 'result'])->name('dashboard.hasil-pemetaan');
         Route::post('/import/result-pemetaan', [DashboardController::class, 'importResultUser'])->name('import.result-user.excel');

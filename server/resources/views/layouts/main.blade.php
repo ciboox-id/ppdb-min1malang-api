@@ -196,6 +196,14 @@
                         <span>Upload Sertifikat</span>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('dashboard/pengumuman') ? '' : 'collapsed' }}"
+                        href="{{ route('dashboard.pengumuman') }}">
+                        <i class="bi bi-info-circle"></i>
+                        <span>Pengumuman</span>
+                    </a>
+                </li>
             @endcan
 
         </ul>

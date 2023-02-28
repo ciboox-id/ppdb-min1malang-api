@@ -67,7 +67,7 @@
         <table style="margin-top: .5rem;">
             <tr>
                 <td style="text-align: center;">
-                    <img src="{{ asset('/images/logo-icon.png') }}" alt="" class="logo-icon">
+                    <img src="{{ public_path('/images/logo-icon.png') }}" alt="" class="logo-icon">
 
                     <p>
                         <font style="font-weight: 600;" size="2">Kartu Peserta Pemetaan</font><br>

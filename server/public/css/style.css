@@ -1148,3 +1148,10 @@ h6 {
   position: sticky;
   top: 0;
 }
+
+.btn-info {
+    color: white;
+}
+.btn-info:hover {
+    color: seashell;
+}

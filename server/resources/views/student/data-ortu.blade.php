@@ -31,22 +31,20 @@
 
                         <h6 class="card-subtitle mt-3 mb-0"><mark>Data Ayah</mark></h6>
                         <div class="col-sm-12 col-md-6">
-                            <label for="gelar_depan_ayah" class="form-label">Gelar Depan <span
-                                    class="mandatory">*</span></label>
+                            <label for="gelar_depan_ayah" class="form-label">Gelar Depan</label>
                             <input type="text" class="form-control" name="gelar_depan_ayah"
-                                placeholder="e.g. Drs" value="{{ $father->gelar_depan }}" required>
+                                placeholder="e.g. Drs" value="{{ $father->gelar_depan }}">
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="nama_lengkap_ayah" class="form-label">Nama Lengkap Ayah <span
                                     class="mandatory">*</span></label>
                             <input type="text" class="form-control" name="nama_lengkap_ayah"
-                                placeholder="e.g. Budi Setyawan" value="{{ $father->nama_lengkap_ayah }}" required>
+                                placeholder="e.g. Budi Setyawan" value="{{ $father->nama_lengkap_ayah }}">
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="gelar_belakang_ayah" class="form-label">Gelar belakang <span
-                                    class="mandatory">*</span></label>
+                            <label for="gelar_belakang_ayah" class="form-label">Gelar belakang</label>
                             <input type="text" class="form-control" name="gelar_belakang_ayah"
-                                placeholder="e.g. S,Pd" value="{{ $father->gelar_belakang }}" required>
+                                placeholder="e.g. S,Pd" value="{{ $father->gelar_belakang }}">
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="nik_ayah" class="form-label">NIK Ayah <span class="mandatory">*</span></label>
@@ -87,14 +85,42 @@
                             <input type="text" class="form-control" value="{{ $father->no_telp_ayah }}"
                                 name="no_telp_ayah" placeholder="e.g. 08213526135" required>
                         </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="status_ayah" class="form-label">Status ayah <span
+                                    class="mandatory">*</span></label>
+                            <input type="text" class="form-control" value="{{ $father->status }}"
+                                name="status_ayah" placeholder="e.g. -" required>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="tempat_lahir_ayah" class="form-label">Tempat Lahir Ayah <span
+                                    class="mandatory">*</span></label>
+                            <input type="text" class="form-control" value="{{ $father->tempat_lahir }}"
+                                name="tempat_lahir_ayah" placeholder="e.g. Malang" required>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="tanggal_lahir_ayah" class="form-label">Tanggal Lahir Ayah <span
+                                    class="mandatory">*</span></label>
+                            <input type="date" class="form-control" value="{{ $father->tanggal_lahir }}"
+                                name="tanggal_lahir_ayah" placeholder="e.g. -" required>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="pend_terakhir_ayah" class="form-label">Pendidikan terakhir <span
+                                    class="mandatory">*</span></label>
+                            <select class="form-select" name="pend_terakhir_ayah">
+                                @foreach ($pendidikan as $item)
+                                    <option value="{{ $item }}"
+                                        {{ $item === $mother->pend_terakhir ? 'selected' : '' }}> {{ $item }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
 
 
                         <h6 class="card-subtitle mt-3 mb-0"><mark>Data Ibu</mark></h6>
                         <div class="col-sm-12 col-md-6">
-                            <label for="gelar_depan_ibu" class="form-label">Gelar Depan <span
-                                    class="mandatory">*</span></label>
+                            <label for="gelar_depan_ibu" class="form-label">Gelar Depan</label>
                             <input type="text" class="form-control" name="gelar_depan_ibu"
-                                placeholder="e.g. Drs" value="{{ $mother->gelar_depan }}" required>
+                                placeholder="e.g. Drs" value="{{ $mother->gelar_depan }}">
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="nama_lengkap_ibu" class="form-label">Nama Lengkap Ibu <span
@@ -103,10 +129,9 @@
                                 placeholder="e.g. Fellicia Tjisaka" value="{{ $mother->nama_lengkap_ibu }}" required>
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <label for="gelar_belakang_ibu" class="form-label">Gelar belakang <span
-                                    class="mandatory">*</span></label>
+                            <label for="gelar_belakang_ibu" class="form-label">Gelar belakang</label>
                             <input type="text" class="form-control" name="gelar_belakang_ibu"
-                                placeholder="e.g. S,Pd" value="{{ $mother->gelar_belakang }}" required>
+                                placeholder="e.g. S,Pd" value="{{ $mother->gelar_belakang }}">
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="nik_ibu" class="form-label">NIK Ibu <span class="mandatory">*</span></label>
@@ -146,6 +171,35 @@
                                     class="mandatory">*</span></label>
                             <input type="text" class="form-control" value="{{ $mother->no_telp_ibu }}"
                                 name="no_telp_ibu" placeholder="e.g. 08213526135" required>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="status_ibu" class="form-label">Status Ibu <span
+                                    class="mandatory">*</span></label>
+                            <input type="text" class="form-control" value="{{ $mother->status }}"
+                                name="status_ibu" placeholder="e.g. -" required>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="tempat_lahir_ibu" class="form-label">Tempat Lahir Ibu <span
+                                    class="mandatory">*</span></label>
+                            <input type="text" class="form-control" value="{{ $mother->tempat_lahir }}"
+                                name="tempat_lahir_ibu" placeholder="e.g. Malang" required>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="tanggal_lahir_ibu" class="form-label">Tanggal Lahir Ibu <span
+                                    class="mandatory">*</span></label>
+                            <input type="date" class="form-control" value="{{ $mother->tanggal_lahir }}"
+                                name="tanggal_lahir_ibu" placeholder="e.g. -" required>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="pend_terakhir_ibu" class="form-label">Pendidikan terakhir <span
+                                    class="mandatory">*</span></label>
+                            <select class="form-select" name="pend_terakhir_ibu">
+                                @foreach ($pendidikan as $item)
+                                    <option value="{{ $item }}"
+                                        {{ $item === $mother->pend_terakhir ? 'selected' : '' }}> {{ $item }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <button type="submit" class="btn btn-primary mt-4 py-2 rounded-2">

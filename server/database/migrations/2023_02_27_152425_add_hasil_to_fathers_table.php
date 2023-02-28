@@ -14,12 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::table('fathers', function (Blueprint $table) {
-            $table->string('gelar_depan');
-            $table->string('gelar_belakang');
-            $table->string('status');
-            $table->string('tempat_lahir');
-            $table->string('tanggal_lahir');
-            $table->string('pend_terakhir');
+            $table->string('gelar_depan')->nullable();
+            $table->string('gelar_belakang')->nullable();
+            $table->string('status')->nullable();
+            $table->string('tempat_lahir')->nullable();
+            $table->string('tanggal_lahir')->nullable();
+            $table->string('pend_terakhir')->nullable();
         });
     }
 
