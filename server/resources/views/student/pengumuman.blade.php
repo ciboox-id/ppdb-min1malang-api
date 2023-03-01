@@ -13,9 +13,9 @@
                                 Seluruh pengumuman PPDB MIN 1 Kota Malang
                             </p>
 
-                            @if ($user->is_verif)
+                            @if ($user->is_verif && $user->score != null)
                                 <h6 class="card-subtitle mt-3 mb-2"><mark>Pengumuman Pemetaan</mark></h6>
-                                @if (\Carbon\Carbon::now()->lt(\Carbon\Carbon::create(2023, 3, 2, 0, 0, 0)))
+                                @if (\Carbon\Carbon::now()->gt(\Carbon\Carbon::create(2023, 3, 2, 0, 0, 0)))
                                     @if ($user->lolos)
                                         <a href="{{ asset('/data/B-113 Info Nomor Peserta.pdf') }}" target="_blank"
                                             rel="noopener noreferrer" class="btn btn-sm btn-info">Pemberitahuan Nomor
