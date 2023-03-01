@@ -109,48 +109,6 @@
                                     @endif
                                 @endif
                             </div>
-
-                            <div class="pagetitle">
-                                <h1>Cetak Kartu peserta dan Hasil verifikasi berkas</h1>
-                            </div><!-- End Page Title -->
-                            @if ($user->is_verif)
-                                @if (\Carbon\Carbon::now()->lt(\Carbon\Carbon::create(2023, 2, 11, 0, 0, 0)))
-                                    <div class="alert alert-success" role="alert">
-                                        <i class="bi bi-check-circle"></i>
-                                        Data Telah di verifikasi
-                                    </div>
-                                @else
-                                    @if ($pemetaan->lolos == "lolos")
-                                        <div class="alert alert-success" role="alert">
-                                            <i class="bi bi-check-circle"></i>
-                                            Anda dinyatakan Lolos Verifikasi Berkas
-                                        </div>
-                                        <a href="{{ route('download.kartu-peserta') }}" target="_blank"
-                                            rel="noopener noreferrer">Download kartu Peserta</a>
-                                        <a href="{{ route('download.surat-resmi') }}" target="_blank"
-                                            rel="noopener noreferrer">Download surat hasil verifikasi</a>
-                                    @else
-                                        <div class="alert alert-danger" role="alert">
-                                            <i class="bi bi-exclamation-circle"></i>
-                                            Anda dinyatakan Tidak Lolos Verifikasi Berkas<br/>
-                                            Karena : {{ $pemetaan->pesan }}
-                                        </div>
-                                    @endif
-                                @endif
-                            @else
-                                @if ($biodata > 7 || $school > 0 || $address > 0 || $fatmot > 0)
-                                    <div class="alert alert-danger" role="alert">
-                                        <i class="bi bi-exclamation-circle"></i>
-                                        Lengkapi data diatas terlebih dahulu sebelum cetak kartu peserta dan surat hasil
-                                        verifikasi
-                                    </div>
-                                @else
-                                    <div class="alert alert-danger" role="alert">
-                                        <i class="bi bi-exclamation-circle"></i>
-                                        Tunggu data verifikasi terlebih dahulu
-                                    </div>
-                                @endif
-                            @endif
                         @else
                             <div class="alert alert-danger" role="alert">
                                 <i class="bi bi-exclamation-circle"></i>

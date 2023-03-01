@@ -5,7 +5,7 @@
     <title>Verval PPDB</title>
     <style type="text/css">
         * {
-            font-family: 'Times New Roman';
+            font-family: 'Arial';
         }
 
         table {
@@ -35,13 +35,15 @@
     <center>
         <table width="530">
             <tr>
-                <td><img src="{{ public_path('images/logo-icon.png') }}" width="90" height="90"></td>
+                <td><img src="{{ public_path('/images/result/pengumuman.png') }}" width="90" height="90"></td>
                 <td>
                     <center>
                         <font size="4">KEMENTERIAN AGAMA REPUBLIK INDONESIA</font><br>
                         <font size="3">KANTOR KEMENTERIAN AGAMA KOTA MALANG</font><br>
                         <font size="2">MADRASAH IBTIDAIYAH NEGERI 1 KOTA MALANG</font><br>
                         <font size="2">Jl. Bandung 7C Malang, Telepon 0341-551176, Faximile 0341-565642</font>
+                        <font size="2">Website: https://www.min1kotamalang.sch.id Email: info@min1kotamalang.sch.id
+                        </font>
                     </center>
                 </td>
             </tr>
@@ -81,7 +83,7 @@
             <tr>
                 <td>
                     Bersama ini kami sampaikan dengan hormat hasil pemetaan kesiapan belajar yang diselenggarakan oleh
-                    Panitia Penerimaan Peserta Didik Baru (PPDB) MIN 1 Kota Malang tahun pelajaran 2023/2024 terhadap
+                    Panitia Penerimaan Peserta Didik Baru (PPDB) MIN 1 Kota Malang tahun ajaran 2023/2024 terhadap
                     putra/putri Bapak/Ibu sebagai berikut:
                 </td>
             </tr>
@@ -100,13 +102,13 @@
                 <td>1.</td>
                 <td>Kemandirian</td>
                 <td>{{ $user->score->mandiri }}</td>
-                <td>(Skor Maksimal 200)</td>
+                <td>(Skor Maksimal 250)</td>
             </tr>
             <tr>
                 <td>2.</td>
                 <td>Wawancara Umum</td>
                 <td>{{ $user->score->umum }}</td>
-                <td>(Skor Maksimal 725)</td>
+                <td>(Skor Maksimal 525)</td>
             </tr>
             <tr>
                 <td>2.</td>
@@ -118,20 +120,20 @@
                 <td>3.</td>
                 <td>Uji Tahfidz</td>
                 <td>{{ $user->score->uji_tahfidz ?? 0 }}</td>
-                <td>(Skor Maksimal 550)</td>
+                <td>(Skor Maksimal 600)</td>
             </tr>
             <tr>
                 <td>4.</td>
                 <td>Prestasi</td>
                 <td>{{ $user->score->prestasi }}</td>
-                <td>(Skor Maksimal 627)</td>
+                <td>(Skor Maksimal 800)</td>
             </tr>
             <tr style="font-weight: bold">
                 <td></td>
-                <td>Total Score</td>
+                <td>Total Skor</td>
                 <td>{{ $user->score->prestasi + $user->score->umum + $user->score->agama + $user->score->uji_tahfidz + $user->score->mandiri }}
                 </td>
-                <td>(Skor minimal diterima)</td>
+                <td>(Skor minimal diterima 866)</td>
             </tr>
 
         </table>
@@ -139,19 +141,27 @@
         <br>
         <table width="530">
             <tr>
-                <td style="text-align: center">Berdasarkan Hasil pemetaan diatas, maka putra/putri Bapak/Ibu dinyatakan
+                <td style="text-align: center">Berdasarkan Hasil pemetaan di atas, maka putra/putri Bapak/Ibu dinyatakan
                 </td>
             </tr>
             <tr>
-                <td style="text-align: center"><b
-                        style="padding:3px 5px;background: black; color:white;">{{ $user->lolos ? 'DITERIMA' : 'TIDAK DITERIMA' }}</b>
+                <td style="text-align: center">
+                    <b style="padding:3px 5px; font-weight: bold">
+                        @if ($user->lolos)
+                            DITERIMA
+                        @elseif($user->is_backup)
+                            CADANGAN {{ $user->kelas }}
+                        @else
+                            TIDAK DITERIMA
+                        @endif
+                    </b>
                 </td>
             </tr>
             <tr>
-                @if ($user->kelas)
+                @if ($user->kelas && !$user->is_backup)
                     <td style="text-align: center">
                         <b>
-                            DI KELAS {{ $user->kelas }}
+                            DI KELAS 1{{ $user->kelas }}
                         </b>
                     </td>
                 @endif
@@ -161,8 +171,8 @@
         <br>
         <table width="530">
             <tr>
-                <td>Demikian pengumuman hasil pemetaan ini, atas perhatina dan kerjasama Bapak/Ibu Orang tua / Wali
-                    selama kegiatan pemetaan disampaikan terimakasih</td>
+                <td>Demikian pengumuman hasil pemetaan ini, atas perhatian dan kerjasama Bapak/Ibu Orang tua / Wali
+                    selama kegiatan pemetaan disampaikan terima kasih.</td>
             </tr>
         </table>
 
@@ -171,8 +181,7 @@
             <tr>
                 <td width="340"><br><br><br><br></td>
                 <td class="text"><br>
-                    <span>Malang, 2 Maret 2023</span>
-                    <img src="{{ public_path('/images/ttd.jpg') }}" alt="" style="width: 50mm">
+                    <img src="{{ public_path('/images/ttd.png') }}" alt="" style="width: 60mm">
                 </td>
             </tr>
         </table>

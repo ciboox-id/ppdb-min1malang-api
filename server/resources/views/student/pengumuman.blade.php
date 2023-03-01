@@ -13,23 +13,25 @@
                                 Seluruh pengumuman PPDB MIN 1 Kota Malang
                             </p>
 
-                            <h6 class="card-subtitle mt-3 mb-2"><mark>Pengumuman Pemetaan</mark></h6>
-                            <div class="">
-                                @if (\Carbon\Carbon::now()->lt(\Carbon\Carbon::create(2023, 3, 4, 0, 0, 0)))
+                            @if ($user->is_verif)
+                                <h6 class="card-subtitle mt-3 mb-2"><mark>Pengumuman Pemetaan</mark></h6>
+                                @if (\Carbon\Carbon::now()->lt(\Carbon\Carbon::create(2023, 3, 2, 0, 0, 0)))
                                     @if ($user->lolos)
-                                        <a href="{{ asset('/data/113-Pemberitahuan Nomor Peserta.pdf') }}" target="_blank"
+                                        <a href="{{ asset('/data/B-113 Info Nomor Peserta.pdf') }}" target="_blank"
                                             rel="noopener noreferrer" class="btn btn-sm btn-info">Pemberitahuan Nomor
                                             Peserta</a>
-                                        <a href="{{ asset('/data/116_Undangan_Pertemuan.pdf') }}" target="_blank"
+                                        <a href="{{ route('download.export.hasil-pemetaan') }}" target="_blank"
+                                            class="btn btn-sm btn-success" rel="noopener noreferrer">Download Hasil
+                                            pemetaan</a>
+                                        <a href="{{ asset('/data/B-116 Undangan Pertemuan.pdf') }}" target="_blank"
                                             rel="noopener noreferrer" class="btn btn-sm btn-info">Surat undangan</a>
-                                        <a href="{{ route('download.export.hasil-pemetaan') }}" target="_blank"
-                                            class="btn btn-sm btn-success" rel="noopener noreferrer">Download Hasil pemetaan</a>
                                     @else
-                                        <a href="{{ asset('/data/113-Pemberitahuan Nomor Peserta.pdf') }}" target="_blank"
+                                        <a href="{{ asset('/data/B-113 Info Nomor Peserta.pdf') }}" target="_blank"
                                             rel="noopener noreferrer" class="btn btn-sm btn-info">Pemberitahuan Nomor
                                             Peserta</a>
                                         <a href="{{ route('download.export.hasil-pemetaan') }}" target="_blank"
-                                            class="btn btn-sm btn-success" rel="noopener noreferrer">Download Hasil pemetaan</a>
+                                            class="btn btn-sm btn-success" rel="noopener noreferrer">Download Hasil
+                                            pemetaan</a>
                                     @endif
                                 @else
                                     <div class="alert alert-info" role="alert">
@@ -37,7 +39,7 @@
                                         Pengumuman hasil pemetaan tanggal 2 Maret 2023
                                     </div>
                                 @endif
-                            </div>
+                            @endif
 
                             <h6 class="card-subtitle mt-3 mb-2"><mark>Hasil Verifikasi</mark></h6>
                             @if ($user->is_verif)
@@ -48,11 +50,6 @@
                                     </div>
                                 @else
                                     @if ($pemetaan->lolos == 'lolos')
-                                        <div class="alert alert-success" role="alert">
-                                            <i class="bi bi-check-circle"></i>
-                                            Anda dinyatakan Lolos Verifikasi Berkas
-                                        </div>
-
                                         <div class="d-block">
                                             <a href="{{ route('download.kartu-peserta') }}" target="_blank"
                                                 class="btn btn-sm btn-success" rel="noopener noreferrer">Download kartu
@@ -83,7 +80,6 @@
                                     </div>
                                 @endif
                             @endif
-
                             {{-- end hasil verifikasi --}}
                         </div>
                     </div>

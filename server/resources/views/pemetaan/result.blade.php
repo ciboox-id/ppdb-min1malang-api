@@ -31,11 +31,11 @@
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group col-6">
-                                    <label for="excel_file">Upload :</label>
+                                    <label for="excel_file">Upload File excel :</label>
                                     <input type="file" name="excel_file" id="excel_file"
                                         class="form-control form-control-sm">
                                 </div>
-                                <button type="submit" class="btn btn-primary my-2">
+                                <button type="submit" class="btn btn-sm btn-primary my-2">
                                     <i class="bi bi-box"></i>
                                     Import
                                 </button>
@@ -57,7 +57,8 @@
                                         <th scope="col">Uji Tahfidz</th>
                                         <th scope="col">Validator Tahfidz</th>
                                         <th scope="col">Prestasi</th>
-                                        <th scope="col">Timestamps</th>
+                                        <th scope="col">Kelas</th>
+                                        <th scope="col">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -77,7 +78,8 @@
                                                     <td>{{ $user->score->uji_tahfidz ?? '' }}</td>
                                                     <td>{{ $user->score->name_validator_tahfidz ?? '' }}</td>
                                                     <td>{{ $user->score->prestasi ?? '' }}</td>
-                                                    <td>{{ $user->score->updated_at ?? '' }}</td>
+                                                    <td>{{ $user->lolos ? '1'.$user->kelas : "" }}</td>
+                                                    <td>{{ $user->lolos ? 'DITERIMA' : ($user->is_backup ? 'CADANGAN ' .$user->kelas : 'TIDAK DITERIMA') }}</td>
                                                 </tr>
                                             @endif
                                         @endforeach

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('jumlah_saudara')->nullable();
             $table->string('cita')->nullable();
             $table->string('hobi')->nullable();
+            $table->boolean('is_backup')->default(false);
         });
     }
 

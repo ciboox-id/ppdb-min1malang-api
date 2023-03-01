@@ -12,10 +12,10 @@ class ResultUserImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         $validator = Validator::make($row, [
-            'kemandirian' => 'required',
-            'umum' => 'required',
-            'agama' => 'required',
-            'prestasi' => 'required',
+            'kemandirian' => 'nullable',
+            'umum' => 'nullable',
+            'agama' => 'nullable',
+            'prestasi' => 'nullable',
         ]);
 
         if ($validator->fails()) {
@@ -28,13 +28,21 @@ class ResultUserImport implements ToModel, WithHeadingRow
             $user->score->mandiri = $row['kemandirian'];
             $user->score->umum = $row['umum'];
             $user->score->agama = $row['agama'];
-            $user->score->uji_tahfidz = $row['tahfidz'];
-            $user->score->prestasi = $row['prestasi'];
+            $user->score->uji_tahfidz = $row['tahfidz'] ?? 0;
+            $user->score->prestasi = $row['prestasi'] ?? 0;
 
             $user->score->save();
 
             $user->kelas = $row['kelas'];
-            $user->lolos = $row['lolos'] == "DITERIMA" ? true : false;
+            $user->lolos = strtolower($row['lolos']) == "diterima" ? true : false;
+
+            if (str_contains(strtolower($row['lolos']), "cadangan")) {
+                $cadangan = explode(" ",$row['lolos']);
+
+                $user->lolos = false;
+                $user->is_backup = true;
+                $user->kelas = $cadangan[1];
+            }
             $user->save();
         }
 
