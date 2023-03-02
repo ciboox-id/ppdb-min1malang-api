@@ -69,7 +69,7 @@
                 <td>
                     <font size="2">Kepada: <br>Yth Bapak/Ibu Orang Tua / Wali dari : <br>
                         <b>{{ $user->nama_lengkap }} / No. Pemetaan :
-                            {{ str_pad($user->pemetaan->id, 3, '0', STR_PAD_LEFT) }}</b>
+                            {{ str_pad($user->latestPemetaan->id, 3, '0', STR_PAD_LEFT) }}</b>
                         <br>
                         Di Malang
                     </font>
