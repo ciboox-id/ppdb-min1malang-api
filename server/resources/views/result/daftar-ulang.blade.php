@@ -405,11 +405,11 @@
                     <p>: {{ $user->wali->alamat_wali ?? "-" }}</p>
                     <p>: {{ $user->wali->rt ?? "-" }}</p>
                     <p>: {{ $user->wali->rw ?? "-" }}</p>
-                    <p>: {{ $user->wali->kelurahan }}</p>
-                    <p>: {{ $user->wali->kecamatan }}</p>
-                    <p>: {{ $user->wali->kota_kab }}</p>
-                    <p>: {{ $user->wali->provinsi }}</p>
-                    <p>: {{ $user->wali->kode_pos }}</p>
+                    <p>: {{ $user->wali->kelurahan ?? "-" }}</p>
+                    <p>: {{ $user->wali->kecamatan  ?? "-" }}</p>
+                    <p>: {{ $user->wali->kota_kab  ?? "-" }}</p>
+                    <p>: {{ $user->wali->provinsi  ?? "-" }}</p>
+                    <p>: {{ $user->wali->kode_pos  ?? "-" }}</p>
                 </td>
             </tr>
 
