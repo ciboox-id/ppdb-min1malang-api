@@ -190,6 +190,14 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link {{ Request::is('dashboard/data-wali') ? '' : 'collapsed' }}"
+                        href="{{ route('dashboard.data-wali') }}">
+                        <i class="bi bi-person"></i>
+                        <span>Data Wali</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link {{ Request::is('dashboard/data-prestasi') ? '' : 'collapsed' }}"
                         href="{{ route('dashboard.data-prestasi') }}">
                         <i class="bi bi-123"></i>

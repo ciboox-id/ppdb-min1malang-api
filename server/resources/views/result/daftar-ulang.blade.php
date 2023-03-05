@@ -29,12 +29,12 @@
             text-align: center;
         }
 
-        .data-table tr td:last-child {
-            width: 350px;
+        .data-table tr td {
+            width: 150px;
         }
 
         .data-table tr td p {
-            width: 350px;
+            width: 300px;
             margin: 0;
         }
 
@@ -48,7 +48,7 @@
     <center>
         <table width="530">
             <tr>
-                <td><img src="{{ asset('images/logo-icon.png') }}" width="90" height="90"></td>
+                <td><img src="{{ public_path('images/logo-icon.png') }}" width="90" height="90"></td>
                 <td>
                     <center>
                         <font size="4">KEMENTERIAN AGAMA REPUBLIK INDONESIA</font><br>
@@ -105,7 +105,7 @@
             </tr>
             <tr>
                 <td>6. No.Pemetaan</td>
-                <td>: {{ str_pad($user->pemetaan->id, 3, '0', STR_PAD_LEFT) }}</td>
+                <td>: {{ str_pad($user->latestPemetaan->id, 3, '0', STR_PAD_LEFT) }}</td>
             </tr>
             <tr>
                 <td>7. Tempat Lahir</td>
@@ -129,7 +129,7 @@
             </tr>
             <tr>
                 <td>12. Hobby </td>
-                <td>: {{ $user->hobby ?? '' }}</td>
+                <td>: {{ $user->hobi ?? '' }}</td>
             </tr>
             <tr>
                 <td>13. No HP untuk pembelajaran </td>
@@ -141,7 +141,7 @@
             </tr>
             <tr>
                 <td>15. Status tempat tinggal </td>
-                <td>: {{ $user->status_tempat }}</td>
+                <td>: {{ $user->address->status_tempat }}</td>
             </tr>
             <tr>
                 <td>16. Alamat tempat tinggal</td>
@@ -150,7 +150,7 @@
             {{-- This is sub list --}}
             <tr style="line-height: 1.6">
                 <td style="padding-left: 25px">
-                    <span>a. jalan</span>
+                    <span>a. Jalan</span>
                     <span>b. RT</span>
                     <span>c. RW</sp>
                     <span>d. Desa/Kelurahan</span>
@@ -173,15 +173,15 @@
 
             <tr>
                 <td>17. Transportasi ke sekolah</td>
-                <td>: {{ $user->address->transportasi }}</td>
+                <td>: {{ $user->school->transportasi }}</td>
             </tr>
             <tr>
-                <td>18. Transportasi ke sekolah</td>
+                <td>18. Jarak rumah ke sekolah</td>
                 <td>: {{ $user->address->jarak_rumah }}</td>
             </tr>
             <tr>
-                <td>19. Waktu tempuh ke madrasah</td>
-                <td>: {{ $user->address->waktu_tempuh }}</td>
+                <td>19. Waktu tempuh ke sekolah</td>
+                <td>: {{ $user->school->waktu_tempuh ?? 0 }} menit</td>
             </tr>
         </table>
 
@@ -216,15 +216,15 @@
             </tr>
             <tr>
                 <td>6. Tempat Lahir</td>
-                <td>: {{ $user->father->tempat_lahir_ayah }}</td>
+                <td>: {{ $user->father->tempat_lahir }}</td>
             </tr>
             <tr>
                 <td>7. Tanggal Lahir</td>
-                <td>: {{ $user->father->tanggal_lahir_ayah }}</td>
+                <td>: {{ $user->father->tanggal_lahir }}</td>
             </tr>
             <tr>
                 <td>8. Pendidikan terakhir</td>
-                <td>: {{ $user->father->pend_terakhir_ayah }}</td>
+                <td>: {{ $user->father->pend_terakhir }}</td>
             </tr>
             <tr>
                 <td>9. Pekerjaan</td>
@@ -238,10 +238,38 @@
                 <td>11. Penghasilan </td>
                 <td>: {{ $user->father->penghasilan_ayah }}</td>
             </tr>
+
             <tr>
-                <td>12. No. HP </td>
+                <td>12. Alamat tempat tinggal</td>
+            </tr>
+            <tr style="line-height: 1.6">
+                <td style="padding-left: 25px">
+                    <span>a. Jalan</span>
+                    <span>b. RT</span>
+                    <span>c. RW</sp>
+                    <span>d. Desa/Kelurahan</span>
+                    <span>e. Kecamatan</span>
+                    <span>f. Kota</span>
+                    <span>g. Provinsi</span>
+                    <span>h. Kode Pos</span>
+                </td>
+                <td>
+                    <p>: {{ $user->alamat_siswa }}</p>
+                    <p>: {{ $user->address->rt }}</p>
+                    <p>: {{ $user->address->rw }}</p>
+                    <p>: {{ $user->address->kelurahan }}</p>
+                    <p>: {{ $user->address->kecamatan }}</p>
+                    <p>: {{ $user->address->kota_kab }}</p>
+                    <p>: {{ $user->address->provinsi }}</p>
+                    <p>: {{ $user->address->kode_pos }}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>13. No. HP </td>
                 <td>: {{ $user->father->no_telp_ayah }}</td>
             </tr>
+
+
         </table>
 
         <table width="530">
@@ -275,15 +303,15 @@
             </tr>
             <tr>
                 <td>6. Tempat Lahir</td>
-                <td>: {{ $user->mother->tempat_lahir_ibu }}</td>
+                <td>: {{ $user->mother->tempat_lahir }}</td>
             </tr>
             <tr>
                 <td>7. Tanggal Lahir</td>
-                <td>: {{ $user->mother->tanggal_lahir_ibu }}</td>
+                <td>: {{ $user->mother->tanggal_lahir }}</td>
             </tr>
             <tr>
                 <td>8. Pendidikan terakhir</td>
-                <td>: {{ $user->mother->pend_terakhir_ibu }}</td>
+                <td>: {{ $user->mother->pend_terakhir }}</td>
             </tr>
             <tr>
                 <td>9. Pekerjaan</td>
@@ -298,48 +326,11 @@
                 <td>: {{ $user->mother->penghasilan_ibu }}</td>
             </tr>
             <tr>
-                <td>12. No. HP </td>
-                <td>: {{ $user->mother->no_telp_ibu }}</td>
+                <td>12. Alamat tempat tinggal</td>
             </tr>
-        </table>
-
-        <table width="530">
-            <tr>
-                <td style="font-weight: bold">
-                    D. BIODATA WALI (jika ada)
-                </td>
-            </tr>
-        </table>
-
-        <table width="530" class="data-table">
-            <tr>
-                <td>1. Hubungan wali dengan siswa</td>
-                <td>: {{ $user->wali->hub_siswa ?? '' }}</td>
-            </tr>
-            <tr>
-                <td>2. Pendidikan</td>
-                <td>: {{ $user->wali->pend_wali ?? '' }}</td>
-            </tr>
-            <tr>
-                <td>3. Pekerjaan</td>
-                <td>: {{ $user->wali->pekerjaan_wali ?? '' }}</td>
-            </tr>
-            <tr>
-                <td>4. Kantor</td>
-                <td>: {{ $user->wali->nama_kantor_wali ?? '' }}</td>
-            </tr>
-            <tr>
-                <td>5. NIK</td>
-                <td>: {{ $user->wali->nik ?? '' }}</td>
-            </tr>
-            <tr>
-                <td>6. Alamat tempat tinggal</td>
-                <td>: {{ $user->wali->alamat_wali ?? '' }}</td>
-            </tr>
-
             <tr style="line-height: 1.6">
                 <td style="padding-left: 25px">
-                    <span>a. jalan</span>
+                    <span>a. Jalan</span>
                     <span>b. RT</span>
                     <span>c. RW</sp>
                     <span>d. Desa/Kelurahan</span>
@@ -359,10 +350,72 @@
                     <p>: {{ $user->address->kode_pos }}</p>
                 </td>
             </tr>
+            <tr>
+                <td>12. No. HP </td>
+                <td>: {{ $user->mother->no_telp_ibu }}</td>
+            </tr>
+        </table>
+
+        <table width="530">
+            <tr>
+                <td style="font-weight: bold">
+                    D. BIODATA WALI (jika ada)
+                </td>
+            </tr>
+        </table>
+
+        <table width="530" class="data-table">
+            <tr>
+                <td>1. Hubungan wali dengan siswa</td>
+                <td>: {{ $user->wali->hub_wali_siswa ?? '-' }}</td>
+            </tr>
+            <tr>
+                <td>2. Pendidikan</td>
+                <td>: {{ $user->wali->pend_terakhir_wali ?? '-' }}</td>
+            </tr>
+            <tr>
+                <td>3. Pekerjaan</td>
+                <td>: {{ $user->wali->pekerjaan_wali ?? '-' }}</td>
+            </tr>
+            <tr>
+                <td>4. Kantor</td>
+                <td>: {{ $user->wali->nama_kantor_wali ?? '-' }}</td>
+            </tr>
+            <tr>
+                <td>5. NIK</td>
+                <td>: {{ $user->wali->nik_wali ?? '-' }}</td>
+            </tr>
+            <tr>
+                <td>6. Alamat tempat tinggal</td>
+                <td>: {{ $user->wali->alamat_wali ?? '-' }}</td>
+            </tr>
+
+            <tr style="line-height: 1.6">
+                <td style="padding-left: 25px">
+                    <span>a. Jalan</span>
+                    <span>b. RT</span>
+                    <span>c. RW</sp>
+                    <span>d. Desa/Kelurahan</span>
+                    <span>e. Kecamatan</span>
+                    <span>f. Kota</span>
+                    <span>g. Provinsi</span>
+                    <span>h. Kode Pos</span>
+                </td>
+                <td>
+                    <p>: {{ $user->wali->alamat_wali ?? "-" }}</p>
+                    <p>: {{ $user->wali->rt ?? "-" }}</p>
+                    <p>: {{ $user->wali->rw ?? "-" }}</p>
+                    <p>: {{ $user->wali->kelurahan }}</p>
+                    <p>: {{ $user->wali->kecamatan }}</p>
+                    <p>: {{ $user->wali->kota_kab }}</p>
+                    <p>: {{ $user->wali->provinsi }}</p>
+                    <p>: {{ $user->wali->kode_pos }}</p>
+                </td>
+            </tr>
 
             <tr>
                 <td>7. No. HP</td>
-                <td>: {{ $user->wali->no_hp ?? '' }}</td>
+                <td>: {{ $user->wali->no_telp ?? '-' }}</td>
             </tr>
 
         </table>
@@ -389,9 +442,10 @@
         <br><br>
         <table>
             <tr>
-                <td width="180"><br><br><br><br></td>
-                <td class="text"><br>
-                    <img src="{{ asset('/images/ttd.jpg') }}" alt="" style="width: 50mm">
+                <td width="360"><br><br><br><br></td>
+                <td style="border-bottom: 1px dotted; height: 200px;">
+                    <p>Malang, &nbsp;&nbsp;Maret 2023</p>
+                    <p>Orang Tua / Wali Siswa,</p>
                 </td>
             </tr>
         </table>

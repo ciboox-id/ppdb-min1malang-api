@@ -22,7 +22,6 @@ class ResultController extends Controller
     public function pengumuman()
     {
         $userAuth = auth()->user();
-        $pemetaan = Pemetaan::where('user_id', $userAuth->id)->first();
 
         $res = User::where('id', $userAuth->id)->get()->toArray();
         $biodata = count(array_keys($res[0], null));
@@ -46,7 +45,6 @@ class ResultController extends Controller
             'fatmot' => $fat_mot,
             'school' => $school,
             'address' => $address,
-            'pemetaan' => $pemetaan
         ]);
     }
 
@@ -54,6 +52,13 @@ class ResultController extends Controller
     {
         $pdf =  PDF::loadView('result.index', ['user' => auth()->user()]);
 
-        return $pdf->download('hasil-pemetaan.pdf');
+        return $pdf->download('HASILPEMETAAN.pdf');
+    }
+
+    public function downloadDaftarUlang()
+    {
+        $pdf =  PDF::loadView('result.daftar-ulang', ['user' => auth()->user()]);
+
+        return $pdf->download('DAFTARULANG.pdf');
     }
 }

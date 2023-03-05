@@ -109,7 +109,7 @@
                             <select class="form-select" name="pend_terakhir_ayah">
                                 @foreach ($pendidikan as $item)
                                     <option value="{{ $item }}"
-                                        {{ $item === $mother->pend_terakhir ? 'selected' : '' }}> {{ $item }}
+                                        {{ $item === $father->pend_terakhir ? 'selected' : '' }}> {{ $item }}
                                     </option>
                                 @endforeach
                             </select>

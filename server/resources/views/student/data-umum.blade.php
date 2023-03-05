@@ -37,7 +37,12 @@
                             <label for="nama_panggilan" class="form-label">Nama Panggilan <span
                                     class="mandatory">*</span></label>
                             <input type="text" class="form-control" name="nama_panggilan" value="{{ $user->nama_panggilan }}"
-                                placeholder="e.g. ciboox.id" style="text-transform: uppercase" required>
+                                placeholder="e.g. ciboox.id" required>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="email_siswa" class="form-label">Email siswa untuk pembelajaran</label>
+                            <input type="text" class="form-control" name="email_siswa" value="{{ $user->email_siswa }}"
+                                placeholder="e.g. ciboox.id@gmail.com" >
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <label for="jumlah_saudara" class="form-label">Jumlah Saudara Kandung <span class="mandatory">*</span></label>

@@ -8,6 +8,7 @@ use App\Models\Mother;
 use App\Models\Prestasi;
 use App\Models\School;
 use App\Models\User;
+use App\Models\Wali;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -43,6 +44,7 @@ class StudentDashboardController extends Controller
                 'anak_ke' => 'nullable',
                 'hobi' => 'nullable',
                 'cita' => 'nullable',
+                'email_siswa' => 'nullable',
             ]);
 
             $validation['nama_lengkap'] = strtoupper($validation['nama_lengkap']);
@@ -110,7 +112,6 @@ class StudentDashboardController extends Controller
 
     public function updateDataOrtu(Request $request)
     {
-        dd($request->all());
         try {
             $validationAyah = $request->validate([
                 'nama_lengkap_ayah' => 'nullable',
@@ -162,10 +163,12 @@ class StudentDashboardController extends Controller
     {
         $school = auth()->user();
         $asal = ['TK', 'BA', 'RA', 'TA'];
+        $transportasi = ['sepeda', 'sepeda motor', 'jalan kaki', 'mobil', 'ojek'];
 
         return view('student.data-sekolah', [
             'user' => $school,
-            'asal' => $asal
+            'asal' => $asal,
+            'transportasi' => $transportasi
         ]);
     }
 
@@ -175,7 +178,9 @@ class StudentDashboardController extends Controller
             $validationsSchool = $request->validate([
                 'nama_sekolah' => 'nullable',
                 'asal_sekolah' => 'nullable',
-                'npsn' => 'nullable'
+                'npsn' => 'nullable',
+                'waktu_tempuh' => 'nullable',
+                'transportasi' => 'nullable',
             ]);
 
             School::where('user_id', auth()->user()->id)->update($validationsSchool);
@@ -330,10 +335,12 @@ class StudentDashboardController extends Controller
     {
         $jarak = ["0 - 500 m", "500 - 1000 m", "1000 - 1500 m", "1500 - 5000 m", "> 5000 m"];
         $address = auth()->user();
+        $status_tempat = ['rumah sendiri', 'rumah orang tua', 'sewa/kontrak', 'asrama', 'lainnya'];
 
         return view('student.data-alamat', [
             'user' => $address,
-            'jarak' => $jarak
+            'jarak' => $jarak,
+            'status_tempat' => $status_tempat
         ]);
     }
 
@@ -350,11 +357,107 @@ class StudentDashboardController extends Controller
                 'rt' => 'nullable',
                 'rw' => 'nullable',
                 'provinsi' => 'nullable',
+                'status_tempat' => 'nullable'
             ]);
 
             Address::where('user_id', auth()->user()->id)->update($validationAddress);
 
             return redirect()->route('dashboard.data-alamat')->with('success', "Berhasil menyimpan data alamat");
+        } catch (Exception $err) {
+            return back()->with('error', $err->getMessage());
+        }
+    }
+
+    public function dataWali()
+    {
+
+        $user = auth()->user();
+        $pendidikan = [
+            'SD', 'SMP', 'SMA', 'D1', 'D2', 'D3', 'D4', 'S1', 'S2', 'S3'
+        ];
+        $pekerjaan = [
+            "Belum/ Tidak Bekerja",
+            "Mengurus Rumah Tangga",
+            "Pelajar/ Mahasiswa",
+            "Pensiunan",
+            "Pegawai Negeri Sipil",
+            "Tentara Nasional Indonesia",
+            "Kepolisisan RI",
+            "Perdagangan",
+            "Petani/ Pekebun",
+            "Peternak",
+            "Nelayan/ Perikanan",
+            "Karyawan Swasta",
+            "Karyawan BUMN",
+            "Karyawan Honorer",
+            "Wartawan",
+            "Dosen",
+            "Guru",
+            "Pilot",
+            "Pengacara",
+            "Notaris",
+            "Dokter",
+            "Bidan",
+            "Perawat",
+            "Apoteker",
+            "Psikiater/ Psikolog",
+            "Perangkat Desa",
+            "Wiraswasta",
+            "Anggota DPR-RI/DPRD",
+        ];
+
+        return view('student.data-wali', [
+            'user' => $user,
+            'wali' => $user->wali,
+            'pendidikan' => $pendidikan,
+            'job' => $pekerjaan
+        ]);
+    }
+
+    public function updateDataWali(Request $request)
+    {
+        try {
+            $validatedInput = $request->validate([
+                'hub_wali_siswa' => 'nullable',
+                'pend_terakhir_wali' => 'nullable',
+                'pekerjaan_wali' => 'nullable',
+                'nama_kantor_wali' => 'nullable',
+                'nik_wali' => 'nullable|numeric',
+                'alamat_wali' => 'nullable',
+                'rt' => 'nullable',
+                'rw' => 'nullable',
+                'kecamatan' => 'nullable',
+                'kelurahan' => 'nullable',
+                'kota_kab' => 'nullable',
+                'provinsi' => 'nullable',
+                'kode_pos' => 'nullable|numeric',
+                'no_telp' => 'nullable',
+            ]);
+            $wali = Wali::where('user_id', auth()->user()->id)->first();
+
+            if (empty($wali)) {
+                $wali = new Wali();
+                $wali->hub_wali_siswa = $validatedInput['hub_wali_siswa'];
+                $wali->pend_terakhir_wali = $validatedInput['pend_terakhir_wali'];
+                $wali->pekerjaan_wali = $validatedInput['pekerjaan_wali'];
+                $wali->nama_kantor_wali = $validatedInput['nama_kantor_wali'];
+                $wali->nik_wali = $validatedInput['nik_wali'];
+                $wali->alamat_wali = $validatedInput['alamat_wali'];
+                $wali->rt = $validatedInput['rt'];
+                $wali->rw = $validatedInput['rw'];
+                $wali->kecamatan = $validatedInput['kecamatan'];
+                $wali->kelurahan = $validatedInput['kelurahan'];
+                $wali->kota_kab = $validatedInput['kota_kab'];
+                $wali->provinsi = $validatedInput['provinsi'];
+                $wali->kode_pos = $validatedInput['kode_pos'];
+                $wali->no_telp = $validatedInput['no_telp'];
+                $wali->user_id = auth()->user()->id;
+                $wali->save();
+            } else {
+                $wali->update($validatedInput);
+            }
+
+            return redirect()->route('dashboard.data-wali')->with('success', "Berhasil menyimpan data wali");
         } catch (Exception $err) {
             return back()->with('error', $err->getMessage());
         }

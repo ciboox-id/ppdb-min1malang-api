@@ -15,7 +15,7 @@
 
                             @if ($user->is_verif && $user->score != null)
                                 <h6 class="card-subtitle mt-3 mb-2"><mark>Pengumuman Pemetaan</mark></h6>
-                                @if (\Carbon\Carbon::now()->lt(\Carbon\Carbon::create(2023, 3, 2, 0, 0, 0)))
+                                @if (\Carbon\Carbon::now()->gt(\Carbon\Carbon::create(2023, 3, 2, 0, 0, 0)))
                                     @if ($user->lolos)
                                         <a href="{{ asset('/data/B-113 Info Nomor Peserta.pdf') }}" target="_blank"
                                             rel="noopener noreferrer" class="btn btn-sm btn-info">Pemberitahuan Nomor
@@ -25,6 +25,17 @@
                                             pemetaan</a>
                                         <a href="{{ asset('/data/B-116 Undangan Pertemuan.pdf') }}" target="_blank"
                                             rel="noopener noreferrer" class="btn btn-sm btn-info">Surat undangan</a>
+
+                                <h6 class="card-subtitle mt-3 mb-2"><mark>Cetak form daftar ulang</mark></h6>
+                                        @if ($biodata > 5 && $fatmot > 0 && $school > 0 && $address > 0)
+                                            <div class="alert alert-info" role="alert">
+                                                <i class="bi bi-exclamation-circle"></i>
+                                                Lengkapi data terlebih dahulu sebelum mencetak form daftar ulang
+                                            </div>
+                                        @else
+                                            <a href="{{ route('download.export.daftar-ulang') }}" target="_blank"
+                                                class="btn btn-sm btn-success" rel="noopener noreferrer">Cetak Daftar Ulang</a>
+                                        @endif
                                     @else
                                         <a href="{{ asset('/data/B-113 Info Nomor Peserta.pdf') }}" target="_blank"
                                             rel="noopener noreferrer" class="btn btn-sm btn-info">Pemberitahuan Nomor
@@ -49,7 +60,7 @@
                                         Data Telah di verifikasi
                                     </div>
                                 @else
-                                    @if ($pemetaan->lolos == 'lolos')
+                                    @if ($user->pemetaan->lolos == 'lolos')
                                         <div class="d-block">
                                             <a href="{{ route('download.kartu-peserta') }}" target="_blank"
                                                 class="btn btn-sm btn-success" rel="noopener noreferrer">Download kartu

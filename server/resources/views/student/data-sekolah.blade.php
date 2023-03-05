@@ -45,6 +45,23 @@
                             </select>
                         </div>
                         <div class="col-sm-12 col-md-6">
+                            <label for="transportasi" class="form-label">Transportasi sekolah <span
+                                    class="mandatory">*</span></label>
+                            <select class="form-select" name="transportasi">
+                                @foreach ($transportasi as $item)
+                                    <option value="{{ $item }}"
+                                        {{ $item === $user->school->transportasi ? 'selected' : '' }}> {{ $item }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="waktu_tempuh" class="form-label">Waktu tempuh sekolah (menit) <span
+                                    class="mandatory">*</span></label>
+                            <input type="text" class="form-control" name="waktu_tempuh"
+                                value="{{ $user->school->waktu_tempuh }}" placeholder="e.g. 12" required>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
                             <label for="npsn" class="form-label">NPSN <span class="mandatory">*</span></label>
                             <input type="text" class="form-control" value="{{ $user->school->npsn }}" name="npsn"
                                 placeholder="e.g. 1237823" required>

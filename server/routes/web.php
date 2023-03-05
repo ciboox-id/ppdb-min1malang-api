@@ -77,8 +77,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/data-alamat', [StudentDashboardController::class, 'dataAlamat'])->name('dashboard.data-alamat');
         Route::put('/data-alamat/update', [StudentDashboardController::class, 'updateDataAlamat'])->name('dashboard.data-alamat.update');
 
+        Route::get('/data-wali', [StudentDashboardController::class, 'dataWali'])->name('dashboard.data-wali');
+        Route::put('/data-wali/update', [StudentDashboardController::class, 'updateDataWali'])->name('dashboard.data-wali.update');
+
         Route::get('/pengumuman', [ResultController::class, 'pengumuman'])->name('dashboard.pengumuman');
         Route::get('/export-hasil-pemetaan', [ResultController::class, 'downloadHasilPemetaan'])->name('download.export.hasil-pemetaan');
+        Route::get('/export-daftar-ulang', [ResultController::class, 'downloadDaftarUlang'])->name('download.export.daftar-ulang');
 
         Route::middleware(['admin'])->group(function () {
             Route::get('/export-to-excel', [DashboardController::class, 'export'])->name('dashboard.export.excel');

@@ -24,7 +24,7 @@
                                 </button>
                             </div> --}}
                             <div class="mt-2">
-                                @if ($biodata > 7)
+                                @if ($biodata > 5)
                                     <div class="alert alert-warning" role="alert">
                                         <i class="bi bi-exclamation-circle"></i>
                                         Data Umum - Data berkas yang anda masukkan belum lengkap

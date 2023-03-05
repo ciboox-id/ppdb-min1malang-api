@@ -85,4 +85,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Score::class);
     }
+
+    public function wali()
+    {
+        return $this->hasOne(Wali::class);
+    }
 }

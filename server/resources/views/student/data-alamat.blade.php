@@ -79,6 +79,15 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label for="status_tempat" class="form-label">Status tempat tinggal</label>
+                            <select class="form-select" name="status_tempat">
+                                @foreach ($status_tempat as $status)
+                                    <option value="{{ $status }}" {{ $status === $user->address->status_tempat ? 'selected' : '' }}>
+                                        {{ $status }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
                         <button type="submit" class="btn btn-primary mt-4 py-2 rounded-2">
                             Simpan Perubahan
