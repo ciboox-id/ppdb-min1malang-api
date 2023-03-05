@@ -27,14 +27,14 @@
                                             rel="noopener noreferrer" class="btn btn-sm btn-info">Surat undangan</a>
 
                                 <h6 class="card-subtitle mt-3 mb-2"><mark>Cetak form daftar ulang</mark></h6>
-                                        @if ($biodata > 5 && $fatmot > 0 && $school > 0 && $address > 0)
+                                        @if ($biodata < 5 && $fatmot < 1 && $school < 1 && $address < 1)
+                                            <a href="{{ route('download.export.daftar-ulang') }}" target="_blank"
+                                                class="btn btn-sm btn-success" rel="noopener noreferrer">Cetak Daftar Ulang</a>
+                                        @else
                                             <div class="alert alert-info" role="alert">
                                                 <i class="bi bi-exclamation-circle"></i>
                                                 Lengkapi data terlebih dahulu sebelum mencetak form daftar ulang
                                             </div>
-                                        @else
-                                            <a href="{{ route('download.export.daftar-ulang') }}" target="_blank"
-                                                class="btn btn-sm btn-success" rel="noopener noreferrer">Cetak Daftar Ulang</a>
                                         @endif
                                     @else
                                         <a href="{{ asset('/data/B-113 Info Nomor Peserta.pdf') }}" target="_blank"
