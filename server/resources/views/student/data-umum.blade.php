@@ -112,7 +112,7 @@
                         </div>
 
                         <div class="col-sm-12 col-md-6">
-                            <label for="cita" class="form-label">Cita <span class="mandatory">*</span></label>
+                            <label for="cita" class="form-label">Cita-cita <span class="mandatory">*</span></label>
                             <input type="text" class="form-control" value="{{ $user->cita }}" name="cita"
                                 placeholder="e.g. Dokter" required>
                         </div>

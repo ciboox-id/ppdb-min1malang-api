@@ -134,6 +134,8 @@ class ProfileController extends Controller
 
         return view('detail-profile', [
             'user' => $user,
+            'mother' => $user->mother,
+            'father' => $user->father,
             'date' => $date,
             'time' => $time,
             'verifikator' => $verifikator,

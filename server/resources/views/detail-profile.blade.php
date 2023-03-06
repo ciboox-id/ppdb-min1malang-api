@@ -43,15 +43,28 @@
                     <a href="{{ route('dashboard.data-siswa.edit', ['user' => $user->email]) }}"
                         class="back btn btn-secondary">Edit Profile</a>
                 </div>
-
-
-
                 <h5 class="card-title mt-2">Identitas diri</h5>
                 <form class="row g-3">
                     <div class="col-sm-12 col-md-6">
                         <label for="inputNanme4" class="form-label">Nama Lengkap</label>
                         <input type="text" class="form-control" id="inputNanme4" value="{{ $user->nama_lengkap }}"
                             disabled>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <label for="nama_panggilan" class="form-label">Nama Panggilan </label>
+                        <input type="text" class="form-control" name="nama_panggilan" value="{{ $user->nama_panggilan }}"
+                            disabled>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <label for="email_siswa" class="form-label">Email siswa untuk pembelajaran</label>
+                        <input type="text" class="form-control" name="email_siswa" value="{{ $user->email_siswa }}"
+                            disabled>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6">
+                        <label for="jumlah_saudara" class="form-label">Jumlah Saudara Kandung </label>
+                        <input type="number" class="form-control" value="{{ $user->jumlah_saudara }}"
+                            name="jumlah_saudara" disabled>
                     </div>
                     <div class="col-sm-12 col-md-6">
                         <label for="inputEmail4" class="form-label">Anak ke</label>
@@ -99,133 +112,245 @@
                         <input type="text" class="form-control" id="inputAddress" value="{{ $user->school->npsn }}"
                             disabled>
                     </div>
+
+                    <div class="col-sm-12 col-md-6">
+                        <label for="hobi" class="form-label">Hobi </label>
+                        <input type="text" class="form-control" value="{{ $user->hobi }}" name="hobi" disabled>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6">
+                        <label for="cita" class="form-label">Cita - cita</label>
+                        <input type="text" class="form-control" value="{{ $user->cita }}" name="cita" disabled>
+                    </div>
                 </form>
 
                 <h5 class="card-title mt-2">Data Berkas</h5>
-                <div class="foto-berkas">
-                    <div class="col-sm-12 col-md-6 mt-2">
-                        <p>Foto Siswa</p>
-                        @if (!empty($user->foto_siswa))
-                            <a href="{{ asset($user->foto_siswa) }}" target="_blank" rel="noopener noreferrer">
-                                <img src="{{ asset($user->foto_siswa) }}" alt="foto_siswa" class="foto_siswa">
-                            </a>
-                        @else
-                            <div class="no-image">
-                                <p>Belum upload foto diri</p>
-                            </div>
-                        @endif
-                    </div>
-                    <div class="col-sm-12 col-md-6 mt-2">
-                        <p>Berkas Kartu Keluarga</p>
-                        @if (!empty($user->foto_akte))
-                            <a href="{{ asset($user->foto_kk) }}" target="_blank" rel="noopener noreferrer">
-                                <p>Lihat Berkas kartu keluarga</p>
-                            </a>
-                        @else
-                            <div class="no-image">
-                                <p>Belum upload Berkas Kartu Keluarga</p>
-                            </div>
-                        @endif
-                    </div>
-                    <div class="col-sm-12 col-md-6 mt-2">
-                        <p>Berkas Keterangan TK</p>
-                        @if (!empty($user->foto_ket_tk))
-                            <a href="{{ asset($user->foto_ket_tk) }}" target="_blank" rel="noopener noreferrer">
-                                <p>Lihat Berkas Keterangan TK</p>
-                            </a>
-                        @else
-                            <div class="no-image">
-                                <p>Belum upload Berkas Keterangan TK</p>
-                            </div>
-                        @endif
-                    </div>
-                    <div class="col-sm-12 col-md-6 mt-2">
-                        <p>Berkas Akte kelahiran</p>
-                        @if (!empty($user->foto_akte))
-                            <a href="{{ asset($user->foto_akte) }}" target="_blank" rel="noopener noreferrer">
-                                <p>Lihat Berkas Akte Kelahiran</p>
-                            </a>
-                        @else
-                            <div class="no-image">
-                                <p>Belum upload Berkas akte kelahiran</p>
-                            </div>
-                        @endif
-                    </div>
-                    <div class="col-sm-12 col-md-6 mt-2">
-                        <p>Berkas Psikolog anak umur < 6 thn</p>
+                <table class="table table-bordered datatable">
+                    <thead class="table-success">
+                        <tr>
+                            <th>No.</th>
+                            <th>Jenis berkas</th>
+                            <th>Nama File</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td>1.</td>
+                            <td>Foto Siswa</td>
+                            <td>{{ basename($user->foto_siswa) ?? '-' }}</td>
+                            <td>
+                                @if (!empty($user->foto_siswa))
+                                    <a href="{{ asset($user->foto_siswa) }}" target="_blank" rel="noopener noreferrer">
+                                        <p>Lihat foto</p>
+                                    </a>
+                                @else
+                                    <div class="no-image">
+                                        <p>Belum upload foto diri</p>
+                                    </div>
+                                @endif
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>2.</td>
+                            <td>Foto Kartu Keluarga</td>
+                            <td>{{ basename($user->foto_kk) ?? '-' }}</td>
+                            <td>
+                                @if (!empty($user->foto_kk))
+                                    <a href="{{ asset($user->foto_kk) }}" target="_blank" rel="noopener noreferrer">
+                                        <p>Lihat foto</p>
+                                    </a>
+                                @else
+                                    <div class="no-image">
+                                        <p>Belum upload Berkas Kartu Keluarga</p>
+                                    </div>
+                                @endif
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>3.</td>
+                            <td>Foto Akte kelahiran</td>
+                            <td>{{ basename($user->foto_akte) ?? '-' }}</td>
+                            <td>
+                                @if (!empty($user->foto_akte))
+                                    <a href="{{ asset($user->foto_akte) }}" target="_blank" rel="noopener noreferrer">
+                                        <p>Lihat foto</p>
+                                    </a>
+                                @else
+                                    <div class="no-image">
+                                        <p>Belum upload Berkas akte kelahiran</p>
+                                    </div>
+                                @endif
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>4.</td>
+                            <td>Foto Surat Keterangan TK</td>
+                            <td>{{ basename($user->foto_ket_tk) ?? '-' }}</td>
+                            <td>
+                                @if (!empty($user->foto_ket_tk))
+                                    <a href="{{ asset($user->foto_ket_tk) }}" target="_blank" rel="noopener noreferrer">
+                                        <p>Lihat foto</p>
+                                    </a>
+                                @else
+                                    <div class="no-image">
+                                        <p>Belum upload Berkas Keterangan TK</p>
+                                    </div>
+                                @endif
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>5.</td>
+                            <td>Foto Surat Psikolog</td>
+                            <td>{{ basename($user->foto_psikolog) ?? '-' }}</td>
+                            <td>
                                 @if (!empty($user->foto_psikolog))
                                     <a href="{{ asset($user->foto_psikolog) }}" target="_blank"
                                         rel="noopener noreferrer">
-                                        <p>Lihat Berkas Psikolog</p>
+                                        <p>Lihat foto</p>
                                     </a>
                                 @else
                                     <div class="no-image">
                                         <p>Belum upload Berkas psikolog umur < 6 thn</p>
                                     </div>
                                 @endif
-                    </div>
-                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
                 <h5 class="card-title mt-2">Data Orang Tua</h5>
                 <form class="row g-3">
+                    <h6 class="card-subtitle mt-3 mb-0"><mark>Data Ayah</mark></h6>
                     <div class="col-sm-12 col-md-6">
-                        <label for="inputNanme4" class="form-label">Nama Lengkap Ayah</label>
-                        <input type="text" class="form-control" id="inputNanme4"
-                            value="{{ $user->father->nama_lengkap_ayah }}" disabled>
+                        <label for="gelar_depan_ayah" class="form-label">Gelar Depan</label>
+                        <input type="text" class="form-control" name="gelar_depan_ayah"
+                            value="{{ $father->gelar_depan }}" disabled>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <label for="inputEmail4" class="form-label">Nama Lengkap Ibu</label>
-                        <input type="text" class="form-control" value="{{ $user->mother->nama_lengkap_ibu }}"
+                        <label for="nama_lengkap_ayah" class="form-label">Nama Lengkap Ayah</label>
+                        <input type="text" class="form-control" name="nama_lengkap_ayah"
+                            value="{{ $father->nama_lengkap_ayah }}" disabled>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <label for="gelar_belakang_ayah" class="form-label">Gelar belakang</label>
+                        <input type="text" class="form-control" name="gelar_belakang_ayah"
+                            value="{{ $father->gelar_belakang }}" disabled>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <label for="nik_ayah" class="form-label">NIK Ayah </label>
+                        <input type="text" class="form-control" name="nik_ayah" value="{{ $father->nik_ayah }}"
+                            maxlength="16" disabled>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6">
+                        <label for="pekerjaan_ayah" class="form-label">Pekerjaan Ayah</label>
+                        <input type="text" class="form-control" name="nik_ayah"
+                            value="{{ $father->pekerjaan_ayah }}" disabled>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6">
+                        <label for="nama_kantor_ayah" class="form-label">Nama Kantor Ayah</label>
+                        <input type="text" class="form-control" value="{{ $father->nama_kantor_ayah }}"
+                            name="nama_kantor_ayah" disabled>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <label for="penghasilan_ayah" class="form-label">Penghasilan Ayah</label>
+                        <input type="text" class="form-control" value="{{ $father->penghasilan_ayah }}"
+                            name="nama_kantor_ayah" disabled>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <label for="no_telp_ayah" class="form-label">No. Telp Ayah</label>
+                        <input type="text" class="form-control" value="{{ $father->no_telp_ayah }}"
+                            name="no_telp_ayah" disabled>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <label for="status_ayah" class="form-label">Status ayah </label>
+                        <input type="text" class="form-control" value="{{ $father->status }}" name="status_ayah"
                             disabled>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <label for="inputPassword4" class="form-label">NIK Ayah</label>
-                        <input type="text" class="form-control" value="{{ $user->father->nik_ayah }}" disabled>
+                        <label for="tempat_lahir_ayah" class="form-label">Tempat Lahir Ayah</label>
+                        <input type="text" class="form-control" value="{{ $father->tempat_lahir }}"
+                            name="tempat_lahir_ayah" disabled>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <label for="inputAddress" class="form-label">NIK Ibu</label>
-                        <input type="text" class="form-control" id="inputAddress"
-                            value="{{ $user->mother->nik_ibu }}" disabled>
+                        <label for="tanggal_lahir_ayah" class="form-label">Tanggal Lahir Ayah</label>
+                        <input type="date" class="form-control" value="{{ $father->tanggal_lahir }}"
+                            name="tanggal_lahir_ayah" disabled>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <label for="inputAddress" class="form-label">Pekerjaan Ayah</label>
-                        <input type="text" class="form-control" id="inputAddress"
-                            value="{{ $user->father->pekerjaan_ayah }} " disabled>
+                        <label for="pend_terakhir_ayah" class="form-label">Pendidikan terakhir</label>
+                        <input type="text" class="form-control" value="{{ $father->pend_terakhir }}"
+                            name="tanggal_lahir_ayah" disabled>
+                    </div>
+
+
+                    <h6 class="card-subtitle mt-3 mb-0"><mark>Data Ibu</mark></h6>
+                    <div class="col-sm-12 col-md-6">
+                        <label for="gelar_depan_ibu" class="form-label">Gelar Depan</label>
+                        <input type="text" class="form-control" name="gelar_depan_ibu"
+                            value="{{ $mother->gelar_depan }}" disabled>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <label for="inputAddress" class="form-label">Pekerjaan Ibu</label>
-                        <input type="text" class="form-control" id="inputAddress"
-                            value="{{ $user->mother->pekerjaan_ibu }}" disabled>
+                        <label for="nama_lengkap_ibu" class="form-label">Nama Lengkap Ibu</label>
+                        <input type="text" class="form-control" name="nama_lengkap_ibu"
+                            value="{{ $mother->nama_lengkap_ibu }}" disabled>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <label for="inputAddress" class="form-label">Nama Kantor Ayah</label>
-                        <input type="text" class="form-control" id="inputAddress"
-                            value="{{ $user->father->nama_kantor_ayah }}" disabled>
+                        <label for="gelar_belakang_ibu" class="form-label">Gelar belakang</label>
+                        <input type="text" class="form-control" name="gelar_belakang_ibu"
+                            value="{{ $mother->gelar_belakang }}" disabled>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <label for="inputAddress" class="form-label">Nama Kantor Ibu</label>
-                        <input type="text" class="form-control" id="inputAddress"
-                            value="{{ $user->mother->nama_kantor_ibu }}" disabled>
+                        <label for="nik_ibu" class="form-label">NIK Ibu </label>
+                        <input type="text" class="form-control" value="{{ $mother->nik_ibu }}" name="nik_ibu"
+                            maxlength="16" disabled>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <label for="inputAddress" class="form-label">Penghasilan Ayah</label>
-                        <input type="text" class="form-control" id="inputAddress"
-                            value="{{ $user->father->penghasilan_ayah }}" disabled>
+                        <label for="pekerjaan_ibu" class="form-label">Pekerjaan Ibu</label>
+                        <input type="text" class="form-control" value="{{ $mother->pekerjaan_ibu }}"
+                            name="tanggal_lahir_ayah" disabled>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <label for="inputAddress" class="form-label">Penghasilan Ibu</label>
-                        <input type="text" class="form-control" id="inputAddress"
-                            value="{{ $user->mother->penghasilan_ibu }}" disabled>
+                        <label for="nama_kantor_ibu" class="form-label">Nama Kantor Ibu</label>
+                        <input type="text" class="form-control" value="{{ $mother->nama_kantor_ibu }}"
+                            name="nama_kantor_ibu" disabled>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <label for="inputAddress" class="form-label">No. Telp Ayah</label>
-                        <input type="text" class="form-control" id="inputAddress"
-                            value="{{ $user->father->no_telp_ayah }}" disabled>
+                        <label for="penghasilan_ibu" class="form-label">Penghasilan Ibu</label>
+                        <input type="text" class="form-control" value="{{ $mother->penghasilan_ibu }}"
+                            name="tanggal_lahir_ayah" disabled>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <label for="inputAddress" class="form-label">No. Telp Ibu</label>
-                        <input type="text" class="form-control" id="inputAddress"
-                            value="{{ $user->mother->no_telp_ibu }}" disabled>
+                        <label for="no_telp_ibu" class="form-label">No. Telp Ibu </label>
+                        <input type="text" class="form-control" value="{{ $mother->no_telp_ibu }}"
+                            name="no_telp_ibu" disabled>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <label for="status_ibu" class="form-label">Status Ibu </label>
+                        <input type="text" class="form-control" value="{{ $mother->status }}" name="status_ibu"
+                            disabled>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <label for="tempat_lahir_ibu" class="form-label">Tempat Lahir Ibu</label>
+                        <input type="text" class="form-control" value="{{ $mother->tempat_lahir }}"
+                            name="tempat_lahir_ibu" disabled>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <label for="tanggal_lahir_ibu" class="form-label">Tanggal Lahir Ibu</label>
+                        <input type="date" class="form-control" value="{{ $mother->tanggal_lahir }}"
+                            name="tanggal_lahir_ibu" disabled>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <label for="pend_terakhir_ibu" class="form-label">Pendidikan terakhir</label>
+                        <input type="text" class="form-control" value="{{ $mother->pend_terakhir }}"
+                            name="tanggal_lahir_ibu" disabled>
                     </div>
                 </form>
 
@@ -268,8 +393,8 @@
 
                 <h5 class="card-title">Upload Berkas</h5>
                 <div class=" overflow-auto">
-                    <table class="table table-borderless datatable mt-4">
-                        <thead>
+                    <table class="table table-bordered datatable mt-4">
+                        <thead class="table-success">
                             <tr>
                                 <th scope="col">No.</th>
                                 <th scope="col">Nama</th>
