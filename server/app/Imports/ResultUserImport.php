@@ -41,7 +41,7 @@ class ResultUserImport implements ToModel, WithHeadingRow
 
                 $user->lolos = false;
                 $user->is_backup = true;
-                $user->kelas = $cadangan[1];
+                $user->kelas = $cadangan[1] ?? "";
             }
             $user->save();
         }

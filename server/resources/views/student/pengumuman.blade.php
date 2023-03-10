@@ -16,7 +16,7 @@
                             @if ($user->is_verif && $user->score != null)
                                 <h6 class="card-subtitle mt-3 mb-2"><mark>Pengumuman Pemetaan</mark></h6>
                                 @if (\Carbon\Carbon::now()->gt(\Carbon\Carbon::create(2023, 3, 2, 0, 0, 0)))
-                                    @if ($user->lolos)
+                                    @if ($user->lolos || $user->is_backup)
                                         <a href="{{ asset('/data/B-113 Info Nomor Peserta.pdf') }}" target="_blank"
                                             rel="noopener noreferrer" class="btn btn-sm btn-info">Pemberitahuan Nomor
                                             Peserta</a>
@@ -26,10 +26,11 @@
                                         <a href="{{ asset('/data/B-116 Undangan Pertemuan.pdf') }}" target="_blank"
                                             rel="noopener noreferrer" class="btn btn-sm btn-info">Surat undangan</a>
 
-                                <h6 class="card-subtitle mt-3 mb-2"><mark>Cetak form daftar ulang</mark></h6>
+                                        <h6 class="card-subtitle mt-3 mb-2"><mark>Cetak form daftar ulang</mark></h6>
                                         @if ($biodata < 5 && $fatmot < 1 && $school < 1 && $address < 1)
                                             <a href="{{ route('download.export.daftar-ulang') }}" target="_blank"
-                                                class="btn btn-sm btn-success" rel="noopener noreferrer">Cetak Daftar Ulang</a>
+                                                class="btn btn-sm btn-success" rel="noopener noreferrer">Cetak Daftar
+                                                Ulang</a>
                                         @else
                                             <div class="alert alert-info" role="alert">
                                                 <i class="bi bi-exclamation-circle"></i>
